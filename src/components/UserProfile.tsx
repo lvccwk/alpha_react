@@ -13,7 +13,7 @@ import {
 export default function UserProfile() {
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: ["user"],
-    queryFn: fetchUser,
+    queryFn: () => fetchUser(1), //redux login state
   });
   //const [user, setUser] = useState();
 

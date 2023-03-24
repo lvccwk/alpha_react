@@ -8,11 +8,11 @@ export interface FetchUserModel {
 
 }
 
-export const fetchUser = async (): 
+export const fetchUser = async (id: number): 
     Promise<FetchUserModel> => {
     console.log('fetchUser');
 
-    const res = await fetch('http://localhost:8080/users');
+    const res = await fetch(`http://localhost:3000/users/${id}`);
 
     if (res.ok) {
         const data = await res.json();
@@ -33,7 +33,7 @@ export const fetchAddUser = async (obj: {
 }): Promise<FetchUserModel> => {
     console.log('fetchAddUser');
 
-    const res = await fetch("http://localhost:8080/users", {
+    const res = await fetch("http://localhost:3000/users", {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
@@ -66,7 +66,7 @@ export const fetchUpdateUser = async (obj: {
 }): Promise<FetchUserModel> => {
     console.log('fetchUpdateUsers');
                  
-    const res = await fetch("http://localhost:8080/users", {
+    const res = await fetch("http://localhost:3000/users", {
         method: "PUT",
         headers: {
             'Content-Type': 'application/json'
@@ -92,7 +92,7 @@ export const fetchDeleteUser = async (id: number):
     Promise<FetchUserModel> => {
     console.log("fetchAddTodoItem")
 
-    const res = await fetch("http://localhost:8080/users", {
+    const res = await fetch("http://localhost:3000/users", {
         method: "DELETE",
         headers: {
             'Content-Type': 'application/json'

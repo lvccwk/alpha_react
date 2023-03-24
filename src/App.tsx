@@ -40,6 +40,7 @@ import Cart from './pages/Cart';
 import Login from './pages/Login';
 import { FacebookCallback } from './components/FacebookCallback';
 import ProductList from './pages/ProductList';
+import UserProfile  from './components/UserProfile';
 
 setupIonicReact();
 
@@ -63,6 +64,7 @@ const App: React.FC = () => (
           <Route path="/library" render={() => <Tab3 />} exact={true} />
           <Route path="/cart" render={() => <Cart />} exact={true} />
           <Route path="/productlist" render={() => <ProductList />} exact={true} />
+          <Route path="/userprofile" render={() => <UserProfile />} exact={true} />
         </IonRouterOutlet>
 
         <IonTabBar slot="bottom">
