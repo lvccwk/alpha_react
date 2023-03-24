@@ -1,10 +1,15 @@
 import { IonAvatar, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCol, IonContent, IonGrid, IonHeader, IonMenu, IonMenuButton, IonPage, IonRow, IonSearchbar, IonSegmentButton, IonTitle, IonToolbar } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
+import { useHistory } from 'react-router-dom';
 import './Tab2.css';
 
 
 
 const Tab2: React.FC = () => {
+  const history = useHistory();
+  const onClickUser = () => {
+    history.push('/userprofile');
+  }
   return (
     <>
 
@@ -12,7 +17,7 @@ const Tab2: React.FC = () => {
         <IonHeader>
           <IonToolbar>
             <IonButtons slot="end">
-              <IonSegmentButton>USER</IonSegmentButton>
+              <IonSegmentButton onClick={onClickUser}>USER</IonSegmentButton>
             </IonButtons>
             <IonTitle>Alpha Learning</IonTitle>
           </IonToolbar>
