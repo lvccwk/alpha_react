@@ -5,15 +5,6 @@ import './Tab3.css';
 const Tab3: React.FC = () => {
   return (
     <>
-      <IonMenu contentId="main-content">
-        <IonHeader>
-          <IonToolbar>
-            <IonTitle>Menu Content</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-
-        <IonContent className="ion-padding">This is the menu content.</IonContent>
-      </IonMenu>
       <IonPage id="main-content">
         <IonHeader>
           <IonToolbar>
@@ -36,6 +27,7 @@ const Tab3: React.FC = () => {
           <IonCard>
             <IonCardHeader>
               <IonCardTitle>保底爆星必備英文Grammar</IonCardTitle>
+
               <IonCardSubtitle>DSE - 英文</IonCardSubtitle>
             </IonCardHeader>
 

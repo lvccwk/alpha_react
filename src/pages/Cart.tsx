@@ -7,7 +7,7 @@ import './Tab3.css';
 const Cart: React.FC = () => {
     return (
         <>
-            <IonMenu contentId="main-content">
+            {/* <IonMenu contentId="main-content">
                 <IonHeader>
                     <IonToolbar>
                         <IonTitle>Menu Content</IonTitle>
@@ -15,7 +15,7 @@ const Cart: React.FC = () => {
                 </IonHeader>
 
                 <IonContent className="ion-padding">This is the menu content.</IonContent>
-            </IonMenu>
+            </IonMenu> */}
             <IonPage id="main-content">
                 <IonHeader>
 

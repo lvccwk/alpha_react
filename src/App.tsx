@@ -39,7 +39,7 @@ import './theme/variables.css';
 import Cart from './pages/Cart';
 import Login from './pages/Login';
 import { FacebookCallback } from './components/FacebookCallback';
-import UserProfile from './components/UserProfile';
+import ProductList from './pages/ProductList';
 
 setupIonicReact();
 
@@ -48,7 +48,7 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
-          
+
           <Redirect exact path="/" to="/home" />
           {/*
           Use the render method to reduce the number of renders your component will have due to a route change.
@@ -62,8 +62,7 @@ const App: React.FC = () => (
           <Route path="/home" render={() => <Tab2 />} exact={true} />
           <Route path="/library" render={() => <Tab3 />} exact={true} />
           <Route path="/cart" render={() => <Cart />} exact={true} />
-          <Route path="/caasdrt" render={() => <Login />} exact={true} />
-          <Route path="/userprofile" render={() => <UserProfile />} exact={true} />
+          <Route path="/productlist" render={() => <ProductList />} exact={true} />
         </IonRouterOutlet>
 
         <IonTabBar slot="bottom">
@@ -87,7 +86,7 @@ const App: React.FC = () => (
             <IonLabel>Search</IonLabel>
           </IonTabButton>
 
-          <IonTabButton tab="search123" href="/caasdrt">
+          <IonTabButton tab="search123" href="/productlist">
             <IonIcon icon={cartSharp} />
             <IonLabel>註冊</IonLabel>
           </IonTabButton>
