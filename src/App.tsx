@@ -1,3 +1,5 @@
+import { configureStore } from '@reduxjs/toolkit';
+import { Provider } from 'react-redux';
 import { Redirect, Route } from 'react-router-dom';
 import {
   IonApp,
