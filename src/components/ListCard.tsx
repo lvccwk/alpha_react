@@ -28,19 +28,6 @@ function ListCard() {
                         <IonLabel>Item</IonLabel><ButtonX />
                     </IonItem>
 
-                    <IonItem>
-                        <IonThumbnail slot="start">
-                            <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
-                        </IonThumbnail>
-                        <IonLabel>Item</IonLabel><ButtonX />
-                    </IonItem>
-
-                    <IonItem lines="none">
-                        <IonThumbnail slot="start">
-                            <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
-                        </IonThumbnail>
-                        <IonLabel>Item</IonLabel><ButtonX />
-                    </IonItem>
                 </IonList>
             </IonCardContent>
         </IonCard>

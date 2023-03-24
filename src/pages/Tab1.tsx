@@ -2,7 +2,7 @@ import { IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, Io
 import React from 'react';
 import { Route } from 'react-router';
 import ExploreContainer from '../components/ExploreContainer';
-import Cart from './Cart';
+
 import Login from './Login';
 import './Tab1.css';
 
@@ -32,7 +32,7 @@ const Tab1: React.FC = () => {
 
           <IonSegmentButton value="default">
             <IonLabel>Default</IonLabel>
-            <Route path="/cart" render={() => <Cart />} exact={true} />
+            <Route path="/cart" render={() => <Login />} exact={true} />
           </IonSegmentButton>
           <IonSegmentButton value="segment">
             <IonLabel>Segment</IonLabel>

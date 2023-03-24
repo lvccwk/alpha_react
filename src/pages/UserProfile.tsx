@@ -6,24 +6,25 @@ import { useDispatch, useSelector } from "react-redux";
 import { IRootState } from "../redux/store";
 
 import {
-  fetchUser,
+  fetchUser, fetchDeleteUser
 } from "../api/fetchUser";
+import Toolbar from '../components/Toolbar';
 
 
 export default function UserProfile() {
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: ["user"],
-    queryFn: () => fetchUser(1), //redux login state
+    queryFn: () => fetchUser(2), //redux login state
   });
   //const [user, setUser] = useState();
-
 
   if (isLoading || !data) {
     return (
       <IonPage>
+        <Toolbar />
         <IonContent>
           <div>
-            LOADING
+            LOADING12312
           </div>
         </IonContent>
       </IonPage>
@@ -32,6 +33,7 @@ export default function UserProfile() {
     //if (error) return <div>Error: {error.message}</div>;
     return (
       <IonPage>
+        <Toolbar />
         <IonContent>
           <div>
             <div>Profile</div>
@@ -40,6 +42,8 @@ export default function UserProfile() {
             <div>{data.user_type}/</div>
             <div>{data.email}/</div>
             <div>Edit Profile</div>
+            <button onClick={() => fetchDeleteUser(2)}
+            >DEL !!!! </button>
             <div>Delete Account Button</div>
           </div>
         </IonContent>

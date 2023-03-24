@@ -1,16 +1,14 @@
 export interface FetchUserModel {
-    id: number,
-    user_type: string,
-    username: string,
-    email: string,
-    password: string,
-    image: string,
-
+    id: number;
+    user_type: string;
+    username: string;
+    email: string;
+    password: string;
+    image: string;
 }
 
-export const fetchUser = async (id: number): 
-    Promise<FetchUserModel> => {
-    console.log('fetchUser');
+export const fetchUser = async (id: number): Promise<FetchUserModel> => {
+    console.log("fetchUser");
 
     const res = await fetch(`http://localhost:3000/users/${id}`);
 
@@ -18,25 +16,23 @@ export const fetchUser = async (id: number):
         const data = await res.json();
         return data;
     } else {
-        throw new Error('fetchUser FAILED');
+        throw new Error("fetchUser FAILED");
     }
-}
+};
 
 export const fetchAddUser = async (obj: {
-
-    user_type: string,
-    username: string,
-    email: string,
-    password: string,
+    user_type: string;
+    username: string;
+    email: string;
+    password: string;
     //image: string,
-
 }): Promise<FetchUserModel> => {
-    console.log('fetchAddUser');
+    console.log("fetchAddUser");
 
     const res = await fetch("http://localhost:3000/users", {
         method: "POST",
         headers: {
-            'Content-Type': 'application/json'
+            "Content-Type": "application/json",
         },
         body: JSON.stringify({
             user_type: obj.user_type,
@@ -44,72 +40,68 @@ export const fetchAddUser = async (obj: {
             email: obj.email,
             password: obj.password,
             //image: obj.image,
-        })
-    })
-    
+        }),
+    });
+
     if (res.ok) {
         const data = await res.json();
         return data;
     } else {
-        throw new Error('fetchAddUser FAILED');
+        throw new Error("fetchAddUser FAILED");
     }
-}
+};
 
 export const fetchUpdateUser = async (obj: {
     //id: number | string,
     //user_type: string,
-    username: string,
-    email: string,
-    password: string,
+    username: string;
+    email: string;
+    password: string;
     //image: string,
-
 }): Promise<FetchUserModel> => {
-    console.log('fetchUpdateUsers');
-                 
+    console.log("fetchUpdateUsers");
+
     const res = await fetch("http://localhost:3000/users", {
         method: "PUT",
         headers: {
-            'Content-Type': 'application/json'
+            "Content-Type": "application/json",
         },
         body: JSON.stringify({
-
             username: obj.username,
             email: obj.email,
             password: obj.password,
             //image: obj.image,
-        })
-    })
-    
+        }),
+    });
+
     if (res.ok) {
         const data = await res.json();
         return data;
     } else {
-        throw new Error('fetchUpdateUser FAILED');
+        throw new Error("fetchUpdateUser FAILED");
     }
-}
+};
 
-export const fetchDeleteUser = async (id: number): 
-    Promise<FetchUserModel> => {
-    console.log("fetchAddTodoItem")
+export const fetchDeleteUser = async (id: number): Promise<FetchUserModel> => {
+    console.log("fetchDeleteUser");
 
-    const res = await fetch("http://localhost:3000/users", {
+    const res = await fetch(`http://localhost:3000/users/${id}`, {
         method: "DELETE",
         headers: {
-            'Content-Type': 'application/json'
+            "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            id
-        })
-    })
+            id,
+        }),
+    });
 
     if (res.ok) {
-        const data = await res.json()
-        return data
+        const data = await res.json();
+        return data;
     } else {
-        throw new Error("fetchDeleteUser FAILED")
+        throw new Error("fetchDeleteUser FAILED");
     }
-}
-
+};
 
 /*
 USER TABLE:

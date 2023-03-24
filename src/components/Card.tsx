@@ -6,12 +6,6 @@ import Alert from './Alert';
 
 
 
-
-
-
-
-
-
 function Card() {
     return (
         <IonCard>
@@ -20,12 +14,9 @@ function Card() {
                 <IonCardTitle>$ 100 </IonCardTitle>
                 <IonCardSubtitle>中文筆記</IonCardSubtitle>
             </IonCardHeader>
-
             <IonCardContent>
-
                 <Alert />
             </IonCardContent>
-
         </IonCard>
     );
 }

@@ -13,7 +13,7 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { carSportOutline, cartOutline, cartSharp, ellipse, home, homeOutline, library, libraryOutline, peopleCircle, peopleOutline, playCircle, radio, search, square, triangle } from 'ionicons/icons';
+import { carSportOutline, cart, cartOutline, cartSharp, chatbubble, chatbubbleOutline, chatbubbles, chatbubblesOutline, ellipse, home, homeOutline, library, libraryOutline, people, peopleCircle, peopleCircleSharp, peopleOutline, playCircle, radio, search, square, triangle } from 'ionicons/icons';
 import Tab1 from './pages/Tab1';
 import Tab2 from './pages/Tab2';
 import Tab3 from './pages/Tab3';
@@ -36,11 +36,11 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import Cart from './pages/Cart';
+// import Cart from './pages/Cart';
 import Login from './pages/Login';
 import { FacebookCallback } from './components/FacebookCallback';
 import ProductList from './pages/ProductList';
-import UserProfile  from './components/UserProfile';
+import UserProfile from './pages/UserProfile';
 
 setupIonicReact();
 
@@ -60,37 +60,37 @@ const App: React.FC = () => (
             <FacebookCallback></FacebookCallback>
           </Route>
           <Route path="/tutorlist" render={() => <Tab1 />} exact={true} />
+          <Route path="/radio" render={() => <Tab3 />} exact={true} />
           <Route path="/home" render={() => <Tab2 />} exact={true} />
-          <Route path="/library" render={() => <Tab3 />} exact={true} />
-          <Route path="/cart" render={() => <Cart />} exact={true} />
-          <Route path="/productlist" render={() => <ProductList />} exact={true} />
+          <Route path="/shoppingcart" render={() => <Tab1 />} exact={true} />
+          <Route path="/chatroom" render={() => <ProductList />} exact={true} />
           <Route path="/userprofile" render={() => <UserProfile />} exact={true} />
         </IonRouterOutlet>
 
         <IonTabBar slot="bottom">
-          <IonTabButton tab="home" href="/tutorlist">
-            <IonIcon icon={peopleOutline} />
+          <IonTabButton tab="tutorlist" href="/tutorlist">
+            <IonIcon icon={libraryOutline} />
             <IonLabel>導師</IonLabel>
           </IonTabButton>
 
-          <IonTabButton tab="radio" href="/home">
-            <IonIcon icon={home} />
-            <IonLabel>首頁</IonLabel>
-          </IonTabButton>
-
-          <IonTabButton tab="library" href="/library">
-            <IonIcon icon={libraryOutline} />
+          <IonTabButton tab="radio" href="/radio">
+            <IonIcon icon={people} />
             <IonLabel>資源</IonLabel>
           </IonTabButton>
 
-          <IonTabButton tab="search" href="/cart">
-            <IonIcon icon={cartSharp} />
-            <IonLabel>Search</IonLabel>
+          <IonTabButton tab="home" href="/home">
+            <IonIcon icon={homeOutline} />
+            <IonLabel>首頁</IonLabel>
           </IonTabButton>
 
-          <IonTabButton tab="search123" href="/productlist">
-            <IonIcon icon={cartSharp} />
-            <IonLabel>註冊</IonLabel>
+          <IonTabButton tab="shoppingcart" href="/shoppingcart">
+            <IonIcon icon={cart} />
+            <IonLabel>購物車</IonLabel>
+          </IonTabButton>
+
+          <IonTabButton tab="chatroom" href="/chatroom">
+            <IonIcon icon={chatbubblesOutline} />
+            <IonLabel>訊息</IonLabel>
           </IonTabButton>
 
         </IonTabBar>

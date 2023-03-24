@@ -1,27 +1,18 @@
-import { IonAvatar, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCol, IonContent, IonGrid, IonHeader, IonMenu, IonMenuButton, IonPage, IonRow, IonSearchbar, IonSegmentButton, IonTitle, IonToolbar } from '@ionic/react';
+import { IonAvatar, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonMenu, IonMenuButton, IonPage, IonRow, IonSearchbar, IonSegmentButton, IonTitle, IonToolbar } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
 import { useHistory } from 'react-router-dom';
 import './Tab2.css';
+import { personCircle } from 'ionicons/icons';
+import ToolBar from '../components/Toolbar';
 
 
 
 const Tab2: React.FC = () => {
-  const history = useHistory();
-  const onClickUser = () => {
-    history.push('/userprofile');
-  }
+
   return (
     <>
-
       <IonPage id="main-content">
-        <IonHeader>
-          <IonToolbar>
-            <IonButtons slot="end">
-              <IonSegmentButton onClick={onClickUser}>USER</IonSegmentButton>
-            </IonButtons>
-            <IonTitle>Alpha Learning</IonTitle>
-          </IonToolbar>
-        </IonHeader>
+        <ToolBar />
 
         {/* SEARCH BAR */}
         <IonContent className="ion-padding">
