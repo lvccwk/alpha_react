@@ -10,7 +10,7 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { ellipse, square, triangle } from 'ionicons/icons';
+import { carSportOutline, cartOutline, cartSharp, ellipse, home, homeOutline, library, libraryOutline, peopleCircle, peopleOutline, playCircle, radio, search, square, triangle } from 'ionicons/icons';
 import Tab1 from './pages/Tab1';
 import Tab2 from './pages/Tab2';
 import Tab3 from './pages/Tab3';
@@ -33,6 +33,9 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import Cart from './pages/Cart';
+import Login from './pages/Login';
+import { FacebookCallback } from './components/FacebookCallback';
 
 setupIonicReact();
 
@@ -41,32 +44,48 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
-          <Route exact path="/tab1">
-            <Tab1 />
+          <Redirect exact path="/" to="/home" />
+          {/*
+          Use the render method to reduce the number of renders your component will have due to a route change.
+
+          Use the component prop when your component depends on the RouterComponentProps passed in automatically.
+        */}
+          <Route exact path="/facebook-callback">
+            <FacebookCallback></FacebookCallback>
           </Route>
-          <Route exact path="/tab2">
-            <Tab2 />
-          </Route>
-          <Route path="/tab3">
-            <Tab3 />
-          </Route>
-          <Route exact path="/">
-            <Redirect to="/tab1" />
-          </Route>
+          <Route path="/tutorlist" render={() => <Tab1 />} exact={true} />
+          <Route path="/home" render={() => <Tab2 />} exact={true} />
+          <Route path="/library" render={() => <Tab3 />} exact={true} />
+          <Route path="/cart" render={() => <Cart />} exact={true} />
+          <Route path="/caasdrt" render={() => <Login />} exact={true} />
         </IonRouterOutlet>
+
         <IonTabBar slot="bottom">
-          <IonTabButton tab="tab1" href="/tab1">
-            <IonIcon aria-hidden="true" icon={triangle} />
-            <IonLabel>Tab 1</IonLabel>
+          <IonTabButton tab="home" href="/tutorlist">
+            <IonIcon icon={peopleOutline} />
+            <IonLabel>導師</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
-            <IonIcon aria-hidden="true" icon={ellipse} />
-            <IonLabel>Tab 2</IonLabel>
+
+          <IonTabButton tab="radio" href="/home">
+            <IonIcon icon={home} />
+            <IonLabel>首頁</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
-            <IonIcon aria-hidden="true" icon={square} />
-            <IonLabel>Tab 3</IonLabel>
+
+          <IonTabButton tab="library" href="/library">
+            <IonIcon icon={libraryOutline} />
+            <IonLabel>資源</IonLabel>
           </IonTabButton>
+
+          <IonTabButton tab="search" href="/cart">
+            <IonIcon icon={cartSharp} />
+            <IonLabel>Search</IonLabel>
+          </IonTabButton>
+
+          <IonTabButton tab="search123" href="/caasdrt">
+            <IonIcon icon={cartSharp} />
+            <IonLabel>註冊</IonLabel>
+          </IonTabButton>
+
         </IonTabBar>
       </IonTabs>
     </IonReactRouter>
