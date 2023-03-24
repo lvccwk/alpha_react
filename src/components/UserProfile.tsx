@@ -29,6 +29,7 @@ export default function UserProfile() {
         <div>{data.username}/</div>
         <div>{data.user_type}/</div>
         <div>{data.email}/</div>
+        <div>Delete Account Button</div>
       </div>
     );
   }

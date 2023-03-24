@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from 'react-redux';
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 import { Redirect, Route } from 'react-router-dom';
 import {
   IonApp,
@@ -38,6 +39,7 @@ import './theme/variables.css';
 import Cart from './pages/Cart';
 import Login from './pages/Login';
 import { FacebookCallback } from './components/FacebookCallback';
+import UserProfile from './components/UserProfile';
 
 setupIonicReact();
 
@@ -46,6 +48,7 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
+          
           <Redirect exact path="/" to="/home" />
           {/*
           Use the render method to reduce the number of renders your component will have due to a route change.
@@ -60,6 +63,7 @@ const App: React.FC = () => (
           <Route path="/library" render={() => <Tab3 />} exact={true} />
           <Route path="/cart" render={() => <Cart />} exact={true} />
           <Route path="/caasdrt" render={() => <Login />} exact={true} />
+          <Route path="/userprofile" render={() => <UserProfile />} exact={true} />
         </IonRouterOutlet>
 
         <IonTabBar slot="bottom">
