@@ -1,3 +1,6 @@
+import { configureStore } from '@reduxjs/toolkit';
+import { Provider } from 'react-redux';
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 import { Redirect, Route } from 'react-router-dom';
 import {
   IonApp,
@@ -45,6 +48,7 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
+
           <Redirect exact path="/" to="/home" />
           {/*
           Use the render method to reduce the number of renders your component will have due to a route change.
