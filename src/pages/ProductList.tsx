@@ -8,6 +8,7 @@ import Card from '../components/Card';
 import DateTime from '../components/DateTime';
 import ExploreContainer from '../components/ExploreContainer';
 import InputForm from '../components/InputForm';
+import Segment from '../components/Segment';
 import ToolBar from '../components/Toolbar';
 // import Cart from './Cart';
 import Login from './Login';
@@ -16,37 +17,11 @@ import Login from './Login';
 const ProductList: React.FC = () => {
     return (
         <>
-            <IonPage id="main-content">
+            <IonPage>
                 <ToolBar />
-                <IonSegment value="segment">
-                    <IonSegmentButton value="default">
-                        <IonLabel>Default</IonLabel>
-                        <Route path="/cart" render={() => <Login />} exact={true} />
-                    </IonSegmentButton>
-                    <IonSegmentButton value="segment">
-                        <IonLabel>Segment</IonLabel>
-
-                        <Route path="/caasdrt" render={() => <Login />} exact={true} />
-                    </IonSegmentButton>
-                </IonSegment>
-
-
-                <IonContent className="ion-padding"  >
-                    {/* SEARCH BAR */}
-                    <IonSearchbar placeholder="Custom Placeholder"></IonSearchbar>
-                    <ActionSheet />
-                    Tap the button in the toolbar to open the menu.
-                    {/* SEARCH BAR */}
-                    <b>2 per row until md breakpoint, 3 per row for md, equal width for lg and up</b>
-                    <InputForm />
-                    <IonGrid >
-                        <Card />
-                        <Card />
-                    </IonGrid>
+                <IonContent>
+                    <Card />
                 </IonContent>
-
-
-
             </IonPage>
         </>
     );

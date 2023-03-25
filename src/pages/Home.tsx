@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import './Home.css';
 import { personCircle } from 'ionicons/icons';
 import ToolBar from '../components/Toolbar';
+import Refresh from '../components/Refresh';
 
 
 
@@ -13,10 +14,9 @@ const Tab2: React.FC = () => {
     <>
       <IonPage id="main-content">
         <ToolBar />
-
         {/* SEARCH BAR */}
         <IonContent className="ion-padding">
-
+          <Refresh />
           {/* CARD */}
           <IonCard >
             <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
@@ -46,6 +46,7 @@ const Tab2: React.FC = () => {
               <IonCol size="6" size-md="4" size-lg="2">1<img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />通識</IonCol>
             </IonRow>
           </IonGrid>
+
         </IonContent>
       </IonPage>
     </>

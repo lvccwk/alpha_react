@@ -3,6 +3,9 @@ import { IonButton, IonButtons, IonHeader, IonIcon, IonTitle, IonToolbar, useIon
 import '../components/ActionSheet';
 import { personCircle } from "ionicons/icons";
 import { useHistory } from "react-router-dom";
+import "./Toolbar.css"
+import Refresh from "./Refresh";
+
 
 function ToolBar() {
     const history = useHistory();

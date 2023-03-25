@@ -1,25 +1,16 @@
 import { IonButton, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCol, IonContent, IonGrid, IonHeader, IonMenu, IonMenuButton, IonPage, IonRow, IonSearchbar, IonTitle, IonToolbar } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
-import './Tab3.css';
+import ToolBar from '../components/Toolbar';
+import './Resource.css';
 
-const Tab3: React.FC = () => {
+const Resource: React.FC = () => {
   return (
     <>
       <IonPage id="main-content">
-        <IonHeader>
-          <IonToolbar>
-            <IonButtons slot="end">
-              <IonMenuButton></IonMenuButton>
-            </IonButtons>
-            <IonTitle>Alpha Learning</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-
+        <ToolBar />
         {/* SEARCH BAR */}
         <IonContent className="ion-padding">
-
           <b>精選筆記</b>
-
           {/* SEARCH BAR */}
           <IonSearchbar placeholder="Custom Placeholder"></IonSearchbar>
           Tap the button in the toolbar to open the menu.
@@ -70,4 +61,4 @@ const Tab3: React.FC = () => {
   );
 };
 
-export default Tab3;
+export default Resource;

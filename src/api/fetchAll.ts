@@ -1,16 +1,27 @@
-export interface FetchUserModel {
+export interface FetchUserAllModel {
 	id: number;
 	user_type: string;
 	username: string;
 	email: string;
 	password: string;
 	image: string;
+	cart: any;
+	cart_detail: any;
+	purchase_history: any;
+	teacher: any;
+	timetable: any;
+	product_rating: any;
+	product: any;
+	chartoom: any;
+	chatoom_participant: any;
+	private_message: any;
+	subject: any;
 }
 
-export const fetchUser = async (id: number): Promise<FetchUserModel> => {
+export const fetchUserAll = async (id: number): Promise<FetchUserAllModel> => {
 	console.log('fetchUser');
 
-	const res = await fetch(`http://localhost:3000/users/${id}`);
+	const res = await fetch(`http://localhost:3000/carts/${id}`);
 
 	if (res.ok) {
 		const data = await res.json();
@@ -27,7 +38,7 @@ export const fetchAddUser = async (obj: {
 	email: string;
 	password: string;
 	//image: string,
-}): Promise<FetchUserModel> => {
+}): Promise<FetchUserAllModel> => {
 	console.log('fetchAddUser');
 
 	const res = await fetch('http://localhost:3000/users', {
@@ -59,7 +70,7 @@ export const fetchUpdateUser = async (obj: {
 	email: string;
 	password: string;
 	//image: string,
-}): Promise<FetchUserModel> => {
+}): Promise<FetchUserAllModel> => {
 	console.log('fetchUpdateUsers');
 
 	const res = await fetch('http://localhost:3000/users', {
@@ -83,7 +94,7 @@ export const fetchUpdateUser = async (obj: {
 	}
 };
 
-export const fetchDeleteUser = async (id: number): Promise<FetchUserModel> => {
+export const fetchDeleteUser = async (id: number): Promise<FetchUserAllModel> => {
 	console.log('fetchDeleteUser');
 
 	const res = await fetch(`http://localhost:3000/users/${id}`, {

@@ -1,6 +1,6 @@
-import { configureStore } from '@reduxjs/toolkit';
-import { Provider } from 'react-redux';
-import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
+// import { configureStore } from '@reduxjs/toolkit';
+// import { Provider } from 'react-redux';
+// import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 import { Redirect, Route } from 'react-router-dom';
 import {
   IonApp,
@@ -14,9 +14,7 @@ import {
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { carSportOutline, cart, cartOutline, cartSharp, chatbubble, chatbubbleOutline, chatbubbles, chatbubblesOutline, ellipse, home, homeOutline, library, libraryOutline, people, peopleCircle, peopleCircleSharp, peopleOutline, playCircle, radio, search, square, triangle } from 'ionicons/icons';
-import Tab1 from './pages/Tutorlist';
-import Tab2 from './pages/Home';
-import Tab3 from './pages/Tab3';
+
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -42,7 +40,11 @@ import { FacebookCallback } from './components/FacebookCallback';
 import ProductList from './pages/ProductList';
 import UserProfile from './pages/UserProfile';
 import Home from './pages/Home';
-import Tutorlist from './pages/Tutorlist';
+import Resource from './pages/Resource';
+import "./App.css"
+import Tutor from './pages/Tutor';
+import Chatroom from './pages/Chatroom';
+
 
 setupIonicReact();
 
@@ -51,19 +53,16 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
-
           <Redirect exact path="/" to="/home" />
           {/*
           Use the render method to reduce the number of renders your component will have due to a route change.
-
           Use the component prop when your component depends on the RouterComponentProps passed in automatically.
         */}
-
-          <Route path="/tutorlist" render={() => <Tutorlist />} exact={true} />
-          <Route path="/radio" render={() => <Tab3 />} exact={true} />
+          <Route path="/resource" render={() => <Resource />} exact={true} />
+          <Route path="/tutor" render={() => <Tutor />} exact={true} />
           <Route path="/home" render={() => <Home />} exact={true} />
-          <Route path="/shoppingcart" render={() => <Tab2 />} exact={true} />
-          <Route path="/chatroom" render={() => <ProductList />} exact={true} />
+          <Route path="/shoppingcart" render={() => <ProductList />} exact={true} />
+          <Route path="/chatroom" render={() => <Chatroom />} exact={true} />
           <Route exact path="/facebook-callback">
             <FacebookCallback></FacebookCallback>
           </Route>
@@ -71,14 +70,14 @@ const App: React.FC = () => (
         </IonRouterOutlet>
 
         <IonTabBar slot="bottom">
-          <IonTabButton tab="tutorlist" href="/tutorlist">
+          <IonTabButton tab="resource" href="/resource">
             <IonIcon icon={libraryOutline} />
-            <IonLabel>導師</IonLabel>
+            <IonLabel>資源</IonLabel>
           </IonTabButton>
 
-          <IonTabButton tab="radio" href="/radio">
+          <IonTabButton tab="tutor" href="/tutor">
             <IonIcon icon={people} />
-            <IonLabel>資源</IonLabel>
+            <IonLabel>導師</IonLabel>
           </IonTabButton>
 
           <IonTabButton tab="home" href="/home">

@@ -3,16 +3,23 @@ import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle }
 
 import './Card.css';
 import Alert from './Alert';
+import { useQuery } from '@tanstack/react-query';
+import { fetchUserAll } from '../api/fetchAll';
 
 
 
 function Card() {
+    const { data, isLoading, error, refetch } = useQuery({
+        queryKey: ["user"],
+        queryFn: () => fetchUserAll(1), //redux login state
+    });
+
     return (
         <IonCard>
             <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
             <IonCardHeader>
                 <IonCardTitle>$ 100 </IonCardTitle>
-                <IonCardSubtitle>中文筆記</IonCardSubtitle>
+                <IonCardSubtitle>{data?.id}</IonCardSubtitle>
             </IonCardHeader>
             <IonCardContent>
                 <Alert />
