@@ -14,8 +14,8 @@ import {
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
 import { carSportOutline, cart, cartOutline, cartSharp, chatbubble, chatbubbleOutline, chatbubbles, chatbubblesOutline, ellipse, home, homeOutline, library, libraryOutline, people, peopleCircle, peopleCircleSharp, peopleOutline, playCircle, radio, search, square, triangle } from 'ionicons/icons';
-import Tab1 from './pages/Tab1';
-import Tab2 from './pages/Tab2';
+import Tab1 from './pages/Tutorlist';
+import Tab2 from './pages/Home';
 import Tab3 from './pages/Tab3';
 
 /* Core CSS required for Ionic components to work properly */
@@ -41,6 +41,8 @@ import Login from './pages/Login';
 import { FacebookCallback } from './components/FacebookCallback';
 import ProductList from './pages/ProductList';
 import UserProfile from './pages/UserProfile';
+import Home from './pages/Home';
+import Tutorlist from './pages/Tutorlist';
 
 setupIonicReact();
 
@@ -56,14 +58,15 @@ const App: React.FC = () => (
 
           Use the component prop when your component depends on the RouterComponentProps passed in automatically.
         */}
+
+          <Route path="/tutorlist" render={() => <Tutorlist />} exact={true} />
+          <Route path="/radio" render={() => <Tab3 />} exact={true} />
+          <Route path="/home" render={() => <Home />} exact={true} />
+          <Route path="/shoppingcart" render={() => <Tab2 />} exact={true} />
+          <Route path="/chatroom" render={() => <ProductList />} exact={true} />
           <Route exact path="/facebook-callback">
             <FacebookCallback></FacebookCallback>
           </Route>
-          <Route path="/tutorlist" render={() => <Tab1 />} exact={true} />
-          <Route path="/radio" render={() => <Tab3 />} exact={true} />
-          <Route path="/home" render={() => <Tab2 />} exact={true} />
-          <Route path="/shoppingcart" render={() => <Tab1 />} exact={true} />
-          <Route path="/chatroom" render={() => <ProductList />} exact={true} />
           <Route path="/userprofile" render={() => <UserProfile />} exact={true} />
         </IonRouterOutlet>
 

@@ -4,7 +4,7 @@ import { Route } from 'react-router';
 import ExploreContainer from '../components/ExploreContainer';
 
 import Login from './Login';
-import './Tab1.css';
+import './Tutorlist.css';
 
 const Tab1: React.FC = () => {
   return (

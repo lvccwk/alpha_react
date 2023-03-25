@@ -1,7 +1,7 @@
 import { IonAvatar, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonMenu, IonMenuButton, IonPage, IonRow, IonSearchbar, IonSegmentButton, IonTitle, IonToolbar } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
 import { useHistory } from 'react-router-dom';
-import './Tab2.css';
+import './Home.css';
 import { personCircle } from 'ionicons/icons';
 import ToolBar from '../components/Toolbar';
 
