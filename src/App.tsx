@@ -69,6 +69,7 @@ const App: React.FC = () => (
           <Route path="/userprofile" render={() => <UserProfile />} exact={true} />
         </IonRouterOutlet>
 
+
         <IonTabBar slot="bottom">
           <IonTabButton tab="resource" href="/resource">
             <IonIcon icon={libraryOutline} />

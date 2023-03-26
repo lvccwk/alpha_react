@@ -3,7 +3,6 @@ import { ellipsisHorizontal, ellipsisVertical, personCircle, search } from 'ioni
 import React from 'react';
 import { Route } from 'react-router';
 import ActionSheet from '../components/ActionSheet';
-import Alert from '../components/Alert';
 import Card from '../components/Card';
 import DateTime from '../components/DateTime';
 import ExploreContainer from '../components/ExploreContainer';
@@ -26,5 +25,4 @@ const ProductList: React.FC = () => {
         </>
     );
 };
-
 export default ProductList;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { AlertButton, IonButton, useIonAlert } from '@ionic/react';
-import Alert from './Alert';
+
 
 function InputForm() {
     const [presentAlert] = useIonAlert();

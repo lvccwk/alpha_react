@@ -16,6 +16,8 @@ export interface FetchUserAllModel {
 	chatoom_participant: any;
 	private_message: any;
 	subject: any;
+	map: any;
+	item: any;
 }
 
 export const fetchUserAll = async (id: number): Promise<FetchUserAllModel> => {
@@ -32,6 +34,19 @@ export const fetchUserAll = async (id: number): Promise<FetchUserAllModel> => {
 	}
 };
 
+export const fetchTeacher = async (): Promise<FetchUserAllModel> => {
+	console.log('fetchUser');
+
+	const res = await fetch(`http://localhost:3000/teachers/`);
+
+	if (res.ok) {
+		const data = await res.json();
+		console.log(data);
+		return data;
+	} else {
+		throw new Error('fetchUser FAILED');
+	}
+};
 export const fetchAddUser = async (obj: {
 	user_type: string;
 	username: string;

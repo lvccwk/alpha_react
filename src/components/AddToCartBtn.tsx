@@ -1,7 +1,7 @@
 import React from 'react';
 import { IonButton, useIonAlert } from '@ionic/react';
-
-function Alert() {
+import './AddToCartBtn.css';
+function AddToCartBtn() {
     const [presentAlert] = useIonAlert();
 
     return (
@@ -19,4 +19,4 @@ function Alert() {
         </IonButton>
     );
 }
-export default Alert;
+export default AddToCartBtn;

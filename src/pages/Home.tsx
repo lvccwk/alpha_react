@@ -40,7 +40,7 @@ const Tab2: React.FC = () => {
             答、過千條影片課程、實時操題訓練。</b>
           <IonGrid>
             <IonRow>
-              <IonCol size="6" size-md="4" size-lg="2">1<img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />中文</IonCol>
+              <IonCol size="" size-md="4" size-lg="2">1<img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />中文</IonCol>
               <IonCol size="6" size-md="4" size-lg="2">1<img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />英文</IonCol>
               <IonCol size="6" size-md="4" size-lg="2">1<img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />數學</IonCol>
               <IonCol size="6" size-md="4" size-lg="2">1<img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />通識</IonCol>
