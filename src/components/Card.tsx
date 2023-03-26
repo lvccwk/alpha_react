@@ -18,8 +18,8 @@ function Card() {
         <IonCard>
             <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
             <IonCardHeader>
-                <IonCardTitle>$ 100 </IonCardTitle>
-                <IonCardSubtitle>{data?.id}</IonCardSubtitle>
+                <IonCardTitle>${data?.product.price}  </IonCardTitle>
+                <IonCardTitle>{data?.product.name}  <IonCardSubtitle>({data?.product.product_type}) </IonCardSubtitle> </IonCardTitle>
             </IonCardHeader>
             <IonCardContent>
                 <Alert />

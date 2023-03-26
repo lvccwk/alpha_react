@@ -21,7 +21,7 @@ export interface FetchUserAllModel {
 export const fetchUserAll = async (id: number): Promise<FetchUserAllModel> => {
 	console.log('fetchUser');
 
-	const res = await fetch(`http://localhost:3000/carts/${id}`);
+	const res = await fetch(`http://localhost:3000/cartDetails/${id}`);
 
 	if (res.ok) {
 		const data = await res.json();
@@ -41,7 +41,7 @@ export const fetchAddUser = async (obj: {
 }): Promise<FetchUserAllModel> => {
 	console.log('fetchAddUser');
 
-	const res = await fetch('http://localhost:3000/users', {
+	const res = await fetch('http://localhost:3000/cartDetails/', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
