@@ -38,6 +38,7 @@ import './theme/variables.css';
 import Login from './pages/Login';
 import { FacebookCallback } from './components/FacebookCallback';
 import ProductList from './pages/ProductList';
+import ProductPage from './pages/ProductPage';
 import UserProfile from './pages/UserProfile';
 import Home from './pages/Home';
 import Resource from './pages/Resource';
