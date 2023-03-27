@@ -56,11 +56,11 @@ export const fetchUpdateUser = async (obj: {
 	// id: number;
 	//user_type: string,
 	username: string;
-
+	email: string;
+	password: string;
 	//image: string,
 }): Promise<FetchUserModel> => {
-	console.log('fetchUpdateUsers');
-	console.log('fetchUpdateUser', obj);
+	console.log('fetchUpdateUsers', obj);
 	const res = await fetch(`http://localhost:3000/users/${2}`, {
 		method: 'PUT',
 		headers: {
@@ -68,8 +68,9 @@ export const fetchUpdateUser = async (obj: {
 		},
 		body: JSON.stringify({
 			// id: obj.id,
-			username: obj.username
-
+			username: obj.username,
+			email: obj.email,
+			password: obj.password
 			//image: obj.image,
 		})
 	});

@@ -69,6 +69,7 @@ const App: React.FC = () => (
             <FacebookCallback></FacebookCallback>
           </Route>
           <Route path="/userprofile" render={() => <UserProfile />} exact={true} />
+          <Route path="/edituserprofile" render={() => <EditUserProfile />} exact={true} />
         </IonRouterOutlet>
 
 

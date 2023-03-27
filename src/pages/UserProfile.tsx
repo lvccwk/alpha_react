@@ -1,11 +1,12 @@
 import { IonContent, IonPage, useIonViewWillEnter } from '@ionic/react';
 import { useState, useEffect } from 'react';
+import { useHistory } from "react-router-dom";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { IRootState } from "../redux/store";
 import Toolbar from '../components/Toolbar';
 import { fetchUser, fetchDeleteUser, fetchUpdateUser } from "../api/fetchUser";
-import EditUserProfile from '../components/EditUserProfile';
+
 
 export default function UserProfile() {
   const dispatch = useDispatch();
@@ -14,6 +15,11 @@ export default function UserProfile() {
     username: '',
 
   }); // State to hold updated user data
+
+  const history = useHistory();
+  const onClickEditProfile = () => {
+      history.push('/userprofile');
+  }
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: ["user"],
     queryFn: () => fetchUser(2), //redux login state,
@@ -57,18 +63,18 @@ export default function UserProfile() {
     refetch()
   })
 
-  if (error) {
-    return (
-      <IonPage>
-        <Toolbar />
-        <IonContent>
-          <div>
-            Error: {JSON.stringify(error)}
-          </div>
-        </IonContent>
-      </IonPage>
-    )
-  }
+  // if (error) {
+  //   return (
+  //     <IonPage>
+  //       <Toolbar />
+  //       <IonContent>
+  //         <div>
+  //           Error: {JSON.stringify(error)}
+  //         </div>
+  //       </IonContent>
+  //     </IonPage>
+  //   )
+  // }
   if (isLoading || !data) {
     return (
       <IonPage>
@@ -88,15 +94,15 @@ export default function UserProfile() {
 
         <IonContent>
           <div>
-            <div>Profile</div>
-            <div>{data.image}/</div>
-            <div>{data.username}/</div>
-            <div>{data.user_type}/</div>
-            <div>{data.email}/</div>
-            <div>
+            <h1>Profile</h1>
+            <div>{data.image}</div>
+            <div>{data.username}</div>
+            <div>{data.user_type}</div>
+            <div>{data.email}</div>
+            {/* <div>
               <input
                 type="text"
-                placeholder="New username"
+                placeholder="New Username"
                 onChange={(e) =>
                   setNewUserData({
                     ...newUserData,
@@ -106,8 +112,9 @@ export default function UserProfile() {
               />
               <button onClick={() => handleUpdateUser(newUserData)}>Update User</button>
             </div>
-            <button onClick={() => handleDeleteUser(2)}>DEL !!!!</button>
-            <div>Delete Account Button</div>
+            <button onClick={() => handleDeleteUser(2)}>DEL !!!!</button> */}
+
+            <button>EDIT USER PROFILE</button>
           </div>
 
         </IonContent>
