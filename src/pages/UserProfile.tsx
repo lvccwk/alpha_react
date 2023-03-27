@@ -18,7 +18,7 @@ export default function UserProfile() {
 
   const history = useHistory();
   const onClickEditProfile = () => {
-      history.push('/userprofile');
+      history.push('/userprofilesettings');
   }
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: ["user"],
@@ -114,7 +114,7 @@ export default function UserProfile() {
             </div>
             <button onClick={() => handleDeleteUser(2)}>DEL !!!!</button> */}
 
-            <button>EDIT USER PROFILE</button>
+            <button onClick = {onClickEditProfile}>EDIT USER PROFILE</button>
           </div>
 
         </IonContent>

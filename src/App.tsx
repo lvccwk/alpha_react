@@ -43,9 +43,10 @@ import UserProfile from './pages/UserProfile';
 import ShoppingCart from './pages/ShoppingCart';
 import Home from './pages/Home';
 import Resource from './pages/Resource';
-import "./App.css"
+import UserProfileSettings from './pages/UserProfileSettings';
 import Tutor from './pages/Tutor';
 import Chatroom from './pages/Chatroom';
+import "./App.css"
 
 
 setupIonicReact();
@@ -69,7 +70,8 @@ const App: React.FC = () => (
             <FacebookCallback></FacebookCallback>
           </Route>
           <Route path="/userprofile" render={() => <UserProfile />} exact={true} />
-          <Route path="/edituserprofile" render={() => <EditUserProfile />} exact={true} />
+          <Route path="/userprofilesettings" render={() => <UserProfileSettings />} exact={true} />
+
         </IonRouterOutlet>
 
 
