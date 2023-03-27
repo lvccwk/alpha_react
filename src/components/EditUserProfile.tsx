@@ -7,11 +7,12 @@ import {
   IonItem,
   IonLabel,
   IonRow,
+  useIonViewWillEnter,
 } from "@ionic/react";
 
-import { useState } from "react";
-import { useMutation } from "@tanstack/react-query";
-
+import { useEffect, useState } from "react";
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { useForm } from "react-hook-form"
 import {
   FetchUserModel,
   fetchUser,
@@ -19,63 +20,60 @@ import {
 
 } from "../api/fetchUser";
 
-interface UserProfileProps {
-  user: FetchUserModel;
-  refetchTodo: () => void;
-}
+export default function EditUserProfile() {
+  const { data: user, isLoading, error, refetch } = useQuery<FetchUserModel>({
+    queryKey: ["user"],
+    queryFn: () => fetchUser(2), //redux login state,
+    // enabled: false,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
+    retry: false,
+  });
+  const { register, handleSubmit, setValue } = useForm<FetchUserModel>({
+  })
 
-export default function EditUserProfile(props: UserProfileProps) {
-  const [username, setUsername] = useState<string>(props.user.username || "");
-  const [password, setPassword] = useState<string>(props.user.password);
-  const [email, setEmail] = useState<string>(props.user.email);
+  useEffect(() => {
+    console.log(user)
+    if (user) {
+      setValue("username", user ? user.username : "")
+      setValue("password", user ? user.password : "")
+      setValue("email", user ? user.email : "")
+    }
+  }, [user])
 
   const fetchUpdateItem = useMutation(fetchUpdateUser, {
     onSuccess(data, variables, context) {
-      props.refetchTodo();
+      refetch();
     },
   });
 
-  const onUpdate = () => {
-    const obj: {
-      username: string;
-      password: string;
-      email: string;
-    } = {
-      username: username,
-      password: password,
-      email: email,
-    }
-
-    fetchUpdateItem.mutate(obj);
-  };
-
-
+  const onSubmit = (state: FetchUserModel) => {
+    console.log(state)
+    fetchUpdateItem.mutate(state);
+  }
 
   return (
-
     <div>
-      Profile Settings
-      <IonGrid>
-        <IonRow>
-          <IonCol>
-            <IonInput
-              value={username}
-              onIonChange={(e) => setUsername(String(e.target.value))}
-            ></IonInput>
-            <IonInput
-              value={password}
-              onIonChange={(e) => setPassword(String(e.target.value))}
-            ></IonInput>
-            <IonInput
-              value={email}
-              onIonChange={(e) => setEmail(String(e.target.value))}
-            ></IonInput>
-          </IonCol>
-          <IonCol>
-            <IonButton onClick={onUpdate}>Update</IonButton>
-          </IonCol>
-        </IonRow>
-      </IonGrid>
+      <form id="editProfile" onSubmit={handleSubmit(onSubmit)}>
+        <IonGrid>
+          <IonRow>
+            <IonCol>
+              <IonInput
+                {...register("username")}
+              ></IonInput>
+              <IonInput
+                {...register("password")}
+              ></IonInput>
+              <IonInput
+               {...register("email")}
+              ></IonInput>
+            </IonCol>
+            <IonCol>
+              <IonButton type="submit" form={"editProfile"}>Update</IonButton>
+            </IonCol>
+          </IonRow>
+        </IonGrid>
+      </form>
     </div>
   )
 }

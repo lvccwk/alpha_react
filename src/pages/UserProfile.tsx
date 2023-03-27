@@ -81,7 +81,7 @@ export default function UserProfile() {
         <Toolbar />
         <IonContent>
           <div>
-            LOADING12312
+            LOADING1
           </div>
         </IonContent>
       </IonPage>

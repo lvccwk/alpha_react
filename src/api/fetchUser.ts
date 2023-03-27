@@ -8,13 +8,13 @@ export interface FetchUserModel {
 }
 
 export const fetchUser = async (id: number): Promise<FetchUserModel> => {
-	console.log('fetchUser');
-
 	const res = await fetch(`http://localhost:3000/users/${id}`);
 
 	if (res.ok) {
 		const data = await res.json();
-		console.log(data);
+		// console.log({
+		// 	fetchUser: data
+		// });
 		return data;
 	} else {
 		throw new Error('fetchUser FAILED');
@@ -59,7 +59,7 @@ export const fetchUpdateUser = async (obj: {
 	email: string;
 	password: string;
 	//image: string,
-}): Promise<FetchUserModel> => {
+}): Promise<void> => {
 	console.log('fetchUpdateUsers', obj);
 	const res = await fetch(`http://localhost:3000/users/${2}`, {
 		method: 'PUT',
@@ -76,8 +76,7 @@ export const fetchUpdateUser = async (obj: {
 	});
 
 	if (res.ok) {
-		const data = await res.json();
-		return data;
+		return
 	} else {
 		throw new Error('fetchUpdateUser FAILED');
 	}

@@ -9,7 +9,7 @@ export default function UserProfileSettings() {
         <IonContent>
           <div>
             <h1>Profile Settings</h1>
-
+            <EditUserProfile />
           </div>
 
         </IonContent>
