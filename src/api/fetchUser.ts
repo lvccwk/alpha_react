@@ -58,7 +58,7 @@ export const fetchUpdateUser = async (obj: {
 	username: string;
 
 	//image: string,
-}): Promise<FetchUserModel> => {
+}): Promise<void> => {
 	console.log('fetchUpdateUsers');
 	console.log('fetchUpdateUser', obj);
 	const res = await fetch(`http://localhost:3000/users/${2}`, {
@@ -75,8 +75,7 @@ export const fetchUpdateUser = async (obj: {
 	});
 
 	if (res.ok) {
-		const data = await res.json();
-		return data;
+		return;
 	} else {
 		throw new Error('fetchUpdateUser FAILED');
 	}

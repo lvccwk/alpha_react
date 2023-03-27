@@ -35,6 +35,7 @@ export default function UserProfile() {
   // }
   const { mutate: handleUpdateUser } = useMutation(fetchUpdateUser, {
     onSuccess: () => {
+      console.log("handleUpdateUser")
       refetch(); // Refresh user data after update
     },
     onError: (error) => {
@@ -64,6 +65,7 @@ export default function UserProfile() {
         <IonContent>
           <div>
             Error: {JSON.stringify(error)}
+            成功刪除用戶
           </div>
         </IonContent>
       </IonPage>
