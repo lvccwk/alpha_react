@@ -1,4 +1,4 @@
-import { IonContent, IonPage } from '@ionic/react';
+import { IonContent, IonPage, useIonViewWillEnter } from '@ionic/react';
 import { useState, useEffect } from 'react';
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,9 +16,24 @@ export default function UserProfile() {
   }); // State to hold updated user data
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: ["user"],
-    queryFn: () => fetchUser(2), //redux login state
+    queryFn: () => fetchUser(2), //redux login state,
+    // enabled: false,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: false,
+    retry: false,
   });
-  const { mutate } = useMutation(fetchUpdateUser, {
+
+  // const callAPI = (cb: ({ ...params }: any) => Promise<any>) => {
+  //   useMutation(cb, {
+  //     onSuccess: () => {
+  //       refetch(); // Refresh user data after update
+  //     },
+  //     onError: (error) => {
+  //       console.error("Failed to update user: ", error);
+  //     },
+  //   });
+  // }
+  const { mutate: handleUpdateUser } = useMutation(fetchUpdateUser, {
     onSuccess: () => {
       refetch(); // Refresh user data after update
     },
@@ -27,10 +42,33 @@ export default function UserProfile() {
     },
   });
 
-  const handleUpdateUser = () => {
-    mutate(newUserData);
-  };
 
+  const { mutate: handleDeleteUser } = useMutation(fetchDeleteUser, {
+    onSuccess: () => {
+      console.log("handleDeleteUser")
+      refetch(); // Refresh user data after update
+    },
+    onError: (error) => {
+      console.error("Failed to update user: ", error);
+    },
+  });
+
+  useIonViewWillEnter(() => {
+    refetch()
+  })
+
+  if (error) {
+    return (
+      <IonPage>
+        <Toolbar />
+        <IonContent>
+          <div>
+            Error: {JSON.stringify(error)}
+          </div>
+        </IonContent>
+      </IonPage>
+    )
+  }
   if (isLoading || !data) {
     return (
       <IonPage>
@@ -66,9 +104,9 @@ export default function UserProfile() {
                   })
                 }
               />
-              <button onClick={handleUpdateUser}>Update User</button>
+              <button onClick={() => handleUpdateUser(newUserData)}>Update User</button>
             </div>
-            <button onClick={() => fetchDeleteUser(2)}>DEL !!!!</button>
+            <button onClick={() => handleDeleteUser(2)}>DEL !!!!</button>
             <div>Delete Account Button</div>
           </div>
 

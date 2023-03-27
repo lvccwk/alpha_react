@@ -82,7 +82,7 @@ export const fetchUpdateUser = async (obj: {
 	}
 };
 
-export const fetchDeleteUser = async (id: number): Promise<FetchUserModel> => {
+export const fetchDeleteUser = async (id: number): Promise<void> => {
 	console.log('fetchDeleteUser');
 
 	const res = await fetch(`http://localhost:3000/users/${id}`, {
@@ -96,8 +96,7 @@ export const fetchDeleteUser = async (id: number): Promise<FetchUserModel> => {
 	});
 
 	if (res.ok) {
-		const data = await res.json();
-		return data;
+		return;
 	} else {
 		throw new Error('fetchDeleteUser FAILED');
 	}
