@@ -40,6 +40,7 @@ import { FacebookCallback } from './components/FacebookCallback';
 import ProductList from './pages/ProductList';
 import ProductPage from './pages/ProductPage';
 import UserProfile from './pages/UserProfile';
+import ShoppingCart from './pages/ShoppingCart';
 import Home from './pages/Home';
 import Resource from './pages/Resource';
 import "./App.css"
@@ -62,7 +63,7 @@ const App: React.FC = () => (
           <Route path="/resource" render={() => <Resource />} exact={true} />
           <Route path="/tutor" render={() => <Tutor />} exact={true} />
           <Route path="/home" render={() => <Home />} exact={true} />
-          <Route path="/shoppingcart" render={() => <ProductList />} exact={true} />
+          <Route path="/shoppingcart" render={() => <ShoppingCart />} exact={true} />
           <Route path="/chatroom" render={() => <Chatroom />} exact={true} />
           <Route exact path="/facebook-callback">
             <FacebookCallback></FacebookCallback>
