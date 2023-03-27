@@ -115,6 +115,7 @@ export default function UserProfile() {
             <button onClick={() => handleDeleteUser(2)}>DEL !!!!</button> */}
 
             <button onClick = {onClickEditProfile}>EDIT USER PROFILE</button>
+            <button>PURCHASE HISTORY</button>
           </div>
 
         </IonContent>

@@ -11,6 +11,7 @@ import {
 } from "@ionic/react";
 
 import { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useForm } from "react-hook-form"
 import {
@@ -51,10 +52,13 @@ export default function EditUserProfile() {
     console.log(state)
     fetchUpdateItem.mutate(state);
   }
-
+  const history = useHistory();
+  const onClickHomePage = () => {
+    history.push('/home');
+  }
   return (
     <div>
-      <form id="editProfile" onSubmit={handleSubmit(onSubmit)}>
+      <form id="edit-profile" onSubmit={handleSubmit(onSubmit)}>
         <IonGrid>
           <IonRow>
             <IonCol>
@@ -69,7 +73,7 @@ export default function EditUserProfile() {
               ></IonInput>
             </IonCol>
             <IonCol>
-              <IonButton type="submit" form={"editProfile"}>Update</IonButton>
+              <IonButton type="submit" form={"edit-profile"} onClick={onClickHomePage}>Update</IonButton>
             </IonCol>
           </IonRow>
         </IonGrid>
