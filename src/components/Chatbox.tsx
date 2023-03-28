@@ -2,7 +2,6 @@ import React from 'react';
 import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonItem, IonLabel, IonList, IonThumbnail } from '@ionic/react';
 import { useQuery } from "@tanstack/react-query";
 import './ListCard.css';
-import ButtonX from './ButtonX';
 import {
     fetchUserAll
 } from "../api/fetchAll";

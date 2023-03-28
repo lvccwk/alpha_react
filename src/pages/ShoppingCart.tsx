@@ -2,7 +2,8 @@ import { IonButton, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardS
 import { ellipsisHorizontal, ellipsisVertical, personCircle, search } from 'ionicons/icons';
 import React from 'react';
 import { Route } from 'react-router';
-import Card from '../components/Card';
+import Button from '../components/Button';
+import CartItem from '../components/CartItem';
 import ToolBar from '../components/Toolbar';
 
 
@@ -12,7 +13,7 @@ const ShoppingCart: React.FC = () => {
             <IonPage>
                 <ToolBar />
                 <IonContent>
-                    <Card />
+                    <CartItem />
                 </IonContent>
             </IonPage>
         </>
