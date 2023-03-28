@@ -16,11 +16,13 @@ const userSlice = createSlice({
     name: 'user',
     initialState: initalState,
     reducers: {
-
+        fbLogin: (state: UserState, payloadAction: PayloadAction) => {
+            state.isLoggedIn = true
+        }
     }
 })
 
-
+export const {fbLogin} = userSlice.actions
 export default userSlice.reducer
 /*
 USER TABLE:
