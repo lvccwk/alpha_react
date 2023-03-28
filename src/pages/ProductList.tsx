@@ -18,11 +18,13 @@ const ProductList: React.FC = () => {
         <>
             <IonPage>
                 <ToolBar />
+                          <IonSearchbar placeholder="Custom Placeholder"></IonSearchbar>
                 <IonContent>
-                    <Card />
+                    <Segment />
                 </IonContent>
             </IonPage>
         </>
     );
 };
+
 export default ProductList;

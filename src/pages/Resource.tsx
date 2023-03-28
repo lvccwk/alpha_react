@@ -1,5 +1,7 @@
-import { IonButton, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCol, IonContent, IonGrid, IonHeader, IonMenu, IonMenuButton, IonPage, IonRow, IonSearchbar, IonTitle, IonToolbar } from '@ionic/react';
+import { IonButton, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCol, IonContent, IonGrid, IonHeader, IonIcon, IonMenu, IonMenuButton, IonPage, IonRow, IonSearchbar, IonTitle, IonToolbar } from '@ionic/react';
+import { filter } from 'ionicons/icons';
 import ExploreContainer from '../components/ExploreContainer';
+import ProductSegment from '../components/ProductSegment';
 import ToolBar from '../components/Toolbar';
 import './Resource.css';
 
@@ -10,12 +12,18 @@ const Resource: React.FC = () => {
         <ToolBar />
         {/* SEARCH BAR */}
         <IonContent className="ion-padding">
-          <b>精選筆記</b>
+          <b>資源庫</b>
+          
           {/* SEARCH BAR */}
-          <IonSearchbar placeholder="Custom Placeholder"></IonSearchbar>
-          Tap the button in the toolbar to open the menu.
+          <IonSearchbar placeholder="輸入搜尋內容"></IonSearchbar>
+            <IonButtons>
+              <IonButton>
+                  <IonIcon slot="icon-only" icon={filter}></IonIcon>
+              </IonButton>
+            </IonButtons>
           {/* SEARCH BAR */}
-          <IonCard>
+          <ProductSegment />
+          {/* <IonCard>
             <IonCardHeader>
               <IonCardTitle>保底爆星必備英文Grammar</IonCardTitle>
 
@@ -54,7 +62,7 @@ const Resource: React.FC = () => {
 
             <IonButton fill="clear">詳細資料</IonButton>
             <IonButton fill="clear">加入購物車</IonButton>
-          </IonCard>
+          </IonCard> */}
         </IonContent>
       </IonPage>
     </>
