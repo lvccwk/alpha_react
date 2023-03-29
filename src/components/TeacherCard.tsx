@@ -11,17 +11,18 @@ interface Teacher {
     id: number;
     info: string;
     username: string;
+    user: any;
 }
 
 function TeacherCard() {
     const { data, isLoading, error, refetch } = useQuery({
-        queryKey: ["user"],
+        queryKey: ["teacherAll"],
         queryFn: fetchTeacherAll,
     });
 
     const history = useHistory();
     const onClickEditProfile = () => {
-        history.push('/userprofilesettings');
+        history.push(`/tutorprofile`);
     }
 
     return (
@@ -32,7 +33,7 @@ function TeacherCard() {
                     <button className='btn-card' onClick={onClickEditProfile}>
                         <img alt="Silhouette of mountains" src={photo} />
                         {/* <IonCardTitle>${item.id}</IonCardTitle> */}
-                        <IonCardContent>${item.username}</IonCardContent>
+                        <IonCardContent>{item.user.username}</IonCardContent>
                     </button>
                 </IonCard>
             ))}

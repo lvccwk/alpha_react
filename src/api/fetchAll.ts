@@ -18,6 +18,8 @@ export interface FetchUserAllModel {
 	subject: any;
 	map: any;
 	item: any;
+	info: any;
+	user: any;
 }
 
 export const fetchUserAll = async (id: number): Promise<FetchUserAllModel> => {
@@ -47,10 +49,10 @@ export const fetchChatHistoryAll = async (): Promise<FetchUserAllModel> => {
 		throw new Error('fetchUser FAILED');
 	}
 };
-export const fetchTeacher = async (): Promise<FetchUserAllModel> => {
+export const fetchTeacher = async (id: number): Promise<FetchUserAllModel> => {
 	console.log('fetchUser');
 
-	const res = await fetch(`http://localhost:3000/teachers/`);
+	const res = await fetch(`http://localhost:3000/teachers/${id}`);
 
 	if (res.ok) {
 		const data = await res.json();
@@ -64,7 +66,7 @@ export const fetchTeacher = async (): Promise<FetchUserAllModel> => {
 export const fetchTeacherAll = async (): Promise<FetchUserAllModel> => {
 	console.log('fetchUser');
 
-	const res = await fetch(`http://localhost:3000/users`);
+	const res = await fetch(`http://localhost:3000/teachers`);
 
 	if (res.ok) {
 		const data = await res.json();
@@ -74,6 +76,7 @@ export const fetchTeacherAll = async (): Promise<FetchUserAllModel> => {
 		throw new Error('fetchUser FAILED');
 	}
 };
+
 export const fetchAddUser = async (obj: {
 	user_type: string;
 	username: string;
@@ -184,7 +187,6 @@ export const fetchNote = async (): Promise<FetchUserAllModel> => {
 		throw new Error('fetchNote FAILED');
 	}
 };
-
 
 /*
 USER TABLE:
