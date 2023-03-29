@@ -157,17 +157,31 @@ export const fetchDeleteUser = async (id: number): Promise<FetchUserAllModel> =>
 	}
 };
 
-export const fetchProduct = async (): Promise<FetchUserAllModel> => {
-	console.log('fetchProduct');
+export const fetchCourse = async (): Promise<FetchUserAllModel> => {
+	console.log('fetchCourse');
 
-	const res = await fetch(`http://localhost:3000/products/`);
+	const res = await fetch(`http://localhost:3000/products/Course`);
 
 	if (res.ok) {
 		const data = await res.json();
 		console.log(data);
 		return data;
 	} else {
-		throw new Error('fetchProduct FAILED');
+		throw new Error('fetchCourse FAILED');
+	}
+};
+
+export const fetchNote = async (): Promise<FetchUserAllModel> => {
+	console.log('fetchNote');
+
+	const res = await fetch(`http://localhost:3000/products/Note`);
+
+	if (res.ok) {
+		const data = await res.json();
+		console.log(data);
+		return data;
+	} else {
+		throw new Error('fetchNote FAILED');
 	}
 };
 
