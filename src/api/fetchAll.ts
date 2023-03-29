@@ -34,6 +34,19 @@ export const fetchUserAll = async (id: number): Promise<FetchUserAllModel> => {
 	}
 };
 
+export const fetchChatHistoryAll = async (): Promise<FetchUserAllModel> => {
+	console.log('fetchChatHisttory');
+
+	const res = await fetch(`http://localhost:3000/chatroomHistorys/`);
+
+	if (res.ok) {
+		const data = await res.json();
+		console.log(data);
+		return data;
+	} else {
+		throw new Error('fetchUser FAILED');
+	}
+};
 export const fetchTeacher = async (): Promise<FetchUserAllModel> => {
 	console.log('fetchUser');
 

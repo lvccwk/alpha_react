@@ -1,7 +1,5 @@
-import { IonButton, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCol, IonContent, IonGrid, IonHeader, IonMenu, IonMenuButton, IonPage, IonRow, IonSearchbar, IonTitle, IonToolbar } from '@ionic/react';
-import Card from '../components/Card';
-import ExploreContainer from '../components/ExploreContainer';
-import Refresh from '../components/Refresh';
+import { IonContent, IonPage, IonSearchbar, } from '@ionic/react';
+
 import Segment from '../components/Segment';
 import ToolBar from '../components/Toolbar';
 
@@ -11,6 +9,7 @@ const Tutor: React.FC = () => {
         <>
             <IonPage>
                 <ToolBar />
+                <IonSearchbar placeholder="輸入搜尋內容"></IonSearchbar>
                 <IonContent>
                     <Segment />
                 </IonContent>

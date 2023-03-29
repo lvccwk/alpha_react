@@ -6,6 +6,7 @@ import { fetchTeacher, fetchTeacherAll, fetchUserAll } from '../api/fetchAll';
 import { useQuery } from '@tanstack/react-query';
 import AddToCartBtn from './AddToCartBtn';
 import photo from '../../src/photo/brandi-redd-6H9H-tYPUQQ-unsplash.jpg'
+import { useHistory } from 'react-router-dom';
 
 interface Teacher {
     id: number;
@@ -19,13 +20,21 @@ function TeacherCard() {
         queryFn: fetchTeacherAll,
     });
 
+    const history = useHistory();
+    const onClickEditProfile = () => {
+        history.push('/userprofilesettings');
+    }
+
     return (
         <>
+
             {Array.isArray(data) && data.map((item: Teacher) => (
                 <IonCard key={item.id}>
-                    <img alt="Silhouette of mountains" src={photo} />
-                    {/* <IonCardTitle>${item.id}</IonCardTitle> */}
-                    <IonCardContent>${item.username}</IonCardContent>
+                    <button onClick={onClickEditProfile}>
+                        <img alt="Silhouette of mountains" src={photo} />
+                        {/* <IonCardTitle>${item.id}</IonCardTitle> */}
+                        <IonCardContent>${item.username}</IonCardContent>
+                    </button>
                 </IonCard>
             ))}
         </>
