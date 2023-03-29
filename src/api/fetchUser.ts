@@ -7,7 +7,7 @@ export interface FetchUserModel {
 	image: string;
 }
 
-export const fetchUser = async (id: number): Promise<FetchUserModel> => {
+export const fetchUser = async (id: number|null): Promise<FetchUserModel> => {
 	const res = await fetch(`http://localhost:3000/users/${id}`);
 
 	if (res.ok) {
