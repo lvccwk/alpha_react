@@ -1,7 +1,7 @@
 // import { configureStore } from '@reduxjs/toolkit';
 // import { Provider } from 'react-redux';
 // import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
-import { Redirect, Route } from 'react-router-dom';
+import { Redirect, Route, useHistory, useLocation } from 'react-router-dom';
 import {
   IonApp,
   IonIcon,
@@ -52,61 +52,68 @@ import TutorProfile from './pages/TutorProfile';
 
 setupIonicReact();
 
-const App: React.FC = () => (
-  <IonApp>
-    <IonReactRouter>
-      <IonTabs>
-        <IonRouterOutlet>
-          <Redirect exact path="/" to="/home" />
-          {/*
+const App: React.FC = () => {
+  // const history = useHistory();
+  return (
+    <IonApp>
+      <IonReactRouter>
+        <IonTabs>
+          <IonRouterOutlet>
+            <Redirect exact path="/" to="/home" />
+            {/*
           Use the render method to reduce the number of renders your component will have due to a route change.
           Use the component prop when your component depends on the RouterComponentProps passed in automatically.
         */}
-          <Route path="/resource" render={() => <Resource />} exact={true} />
-          <Route path="/tutor" render={() => <Tutor />} exact={true} />
-          <Route path="/home" render={() => <Home />} exact={true} />
-          <Route path="/shoppingcart" render={() => <ShoppingCart />} exact={true} />
-          <Route path="/chatroom" render={() => <Chatroom />} exact={true} />
-          <Route path="/login" render={() => <Login />} exact={true} />
-          <Route exact path="/facebook-callback"><FacebookCallback></FacebookCallback></Route>
-          <Route path="/userprofile" render={() => <UserProfile />} exact={true} />
-          <Route path="/userprofilesettings" exact={true} ><UserProfileSettings /></Route>
-          <Route path="/ProductList" exact={true} ><ProductList /></Route>
-          <Route path="/ProductPage" exact={true} ><ProductPage /></Route>
-          <Route path="/tutorprofile" render={() => <TutorProfile />} exact={true} />
-        </IonRouterOutlet>
+            <Route path="/resource" render={() => <Resource />} exact={true} />
+            <Route path="/tutor" render={() => <Tutor />} exact={true} />
+            <Route path="/home" render={() => <Home />} exact={true} />
+            <Route path="/shoppingcart" render={() => <ShoppingCart />} exact={true} />
+            <Route path="/chatroom" render={() => <Chatroom />} exact={true} />
+            <Route path="/login" render={() => <Login />} exact={true} />
+            <Route exact path="/facebook-callback">
+              <FacebookCallback></FacebookCallback>
+            </Route>
+            <Route path="/userprofile" render={() => <UserProfile />} exact={true} />
+            <Route path="/userprofilesettings" exact={true} >
+              <UserProfileSettings />
+            </Route>
+            <Route path="/tutorprofile" exact={true} >
+              <TutorProfile />
+            </Route>
+          </IonRouterOutlet>
 
 
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="resource" href="/resource">
-            <IonIcon icon={libraryOutline} />
-            <IonLabel>資源</IonLabel>
-          </IonTabButton>
+          <IonTabBar slot="bottom">
+            <IonTabButton tab="resource" href="/resource">
+              <IonIcon icon={libraryOutline} />
+              <IonLabel>資源</IonLabel>
+            </IonTabButton>
 
-          <IonTabButton tab="tutor" href="/tutor">
-            <IonIcon icon={people} />
-            <IonLabel>導師</IonLabel>
-          </IonTabButton>
+            <IonTabButton tab="tutor" href="/tutor" >
+              <IonIcon icon={people} />
+              <IonLabel>導師</IonLabel>
+            </IonTabButton>
 
-          <IonTabButton tab="home" href="/home">
-            <IonIcon icon={homeOutline} />
-            <IonLabel>首頁</IonLabel>
-          </IonTabButton>
+            <IonTabButton tab="home" href="/home">
+              <IonIcon icon={homeOutline} />
+              <IonLabel>首頁</IonLabel>
+            </IonTabButton>
 
-          <IonTabButton tab="shoppingcart" href="/shoppingcart">
-            <IonIcon icon={cart} />
-            <IonLabel>購物車</IonLabel>
-          </IonTabButton>
+            <IonTabButton tab="shoppingcart" href="/shoppingcart">
+              <IonIcon icon={cart} />
+              <IonLabel>購物車</IonLabel>
+            </IonTabButton>
 
-          <IonTabButton tab="chatroom" href="/chatroom">
-            <IonIcon icon={chatbubblesOutline} />
-            <IonLabel>訊息</IonLabel>
-          </IonTabButton>
+            <IonTabButton tab="chatroom" href="/chatroom">
+              <IonIcon icon={chatbubblesOutline} />
+              <IonLabel>訊息</IonLabel>
+            </IonTabButton>
 
-        </IonTabBar>
-      </IonTabs>
-    </IonReactRouter>
-  </IonApp>
-);
+          </IonTabBar>
+        </IonTabs>
+      </IonReactRouter>
+    </IonApp>
+  )
+}
 
 export default App;

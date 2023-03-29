@@ -1,7 +1,7 @@
 import React from 'react';
 import { IonCard, IonCardContent } from '@ionic/react';
 import './TeacherCard.css';
-import { fetchTeacher, fetchTeacherAll, fetchUserAll } from '../api/fetchAll';
+import { fetchTeacher, fetchTeacherAll } from '../api/fetchAll';
 import { useQuery } from '@tanstack/react-query';
 import AddToCartBtn from './AddToCartBtn';
 import photo from '../../src/photo/brandi-redd-6H9H-tYPUQQ-unsplash.jpg'

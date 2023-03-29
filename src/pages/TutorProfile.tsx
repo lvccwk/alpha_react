@@ -11,6 +11,8 @@ import TeacherDetail from '../components/TeacherDetail';
 
 
 const TutorProfile: React.FC = () => {
+    console.log("TutorProfile")
+    const history = useHistory()
     return (
         <>
             <IonPage>
