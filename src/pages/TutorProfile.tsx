@@ -10,9 +10,7 @@ import ToolBar from '../components/Toolbar';
 import TeacherDetail from '../components/TeacherDetail';
 
 
-
-export default function TutorProfile() {
-
+const TutorProfile: React.FC = () => {
     return (
         <>
             <IonPage>
@@ -23,4 +21,6 @@ export default function TutorProfile() {
             </IonPage>
         </>
     );
-}
+};
+
+export default TutorProfile;

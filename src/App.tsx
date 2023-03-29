@@ -68,13 +68,11 @@ const App: React.FC = () => (
           <Route path="/shoppingcart" render={() => <ShoppingCart />} exact={true} />
           <Route path="/chatroom" render={() => <Chatroom />} exact={true} />
           <Route path="/login" render={() => <Login />} exact={true} />
-          <Route exact path="/facebook-callback">
-            <FacebookCallback></FacebookCallback>
-          </Route>
+          <Route exact path="/facebook-callback"><FacebookCallback></FacebookCallback></Route>
           <Route path="/userprofile" render={() => <UserProfile />} exact={true} />
-          <Route path="/userprofilesettings" exact={true} >
-            <UserProfileSettings />
-          </Route>
+          <Route path="/userprofilesettings" exact={true} ><UserProfileSettings /></Route>
+          <Route path="/ProductList" exact={true} ><ProductList /></Route>
+          <Route path="/ProductPage" exact={true} ><ProductPage /></Route>
           <Route path="/tutorprofile" render={() => <TutorProfile />} exact={true} />
         </IonRouterOutlet>
 
