@@ -16,8 +16,11 @@ const userSlice = createSlice({
     name: 'user',
     initialState: initalState,
     reducers: {
-        fbLogin: (state: UserState, payloadAction: PayloadAction) => {
+        fbLogin: (state: UserState, action: PayloadAction<any>) => {
+            const payload = action.payload
             state.isLoggedIn = true
+            localStorage.setItem("token", payload.token)
+            console.log("token: ", payload.token)
         }
     }
 })

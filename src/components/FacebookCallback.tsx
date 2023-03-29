@@ -5,21 +5,17 @@ import { useAppSelector } from "../redux/store";
 import { fbLogin } from "../redux/userSlice";
 import { useHistory } from "react-router";
 
-
-
-
-
 export function FacebookCallback() {
     const history = useHistory()
     const dispatch = useDispatch()
     const isLoggedIn = useAppSelector(state => state.user.isLoggedIn)
     useEffect(() => {
         const searchParams = new URLSearchParams(window.location.search)
-        const code = searchParams.get('code') || "";
+        const code = searchParams.get('code') || ""; //
         (async function () {
             const data = await facebookLogin(code)
             if (data) {
-                dispatch(fbLogin())
+                dispatch(fbLogin({token: data.token}))
             } else {
                 // Error handling with React-Toastify
             }
