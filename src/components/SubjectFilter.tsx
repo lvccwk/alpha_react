@@ -9,12 +9,12 @@ import SubjectFilterList from "./SubjectFilterList";
 function SubjectFilter() {
     return (
         <IonButtons>
-            <IonButton id="click-trigger">
+            <IonButton onClick={() => console.log('Hi')}>
                 <IonIcon slot="icon-only" icon={filter}></IonIcon>
             </IonButton>
-            <IonPopover trigger="click-trigger" triggerAction="click">
-                <SubjectFilterList />
-            </IonPopover> 
+            <div className="d-none chinese">中文</div>
+            <div className="d-none subject">英文</div>
+            <div className="d-none subject">數學</div>
         </IonButtons>
     );
 }

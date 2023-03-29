@@ -1,3 +1,6 @@
 ion-popover {
   --width: 100vw;
   }
+.d-none {
+  display: none;
+}
