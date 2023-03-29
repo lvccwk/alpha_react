@@ -24,7 +24,7 @@ function CourseCard() {
 
     const history = useHistory();
     const onClickProductPage = () => {
-        history.push('/productpage');
+        history.push('/userprofilesettings');
     }
 
     return (

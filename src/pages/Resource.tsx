@@ -2,6 +2,7 @@ import { IonButton, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardS
 import { filter } from 'ionicons/icons';
 import ExploreContainer from '../components/ExploreContainer';
 import ProductSegment from '../components/ProductSegment';
+import SubjectFilter from '../components/SubjectFilter';
 import ToolBar from '../components/Toolbar';
 import './Resource.css';
 
@@ -16,11 +17,7 @@ const Resource: React.FC = () => {
           
           {/* SEARCH BAR */}
           <IonSearchbar placeholder="輸入搜尋內容"></IonSearchbar>
-            <IonButtons>
-              <IonButton slot='start'>
-                  <IonIcon slot="icon-only" icon={filter}></IonIcon>
-              </IonButton>
-            </IonButtons>
+          <SubjectFilter />
           {/* SEARCH BAR */}
           <ProductSegment />
           {/* <IonCard>
