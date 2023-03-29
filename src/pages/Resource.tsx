@@ -17,7 +17,7 @@ const Resource: React.FC = () => {
           {/* SEARCH BAR */}
           <IonSearchbar placeholder="輸入搜尋內容"></IonSearchbar>
             <IonButtons>
-              <IonButton>
+              <IonButton slot='start'>
                   <IonIcon slot="icon-only" icon={filter}></IonIcon>
               </IonButton>
             </IonButtons>
