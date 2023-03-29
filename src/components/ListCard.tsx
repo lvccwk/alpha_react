@@ -5,6 +5,7 @@ import './ListCard.css';
 import ButtonX from './ButtonX';
 import {
     fetchTeacher,
+    fetchTeacherAll,
     fetchUserAll
 } from "../api/fetchAll";
 import ToolBar from './Toolbar';
@@ -18,7 +19,7 @@ interface Any {
 function ListCard() {
     const { data, isLoading, error, refetch } = useQuery({
         queryKey: ["user"],
-        queryFn: () => fetchTeacher(), //redux login state
+        queryFn: () => fetchTeacherAll, //redux login state
     });
 
     return (
