@@ -1,44 +1,43 @@
 import React from 'react';
-import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonItem, IonLabel, IonList, IonThumbnail } from '@ionic/react';
-import { useQuery } from "@tanstack/react-query";
-import './ListCard.css';
-import ButtonX from './ButtonX';
-import {
-    fetchTeacher,
-    fetchUserAll
-} from "../api/fetchAll";
-import ToolBar from './Toolbar';
+import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCol, IonGrid, IonRow } from '@ionic/react';
 
-interface Any {
+import './TeacherCard.css';
+import { fetchProduct } from '../api/fetchAll';
+import { useQuery } from '@tanstack/react-query';
+import AddToCartBtn from './AddToCartBtn';
+import photo from '../../src/photo/brandi-redd-6H9H-tYPUQQ-unsplash.jpg'
+import { useHistory } from 'react-router';
+
+interface Note {
     id: number;
-    info: string;
+    name: string;
+    price: number;
+    rating: number;
 }
 
-
-function ListCard() {
+function NoteCard() {
     const { data, isLoading, error, refetch } = useQuery({
-        queryKey: ["user"],
-        queryFn: () => fetchTeacher(), //redux login state
+        queryKey: ["note"],
+        queryFn: fetchProduct,
     });
+    
+    const history = useHistory();
+    const onClickProductPage = () => {
+        history.push('/ProductPage');
+    }
 
     return (
         <>
-            {Array.isArray(data) && data.map((item: Any) => (
+            {Array.isArray(data) && data.map((item: Note) => (
                 <IonCard key={item.id}>
-                    <ToolBar />
-                    <IonCardContent>
-                        <IonList>
-                            <IonItem>
-                                <IonThumbnail slot="start">
-                                    <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
-                                </IonThumbnail>
-                                <IonLabel>${item.id}</IonLabel><ButtonX />
-                            </IonItem>
-                        </IonList>
-                    </IonCardContent>
+                    <button onClick={onClickProductPage}>
+                        <img alt="Silhouette of mountains" src={photo} />
+                        {/* <IonCardTitle>${item.id}</IonCardTitle> */}
+                        <IonCardContent>{item.name} ${item.price}<AddToCartBtn /></IonCardContent>
+                    </button>
                 </IonCard>
             ))}
         </>
     );
 }
-export default ListCard;
+export default NoteCard;

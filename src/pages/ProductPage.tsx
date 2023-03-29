@@ -12,6 +12,7 @@ const ProductPage: React.FC = () => {
             <IonPage>
                 <ToolBar />
                 <IonContent>
+                    Product Page
                     <Card />
                 </IonContent>
             </IonPage>

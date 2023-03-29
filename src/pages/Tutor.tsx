@@ -9,8 +9,8 @@ const Tutor: React.FC = () => {
         <>
             <IonPage>
                 <ToolBar />
-                <IonSearchbar placeholder="輸入搜尋內容"></IonSearchbar>
                 <IonContent>
+                    <IonSearchbar placeholder="輸入搜尋內容"></IonSearchbar>
                     <Segment />
                 </IonContent>
             </IonPage>

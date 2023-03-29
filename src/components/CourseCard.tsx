@@ -2,10 +2,11 @@ import React from 'react';
 import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCol, IonGrid, IonRow } from '@ionic/react';
 
 import './TeacherCard.css';
-import { fetchTeacher, fetchTeacherAll, fetchUserAll } from '../api/fetchAll';
+import { fetchProduct } from '../api/fetchAll';
 import { useQuery } from '@tanstack/react-query';
 import AddToCartBtn from './AddToCartBtn';
 import photo from '../../src/photo/brandi-redd-6H9H-tYPUQQ-unsplash.jpg'
+import { useHistory } from 'react-router';
 
 interface Course {
     id: number;
@@ -17,16 +18,23 @@ interface Course {
 function CourseCard() {
     const { data, isLoading, error, refetch } = useQuery({
         queryKey: ["course"],
-        queryFn: fetchTeacherAll,
+        queryFn: fetchProduct,
     });
+    
+    const history = useHistory();
+    const onClickProductPage = () => {
+        history.push('/productpage');
+    }
 
     return (
         <>
             {Array.isArray(data) && data.map((item: Course) => (
                 <IonCard key={item.id}>
-                    <img alt="Silhouette of mountains" src={photo} />
-                    {/* <IonCardTitle>${item.id}</IonCardTitle> */}
-                    <IonCardContent>${item.name}<AddToCartBtn /></IonCardContent>
+                    <button onClick={onClickProductPage}>
+                        <img alt="Silhouette of mountains" src={photo} />
+                        {/* <IonCardTitle>${item.id}</IonCardTitle> */}
+                        <IonCardContent>{item.name} ${item.price}<AddToCartBtn /></IonCardContent>
+                    </button>
                 </IonCard>
             ))}
         </>
