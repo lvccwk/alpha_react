@@ -1,25 +1,34 @@
 import { IonContent, IonPage, useIonViewWillEnter } from '@ionic/react';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useLayoutEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { IRootState } from "../redux/store";
 import Toolbar from '../components/Toolbar';
 import { fetchUser, fetchDeleteUser, fetchUpdateUser } from "../api/fetchUser";
+import { userLogout } from "../redux/userSlice";
 
 
 export default function UserProfile() {
+  const history = useHistory();
   const dispatch = useDispatch();
+
   const [newUserData, setNewUserData] = useState({
     id: 2,
     username: '',
 
   }); // State to hold updated user data
 
-  const history = useHistory();
-  const onClickEditProfile = () => {
+  const handleEditProfile = () => {
     history.push('/userprofilesettings');
   }
+
+  const handleLogout = () => {
+    dispatch(userLogout(""));
+    console.log("finish dispatch");
+    history.push("/home")
+  }
+
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: ["user"],
     queryFn: () => fetchUser(2), //redux login state,
@@ -39,26 +48,26 @@ export default function UserProfile() {
   //     },
   //   });
   // }
-  const { mutate: handleUpdateUser } = useMutation(fetchUpdateUser, {
-    onSuccess: () => {
-      console.log("handleUpdateUser")
-      refetch(); // Refresh user data after update
-    },
-    onError: (error) => {
-      console.error("Failed to update user: ", error);
-    },
-  });
+  // const { mutate: handleUpdateUser } = useMutation(fetchUpdateUser, {
+  //   onSuccess: () => {
+  //     console.log("handleUpdateUser")
+  //     refetch(); // Refresh user data after update
+  //   },
+  //   onError: (error) => {
+  //     console.error("Failed to update user: ", error);
+  //   },
+  // });
 
 
-  const { mutate: handleDeleteUser } = useMutation(fetchDeleteUser, {
-    onSuccess: () => {
-      console.log("handleDeleteUser")
-      refetch(); // Refresh user data after update
-    },
-    onError: (error) => {
-      console.error("Failed to update user: ", error);
-    },
-  });
+  // const { mutate: handleDeleteUser } = useMutation(fetchDeleteUser, {
+  //   onSuccess: () => {
+  //     console.log("handleDeleteUser")
+  //     refetch(); // Refresh user data after update
+  //   },
+  //   onError: (error) => {
+  //     console.error("Failed to update user: ", error);
+  //   },
+  // });
 
   useIonViewWillEnter(() => {
     refetch()
@@ -116,9 +125,11 @@ export default function UserProfile() {
             </div>
             <button onClick={() => handleDeleteUser(2)}>DEL !!!!</button> */}
 
-            <button onClick={onClickEditProfile}>EDIT USER PROFILE</button>
+            <button onClick={handleEditProfile}>EDIT USER PROFILE</button>
+            <br></br>
             <button>PURCHASE HISTORY</button>
-            <button>LOGOUT</button>
+            <br></br>
+            <button onClick={handleLogout}>LOGOUT</button>
           </div>
 
         </IonContent>

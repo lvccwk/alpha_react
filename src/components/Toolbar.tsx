@@ -15,7 +15,7 @@ function ToolBar() {
     const dispatch = useDispatch()
     const isLoggedIn = useAppSelector(state => state.user.isLoggedIn)
 
-    const onClickUser = () => {
+    const handleUser = () => {
         if(isLoggedIn){
             history.push('/userprofile');
             console.log('yesLOGIN');
@@ -29,7 +29,7 @@ function ToolBar() {
         <IonHeader>
             <IonToolbar>
                 <IonButtons slot="end">
-                    <IonIcon slot="icon-only" icon={personCircle} onClick={onClickUser} ></IonIcon>
+                    <IonIcon slot="icon-only" icon={personCircle} onClick={handleUser} ></IonIcon>
                 </IonButtons>
                 <IonTitle>Alpha Learning</IonTitle>
             </IonToolbar>

@@ -21,11 +21,16 @@ const userSlice = createSlice({
             state.isLoggedIn = true
             localStorage.setItem("token", payload.token)
             console.log("token: ", payload.token)
+        },
+        userLogout: (state: UserState, action: PayloadAction<any>) => {
+            state.isLoggedIn = false
+            localStorage.removeItem("token")
+            console.log("delete token")
         }
     }
 })
 
-export const {fbLogin} = userSlice.actions
+export const {fbLogin,userLogout} = userSlice.actions
 export default userSlice.reducer
 /*
 USER TABLE:
