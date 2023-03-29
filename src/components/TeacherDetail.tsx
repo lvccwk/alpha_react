@@ -1,11 +1,12 @@
 import React from 'react';
 import { IonCard, IonCardContent } from '@ionic/react';
-import './TeacherCard.css';
 import { fetchTeacher, fetchTeacherAll, fetchUserAll } from '../api/fetchAll';
 import { useQuery } from '@tanstack/react-query';
 import AddToCartBtn from './AddToCartBtn';
 import photo from '../../src/photo/brandi-redd-6H9H-tYPUQQ-unsplash.jpg'
 import { useHistory } from 'react-router-dom';
+import './TeacherDetail.css';
+
 
 interface Teacher {
     id: number;
@@ -26,7 +27,6 @@ function TeacherCard() {
 
     return (
         <>
-
             {Array.isArray(data) && data.map((item: Teacher) => (
                 <IonCard key={item.id}>
                     <button className='btn-card' onClick={onClickEditProfile}>
@@ -35,6 +35,7 @@ function TeacherCard() {
                         <IonCardContent>${item.username}</IonCardContent>
                     </button>
                 </IonCard>
+
             ))}
         </>
     );

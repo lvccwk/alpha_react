@@ -1,10 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import userSlice from "./userSlice";
 
-export interface IRootState {
-    user: any;
-
-}
 
 const store = configureStore({
     reducer: {
@@ -13,4 +10,6 @@ const store = configureStore({
     },
   });
 
-export default store;
+  export type IRootState = ReturnType<typeof store.getState>
+  export const useAppSelector: TypedUseSelectorHook<IRootState> = useSelector
+  export default store;

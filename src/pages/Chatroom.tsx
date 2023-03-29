@@ -8,7 +8,6 @@ const Chatroom: React.FC = () => {
     return (
         <>
             <IonPage >
-                <h1>聊天室</h1>
                 <ToolBar />
                 <IonContent>
                     <Chatbox />

@@ -1,28 +1,28 @@
 import React, { useEffect } from "react"
 import { facebookLogin } from "../api/fetch";
-// import { useAppDispatch } from "react-import"
-
-
-
-
+import { useDispatch } from "react-redux"
+import { useAppSelector } from "../redux/store";
+import { fbLogin } from "../redux/userSlice";
+import { useHistory } from "react-router";
 
 export function FacebookCallback() {
-    // const dispatch = useAppDispatch()
-    // const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated)
+    const history = useHistory()
+    const dispatch = useDispatch()
+    const isLoggedIn = useAppSelector(state => state.user.isLoggedIn)
     useEffect(() => {
         const searchParams = new URLSearchParams(window.location.search)
-        const code = searchParams.get('code') || "";
+        const code = searchParams.get('code') || ""; //
         (async function () {
             const data = await facebookLogin(code)
             if (data) {
-                // dispatch(login(data.username))
+                dispatch(fbLogin({token: data.token}))
             } else {
                 // Error handling with React-Toastify
             }
         })()
     }, [])
-    // if(isAuthenticated){
-    //     return <Navigate to="/" replace/>
-    // }
+    if(isLoggedIn){
+         history.push("/home")
+    }
     return <h3>Redirecting to main page...</h3>
 }

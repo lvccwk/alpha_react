@@ -118,6 +118,7 @@ export default function UserProfile() {
 
             <button onClick={onClickEditProfile}>EDIT USER PROFILE</button>
             <button>PURCHASE HISTORY</button>
+            <button>LOGOUT</button>
           </div>
 
         </IonContent>

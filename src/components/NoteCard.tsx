@@ -21,7 +21,7 @@ function NoteCard() {
         queryKey: ["note"],
         queryFn: fetchNote,
     });
-    
+
     const history = useHistory();
     const onClickProductPage = () => {
         history.push('/ProductPage');
@@ -31,7 +31,7 @@ function NoteCard() {
         <>
             {Array.isArray(data) && data.map((item: Note) => (
                 <IonCard key={item.id}>
-                    <button onClick={onClickProductPage}>
+                    <button className='btn-card' onClick={onClickProductPage}>
                         <img alt="Silhouette of mountains" src={photo} />
                         {/* <IonCardTitle>${item.id}</IonCardTitle> */}
                         <IonCardContent>{item.name} ${item.price} 評分:{item.avg_rating}<AddToCartBtn /></IonCardContent>
