@@ -26,7 +26,6 @@ function Segment() {
 
             {selectedSegment === 'default' ? (
                 <div>
-                    <h1>導師列表</h1>
                     <p>
                         <IonGrid>
                             <IonRow>

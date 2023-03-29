@@ -47,6 +47,7 @@ import Resource from './pages/Resource';
 import Tutor from './pages/Tutor';
 import Chatroom from './pages/Chatroom';
 import "./App.css"
+import TutorProfile from './pages/TutorProfile';
 
 
 setupIonicReact();
@@ -72,9 +73,9 @@ const App: React.FC = () => (
           </Route>
           <Route path="/userprofile" render={() => <UserProfile />} exact={true} />
           <Route path="/userprofilesettings" exact={true} >
-          <UserProfileSettings />
+            <UserProfileSettings />
           </Route>
-
+          <Route path="/tutorprofile" render={() => <TutorProfile />} exact={true} />
         </IonRouterOutlet>
 
 
