@@ -20,6 +20,7 @@ export interface FetchUserAllModel {
 	item: any;
 	info: any;
 	user: any;
+	price: any;
 }
 
 export const fetchCart = async (id: number): Promise<FetchUserAllModel> => {
