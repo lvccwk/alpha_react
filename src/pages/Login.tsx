@@ -1,4 +1,5 @@
 import { IonContent, IonPage } from "@ionic/react";
+import Toolbar from "../components/Toolbar";
 // import { Button } from "react-bootstrap";
 
 export default function LoginPage() {
@@ -18,6 +19,7 @@ export default function LoginPage() {
     }
     return (
         <IonPage>
+            <Toolbar />
             <IonContent>
                 <div>Login Page</div>
                 <button onClick={onFacebookLogin}>
