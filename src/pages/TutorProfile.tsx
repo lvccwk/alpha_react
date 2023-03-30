@@ -1,4 +1,4 @@
-import { IonContent, IonPage, useIonViewWillEnter } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, useIonViewWillEnter } from '@ionic/react';
 import { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -16,6 +16,7 @@ const TutorProfile: React.FC = () => {
     return (
         <>
             <IonPage>
+
                 <ToolBar />
                 <IonContent>
                     <TeacherDetail />
