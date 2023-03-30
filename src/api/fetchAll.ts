@@ -21,6 +21,8 @@ export interface FetchUserAllModel {
 	info: any;
 	user: any;
 	price: any;
+	avg_rating: any;
+	name: any;
 }
 
 export const fetchCart = async (id: number): Promise<FetchUserAllModel> => {

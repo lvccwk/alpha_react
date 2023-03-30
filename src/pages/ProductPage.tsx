@@ -14,7 +14,6 @@ const ProductPage: React.FC = () => {
             <IonPage>
                 <ToolBar />
                 <IonContent>
-                    Product Page
                     <ProductDetail />
                 </IonContent>
             </IonPage>

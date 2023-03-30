@@ -7,15 +7,6 @@ import photo from '../../src/photo/brandi-redd-6H9H-tYPUQQ-unsplash.jpg'
 import { useHistory, useParams } from 'react-router-dom';
 import './TeacherDetail.css';
 
-
-// interface Product {
-//     id: number;
-//     name: string;
-//     price: any;
-//     avg_rating: any;
-//     image: any;
-// }
-
 function ProductDetail() {
     const params = useParams()
     const productId = Object.values(params)[0]
@@ -29,9 +20,7 @@ function ProductDetail() {
         <>
             <IonCard>
                 <img alt="Silhouette of mountains" src={photo} />
-                ProductDetail
-                <IonCardContent>{data?.id} ${data?.image} 評分:{data?.price}<AddToCartBtn /></IonCardContent>
-
+                <IonCardContent>{data?.name} 評分:{data?.avg_rating}<AddToCartBtn /></IonCardContent>
             </IonCard>
         </>
     );
