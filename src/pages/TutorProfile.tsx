@@ -20,7 +20,7 @@ const TutorProfile: React.FC = () => {
 
                 <ToolBar />
                 <IonContent>
-                    <ProductDetail />
+                    <TeacherDetail />
                 </IonContent>
             </IonPage>
         </>
