@@ -13,7 +13,8 @@ interface Course {
     price: number;
     avg_rating: number;
     subject_id: number;
-    teacher: any;
+    teacher: string;
+    teacher_id: number;
 }
 
 function CourseCard() {

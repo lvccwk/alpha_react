@@ -9,6 +9,7 @@ export interface FetchUserAllModel {
 	cart_detail: any;
 	purchase_history: any;
 	teacher: any;
+	teacher_id: any;
 	timetable: any;
 	product_rating: any;
 	product: any;
