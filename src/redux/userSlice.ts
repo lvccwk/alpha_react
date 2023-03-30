@@ -1,6 +1,30 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import jwt_decode from "jwt-decode"
 
+const checkId:any = () => {
+    if (localStorage.getItem("token")) {
+        const token:any = localStorage.getItem("token")
+        let userObject :any = jwt_decode(token)
+        const id: number = userObject.id
+        return id
+    } else {
+        return null    
+    }
+}
+const checkIsLoggedIn:any = () => {
+    if (localStorage.getItem("token")) {
+        const token:any = localStorage.getItem("token")
+        console.log(token);
+        return true
+    } else {
+        return false
+    }   
+}
+
+// const token:any = localStorage.getItem("token")||"";
+// console.log(token);
+// let userObject :any = jwt_decode(token)
+// const id = userObject.id
 
 export interface UserState {
 
@@ -12,8 +36,8 @@ export interface UserState {
 
 const initalState = {
 
-    isLoggedIn: false,
-    id: null,
+    isLoggedIn: checkIsLoggedIn(),
+    id: checkId() ,
 
 
 }
@@ -26,12 +50,12 @@ const userSlice = createSlice({
 
             const payload = action.payload
             let userObject :any = jwt_decode(payload.token)
-            console.log(userObject);
             state.id = userObject.id
-            console.log(state.id);
             state.isLoggedIn = true
             localStorage.setItem("token", payload.token)
             console.log("token: ", payload.token)
+            console.log("user:", userObject);
+            console.log("id:", state.id);
 
 
         },

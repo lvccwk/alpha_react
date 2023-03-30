@@ -15,7 +15,8 @@ export default function UserProfile() {
   const dispatch = useDispatch();
   const id = useAppSelector(state => state.user.id)
   const log = useAppSelector(state => state.user.isLoggedIn)
-  console.log(id,log);
+  console.log("id",id)
+  console.log("login:",log)
   // const [userData, setUserData] = useState({
   //   id: "",
   //   //username: '',
@@ -76,19 +77,19 @@ export default function UserProfile() {
     refetch()
   })
 
-  if (error) {
-    return (
-      <IonPage>
-        <Toolbar />
-        <IonContent>
-          <div>
-            Error: {JSON.stringify(error)}
-            成功刪除用戶
-          </div>
-        </IonContent>
-      </IonPage>
-    )
-  }
+  // if (error) {
+  //   return (
+  //     <IonPage>
+  //       <Toolbar />
+  //       <IonContent>
+  //         <div>
+  //           Error: {JSON.stringify(error)}
+  //           成功刪除用戶
+  //         </div>
+  //       </IonContent>
+  //     </IonPage>
+  //   )
+  // }
   if (isLoading || !data) {
     return (
       <IonPage>
@@ -109,10 +110,10 @@ export default function UserProfile() {
         <IonContent>
           <div>
             <h1>Profile</h1>
-            <div>{data.image}</div>
-            <div>{data.username}</div>
-            <div>{data.user_type}</div>
-            <div>{data.email}</div>
+            <div>IMAGE|{data.image}</div>
+            <div>USERNAME|{data.username}</div>
+            <div>USERTYPE|{data.user_type}</div>
+            <div>EMAIL|{data.email}</div>
             {/* <div>
               <input
                 type="text"
