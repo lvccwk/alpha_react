@@ -72,7 +72,7 @@ const App: React.FC = () => (
           <Route path="/userprofile" render={() => <UserProfile />} exact={true} />
           <Route path="/userprofilesettings" exact={true} ><UserProfileSettings /></Route>
           <Route path="/ProductList" exact={true} ><ProductList /></Route>
-          <Route path="/ProductPage" exact={true} ><ProductPage /></Route>
+          <Route path="/ProductPage/:productId" exact={true} ><ProductPage /></Route>
           <Route path="/tutorprofile" render={() => <TutorProfile />} exact={true} />
         </IonRouterOutlet>
 

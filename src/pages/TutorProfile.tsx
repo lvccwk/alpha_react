@@ -8,6 +8,7 @@ import Toolbar from '../components/Toolbar';
 import { fetchUser, fetchDeleteUser, fetchUpdateUser } from "../api/fetchUser";
 import ToolBar from '../components/Toolbar';
 import TeacherDetail from '../components/TeacherDetail';
+import ProductDetail from '../components/ProductDetail';
 
 
 const TutorProfile: React.FC = () => {
@@ -16,7 +17,7 @@ const TutorProfile: React.FC = () => {
             <IonPage>
                 <ToolBar />
                 <IonContent>
-                    <TeacherDetail />
+                    <ProductDetail />
                 </IonContent>
             </IonPage>
         </>

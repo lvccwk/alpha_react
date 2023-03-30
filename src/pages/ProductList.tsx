@@ -21,6 +21,7 @@ const ProductList: React.FC = () => {
                           <IonSearchbar placeholder="Custom Placeholder"></IonSearchbar>
                 <IonContent>
                     <Segment />
+                    
                 </IonContent>
             </IonPage>
         </>

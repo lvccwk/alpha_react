@@ -188,6 +188,19 @@ export const fetchNote = async (): Promise<FetchUserAllModel> => {
 	}
 };
 
+export const fetchProduct = async (id: number): Promise<FetchUserAllModel> => {
+	console.log('fetchProduct');
+
+	const res = await fetch(`http://localhost:3000/products/${id}`);
+
+	if (res.ok) {
+		const data = await res.json();
+		console.log(data);
+		return data;
+	} else {
+		throw new Error('fetchProduct FAILED');
+	}
+};
 /*
 USER TABLE:
 model Users {
