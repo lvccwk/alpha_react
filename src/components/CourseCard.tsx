@@ -13,13 +13,9 @@ interface Course {
     price: number;
     avg_rating: number;
     subject_id: number;
-<<<<<<< HEAD
-    teacher: string;
-    teacher_id: number;
-=======
     teacher: any;
-    username: string;
->>>>>>> 6fcd6032ee335b551b080dda22e72f26fdc51cb9
+    teacher_id: number;
+    user: any
 }
 
 function CourseCard() {
@@ -30,7 +26,6 @@ function CourseCard() {
 
     const history = useHistory();
     const onClickProductPage = (id: number) => {
-        console.log("course= " + id)
         history.push(`/productpage/` + id);
     }
 
@@ -39,7 +34,7 @@ function CourseCard() {
             {Array.isArray(data) && data.map((item: Course) => (
                 <IonCard key={item.id}>
                     <img alt="Silhouette of mountains" src={photo} />
-                    <IonCardContent>老師:{item.teacher.user.username}{item.name} ${item.price} 評分:{item.avg_rating}
+                    <IonCardContent>老師:{item.teacher.user.username}   {item.name} ${item.price} 評分:{item.avg_rating}
                         <IonButton onClick={() => onClickProductPage(item.id)}>
                             詳細資料
                         </IonButton>
