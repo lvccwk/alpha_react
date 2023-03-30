@@ -7,14 +7,14 @@ export interface FetchUserModel {
 	image: string;
 }
 
-export const fetchUser = async (id: number): Promise<FetchUserModel> => {
+export const fetchUser = async (id: number|null): Promise<FetchUserModel> => {
 	const res = await fetch(`http://localhost:3000/users/${id}`);
 
 	if (res.ok) {
 		const data = await res.json();
-		// console.log({
-		// 	fetchUser: data
-		// });
+		console.log({
+			fetchUser: data
+		});
 		return data;
 	} else {
 		throw new Error('fetchUser FAILED');

@@ -22,7 +22,7 @@ export interface FetchUserAllModel {
 	user: any;
 }
 
-export const fetchUserAll = async (id: number): Promise<FetchUserAllModel> => {
+export const fetchCart = async (id: number): Promise<FetchUserAllModel> => {
 	console.log('fetchUser');
 
 	const res = await fetch(`http://localhost:3000/cartDetails/${id}`);

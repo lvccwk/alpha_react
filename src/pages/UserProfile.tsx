@@ -6,32 +6,35 @@ import { useDispatch, useSelector } from "react-redux";
 import { IRootState } from "../redux/store";
 import Toolbar from '../components/Toolbar';
 import { fetchUser, fetchDeleteUser, fetchUpdateUser } from "../api/fetchUser";
-import { userLogout } from "../redux/userSlice";
+import { fbLogin, userLogout } from "../redux/userSlice";
+import { useAppSelector } from "../redux/store";
 
 
 export default function UserProfile() {
   const history = useHistory();
   const dispatch = useDispatch();
+  const id = useAppSelector(state => state.user.id)
+  const log = useAppSelector(state => state.user.isLoggedIn)
+  console.log(id,log);
+  // const [userData, setUserData] = useState({
+  //   id: "",
+  //   //username: '',
 
-  const [newUserData, setNewUserData] = useState({
-    id: 2,
-    username: '',
-
-  }); // State to hold updated user data
+  // }); // State to hold updated user data
 
   const handleEditProfile = () => {
     history.push('/userprofilesettings');
   }
 
   const handleLogout = () => {
-    dispatch(userLogout(""));
-    console.log("finish dispatch");
+    dispatch(userLogout());
+    console.log("yesLOGOUT");
     history.push("/home")
   }
 
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: ["user"],
-    queryFn: () => fetchUser(2), //redux login state,
+    queryFn: () => fetchUser(id), //redux login state,
     // enabled: false,
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,

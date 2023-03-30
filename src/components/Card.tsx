@@ -3,7 +3,7 @@ import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle }
 
 import './Card.css';
 import { useQuery } from '@tanstack/react-query';
-import { fetchUserAll } from '../api/fetchAll';
+import { fetchCart } from '../api/fetchAll';
 import AddToCartBtn from './AddToCartBtn';
 
 
@@ -11,7 +11,7 @@ import AddToCartBtn from './AddToCartBtn';
 function Card() {
     const { data, isLoading, error, refetch } = useQuery({
         queryKey: ["user"],
-        queryFn: () => fetchUserAll(1), //redux login state
+        queryFn: () => fetchCart(1), //redux login state
     });
 
     return (

@@ -7,7 +7,7 @@ function Refresh() {
         setTimeout(() => {
             // Any calls to load data go here
             event.detail.complete();
-        }, 1000);
+        }, 2000);
     }
 
     return (

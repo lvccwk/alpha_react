@@ -1,4 +1,4 @@
-import { IonContent, IonPage, useIonViewWillEnter } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, useIonViewWillEnter } from '@ionic/react';
 import { useState, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -12,9 +12,12 @@ import ProductDetail from '../components/ProductDetail';
 
 
 const TutorProfile: React.FC = () => {
+    console.log("TutorProfile")
+    const history = useHistory()
     return (
         <>
             <IonPage>
+
                 <ToolBar />
                 <IonContent>
                     <ProductDetail />

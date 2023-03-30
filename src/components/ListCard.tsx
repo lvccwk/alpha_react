@@ -3,12 +3,9 @@ import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, 
 import { useQuery } from "@tanstack/react-query";
 import './ListCard.css';
 import ButtonX from './ButtonX';
-import {
-    fetchTeacher,
-    fetchTeacherAll,
-    fetchUserAll
-} from "../api/fetchAll";
+
 import ToolBar from './Toolbar';
+import { fetchUser } from '../api/fetchUser';
 
 interface Any {
     id: number;
@@ -19,7 +16,7 @@ interface Any {
 function ListCard() {
     const { data, isLoading, error, refetch } = useQuery({
         queryKey: ["user"],
-        queryFn: () => fetchTeacherAll, //redux login state
+        queryFn: () => fetchUser(1), //redux login state
     });
 
     return (

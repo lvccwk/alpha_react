@@ -1,5 +1,5 @@
 import React from "react";
-import { IonButton, IonButtons, IonHeader, IonIcon, IonTitle, IonToolbar, useIonActionSheet } from '@ionic/react';
+import { IonBackButton, IonButton, IonButtons, IonHeader, IonIcon, IonTitle, IonToolbar, useIonActionSheet } from '@ionic/react';
 import '../components/ActionSheet';
 import { personCircle } from "ionicons/icons";
 import { useHistory } from "react-router-dom";
@@ -16,18 +16,22 @@ function ToolBar() {
     const isLoggedIn = useAppSelector(state => state.user.isLoggedIn)
 
     const handleUser = () => {
-        if(isLoggedIn){
+        if (isLoggedIn) {
             history.push('/userprofile');
             console.log('yesLOGIN');
-       } else {
+        } else {
             history.push('/login');
             console.log('noLOGIN');
-       }  
+        }
     }
 
     return (
         <IonHeader>
             <IonToolbar>
+                <IonButtons slot="start">
+                    <IonBackButton> <IonTitle>Back Button</IonTitle></IonBackButton>
+                </IonButtons>
+
                 <IonButtons slot="end">
                     <IonIcon slot="icon-only" icon={personCircle} onClick={handleUser} ></IonIcon>
                 </IonButtons>
