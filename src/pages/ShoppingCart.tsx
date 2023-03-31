@@ -13,16 +13,16 @@ const ShoppingCart: React.FC = () => {
             <IonPage>
                 <ToolBar />
                 <IonContent>
-                <IonCardHeader>
+                <IonHeader>
                     <IonCardTitle>購物車</IonCardTitle>
-                </IonCardHeader>
-                    <IonCard>
+                </IonHeader>
+                    {/* <IonCard>
                         <IonCardContent>
-                            <IonList> 
+                            <IonList>  */}
                                <CartItem />
-                            </IonList>
+                            {/* </IonList>
                         </IonCardContent>
-                    </IonCard>
+                    </IonCard> */}
                 </IonContent>
             </IonPage>
         </>
