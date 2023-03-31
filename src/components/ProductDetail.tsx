@@ -20,7 +20,11 @@ function ProductDetail() {
         <>
             <IonCard>
                 <img alt="Silhouette of mountains" src={photo} />
-                <IonCardContent>{data?.name} 評分:{data?.avg_rating}<AddToCartBtn /></IonCardContent>
+                <IonCardContent>老師:{data?.teacher.user.username}
+                <br/>
+                {data?.name} 
+                <br/>
+                評分:{data?.avg_rating}<AddToCartBtn /></IonCardContent>
             </IonCard>
         </>
     );

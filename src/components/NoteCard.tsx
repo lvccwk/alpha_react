@@ -1,5 +1,5 @@
 import React from 'react';
-import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCol, IonGrid, IonRow } from '@ionic/react';
+import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCol, IonGrid, IonRow } from '@ionic/react';
 
 import './TeacherCard.css';
 import { fetchNote } from '../api/fetchAll';
@@ -14,6 +14,9 @@ interface Note {
     price: number;
     avg_rating: number;
     subject_id: number;
+    teacher: any;
+    teacher_id: number;
+    user: any
 }
 
 function NoteCard() {
@@ -23,19 +26,21 @@ function NoteCard() {
     });
 
     const history = useHistory();
-    const onClickProductPage = () => {
-        history.push('/ProductPage');
+    const onClickProductPage = (id:number) => {
+        history.push(`/productpage/` + id);
     }
  
     return (
         <>
             {Array.isArray(data) && data.map((item: Note) => (
                 <IonCard key={item.id}>
-                    <button className='btn-card' onClick={onClickProductPage}>
-                        <img alt="Silhouette of mountains" src={photo} />
-                        {/* <IonCardTitle>${item.id}</IonCardTitle> */}
-                        <IonCardContent>{item.name} ${item.price} 評分:{item.avg_rating}<AddToCartBtn /></IonCardContent>
-                    </button>
+                    <img alt="Silhouette of mountains" src={photo} />
+                    <IonCardContent>老師:{item.teacher.user.username}   {item.name} ${item.price} 評分:{item.avg_rating}
+                        <IonButton onClick={() => onClickProductPage(item.id)}>
+                            詳細資料
+                        </IonButton>
+                        <AddToCartBtn />
+                    </IonCardContent>
                 </IonCard>
             ))}
         </>
