@@ -70,7 +70,7 @@ export default function EditUserProfile() {
             <IonCol>
               <IonInput {...register("username")} />
               <IonInput {...register("password")} />
-              <IonInput {...register("email")} />
+              <IonInput readonly {...register("email")} />
             </IonCol>
             <IonCol>
               <IonButton type="submit" form={"edit-profile"} >Update</IonButton>

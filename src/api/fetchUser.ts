@@ -71,10 +71,8 @@ export const fetchAddUser = async (obj: {
 };
 
 export const fetchUpdateUser = async (obj: {
-	// id: number;
 	//user_type: string,
 	username: string;
-	email: string;
 	password: string;
 	//image: string,
 }): Promise<void> => {
@@ -86,9 +84,7 @@ export const fetchUpdateUser = async (obj: {
 			Authorization: `Bearer ${localStorage.getItem('token')}`
 		},
 		body: JSON.stringify({
-			// id: obj.id,
 			username: obj.username,
-			email: obj.email,
 			password: obj.password
 			//image: obj.image,
 		})
