@@ -27,7 +27,7 @@ export default function EditUserProfile() {
   const id = useAppSelector(state => state.user.id)
   const { data: user, isLoading, error, refetch } = useQuery<FetchUserModel>({
     queryKey: ["user"],
-    queryFn: () => fetchUser(2), //redux login state,
+    queryFn: () => fetchUser(), //redux login state,
     // enabled: false,
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,

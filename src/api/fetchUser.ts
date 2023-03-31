@@ -1,5 +1,3 @@
-import jwtDecode from 'jwt-decode';
-
 export interface FetchUserModel {
 	id: number;
 	user_type: string;
@@ -9,21 +7,21 @@ export interface FetchUserModel {
 	image: string;
 }
 
-export const fetchUser = async (id: number | null): Promise<FetchUserModel> => {
-	const res = await fetch(`http://localhost:3000/users`);
+// export const fetchUser = async (id: number | null): Promise<FetchUserModel> => {
+// 	const res = await fetch(`http://localhost:3000/users`);
 
-	if (res.ok) {
-		const data = await res.json();
-		console.log({
-			fetchUser: data
-		});
-		return data;
-	} else {
-		throw new Error('fetchUser FAILED');
-	}
-};
+// 	if (res.ok) {
+// 		const data = await res.json();
+// 		console.log({
+// 			fetchUser: data
+// 		});
+// 		return data;
+// 	} else {
+// 		throw new Error('fetchUser FAILED');
+// 	}
+// };
 
-export const fetchUserE = async (): Promise<FetchUserModel> => {
+export const fetchUser = async (): Promise<FetchUserModel> => {
 	const res = await fetch(`http://localhost:3000/users`, {
 		headers: {
 			Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -81,10 +79,11 @@ export const fetchUpdateUser = async (obj: {
 	//image: string,
 }): Promise<void> => {
 	console.log('fetchUpdateUsers', obj);
-	const res = await fetch(`http://localhost:3000/users/${2}`, {
+	const res = await fetch(`http://localhost:3000/users/`, {
 		method: 'PUT',
 		headers: {
-			'Content-Type': 'application/json'
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${localStorage.getItem('token')}`
 		},
 		body: JSON.stringify({
 			// id: obj.id,

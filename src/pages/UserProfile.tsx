@@ -5,7 +5,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { IRootState } from "../redux/store";
 import Toolbar from '../components/Toolbar';
-import { fetchUser, fetchDeleteUser, fetchUpdateUser, fetchUserE } from "../api/fetchUser";
+import { fetchUser, fetchDeleteUser, fetchUpdateUser} from "../api/fetchUser";
 import { fbLogin, userLogout } from "../redux/userSlice";
 import { useAppSelector } from "../redux/store";
 import jwtDecode from 'jwt-decode';
@@ -34,64 +34,32 @@ export default function UserProfile() {
     history.push("/home")
   }
 
-  const jwt = process.env.JWT_SECRET
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: ["user"],
-    queryFn: () => fetchUserE(), //redux login state,
+    queryFn: () => fetchUser(), //redux login state,
     // enabled: false,
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
     retry: false,
   });
 
-  // const callAPI = (cb: ({ ...params }: any) => Promise<any>) => {
-  //   useMutation(cb, {
-  //     onSuccess: () => {
-  //       refetch(); // Refresh user data after update
-  //     },
-  //     onError: (error) => {
-  //       console.error("Failed to update user: ", error);
-  //     },
-  //   });
-  // }
-  // const { mutate: handleUpdateUser } = useMutation(fetchUpdateUser, {
-  //   onSuccess: () => {
-  //     console.log("handleUpdateUser")
-  //     refetch(); // Refresh user data after update
-  //   },
-  //   onError: (error) => {
-  //     console.error("Failed to update user: ", error);
-  //   },
-  // });
-
-
-  // const { mutate: handleDeleteUser } = useMutation(fetchDeleteUser, {
-  //   onSuccess: () => {
-  //     console.log("handleDeleteUser")
-  //     refetch(); // Refresh user data after update
-  //   },
-  //   onError: (error) => {
-  //     console.error("Failed to update user: ", error);
-  //   },
-  // });
-
   useIonViewWillEnter(() => {
+    console.log("ionViewWillEnter")
     refetch()
   })
 
-  // if (error) {
-  //   return (
-  //     <IonPage>
-  //       <Toolbar />
-  //       <IonContent>
-  //         <div>
-  //           Error: {JSON.stringify(error)}
-  //           成功刪除用戶
-  //         </div>
-  //       </IonContent>
-  //     </IonPage>
-  //   )
-  // }
+  if (error) {
+    return (
+      <IonPage>
+        <Toolbar />
+        <IonContent>
+          <div>
+            Error: {JSON.stringify(error)}
+          </div>
+        </IonContent>
+      </IonPage>
+    )
+  }
   if (isLoading || !data) {
     return (
       <IonPage>
