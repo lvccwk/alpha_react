@@ -24,10 +24,11 @@ export interface FetchUserAllModel {
 	price: any;
 	avg_rating: any;
 	name: any;
+	is_buying: boolean;
 }
 
 export const fetchCart = async (id: number): Promise<FetchUserAllModel> => {
-	console.log('fetchUser');
+	console.log('fetchCart');
 
 	const res = await fetch(`http://localhost:3000/cartDetails/${id}`);
 
@@ -36,7 +37,7 @@ export const fetchCart = async (id: number): Promise<FetchUserAllModel> => {
 		console.log(data);
 		return data;
 	} else {
-		throw new Error('fetchUser FAILED');
+		throw new Error('fetchCart FAILED');
 	}
 };
 

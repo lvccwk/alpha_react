@@ -38,7 +38,7 @@ function ProductSegment() {
                 <div>
                     <p>
                         <IonGrid >
-                            <NoteCard />
+                            <NoteCard />    
                         </IonGrid>
                     </p>
                 </div>
