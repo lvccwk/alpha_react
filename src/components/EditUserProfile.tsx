@@ -26,7 +26,7 @@ import {
 export default function EditUserProfile() {
   const id = useAppSelector(state => state.user.id)
   const { data: user, isLoading, error, refetch } = useQuery<FetchUserModel>({
-    queryKey: ["user"],
+    queryKey: ["userEditProfile"],
     queryFn: () => fetchUser(), //redux login state,
     // enabled: false,
     refetchOnWindowFocus: false,
@@ -49,6 +49,9 @@ export default function EditUserProfile() {
     onSuccess(data, variables, context) {
       refetch();
     },
+    onError: (error) => {
+      console.error("Failed to update user: ", error);
+    },
   });
 
   const onSubmit = (state: FetchUserModel) => {
@@ -57,7 +60,7 @@ export default function EditUserProfile() {
   }
   const history = useHistory();
   const onClickHomePage = () => {
-    history.push('/home');
+    history.push('/userprofile');
   }
   return (
     <div>
@@ -65,18 +68,12 @@ export default function EditUserProfile() {
         <IonGrid>
           <IonRow>
             <IonCol>
-              <IonInput
-                {...register("username")}
-              ></IonInput>
-              <IonInput
-                {...register("password")}
-              ></IonInput>
-              <IonInput
-                {...register("email")}
-              ></IonInput>
+              <IonInput {...register("username")} />
+              <IonInput {...register("password")} />
+              <IonInput {...register("email")} />
             </IonCol>
             <IonCol>
-              <IonButton type="submit" form={"edit-profile"} onClick={onClickHomePage}>Update</IonButton>
+              <IonButton type="submit" form={"edit-profile"} >Update</IonButton>
             </IonCol>
           </IonRow>
         </IonGrid>

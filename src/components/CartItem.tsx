@@ -6,7 +6,6 @@ import { useQuery } from '@tanstack/react-query';
 import DeleteButton from './DeleteButton';
 import { useHistory } from 'react-router';
 import { fetchCart } from '../api/fetchAll';
-import { fetchUserE } from '../api/fetchUser';
 
 interface CartItemInfo {
   id: number;
@@ -22,30 +21,30 @@ function CartItem() {
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: ["cartItem"],
     queryFn: () => fetchCart(),
-});
+  });
 
   const history = useHistory();
   const onClickProductPage = (id: number) => {
-      history.push(`/productpage/` + id);
+    history.push(`/productpage/` + id);
   }
-  console.log(data)
+  // console.log(data)
   return (
-      <>
-          {Array.isArray(data) && data.map((item: CartItemInfo) => (
-          <IonItem>
-            <IonThumbnail slot="start">
-              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
-            </IonThumbnail>
-            <IonLabel>{item.name}</IonLabel>
-            <IonButton onClick={() => onClickProductPage(item.product_id)}>
-              詳細
-            </IonButton>
-            ${item.price}
-            <DeleteButton />
-            <CheckBox />
-          </IonItem>
-          ))}
-      </>
+    <>
+      {Array.isArray(data) && data.map((item: CartItemInfo) => (
+        <IonItem>
+          <IonThumbnail slot="start">
+            <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+          </IonThumbnail>
+          <IonLabel>{item.name}</IonLabel>
+          <IonButton onClick={() => onClickProductPage(item.product_id)}>
+            詳細
+          </IonButton>
+          ${item.price}
+          <DeleteButton />
+          <CheckBox />
+        </IonItem>
+      ))}
+    </>
   );
 }
 export default CartItem;

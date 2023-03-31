@@ -79,7 +79,7 @@ export const fetchUpdateUser = async (obj: {
 	//image: string,
 }): Promise<void> => {
 	console.log('fetchUpdateUsers', obj);
-	const res = await fetch(`http://localhost:3000/users/`, {
+	const res = await fetch(`http://localhost:3000/users`, {
 		method: 'PUT',
 		headers: {
 			'Content-Type': 'application/json',
@@ -101,17 +101,15 @@ export const fetchUpdateUser = async (obj: {
 	}
 };
 
-export const fetchDeleteUser = async (id: number): Promise<void> => {
+export const fetchDeleteUser = async (): Promise<void> => {
 	console.log('fetchDeleteUser');
 
-	const res = await fetch(`http://localhost:3000/users/${id}`, {
+	const res = await fetch(`http://localhost:3000/users`, {
 		method: 'DELETE',
 		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify({
-			id
-		})
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${localStorage.getItem('token')}`
+		}
 	});
 
 	if (res.ok) {

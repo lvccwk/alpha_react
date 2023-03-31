@@ -15,7 +15,7 @@ interface Any {
 
 function ListCard() {
     const { data, isLoading, error, refetch } = useQuery({
-        queryKey: ["user"],
+        queryKey: ["userListCard"],
         queryFn: () => fetchUser(), //redux login state
     });
 
