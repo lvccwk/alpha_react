@@ -24,19 +24,24 @@ export interface FetchUserAllModel {
 	price: any;
 	avg_rating: any;
 	name: any;
+	is_buying: boolean;
 }
 
-export const fetchCart = async (id: number): Promise<FetchUserAllModel> => {
-	console.log('fetchUser');
+export const fetchCart = async (): Promise<FetchUserAllModel> => {
+	console.log('fetchCart');
 
-	const res = await fetch(`http://localhost:3000/cartDetails/${id}`);
+	const res = await fetch(`http://localhost:3000/cart/`, {
+		headers: {
+			Authorization: `Bearer ${localStorage.getItem('token')}`
+		}
+	});
 
 	if (res.ok) {
 		const data = await res.json();
 		console.log(data);
 		return data;
 	} else {
-		throw new Error('fetchUser FAILED');
+		throw new Error('fetchCart FAILED');
 	}
 };
 

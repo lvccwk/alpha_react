@@ -2,7 +2,7 @@ import { IonButton, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardS
 import { ellipsisHorizontal, ellipsisVertical, personCircle, search } from 'ionicons/icons';
 import React from 'react';
 import { Route, useHistory, useParams } from 'react-router';
-import Card from '../components/Card';
+
 import ProductDetail from '../components/ProductDetail';
 import TeacherDetail from '../components/TeacherDetail';
 import ToolBar from '../components/Toolbar';

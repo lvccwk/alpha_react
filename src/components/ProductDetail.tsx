@@ -10,7 +10,6 @@ import './TeacherDetail.css';
 function ProductDetail() {
     const params = useParams()
     const productId = Object.values(params)[0]
-    console.log("PDID= " + productId)
     const { data, isLoading, error, refetch } = useQuery({
         queryKey: ["productDetail"],
         queryFn: () => fetchProduct(Number(productId)),

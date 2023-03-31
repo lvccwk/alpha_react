@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { IonCol, IonGrid, IonLabel, IonRow, IonSegment, IonSegmentButton } from '@ionic/react';
 import ToolBar from './Toolbar';
-import Card from './Card';
 import Refresh from './Refresh';
 import CourseCard from './CourseCard';
 import NoteCard from './NoteCard';
@@ -38,7 +37,7 @@ function ProductSegment() {
                 <div>
                     <p>
                         <IonGrid >
-                            <NoteCard />
+                            <NoteCard />    
                         </IonGrid>
                     </p>
                 </div>

@@ -2,7 +2,6 @@ import { AlertButton, IonButton, IonButtons, IonCard, IonCardContent, IonCardHea
 import { addCircle, closeCircle, filter, star } from "ionicons/icons";
 import React from "react";
 import AddToCartBtn from "./AddToCartBtn";
-import Card from "./Card";
 import DeleteButton from "./DeleteButton";
 import './SubjectFilterList.css';
 
