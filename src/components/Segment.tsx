@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { IonCol, IonGrid, IonLabel, IonRow, IonSegment, IonSegmentButton } from '@ionic/react';
 import ToolBar from './Toolbar';
-import Card from './Card';
 import ListCard from './ListCard';
 import Refresh from './Refresh';
 import TeacherCard from './TeacherCard';
