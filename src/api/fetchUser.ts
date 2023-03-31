@@ -1,3 +1,5 @@
+import jwtDecode from 'jwt-decode';
+
 export interface FetchUserModel {
 	id: number;
 	user_type: string;
@@ -7,8 +9,26 @@ export interface FetchUserModel {
 	image: string;
 }
 
-export const fetchUser = async (id: number|null): Promise<FetchUserModel> => {
-	const res = await fetch(`http://localhost:3000/users/${id}`);
+export const fetchUser = async (id: number | null): Promise<FetchUserModel> => {
+	const res = await fetch(`http://localhost:3000/users`);
+
+	if (res.ok) {
+		const data = await res.json();
+		console.log({
+			fetchUser: data
+		});
+		return data;
+	} else {
+		throw new Error('fetchUser FAILED');
+	}
+};
+
+export const fetchUserE = async (): Promise<FetchUserModel> => {
+	const res = await fetch(`http://localhost:3000/users`, {
+		headers: {
+			Authorization: `Bearer ${localStorage.getItem('token')}`
+		}
+	});
 
 	if (res.ok) {
 		const data = await res.json();

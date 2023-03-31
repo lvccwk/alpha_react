@@ -14,6 +14,8 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useForm } from "react-hook-form"
+import { useAppSelector } from "../redux/store";
+
 import {
   FetchUserModel,
   fetchUser,
@@ -22,6 +24,7 @@ import {
 } from "../api/fetchUser";
 
 export default function EditUserProfile() {
+  const id = useAppSelector(state => state.user.id)
   const { data: user, isLoading, error, refetch } = useQuery<FetchUserModel>({
     queryKey: ["user"],
     queryFn: () => fetchUser(2), //redux login state,
@@ -69,7 +72,7 @@ export default function EditUserProfile() {
                 {...register("password")}
               ></IonInput>
               <IonInput
-               {...register("email")}
+                {...register("email")}
               ></IonInput>
             </IonCol>
             <IonCol>
