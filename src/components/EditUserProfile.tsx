@@ -72,7 +72,7 @@ export default function EditUserProfile() {
                 {...register("password")}
               ></IonInput>
               <IonInput
-               {...register("email")}
+                {...register("email")}
               ></IonInput>
             </IonCol>
             <IonCol>

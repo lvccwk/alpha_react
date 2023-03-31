@@ -53,6 +53,7 @@ export const fetchChatHistoryAll = async (): Promise<FetchUserAllModel> => {
 		throw new Error('fetchUser FAILED');
 	}
 };
+
 export const fetchTeacher = async (id: number): Promise<FetchUserAllModel> => {
 	console.log('fetchUser');
 
