@@ -5,9 +5,10 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { IRootState } from "../redux/store";
 import Toolbar from '../components/Toolbar';
-import { fetchUser, fetchDeleteUser, fetchUpdateUser } from "../api/fetchUser";
+import { fetchUser, fetchDeleteUser, fetchUpdateUser, fetchUserE } from "../api/fetchUser";
 import { fbLogin, userLogout } from "../redux/userSlice";
 import { useAppSelector } from "../redux/store";
+import jwtDecode from 'jwt-decode';
 
 
 export default function UserProfile() {
@@ -15,8 +16,8 @@ export default function UserProfile() {
   const dispatch = useDispatch();
   const id = useAppSelector(state => state.user.id)
   const log = useAppSelector(state => state.user.isLoggedIn)
-  console.log("id",id)
-  console.log("login:",log)
+  console.log("id", id)
+  console.log("login:", log)
   // const [userData, setUserData] = useState({
   //   id: "",
   //   //username: '',
@@ -33,9 +34,10 @@ export default function UserProfile() {
     history.push("/home")
   }
 
+  const jwt = process.env.JWT_SECRET
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: ["user"],
-    queryFn: () => fetchUser(id), //redux login state,
+    queryFn: () => fetchUserE(), //redux login state,
     // enabled: false,
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
@@ -96,7 +98,7 @@ export default function UserProfile() {
         <Toolbar />
         <IonContent>
           <div>
-            LOADING1
+            LOADING11232131
           </div>
         </IonContent>
       </IonPage>
