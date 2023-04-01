@@ -49,6 +49,7 @@ import Chatroom from './pages/Chatroom';
 import "./App.css"
 import TutorProfile from './pages/TutorProfile';
 import Register from './pages/Register';
+import LoginFirebase from './pages/LoginFirebase';
 
 
 setupIonicReact();
@@ -77,7 +78,8 @@ const App: React.FC = () => {
             <Route path="/ProductList" exact={true} ><ProductList /></Route>
             <Route path="/ProductPage/:productId" exact={true} ><ProductPage /></Route>
             <Route path="/tutorprofile" render={() => <TutorProfile />} exact={true} />
-            <Route path="/register" render={() => <Register />} exact={true} />
+            {/* <Route path="/register" render={() => <Register />} exact={true} /> */}
+            <Route path="/loginFirebase" render={() => <LoginFirebase />} exact={true} />
           </IonRouterOutlet>
 
 
