@@ -48,6 +48,7 @@ import Tutor from './pages/Tutor';
 import Chatroom from './pages/Chatroom';
 import "./App.css"
 import TutorProfile from './pages/TutorProfile';
+import Register from './pages/Register';
 
 
 setupIonicReact();
@@ -64,19 +65,20 @@ const App: React.FC = () => {
           Use the render method to reduce the number of renders your component will have due to a route change.
           Use the component prop when your component depends on the RouterComponentProps passed in automatically.
         */}
-          <Route path="/resource" render={() => <Resource />} exact={true} />
-          <Route path="/tutor" render={() => <Tutor />} exact={true} />
-          <Route path="/home" render={() => <Home />} exact={true} />
-          <Route path="/shoppingcart" render={() => <ShoppingCart />} exact={true} />
-          <Route path="/chatroom" render={() => <Chatroom />} exact={true} />
-          <Route path="/login" render={() => <Login />} exact={true} />
-          <Route exact path="/facebook-callback"><FacebookCallback></FacebookCallback></Route>
-          <Route path="/userprofile" render={() => <UserProfile />} exact={true} />
-          <Route path="/userprofilesettings" exact={true} ><UserProfileSettings /></Route>
-          <Route path="/ProductList" exact={true} ><ProductList /></Route>
-          <Route path="/ProductPage/:productId" exact={true} ><ProductPage /></Route>
-          <Route path="/tutorprofile" render={() => <TutorProfile />} exact={true} />
-        </IonRouterOutlet>
+            <Route path="/resource" render={() => <Resource />} exact={true} />
+            <Route path="/tutor" render={() => <Tutor />} exact={true} />
+            <Route path="/home" render={() => <Home />} exact={true} />
+            <Route path="/shoppingcart" render={() => <ShoppingCart />} exact={true} />
+            <Route path="/chatroom" render={() => <Chatroom />} exact={true} />
+            <Route path="/login" render={() => <Login />} exact={true} />
+            <Route exact path="/facebook-callback"><FacebookCallback></FacebookCallback></Route>
+            <Route path="/userprofile" render={() => <UserProfile />} exact={true} />
+            <Route path="/userprofilesettings" exact={true} ><UserProfileSettings /></Route>
+            <Route path="/ProductList" exact={true} ><ProductList /></Route>
+            <Route path="/ProductPage/:productId" exact={true} ><ProductPage /></Route>
+            <Route path="/tutorprofile" render={() => <TutorProfile />} exact={true} />
+            <Route path="/register" render={() => <Register />} exact={true} />
+          </IonRouterOutlet>
 
 
 

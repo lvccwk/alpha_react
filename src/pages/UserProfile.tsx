@@ -5,7 +5,7 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { IRootState } from "../redux/store";
 import Toolbar from '../components/Toolbar';
-import { fetchUser, fetchDeleteUser, fetchUpdateUser} from "../api/fetchUser";
+import { fetchUser, fetchDeleteUser, fetchUpdateUser } from "../api/fetchUser";
 import { fbLogin, userLogout } from "../redux/userSlice";
 import { useAppSelector } from "../redux/store";
 import jwtDecode from 'jwt-decode';
