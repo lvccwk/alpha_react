@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import firebase from 'firebase/app';
+import 'firebase/auth';
 import {
 	createUserWithEmailAndPassword,
 	FacebookAuthProvider,
@@ -20,7 +21,7 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-export const auth = getAuth(app);
+const auth = getAuth(app);
 
 const provider = new GoogleAuthProvider();
 
@@ -28,7 +29,6 @@ export async function loginUser(username: string, password: string) {
 	const email = `${username}@gmail.com`;
 	try {
 		const res = await signInWithEmailAndPassword(auth, email, password);
-
 		console.log(res);
 		return true;
 	} catch (e) {
@@ -41,7 +41,6 @@ export async function registerUser(username: string, password: string) {
 	const email = `${username}@gmail.com`;
 	try {
 		const res = await createUserWithEmailAndPassword(auth, email, password);
-
 		console.log(res);
 		return true;
 	} catch (e) {

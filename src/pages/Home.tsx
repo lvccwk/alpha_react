@@ -11,7 +11,9 @@ import Refresh from '../components/Refresh';
 const Tab2: React.FC = () => {
 
   return (
+
     <>
+
       <IonPage id="main-content">
         <ToolBar />
         {/* SEARCH BAR */}

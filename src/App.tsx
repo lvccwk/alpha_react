@@ -78,7 +78,7 @@ const App: React.FC = () => {
             <Route path="/ProductList" exact={true} ><ProductList /></Route>
             <Route path="/ProductPage/:productId" exact={true} ><ProductPage /></Route>
             <Route path="/tutorprofile" render={() => <TutorProfile />} exact={true} />
-            {/* <Route path="/register" render={() => <Register />} exact={true} /> */}
+            <Route path="/register" render={() => <Register />} exact={true} />
             <Route path="/loginFirebase" render={() => <LoginFirebase />} exact={true} />
           </IonRouterOutlet>
 
