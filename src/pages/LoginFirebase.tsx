@@ -2,9 +2,7 @@ import { IonButton, IonContent, IonHeader, IonInput, IonPage } from "@ionic/reac
 import { useEffect, useState } from "react";
 import Toast from "../components/Toast";
 import ToolBar from "../components/Toolbar";
-import { loginUser } from "../firebaseConfig";
-
-
+import { loginUser } from "../config/firebaseConfig";
 
 const LoginFirebase: React.FC = () => {
     const [username, setUsername] = useState('')

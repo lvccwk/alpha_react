@@ -1,11 +1,17 @@
 import { IonButton, IonContent, IonPage } from "@ionic/react";
+import { FacebookAuthProvider, signInWithPopup } from "firebase/auth";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Toolbar from "../components/Toolbar";
-import { loginUserWithGoogle } from "../firebaseConfig";
+
+import { loginUserWithFacebook, loginUserWithGoogle } from "../config/firebaseConfig";
+
 // import { Button } from "react-bootstrap";
 
 export default function LoginPage() {
+
+
+
     const onFacebookLogin = (event: React.MouseEvent) => {
         event.preventDefault()
         const authURL = 'https://www.facebook.com/dialog/oauth'
@@ -20,6 +26,7 @@ export default function LoginPage() {
         search.set('scope', 'email,public_profile')
         window.location.href = `${authURL}?${search.toString()}`
     }
+
 
     const [loggedIn, setLoggedIn] = useState(false);
 

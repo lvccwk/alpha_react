@@ -22,13 +22,10 @@ function Chatbox() {
         queryFn: fetchChatHistoryAll, //redux login state
     });
 
-
-
     return (
         <>
             {Array.isArray(data) &&
                 data.map((item: Chatroom) => (
-
                     <IonCard key={item.id}>
                         <IonCardHeader>
                             <IonCardTitle> 用户：{item.user.username}</IonCardTitle>

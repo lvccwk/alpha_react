@@ -2,6 +2,7 @@ import { initializeApp } from 'firebase/app';
 import firebase from 'firebase/app';
 import {
 	createUserWithEmailAndPassword,
+	FacebookAuthProvider,
 	getAuth,
 	GoogleAuthProvider,
 	signInWithEmailAndPassword,
@@ -19,7 +20,8 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+export const auth = getAuth(app);
+
 const provider = new GoogleAuthProvider();
 
 export async function loginUser(username: string, password: string) {
@@ -53,6 +55,18 @@ export async function loginUserWithGoogle() {
 		const res = await signInWithPopup(auth, provider);
 
 		console.log(res);
+		return true;
+	} catch (e) {
+		console.log(e);
+		return false;
+	}
+}
+
+export async function loginUserWithFacebook() {
+	try {
+		const facebookProvider = new FacebookAuthProvider();
+		const authentication = getAuth(app);
+		signInWithPopup(authentication, facebookProvider);
 		return true;
 	} catch (e) {
 		console.log(e);

@@ -74,5 +74,11 @@ http://ionicframework.com/docs/theming/ */
   --ion-color-light-contrast-rgb: 0, 0, 0;
   --ion-color-light-shade: #d7d8da;
   --ion-color-light-tint: #f5f6f9;
+
+  /** Alpha Learning */
+  -moz-text-decoration-color: #005497;
+  -moz-text-decoration-color: #20a4af;
+  -moz-text-decoration-color: #c7ced3;
+  -moz-text-decoration-color: #ffef00;
 }
 

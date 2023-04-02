@@ -47,9 +47,7 @@ export const fetchCart = async (): Promise<FetchUserAllModel> => {
 
 export const fetchChatHistoryAll = async (): Promise<FetchUserAllModel> => {
 	console.log('fetchChatHisttory');
-
 	const res = await fetch(`http://localhost:3000/chatroomHistorys/`);
-
 	if (res.ok) {
 		const data = await res.json();
 		console.log(data);
@@ -61,7 +59,6 @@ export const fetchChatHistoryAll = async (): Promise<FetchUserAllModel> => {
 
 export const fetchTeacher = async (id: number): Promise<FetchUserAllModel> => {
 	console.log('fetchUser');
-
 	const res = await fetch(`http://localhost:3000/teachers/${id}`);
 
 	if (res.ok) {
