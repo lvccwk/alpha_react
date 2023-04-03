@@ -1,12 +1,14 @@
-import { IonButton, IonContent, IonInput, IonPage, IonToast } from "@ionic/react"
+import { IonButton, IonContent, IonInput, IonItem, IonLabel, IonPage, IonSelect, IonSelectOption, IonToast } from "@ionic/react"
 import { useQuery } from "@tanstack/react-query/build/lib/useQuery"
 import React, { useEffect, useState } from "react"
 import { Link, Redirect, useHistory } from "react-router-dom"
 import { fetchAddUser } from "../api/fetchUser"
 import ToolBar from "../components/Toolbar"
 import { registerUser } from "../config/firebaseConfig"
+
+
 const Register: React.FC = () => {
-    const [user_type, setUsertype] = useState('teacher');
+    const [user_type, setUserType] = useState('');
     const [username, setUsername] = useState('username');
     const [email, setUseremail] = useState('email@gmail.com');
     const [password, setPassword] = useState('12345678');
@@ -21,8 +23,8 @@ const Register: React.FC = () => {
         console.log("password: ", password)
         console.log("cpassword: ", cpassword)
         console.log("user_type: ", user_type)
-        console.log('email', email)
-
+        console.log('email:', email)
+        console.log('toastMessage', toastMessage)
         if (password !== cpassword) {
             setShowToast(true);
             setToastMessage('密碼不一致!');
@@ -60,9 +62,18 @@ const Register: React.FC = () => {
     return (
         <>
             <IonPage>
+
                 <ToolBar />
                 <IonContent className="ion-padding">
-                    <IonInput value={user_type} placeholder="User_type?" onIonChange={(e: any) => setUsertype(e.target.value)}></IonInput>
+                    <IonSelect
+                        value={user_type}
+                        placeholder="Select User Type"
+                        onIonChange={(e: any) => setUserType(e.detail.value)}
+                    >
+                        <IonSelectOption value="teacher">導師</IonSelectOption>
+                        <IonSelectOption value="student">學生</IonSelectOption>
+                    </IonSelect>
+                    {/* <IonInput value={user_type} placeholder="User_type?" onIonChange={(e: any) => setUsertype(e.target.value)}></IonInput> */}
                     <IonInput value={username} placeholder="username?" onIonChange={(e: any) => setUsername(e.target.value)}></IonInput>
                     <IonInput value={email} placeholder="email?" onIonChange={(e: any) => setUseremail(e.target.value)}></IonInput>
                     <IonInput value={password} placeholder="password?" onIonChange={(e: any) => setPassword(e.target.value)}></IonInput>
