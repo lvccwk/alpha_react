@@ -17,6 +17,22 @@ export default function LoginPage() {
     const [toastMessage, setToastMessage] = useState('');
 
 
+    const onFacebookLogin = (event: React.MouseEvent) => {
+        event.preventDefault()
+        const authURL = 'https://www.facebook.com/dialog/oauth'
+        const search = new URLSearchParams()
+        search.set('client_id', process.env.REACT_APP_FACEBOOK_APP_ID + "")
+        search.set(
+            'redirect_uri',
+            `${window.location.origin}/facebook-callback`
+        )
+        search.set('response_type', 'code')
+        search.set('state', '')
+        search.set('scope', 'email,public_profile')
+        window.location.href = `${authURL}?${search.toString()}`
+    }
+
+
     async function login() {
         try {
             const userCredential = await signInWithEmailAndPassword(auth, username, password);
@@ -24,6 +40,7 @@ export default function LoginPage() {
             // Get the JWT token from userCredential
             const idToken = await userCredential.user.getIdToken();
 
+            localStorage.setItem("idToken", idToken)
             // Do something with the token
             console.log(idToken);
 
@@ -42,6 +59,7 @@ export default function LoginPage() {
     const handleFacebookLogin = async () => {
         try {
             await loginUserWithFacebook();
+
             setLoggedIn(true);
         } catch (error) {
             setLoggedIn(false);
@@ -67,7 +85,7 @@ export default function LoginPage() {
             <Toolbar />
             <IonContent>
                 <h1>Facebook Login Page</h1>
-                <button onClick={handleFacebookLogin}>Login via Facebook</button>
+                <button onClick={onFacebookLogin}>Login via Facebook</button>
                 <br />
                 <h1>Google Login Page</h1>
                 {loggedIn ? (

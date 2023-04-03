@@ -50,6 +50,7 @@ import "./App.css"
 import TutorProfile from './pages/TutorProfile';
 import Register from './pages/Register';
 import LoginFirebase from './pages/LoginFirebase';
+import LoginPage from './components/Login';
 
 
 setupIonicReact();

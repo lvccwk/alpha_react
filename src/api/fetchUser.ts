@@ -48,7 +48,7 @@ export const fetchAddUser = async (obj: {
 }): Promise<FetchUserModel> => {
 	console.log('fetchAddUser');
 
-	const res = await fetch('http://localhost:3000/users', {
+	const res = await fetch(`http://localhost:3000/users/reg`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
