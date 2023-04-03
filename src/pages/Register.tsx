@@ -1,48 +1,81 @@
-import { IonButton, IonContent, IonInput, IonPage, IonToast } from "@ionic/react"
-import React, { useState } from "react"
+import { IonButton, IonContent, IonInput, IonItem, IonLabel, IonPage, IonSelect, IonSelectOption, IonToast } from "@ionic/react"
+import { useQuery } from "@tanstack/react-query/build/lib/useQuery"
+import React, { useEffect, useState } from "react"
 import { Link, Redirect, useHistory } from "react-router-dom"
+import { fetchAddUser } from "../api/fetchUser"
 import ToolBar from "../components/Toolbar"
 import { registerUser } from "../config/firebaseConfig"
 
+
 const Register: React.FC = () => {
-    const [username, setUsername] = useState('')
-    const [password, setPassword] = useState('')
-    const [cpassword, setCPassword] = useState('')
+    const [user_type, setUserType] = useState('');
+    const [username, setUsername] = useState('');
+    const [email, setUseremail] = useState('');
+    const [password, setPassword] = useState('');
+    const [cpassword, setCPassword] = useState('');
     const [showToast, setShowToast] = useState(false);
     const [toastMessage, setToastMessage] = useState('');
 
     const history = useHistory();
 
-    async function handleRegisterUser() {
+    const handleRegisterUser = () => {
+        console.log("username: ", username)
+        console.log("password: ", password)
+        console.log("cpassword: ", cpassword)
+        console.log("user_type: ", user_type)
+        console.log('email:', email)
+        console.log('toastMessage', toastMessage)
+
         if (password !== cpassword) {
             setShowToast(true);
             setToastMessage('密碼不一致!');
-            return
-        }
-        if (username.trim() === '' || password.trim() === '') {
+        } else if (username.trim() === '' || password.trim() === '') {
             setShowToast(true);
             setToastMessage('用戶名或密碼不能留空!');
-            return
+        } else {
+            const fetchData = async () => {
+                try {
+                    const res = await fetchAddUser({
+                        user_type: user_type,
+                        username: username,
+                        email: email,
+                        password: password
+                    });
+                    if (res) {
+                        setShowToast(true);
+                        setToastMessage('註冊成功! 請登入');
+                        history.push('/login');
+                    }
+                } catch (error) {
+                    console.log(error)
+                    setShowToast(true);
+                    setToastMessage('註冊失敗');
+                }
+            };
+            if (username.trim() !== '' && password.trim() !== '' && password === cpassword) {
+                fetchData();
+            }
         }
-        const res = await registerUser(username, password);
-        if (res) {
-            setShowToast(true);
-            setToastMessage('註冊成功! 請登入');
-            history.push('/login');
-        }
-
-    }
+    };
 
     return (
         <>
             <IonPage>
                 <ToolBar />
                 <IonContent className="ion-padding">
-                    <IonInput placeholder="Username?" onIonChange={(e: any) => setUsername(e.target.value)}></IonInput>
-                    <IonInput type='password' placeholder="Password?" onIonChange={(e: any) => setPassword(e.target.value)}></IonInput>
-                    <IonInput type='password' placeholder="Confirm Password?" onIonChange={(e: any) => setCPassword(e.target.value)}></IonInput>
+                    <IonSelect
+                        value={user_type}
+                        placeholder="Select User Type"
+                        onIonChange={(e: any) => setUserType(e.detail.value)} >
+                        <IonSelectOption value="teacher">導師</IonSelectOption>
+                        <IonSelectOption value="student">學生</IonSelectOption>
+                    </IonSelect>
+                    {/* <IonInput value={user_type} placeholder="User_type?" onIonChange={(e: any) => setUsertype(e.target.value)}></IonInput> */}
+                    <IonInput value={username} placeholder="email" onIonChange={(e: any) => setUsername(e.target.value)}></IonInput>
+                    <IonInput value={email} placeholder="email@gmail.com" onIonChange={(e: any) => setUseremail(e.target.value)}></IonInput>
+                    <IonInput value={password} placeholder="12345678" onIonChange={(e: any) => setPassword(e.target.value)}></IonInput>
+                    <IonInput value={cpassword} placeholder="12345678" onIonChange={(e: any) => setCPassword(e.target.value)}></IonInput>
                     <IonButton onClick={handleRegisterUser}>Register</IonButton>
-                    {/* <p>已經注册了？<Link to='/login'> </Link></p> */}
                 </IonContent>
                 <IonToast
                     isOpen={showToast}
@@ -53,7 +86,6 @@ const Register: React.FC = () => {
             </IonPage>
         </>
     );
-}
+};
+
 export default Register;
-
-
