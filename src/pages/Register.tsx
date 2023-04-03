@@ -25,6 +25,7 @@ const Register: React.FC = () => {
         console.log("user_type: ", user_type)
         console.log('email:', email)
         console.log('toastMessage', toastMessage)
+
         if (password !== cpassword) {
             setShowToast(true);
             setToastMessage('密碼不一致!');
@@ -45,12 +46,15 @@ const Register: React.FC = () => {
                         setShowToast(true);
                         setToastMessage('註冊成功! 請登入');
                         history.push('/login');
-                    } else {
-                        setShowToast(true);
-                        setToastMessage('註冊失敗');
                     }
+                    // } else {
+                    //     setShowToast(true);
+                    //     setToastMessage('註冊失敗');
+                    // }
                 } catch (error) {
                     console.log(error)
+                    setShowToast(true);
+                    setToastMessage('註冊失敗');
                 }
             };
             if (username.trim() !== '' && password.trim() !== '' && password === cpassword) {
@@ -68,16 +72,15 @@ const Register: React.FC = () => {
                     <IonSelect
                         value={user_type}
                         placeholder="Select User Type"
-                        onIonChange={(e: any) => setUserType(e.detail.value)}
-                    >
+                        onIonChange={(e: any) => setUserType(e.detail.value)} >
                         <IonSelectOption value="teacher">導師</IonSelectOption>
                         <IonSelectOption value="student">學生</IonSelectOption>
                     </IonSelect>
                     {/* <IonInput value={user_type} placeholder="User_type?" onIonChange={(e: any) => setUsertype(e.target.value)}></IonInput> */}
-                    <IonInput value={username} placeholder="username?" onIonChange={(e: any) => setUsername(e.target.value)}></IonInput>
-                    <IonInput value={email} placeholder="email?" onIonChange={(e: any) => setUseremail(e.target.value)}></IonInput>
-                    <IonInput value={password} placeholder="password?" onIonChange={(e: any) => setPassword(e.target.value)}></IonInput>
-                    <IonInput value={cpassword} placeholder="Confirm Password?" onIonChange={(e: any) => setCPassword(e.target.value)}></IonInput>
+                    <IonInput value={username} placeholder="username" onIonChange={(e: any) => setUsername(e.target.value)}></IonInput>
+                    <IonInput value={email} placeholder="email" onIonChange={(e: any) => setUseremail(e.target.value)}></IonInput>
+                    <IonInput value={password} placeholder="password" onIonChange={(e: any) => setPassword(e.target.value)}></IonInput>
+                    <IonInput value={cpassword} placeholder="Confirm Password" onIonChange={(e: any) => setCPassword(e.target.value)}></IonInput>
                     <IonButton onClick={handleRegisterUser}>Register</IonButton>
                 </IonContent>
                 <IonToast
