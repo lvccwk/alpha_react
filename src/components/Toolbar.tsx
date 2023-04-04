@@ -1,12 +1,10 @@
-import React from "react";
-import { IonBackButton, IonButton, IonButtons, IonHeader, IonIcon, IonTitle, IonToolbar, useIonActionSheet } from '@ionic/react';
-import '../components/ActionSheet';
+import { IonBackButton, IonButtons, IonHeader, IonIcon, IonTitle, IonToolbar } from '@ionic/react';
 import { personCircle } from "ionicons/icons";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import "./Toolbar.css"
-import Refresh from "./Refresh";
-import { useDispatch } from "react-redux"
+import '../components/ActionSheet';
 import { useAppSelector } from "../redux/store";
+import "./Toolbar.css";
 
 
 
@@ -16,6 +14,7 @@ function ToolBar() {
     const isLoggedIn = useAppSelector(state => state.user.isLoggedIn)
 
     const handleUser = () => {
+        console.log("isLoggedIn : ", isLoggedIn)
         if (isLoggedIn) {
             history.push('/userprofile');
             console.log('yesLOGIN');

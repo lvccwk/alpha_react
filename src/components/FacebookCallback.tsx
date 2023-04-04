@@ -15,14 +15,15 @@ export function FacebookCallback() {
         (async function () {
             const data = await facebookLogin(code)
             if (data) {
-                dispatch(fbLogin({token: data.token}))
+                dispatch(fbLogin({ token: data.token }))
             } else {
                 // Error handling with React-Toastify
             }
         })()
     }, [])
-    if(isLoggedIn){
-         history.push("/home")
+    if (isLoggedIn) {
+        history.push("/home")
     }
     return <h3>Redirecting to main page...</h3>
 }
+
