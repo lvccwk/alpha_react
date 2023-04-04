@@ -24,6 +24,8 @@ export interface FetchUserAllModel {
 	price: any;
 	avg_rating: any;
 	name: any;
+	cart_id: number;
+	product_id: number;
 	is_buying: boolean;
 }
 
@@ -206,6 +208,31 @@ export const fetchProduct = async (id: number): Promise<FetchUserAllModel> => {
 		return data;
 	} else {
 		throw new Error('fetchProduct FAILED');
+	}
+};
+
+export const fetchAddCart = async (obj: {
+	cart_id: number;
+	product_id: number;
+	is_buying: boolean
+}): Promise<FetchUserAllModel> => {
+	console.log('fetchAddCart');
+
+	const res = await fetch('http://localhost:3000/cartDetails', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+			// Authorization: `Bearer ${localStorage.getItem('token')}`
+		},
+
+		body: JSON.stringify(obj)
+	});
+
+	if (res.ok) {
+		const data = await res.json();
+		return data;
+	} else {
+		throw new Error('fetchAddCart FAILED');
 	}
 };
 /*

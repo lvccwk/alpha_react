@@ -5,6 +5,7 @@ export interface FetchUserModel {
 	email: string;
 	password: string;
 	image: string;
+	cart:any;
 }
 
 // export const fetchUser = async (id: number | null): Promise<FetchUserModel> => {
