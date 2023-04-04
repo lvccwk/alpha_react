@@ -6,14 +6,18 @@ import Toolbar from "../components/Toolbar";
 import { IonToast } from '@ionic/react';
 import { loginUserWithGoogle } from "../config/firebaseConfig";
 import { loginUser } from "../api/fetchUser";
+import { useMutation } from "@tanstack/react-query";
+import { useDispatch } from "react-redux";
+import { generalLogin } from "../redux/userSlice";
 
 
 const LoginPage: React.FC = () => {
-    const [email, setUserEmail] = useState('');
-    const [password, setPassword] = useState('')
+    const [email, setUserEmail] = useState('arfar@gmail.com');
+    const [password, setPassword] = useState('adminadmin')
     const [showToast, setShowToast] = useState(false);
     const [toastMessage, setToastMessage] = useState('');
     const history = useHistory();
+    const dispatch = useDispatch()
 
     const onFacebookLogin = (event: React.MouseEvent) => {
         event.preventDefault()
@@ -29,26 +33,54 @@ const LoginPage: React.FC = () => {
         search.set('scope', 'email,public_profile')
         window.location.href = `${authURL}?${search.toString()}`
     }
-
-    const login = async () => {
-        try {
-            console.log('1')
-            const res = await loginUser({
-                email: email,
-                password: password
-            });
-            console.log('2')
-            console.log(res)
-            if (res) {
-                setShowToast(true);
-                setToastMessage('Login successful!');
-                history.push('/home');
-            }
-        } catch (error) {
-            console.error(error);
+    const {
+        mutate
+    } = useMutation({
+        mutationFn: async (obj: {
+            email: string,
+            password: string
+        }) => await loginUser(obj),
+        onSuccess: (data: any) => {
+            const token = data.token
+            console.log(data)
+            setShowToast(true);
+            setToastMessage('Login successful!');
+            localStorage.setItem("token", token)
+            dispatch(generalLogin({
+                token
+            }))
+            history.push('/home');
+        },
+        onError: (e) => {
+            console.log(e)
             setShowToast(true);
             setToastMessage('Login failed. Please try again.');
         }
+    })
+
+    const login = async () => {
+        mutate({
+            email,
+            password
+        })
+        // try {
+        //     console.log('1')
+        //     const res = await loginUser({
+        //         email: email,
+        //         password: password
+        //     });
+        //     console.log('2')
+        //     console.log(res)
+        //     if (res) {
+        //         setShowToast(true);
+        //         setToastMessage('Login successful!');
+        //         history.push('/home');
+        //     }
+        // } catch (error) {
+        //     console.error(error);
+        //     setShowToast(true);
+        //     setToastMessage('Login failed. Please try again.');
+        // }
     }
 
     // const [loggedIn, setLoggedIn] = useState(false);
