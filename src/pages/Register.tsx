@@ -46,10 +46,6 @@ const Register: React.FC = () => {
                         setToastMessage('註冊成功! 請登入');
                         history.push('/login');
                     }
-                    // } else {
-                    //     setShowToast(true);
-                    //     setToastMessage('註冊失敗');
-                    // }
                 } catch (error) {
                     console.log(error)
                     setShowToast(true);
