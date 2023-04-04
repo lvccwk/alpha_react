@@ -29,10 +29,10 @@ export interface FetchUserAllModel {
 	is_buying: boolean;
 }
 
-export const fetchCart = async (): Promise<FetchUserAllModel> => {
+export const fetchCart = async (id: number): Promise<FetchUserAllModel> => {
 	console.log('fetchCart');
 
-	const res = await fetch(`http://localhost:3000/cart/`, {
+	const res = await fetch(`http://localhost:3000/carts/${id}`, {
 		headers: {
 			Authorization: `Bearer ${localStorage.getItem('token')}`
 		}
@@ -214,14 +214,14 @@ export const fetchProduct = async (id: number): Promise<FetchUserAllModel> => {
 export const fetchAddCart = async (obj: {
 	cart_id: number;
 	product_id: number;
-	is_buying: boolean
+	is_buying: boolean;
 }): Promise<FetchUserAllModel> => {
 	console.log('fetchAddCart');
 
 	const res = await fetch('http://localhost:3000/cartDetails', {
 		method: 'POST',
 		headers: {
-			'Content-Type': 'application/json',
+			'Content-Type': 'application/json'
 			// Authorization: `Bearer ${localStorage.getItem('token')}`
 		},
 

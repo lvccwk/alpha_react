@@ -6,6 +6,10 @@ export interface FetchUserModel {
 	password: string;
 	image: string;
 	cart: any;
+	cart_detail: any;
+	product: any;
+	product_name: any;
+	name: any;
 }
 
 // export const fetchUser = async (id: number | null): Promise<FetchUserModel> => {

@@ -29,7 +29,6 @@ function TeacherCard() {
 
     return (
         <>
-
             {Array.isArray(data) && data.map((item: Teacher) => (
                 <IonCard key={item.id}>
                     <button className='btn-card' onClick={onClickEditProfile}>
@@ -43,3 +42,5 @@ function TeacherCard() {
     );
 }
 export default TeacherCard;
+
+
