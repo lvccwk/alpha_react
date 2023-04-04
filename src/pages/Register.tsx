@@ -41,16 +41,11 @@ const Register: React.FC = () => {
                         email: email,
                         password: password
                     });
-                    console.log('res', res)
                     if (res) {
                         setShowToast(true);
                         setToastMessage('註冊成功! 請登入');
                         history.push('/login');
                     }
-                    // } else {
-                    //     setShowToast(true);
-                    //     setToastMessage('註冊失敗');
-                    // }
                 } catch (error) {
                     console.log(error)
                     setShowToast(true);
@@ -66,7 +61,6 @@ const Register: React.FC = () => {
     return (
         <>
             <IonPage>
-
                 <ToolBar />
                 <IonContent className="ion-padding">
                     <IonSelect

@@ -27,7 +27,7 @@ export const fetchUser = async (): Promise<FetchUserModel> => {
 			Authorization: `Bearer ${localStorage.getItem('token')}`
 		}
 	});
-
+	console.log(res);
 	if (res.ok) {
 		const data = await res.json();
 		console.log({
@@ -36,6 +36,31 @@ export const fetchUser = async (): Promise<FetchUserModel> => {
 		return data;
 	} else {
 		throw new Error('fetchUser FAILED');
+	}
+};
+
+export const loginUser = async (obj: {
+	email: string;
+	password: string;
+}): Promise<FetchUserModel> => {
+	console.log('LoginUser');
+
+	const res = await fetch(`http://localhost:3000/users/login`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify({
+			email: obj.email,
+			password: obj.password
+		})
+	});
+
+	if (res.ok) {
+		const data = await res.json();
+		return data;
+	} else {
+		throw new Error('fetchAddUser FAILED');
 	}
 };
 

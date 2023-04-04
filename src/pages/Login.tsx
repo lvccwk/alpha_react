@@ -1,21 +1,19 @@
 import { IonButton, IonContent, IonInput, IonPage } from "@ionic/react";
 import { FacebookAuthProvider, signInWithPopup } from "firebase/auth";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import Toolbar from "../components/Toolbar";
 import { IonToast } from '@ionic/react';
-import { loginUser, loginUserWithFacebook, loginUserWithGoogle } from "../config/firebaseConfig";
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { loginUserWithGoogle } from "../config/firebaseConfig";
+import { loginUser } from "../api/fetchUser";
 
-// import { Button } from "react-bootstrap";
 
-const auth = getAuth();
-export default function LoginPage() {
-    const [username, setUsername] = useState('')
+const LoginPage: React.FC = () => {
+    const [email, setUserEmail] = useState('');
     const [password, setPassword] = useState('')
     const [showToast, setShowToast] = useState(false);
     const [toastMessage, setToastMessage] = useState('');
-
+    const history = useHistory();
 
     const onFacebookLogin = (event: React.MouseEvent) => {
         event.preventDefault()
@@ -32,50 +30,35 @@ export default function LoginPage() {
         window.location.href = `${authURL}?${search.toString()}`
     }
 
-
-    async function login() {
+    const login = async () => {
         try {
-            const userCredential = await signInWithEmailAndPassword(auth, username, password);
-
-            // Get the JWT token from userCredential
-            const idToken = await userCredential.user.getIdToken();
-
-            localStorage.setItem("idToken", idToken)
-            // Do something with the token
-            console.log(idToken);
-
-            // Show login success message
-            setShowToast(true);
-            setToastMessage('Login successful!');
+            console.log('1')
+            const res = await loginUser({
+                email: email,
+                password: password
+            });
+            console.log('2')
+            console.log(res)
+            if (res) {
+                setShowToast(true);
+                setToastMessage('Login successful!');
+                history.push('/home');
+            }
         } catch (error) {
             console.error(error);
-
-            // Show login error message
             setShowToast(true);
             setToastMessage('Login failed. Please try again.');
         }
     }
 
-    const handleFacebookLogin = async () => {
-        try {
-            await loginUserWithFacebook();
-
-            setLoggedIn(true);
-        } catch (error) {
-            setLoggedIn(false);
-            console.log(error);
-        }
-    }
-
-
-    const [loggedIn, setLoggedIn] = useState(false);
+    // const [loggedIn, setLoggedIn] = useState(false);
 
     const handleGoogleLogin = async () => {
         try {
             await loginUserWithGoogle();
-            setLoggedIn(true);
+            // setLoggedIn(true);
         } catch (error) {
-            setLoggedIn(false);
+            // setLoggedIn(false);
             console.log(error);
         }
     }
@@ -87,38 +70,40 @@ export default function LoginPage() {
                 <h1>Facebook Login Page</h1>
                 <button onClick={onFacebookLogin}>Login via Facebook</button>
                 <br />
-                <h1>Google Login Page</h1>
+                {/* <h1>Google Login Page</h1>
                 {loggedIn ? (
                     <p>You are logged in with Google.</p>
                 ) : (
                     <button onClick={handleGoogleLogin}>Sign in with Google</button>
-                )}
+                )} */}
 
                 <IonContent className="ion-padding">
-                    用戶名稱
                     <IonInput
-                        placeholder="Username?"
-                        onIonChange={(e: any) => setUsername(e.target.value)}
-                    />
-                    密碼
+                        value={email}
+                        placeholder="email"
+                        onIonChange={(e: any) => setUserEmail(e.target.value)}
+                    >EMAIL</IonInput>
+
                     <IonInput
+                        value={password}
                         type='password' placeholder="Password?"
                         onIonChange={(e: any) => setPassword(e.target.value)}
-                    />
+                    >密碼</IonInput>
                     <IonButton onClick={login}>一般登入</IonButton>
-                    {/* <p>已經注册了？<Link to='/login'> </Link></p> */}
-                    <p>
-                        新用戶？
-                        <Link to="/register">按此註冊</Link>
-                    </p>
-                    <IonToast
-                        isOpen={showToast}
-                        message={toastMessage}
-                        duration={4000}
-                        onDidDismiss={() => setShowToast(false)}
-                    />
+                    <p>新用戶？<Link to="/register">按此註冊</Link></p>
                 </IonContent>
+
+
+
+                <IonToast
+                    isOpen={showToast}
+                    message={toastMessage}
+                    duration={5000}
+                    onDidDismiss={() => setShowToast(false)}
+                />
             </IonContent>
         </IonPage>
     );
 }
+
+export default LoginPage;
