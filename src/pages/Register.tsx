@@ -9,10 +9,10 @@ import { registerUser } from "../config/firebaseConfig"
 
 const Register: React.FC = () => {
     const [user_type, setUserType] = useState('');
-    const [username, setUsername] = useState('username');
-    const [email, setUseremail] = useState('email@gmail.com');
-    const [password, setPassword] = useState('12345678');
-    const [cpassword, setCPassword] = useState('12345678');
+    const [username, setUsername] = useState('');
+    const [email, setUseremail] = useState('');
+    const [password, setPassword] = useState('');
+    const [cpassword, setCPassword] = useState('');
     const [showToast, setShowToast] = useState(false);
     const [toastMessage, setToastMessage] = useState('');
 
@@ -71,10 +71,10 @@ const Register: React.FC = () => {
                         <IonSelectOption value="student">學生</IonSelectOption>
                     </IonSelect>
                     {/* <IonInput value={user_type} placeholder="User_type?" onIonChange={(e: any) => setUsertype(e.target.value)}></IonInput> */}
-                    <IonInput value={username} placeholder="username" onIonChange={(e: any) => setUsername(e.target.value)}></IonInput>
-                    <IonInput value={email} placeholder="email" onIonChange={(e: any) => setUseremail(e.target.value)}></IonInput>
-                    <IonInput value={password} placeholder="password" onIonChange={(e: any) => setPassword(e.target.value)}></IonInput>
-                    <IonInput value={cpassword} placeholder="Confirm Password" onIonChange={(e: any) => setCPassword(e.target.value)}></IonInput>
+                    <IonInput value={username} placeholder="email" onIonChange={(e: any) => setUsername(e.target.value)}></IonInput>
+                    <IonInput value={email} placeholder="email@gmail.com" onIonChange={(e: any) => setUseremail(e.target.value)}></IonInput>
+                    <IonInput value={password} placeholder="12345678" onIonChange={(e: any) => setPassword(e.target.value)}></IonInput>
+                    <IonInput value={cpassword} placeholder="12345678" onIonChange={(e: any) => setCPassword(e.target.value)}></IonInput>
                     <IonButton onClick={handleRegisterUser}>Register</IonButton>
                 </IonContent>
                 <IonToast
