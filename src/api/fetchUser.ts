@@ -5,7 +5,7 @@ export interface FetchUserModel {
 	email: string;
 	password: string;
 	image: string;
-	cart:any;
+	cart: any;
 }
 
 // export const fetchUser = async (id: number | null): Promise<FetchUserModel> => {
@@ -70,7 +70,6 @@ export const fetchAddUser = async (obj: {
 	username: string;
 	email: string;
 	password: string;
-	//image: string,
 }): Promise<FetchUserModel> => {
 	console.log('fetchAddUser');
 
@@ -84,7 +83,6 @@ export const fetchAddUser = async (obj: {
 			username: obj.username,
 			email: obj.email,
 			password: obj.password
-			//image: obj.image,
 		})
 	});
 
