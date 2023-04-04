@@ -38,6 +38,10 @@ export async function loginUser(username: string, password: string) {
 }
 
 export async function registerUser(username: string, password: string) {
+	console.log({
+		username,
+		password
+	});
 	const email = `${username}@gmail.com`;
 	try {
 		const res = await createUserWithEmailAndPassword(auth, email, password);

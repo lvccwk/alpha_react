@@ -12,8 +12,13 @@ import { generalLogin } from "../redux/userSlice";
 
 
 const LoginPage: React.FC = () => {
+<<<<<<< HEAD
     const [email, setUserEmail] = useState('email@gmail.com');
     const [password, setPassword] = useState('12345678')
+=======
+    const [email, setUserEmail] = useState('arfar@gmail.com');
+    const [password, setPassword] = useState('adminadmin')
+>>>>>>> 66a19535d4e78528a96ae0e2173d4c036b312d73
     const [showToast, setShowToast] = useState(false);
     const [toastMessage, setToastMessage] = useState('');
     const history = useHistory();
@@ -112,15 +117,15 @@ const LoginPage: React.FC = () => {
                 <IonContent className="ion-padding">
                     <IonInput
                         value={email}
-                        placeholder="email@gmail.com"
+                        placeholder="email"
                         onIonChange={(e: any) => setUserEmail(e.target.value)}
-                    >EMAIL :</IonInput>
+                    >EMAIL</IonInput>
 
                     <IonInput
                         value={password}
-                        placeholder="12345678"
+                        type='password' placeholder="Password?"
                         onIonChange={(e: any) => setPassword(e.target.value)}
-                    >密碼 :</IonInput>
+                    >密碼</IonInput>
                     <IonButton onClick={login}>一般登入</IonButton>
                     <p>新用戶？<Link to="/register">按此註冊</Link></p>
                 </IonContent>
