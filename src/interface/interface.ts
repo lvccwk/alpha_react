@@ -41,6 +41,7 @@ export interface TeacherInterface {
 	teacher_subject: TeacherSubjectInterface;
 	followed_teachers: FollowedTeacherInterface;
 	product: ProductInterface;
+	user: UserInterface;
 }
 
 export interface FollowedTeacherInterface {

@@ -7,13 +7,8 @@ import AddToCartBtn from './AddToCartBtn';
 import photo from '../../src/photo/brandi-redd-6H9H-tYPUQQ-unsplash.jpg'
 import { useHistory } from 'react-router-dom';
 import TutorProfile from '../pages/TutorProfile';
+import { TeacherInterface } from '../interface/interface';
 
-interface Teacher {
-    id: number;
-    info: string;
-    username: string;
-    user: any;
-}
 
 function TeacherCard() {
     const { data, isLoading, error, refetch } = useQuery({
@@ -29,7 +24,7 @@ function TeacherCard() {
 
     return (
         <>
-            {Array.isArray(data) && data.map((item: Teacher) => (
+            {Array.isArray(data) && data.map((item: TeacherInterface) => (
                 <IonCard key={item.id}>
                     <button className='btn-card' onClick={onClickEditProfile}>
                         <img alt="Silhouette of mountains" src={photo} />
