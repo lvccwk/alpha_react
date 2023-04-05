@@ -7,18 +7,6 @@ import { fetchDeleteCartDetail } from "../api/fetchAll";
 import { useAppSelector } from "../redux/store";
 
 function DeleteButton() {
-    const id = useAppSelector(state => state.user.id)
-    const log = useAppSelector(state => state.user.isLoggedIn)
-    const { data, isLoading, error, refetch } = useQuery({
-        queryKey: ["delCartItem"],
-        queryFn: () => fetchDeleteCartDetail(id),
-    });
-
-
-
-
-    fetchDeleteCartDetail(id)
-    const history = useHistory();
 
 
     return (
