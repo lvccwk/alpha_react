@@ -1,3 +1,18 @@
+import {
+	CartDetailInterface,
+	CartInterface,
+	ChatroomInterface,
+	ChatroomParticipantInterface,
+	PrivateMessageInterface,
+	ProductInterface,
+	ProductRatingInterface,
+	PurchaseHistoryInterface,
+	SubjectInterface,
+	TeacherInterface,
+	TimetableInterface,
+	UserInterface
+} from '../interface/interface';
+
 export interface FetchUserAllModel {
 	id: number;
 	user_type: string;
@@ -5,25 +20,25 @@ export interface FetchUserAllModel {
 	email: string;
 	password: string;
 	image: string;
-	cart: any;
-	cart_detail: any;
-	purchase_history: any;
-	teacher: any;
-	teacher_id: any;
-	timetable: any;
-	product_rating: any;
-	product: any;
-	chartoom: any;
-	chatoom_participant: any;
-	private_message: any;
-	subject: any;
+	cart: CartInterface;
+	cart_detail: CartDetailInterface;
+	purchase_history: PurchaseHistoryInterface;
+	teacher: TeacherInterface;
+	teacher_id: number;
+	timetable: TimetableInterface;
+	product_rating: ProductRatingInterface;
+	product: ProductInterface;
+	chartoom: ChatroomInterface;
+	chatoom_participant: ChatroomParticipantInterface;
+	private_message: PrivateMessageInterface;
+	subject: SubjectInterface;
 	map: any;
 	item: any;
-	info: any;
-	user: any;
-	price: any;
-	avg_rating: any;
-	name: any;
+	info: string;
+	user: UserInterface;
+	price: number;
+	avg_rating: number;
+	name: string;
 	cart_id: number;
 	product_id: number;
 	is_buying: boolean;
@@ -37,7 +52,6 @@ export const fetchCart = async (id: number): Promise<FetchUserAllModel> => {
 			Authorization: `Bearer ${localStorage.getItem('token')}`
 		}
 	});
-
 	if (res.ok) {
 		const data = await res.json();
 		console.log(data);
