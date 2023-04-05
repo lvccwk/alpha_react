@@ -71,7 +71,7 @@ const Register: React.FC = () => {
                         <IonSelectOption value="student">學生</IonSelectOption>
                     </IonSelect>
                     {/* <IonInput value={user_type} placeholder="User_type?" onIonChange={(e: any) => setUsertype(e.target.value)}></IonInput> */}
-                    <IonInput value={username} placeholder="username" onIonChange={(e: any) => setUsername(e.target.value)}></IonInput>
+                    <IonInput value={username} placeholder="username" onIonChange={(e: any) => { console.log(e); setUsername(e.target.value) }}></IonInput>
                     <IonInput value={email} placeholder="email" onIonChange={(e: any) => setUseremail(e.target.value)}></IonInput>
                     <IonInput value={password} placeholder="password" onIonChange={(e: any) => setPassword(e.target.value)}></IonInput>
                     <IonInput value={cpassword} placeholder="Confirm Password" onIonChange={(e: any) => setCPassword(e.target.value)}></IonInput>

@@ -169,6 +169,27 @@ export const fetchDeleteUser = async (id: number): Promise<FetchUserAllModel> =>
 	}
 };
 
+export const fetchDeleteCartDetail = async (id: number): Promise<FetchUserAllModel> => {
+	console.log('fetchDeleteUser');
+
+	const res = await fetch(`http://localhost:3000/users/${id}`, {
+		method: 'DELETE',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify({
+			id
+		})
+	});
+
+	if (res.ok) {
+		const data = await res.json();
+		return data;
+	} else {
+		throw new Error('fetchDeleteUser FAILED');
+	}
+};
+
 export const fetchCourse = async (): Promise<FetchUserAllModel> => {
 	console.log('fetchCourse');
 

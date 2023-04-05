@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonItem, IonLabel, IonList, IonButton, IonThumbnail } from '@ionic/react';
 import CheckBox from './CheckBox';
 import ButtonX from './ButtonX';
@@ -40,8 +40,12 @@ function CartItem() {
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: ["cartItem"],
     queryFn: () => fetchCart(id),
+    refetchInterval: 2500,
+    // // refetchOnWindowFocus: false,
+    // refetchOnReconnect: true,
   });
-  fetchCart(id)
+
+
   const history = useHistory();
   const onClickProductPage = (id: number) => {
     history.push(`/productpage/` + id);
