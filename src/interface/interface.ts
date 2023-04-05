@@ -8,6 +8,18 @@ export interface UserInterface {
 	created_at: Date;
 	updated_at: Date;
 	is_deleted: boolean;
+	product: ProductInterface;
+	purchase_history: PurchaseHistoryInterface;
+	cart: CartInterface;
+	teacher: TeacherInterface;
+	timetable: TimetableInterface;
+	product_rating: ProductRatingInterface;
+	chatroom: ChatroomInterface;
+	chatroom_history: ChatroomHistoryInterface;
+	chatroom_participant: ChatroomParticipantInterface;
+	private_message_from_user: PrivateMessageInterface;
+	private_message_to_user: PrivateMessageInterface;
+	followed_teachers: FollowedTeacherInterface;
 }
 
 export interface SubjectInterface {
@@ -16,6 +28,7 @@ export interface SubjectInterface {
 	chinese_name: string;
 	created_at: Date;
 	updated_at: Date;
+	teacher_subject: TeacherSubjectInterface;
 }
 
 export interface TeacherInterface {
@@ -25,6 +38,9 @@ export interface TeacherInterface {
 	rating: number;
 	created_at: Date;
 	updated_at: Date;
+	teacher_subject: TeacherSubjectInterface;
+	followed_teachers: FollowedTeacherInterface;
+	product: ProductInterface;
 }
 
 export interface FollowedTeacherInterface {
@@ -52,6 +68,9 @@ export interface ProductInterface {
 	teacher_id: number;
 	created_at: Date;
 	updated_at: Date;
+	product_rating: ProductRatingInterface;
+	purchase_history: PurchaseHistoryInterface;
+	cart_detail: CartDetailInterface;
 }
 
 export interface CartInterface {
@@ -59,6 +78,7 @@ export interface CartInterface {
 	student_id: number;
 	created_at: Date;
 	updated_at: Date;
+	cart_detail: CartDetailInterface;
 }
 
 export interface CartDetailInterface {
@@ -102,6 +122,8 @@ export interface ChatroomInterface {
 	user_id: number;
 	created_at: Date;
 	updated_at: Date;
+	chatroom_history: ChatroomHistoryInterface;
+	chatroom_participant: ChatroomParticipantInterface;
 }
 
 export interface ChatroomHistoryInterface {

@@ -40,7 +40,7 @@ function CartItem() {
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: ["cartItem"],
     queryFn: () => fetchCart(id),
-    refetchInterval: 2500,
+    // refetchInterval: 2500,
     // // refetchOnWindowFocus: false,
     // refetchOnReconnect: true,
   });
