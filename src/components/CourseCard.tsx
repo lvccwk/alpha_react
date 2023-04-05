@@ -18,7 +18,7 @@ interface Course {
     subject_id: number;
     teacher: TeacherInterface;
     teacher_id: number;
-    user: UserInterface
+    user: UserInterface;
 }
 
 function CourseCard() {
@@ -33,8 +33,6 @@ function CourseCard() {
     });
 
     console.log("cartID=" + user?.cart[0].id)
-
-
 
     const history = useHistory();
     const onClickProductPage = (id: number) => {
@@ -71,7 +69,6 @@ function CourseCard() {
             };
             console.log(obj)
             fetchAddCart(obj)
-
             addToCartAlert()
         }
     }

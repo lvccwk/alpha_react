@@ -1,7 +1,7 @@
 // import { configureStore } from '@reduxjs/toolkit';
 // import { Provider } from 'react-redux';
 // import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
-import { Redirect, Route, useHistory, useLocation } from 'react-router-dom';
+import { Redirect, Route } from 'react-router-dom';
 import {
   IonApp,
   IonIcon,
@@ -13,7 +13,7 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { carSportOutline, cart, cartOutline, cartSharp, chatbubble, chatbubbleOutline, chatbubbles, chatbubblesOutline, ellipse, home, homeOutline, library, libraryOutline, people, peopleCircle, peopleCircleSharp, peopleOutline, playCircle, radio, search, square, triangle } from 'ionicons/icons';
+import { cart, chatbubblesOutline, homeOutline, libraryOutline, people } from 'ionicons/icons';
 
 
 /* Core CSS required for Ionic components to work properly */
@@ -56,7 +56,7 @@ import LoginPage from './components/Login';
 setupIonicReact();
 
 const App: React.FC = () => {
-  // const history = useHistory();
+
   return (
     <IonApp>
       <IonReactRouter>
@@ -82,8 +82,6 @@ const App: React.FC = () => {
             <Route path="/register" render={() => <Register />} exact={true} />
             <Route path="/loginFirebase" render={() => <LoginFirebase />} exact={true} />
           </IonRouterOutlet>
-
-
 
           <IonTabBar slot="bottom">
             <IonTabButton tab="resource" href="/resource">

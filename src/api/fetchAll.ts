@@ -20,11 +20,21 @@ export interface FetchUserAllModel {
 	email: string;
 	password: string;
 	image: string;
+	map: any;
+	item: any;
+	info: string;
+	price: number;
+	avg_rating: number;
+	name: string;
+	cart_id: number;
+	product_id: number;
+	is_buying: boolean;
+	teacher_id: number;
 	cart: CartInterface;
+	user: UserInterface;
 	cart_detail: CartDetailInterface;
 	purchase_history: PurchaseHistoryInterface;
 	teacher: TeacherInterface;
-	teacher_id: number;
 	timetable: TimetableInterface;
 	product_rating: ProductRatingInterface;
 	product: ProductInterface;
@@ -32,16 +42,6 @@ export interface FetchUserAllModel {
 	chatoom_participant: ChatroomParticipantInterface;
 	private_message: PrivateMessageInterface;
 	subject: SubjectInterface;
-	map: any;
-	item: any;
-	info: string;
-	user: UserInterface;
-	price: number;
-	avg_rating: number;
-	name: string;
-	cart_id: number;
-	product_id: number;
-	is_buying: boolean;
 }
 
 export const fetchCart = async (id: number): Promise<FetchUserAllModel> => {

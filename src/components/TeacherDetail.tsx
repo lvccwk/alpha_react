@@ -1,14 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { IonAvatar, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonItem, IonLabel } from '@ionic/react';
+import { IonCard, IonCardContent, IonCardSubtitle, IonCardTitle } from '@ionic/react';
 import { fetchTeacher } from '../api/fetchAll';
 import { useQuery } from '@tanstack/react-query';
-import AddToCartBtn from './AddToCartBtn';
 import photo from '../../src/photo/brandi-redd-6H9H-tYPUQQ-unsplash.jpg'
-import { useHistory, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import './TeacherDetail.css';
-
-
-
 
 function TeacherDetail() {
     const params = useParams()

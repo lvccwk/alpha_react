@@ -5,7 +5,6 @@ import {
   IonLabel
 } from '@ionic/react';
 
-
 function CheckBox() {
   return (
     <IonItem>

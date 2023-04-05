@@ -15,7 +15,6 @@ interface Chatroom {
 
 }
 
-
 function Chatbox() {
     const { data, isLoading, error, refetch } = useQuery({
         queryKey: ["chatroomHistory"],
