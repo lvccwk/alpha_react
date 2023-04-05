@@ -31,15 +31,15 @@ function CourseCard() {
         queryFn: () => fetchUser(),
     });
 
-    console.log("cartID="+ user?.cart[0].id)
+    console.log("cartID=" + user?.cart[0].id)
 
-    
+
 
     const history = useHistory();
     const onClickProductPage = (id: number) => {
         history.push(`/productpage/` + id);
     }
-    
+
     const [presentAlert] = useIonAlert();
     const addToCartAlert = () => {
         presentAlert({
@@ -60,19 +60,19 @@ function CourseCard() {
     const isLoggedIn = useAppSelector(state => state.user.isLoggedIn)
 
     const handleAddToCart = (id: number) => {
-    if( isLoggedIn === false){
-        pleaseLogin()
-    } else {
-        let obj = {
-            cart_id: user?.cart[0].id,
-            product_id: id,
-            is_buying: false,
-        };
-        console.log(obj)
-        fetchAddCart(obj)
- 
-        addToCartAlert()
-    }
+        if (isLoggedIn === false) {
+            pleaseLogin()
+        } else {
+            let obj = {
+                cart_id: user?.cart[0].id,
+                product_id: id,
+                is_buying: false,
+            };
+            console.log(obj)
+            fetchAddCart(obj)
+
+            addToCartAlert()
+        }
     }
 
     return (

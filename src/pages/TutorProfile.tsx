@@ -14,10 +14,10 @@ import ProductDetail from '../components/ProductDetail';
 const TutorProfile: React.FC = () => {
     console.log("TutorProfile")
     const history = useHistory()
+
     return (
         <>
             <IonPage>
-
                 <ToolBar />
                 <IonContent>
                     <TeacherDetail />

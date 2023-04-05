@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { IonAvatar, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonItem, IonLabel } from '@ionic/react';
 import { fetchTeacher } from '../api/fetchAll';
 import { useQuery } from '@tanstack/react-query';
 import AddToCartBtn from './AddToCartBtn';
 import photo from '../../src/photo/brandi-redd-6H9H-tYPUQQ-unsplash.jpg'
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import './TeacherDetail.css';
 
 
@@ -16,30 +16,46 @@ interface Teacher {
 }
 
 function TeacherDetail() {
+    const params = useParams()
+    const teacherId = Object.values(params)[0]
     const { data, isLoading, error, refetch } = useQuery({
         queryKey: ["teacherDetail"],
-        queryFn: () => fetchTeacher(1),
+        queryFn: () => fetchTeacher(Number(teacherId)),
     });
 
-    // const history = useHistory();
-    // const onClickEditProfile = () => {
-    //     history.push('/tutorprofile');
-    // }
+    console.log(`TeacherId =`, data?.id)
 
-    console.log(data)
+    const [visitCount, setVisitCount] = useState(0);
+    const visitCountRef = useRef(0);
+    useEffect(() => {
+        const storedCount = localStorage.getItem('visitCount');
+        if (storedCount) {
+            setVisitCount(parseInt(storedCount) + 1);
+            visitCountRef.current = parseInt(storedCount) + 1;
+        } else {
+            setVisitCount(1);
+            visitCountRef.current = 1;
+        }
+    }, []);
+
+    useEffect(() => {
+        localStorage.setItem('visitCount', String(visitCountRef.current));
+    }, [visitCount]);
+
+
     return (
         <>
-
             <IonCard>
-                <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
-                <IonCardHeader>
-                    <IonCardTitle>{data?.info}</IonCardTitle>
-
-                    <IonCardSubtitle>{data?.user.username}Card Subtitle</IonCardSubtitle>
-                </IonCardHeader>
+                <IonCardTitle>{data?.user.username}</IonCardTitle>
+                <IonCardSubtitle>Email : {data?.user.email}</IonCardSubtitle>
+                <IonCardSubtitle>教學年資： 1</IonCardSubtitle>
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                    <p>瀏覽次數：{visitCount}</p>
+                </div>
+                <img alt="Silhouette of mountains" src={photo} />
                 <IonCardContent>
-                    <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
-                    Here's a small text description for the card content. Nothing more, nothing less.
+                    <IonCardSubtitle>導師介紹</IonCardSubtitle><br></br>
+                    {data?.info}
                 </IonCardContent>
             </IonCard>
 
