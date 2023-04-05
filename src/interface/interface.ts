@@ -96,7 +96,7 @@ export interface TimetableInterface {
 	updated_at: Date;
 }
 
-export interface ChatroomInterdace {
+export interface ChatroomInterface {
 	id: number;
 	name: string;
 	user_id: number;
