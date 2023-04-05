@@ -8,6 +8,7 @@ import photo from '../../src/photo/brandi-redd-6H9H-tYPUQQ-unsplash.jpg'
 import { useHistory } from 'react-router';
 import { useAppSelector } from "../redux/store";
 import { fetchUser } from '../api/fetchUser';
+import { TeacherInterface, UserInterface } from '../interface/interface';
 
 interface Course {
     id: number;
@@ -15,9 +16,9 @@ interface Course {
     price: number;
     avg_rating: number;
     subject_id: number;
-    teacher: any;
+    teacher: TeacherInterface;
     teacher_id: number;
-    user: any
+    user: UserInterface
 }
 
 function CourseCard() {

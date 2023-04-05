@@ -8,12 +8,7 @@ import { useHistory, useParams } from 'react-router-dom';
 import './TeacherDetail.css';
 
 
-interface Teacher {
-    id: number;
-    info: string;
-    username: string;
-    user: any;
-}
+
 
 function TeacherDetail() {
     const params = useParams()
