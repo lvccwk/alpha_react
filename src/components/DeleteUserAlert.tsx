@@ -24,11 +24,11 @@ function DeleteUserAlert(){
               // message: '',
               buttons: [
                 {
-                  text: 'Cancel',
+                  text: 'CANCEL',
                   role: 'cancel',
                 },
                 {
-                  text: 'OK',
+                  text: 'CONFIRM',
                   handler: () => { //logic
                     if (loggedIn) {
                       fetchDeleteUser()

@@ -2,8 +2,9 @@ import { IonContent, IonPage } from '@ionic/react';
 import Toolbar from '../components/Toolbar';
 import EditUserProfile from '../components/EditUserProfile';
 export default function UserProfileSettings() {
-    return (
-        <IonPage>
+  return (
+    <>
+      <IonPage>
         <Toolbar />
 
         <IonContent>
@@ -14,5 +15,6 @@ export default function UserProfileSettings() {
 
         </IonContent>
       </IonPage>
-    )
+    </>
+  )
 }

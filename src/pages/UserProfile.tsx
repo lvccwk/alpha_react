@@ -35,8 +35,8 @@ export default function UserProfile() {
     history.push("/home")
   }
 
-  const handleDeleteUser = () => {
-    history.push("/home")
+  const handlePurchaseHistory = () => {
+    history.push("/purchasehistory")
   }
 
 
@@ -107,7 +107,7 @@ export default function UserProfile() {
 
             <button onClick={handleEditProfile}>EDIT USER PROFILE</button>
             <br></br>
-            <button>PURCHASE HISTORY</button>
+            <button onClick={handlePurchaseHistory}>PURCHASE HISTORY</button>
             <br></br>
             <button onClick={handleLogout}>LOGOUT</button>
             <br></br>

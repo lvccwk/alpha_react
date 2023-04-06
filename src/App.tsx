@@ -50,6 +50,7 @@ import "./App.css"
 import TutorProfile from './pages/TutorProfile';
 import Register from './pages/Register';
 import LoginPage from './components/Login';
+import PurchaseHistory from './pages/PurchaseHistory';
 
 
 setupIonicReact();
@@ -79,6 +80,7 @@ const App: React.FC = () => {
             <Route path="/ProductPage/:productId" exact={true} ><ProductPage /></Route>
             <Route path="/tutorprofile/:teacherId" exact={true} ><TutorProfile /></Route>
             <Route path="/register" render={() => <Register />} exact={true} />
+            <Route path="/purchasehistory" render={() => <PurchaseHistory />} exact={true} />
           </IonRouterOutlet>
 
           <IonTabBar slot="bottom">
