@@ -15,7 +15,9 @@ const ShoppingCart: React.FC = () => {
                 <IonContent>
                     <IonCardTitle>購物車</IonCardTitle>
                     <CartItem />
-
+                    <IonButton>
+                        前往付款
+                    </IonButton>
                 </IonContent>
             </IonPage>
         </>

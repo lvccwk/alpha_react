@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
-import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonItem, IonLabel, IonList, IonButton, IonThumbnail } from '@ionic/react';
+import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonItem, IonLabel, IonList, IonButton, IonThumbnail, IonButtons, IonIcon } from '@ionic/react';
 import CheckBox from './CheckBox';
 import ButtonX from './ButtonX';
 import { useQuery } from '@tanstack/react-query';
 import DeleteButton from './DeleteButton';
 import { useHistory } from 'react-router';
-import { fetchCart } from '../api/fetchAll';
+import { fetchCart, fetchDropFromCart } from '../api/fetchAll';
 import { useAppSelector } from '../redux/store';
+import { closeCircle } from 'ionicons/icons';
 
 interface CartItemInfo {
   id: number;
@@ -41,16 +42,22 @@ function CartItem() {
     queryKey: ["cartItem"],
     queryFn: () => fetchCart(id),
     // refetchInterval: 2500,
-    // // refetchOnWindowFocus: false,
+    // refetchOnWindowFocus: false,
     // refetchOnReconnect: true,
   });
 
+  console.log("cart infos:",data)
 
   const history = useHistory();
   const onClickProductPage = (id: number) => {
     history.push(`/productpage/` + id);
   }
-  console.log(data)
+
+  const onClickDropFromCart = (id: number) => {
+    fetchDropFromCart(id)
+    refetch()
+  }
+
   return (
     <>
 
@@ -64,7 +71,11 @@ function CartItem() {
             詳細
           </IonButton>
           ${item.product.price}
-          <DeleteButton />
+          <IonButtons>
+            <IonButton onClick={() => onClickDropFromCart(item.id)}>
+                <IonIcon slot="icon-only" icon={closeCircle} ></IonIcon>
+            </IonButton>
+          </IonButtons>
           <CheckBox />
         </IonItem>
       ))}

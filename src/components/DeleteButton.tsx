@@ -3,7 +3,6 @@ import { useQuery } from "@tanstack/react-query";
 import { addCircle, closeCircle, star } from "ionicons/icons";
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { fetchDeleteCartDetail } from "../api/fetchAll";
 import { useAppSelector } from "../redux/store";
 
 function DeleteButton() {
