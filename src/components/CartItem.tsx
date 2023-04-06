@@ -46,8 +46,6 @@ function CartItem() {
     // refetchOnReconnect: true,
   });
 
-  console.log("cart infos:",data)
-
   const history = useHistory();
   const onClickProductPage = (id: number) => {
     history.push(`/productpage/` + id);
@@ -57,7 +55,7 @@ function CartItem() {
     fetchDropFromCart(id)
     refetch()
   }
-
+ 
   return (
     <>
 
