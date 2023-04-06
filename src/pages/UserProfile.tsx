@@ -1,12 +1,13 @@
-import { IonContent, IonPage, useIonViewWillEnter } from '@ionic/react';
+import { IonContent, IonPage, IonGrid, useIonViewWillEnter } from '@ionic/react';
 import { useState, useEffect, useLayoutEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useDispatch, useSelector } from "react-redux";
 import { IRootState } from "../redux/store";
 import Toolbar from '../components/Toolbar';
+import DeleteUserAlert from '../components/DeleteUserAlert';
 import { fetchUser, fetchDeleteUser, fetchUpdateUser } from "../api/fetchUser";
-import { fbLogin, userLogout } from "../redux/userSlice";
+import { userLogout } from "../redux/userSlice";
 import { useAppSelector } from "../redux/store";
 import jwtDecode from 'jwt-decode';
 
@@ -15,15 +16,15 @@ export default function UserProfile() {
   const history = useHistory();
   const dispatch = useDispatch();
   const id = useAppSelector(state => state.user.id)
-  const log = useAppSelector(state => state.user.isLoggedIn)
+  const loggedIn = useAppSelector(state => state.user.isLoggedIn)
   console.log("id", id)
-  console.log("login:", log)
+  console.log("login:", loggedIn)
   // const [userData, setUserData] = useState({
   //   id: "",
   //   //username: '',
 
   // }); // State to hold updated user data
-
+  
   const handleEditProfile = () => {
     history.push('/userprofilesettings');
   }
@@ -33,6 +34,11 @@ export default function UserProfile() {
     console.log("yesLOGOUT");
     history.push("/home")
   }
+
+  const handleDeleteUser = () => {
+    history.push("/home")
+  }
+
 
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: ["user"],
@@ -104,6 +110,11 @@ export default function UserProfile() {
             <button>PURCHASE HISTORY</button>
             <br></br>
             <button onClick={handleLogout}>LOGOUT</button>
+            <br></br>
+            {/* <button onClick={handleDeleteUser}>DELETE ACCOUNT</button> */}
+            <IonGrid >
+              <DeleteUserAlert />    
+            </IonGrid>
           </div>
 
         </IonContent>
