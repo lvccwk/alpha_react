@@ -100,36 +100,36 @@ export const fetchTeacherAll = async (): Promise<FetchUserAllModel> => {
 	}
 };
 
-export const fetchAddUser = async (obj: {
-	user_type: string;
-	username: string;
-	email: string;
-	password: string;
-	//image: string,
-}): Promise<FetchUserAllModel> => {
-	console.log('fetchAddUser');
+// export const fetchAddUser = async (obj: {
+// 	user_type: string;
+// 	username: string;
+// 	email: string;
+// 	password: string;
+// 	//image: string,
+// }): Promise<FetchUserAllModel> => {
+// 	console.log('fetchAddUser');
 
-	const res = await fetch('http://localhost:3000/cartDetails/', {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify({
-			user_type: obj.user_type,
-			username: obj.username,
-			email: obj.email,
-			password: obj.password
-			//image: obj.image,
-		})
-	});
+// 	const res = await fetch('http://localhost:3000/cartDetails/', {
+// 		method: 'POST',
+// 		headers: {
+// 			'Content-Type': 'application/json'
+// 		},
+// 		body: JSON.stringify({
+// 			user_type: obj.user_type,
+// 			username: obj.username,
+// 			email: obj.email,
+// 			password: obj.password
+// 			//image: obj.image,
+// 		})
+// 	});
 
-	if (res.ok) {
-		const data = await res.json();
-		return data;
-	} else {
-		throw new Error('fetchAddUser FAILED');
-	}
-};
+// 	if (res.ok) {
+// 		const data = await res.json();
+// 		return data;
+// 	} else {
+// 		throw new Error('fetchAddUser FAILED');
+// 	}
+// };
 
 export const fetchUpdateUser = async (obj: {
 	//id: number | string,
@@ -267,6 +267,27 @@ export const fetchAddCart = async (obj: {
 		return data;
 	} else {
 		throw new Error('fetchAddCart FAILED');
+	}
+};
+
+export const fetchIsBuying = async (id:number,is_buying: boolean): Promise<FetchUserAllModel> => {
+	console.log('fetchIsBuying= '+is_buying);
+
+	const res = await fetch(`http://localhost:3000/cartDetails/${id}`, {
+		method: 'PUT',
+		headers: {
+			'Content-Type': 'application/json',Authorization: `Bearer ${localStorage.getItem('token')}`
+		},
+		body: JSON.stringify({
+			is_buying
+		})
+	});
+
+	if (res.ok) {
+		const data = await res.json();
+		return data;
+	} else {
+		throw new Error('fetchIsBuying FAILED');
 	}
 };
 /*

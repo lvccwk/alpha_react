@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
-import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonItem, IonLabel, IonList, IonButton, IonThumbnail, IonButtons, IonIcon } from '@ionic/react';
-import CheckBox from './CheckBox';
+import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonItem, IonLabel, IonList, IonButton, IonThumbnail, IonButtons, IonIcon, IonCheckbox } from '@ionic/react';
 import ButtonX from './ButtonX';
 import { useQuery } from '@tanstack/react-query';
 import { useHistory } from 'react-router';
-import { fetchCart, fetchDropFromCart } from '../api/fetchAll';
+import { fetchCart, fetchDropFromCart, fetchIsBuying } from '../api/fetchAll';
 import { useAppSelector } from '../redux/store';
 import { closeCircle } from 'ionicons/icons';
 
@@ -37,13 +36,18 @@ interface ProductInterface {
 function CartItem() {
   const id = useAppSelector(state => state.user.id)
   const log = useAppSelector(state => state.user.isLoggedIn)
-  const { data, isLoading, error, refetch } = useQuery({
+  const { data, refetch } = useQuery({
     queryKey: ["cartItem"],
     queryFn: async () => await fetchCart(id),
-    refetchInterval: 500,
+    // refetchInterval: 500,
     // refetchOnWindowFocus: false,
     // refetchOnReconnect: true,
   });
+
+  // const setIsBuyingToFalse = async (id: any) => {
+  //   fetchSetToFalse(id)
+  // }
+  // setIsBuyingToFalse(data?.id)
 
   const history = useHistory();
   const onClickProductPage = (id: number) => {
@@ -52,6 +56,15 @@ function CartItem() {
 
   const onClickDropFromCart = async (id: number) => {
     await fetchDropFromCart(id)
+    refetch()
+  }
+
+  const setIsBuying = async (id: number, is_buying: boolean) => {
+    if(is_buying === true){
+      await fetchIsBuying(id, false)
+    } else if (is_buying === false){
+      await fetchIsBuying(id, true)
+    }
     refetch()
   }
 
@@ -73,7 +86,7 @@ function CartItem() {
               <IonIcon slot="icon-only" icon={closeCircle} ></IonIcon>
             </IonButton>
           </IonButtons>
-          <CheckBox />
+          <IonCheckbox slot="end" checked={item.is_buying} onClick={() => setIsBuying(item.id, item.is_buying)}></IonCheckbox>
         </IonItem>
       ))}
 
