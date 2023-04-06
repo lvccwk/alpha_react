@@ -83,6 +83,7 @@ const App: React.FC = () => {
             <Route path="/register" render={() => <Register />} exact={true} />
             <Route path="/purchasehistory" render={() => <PurchaseHistory />} exact={true} />
             <Route path="/uploadproduct" render={() => <UploadProduct />} exact={true} />
+            <Route path="/success.html" exact={true} ></Route>
           </IonRouterOutlet>
 
           <IonTabBar slot="bottom">
