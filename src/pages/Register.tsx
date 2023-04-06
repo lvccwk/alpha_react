@@ -77,10 +77,10 @@ const Register: React.FC = () => {
                     <IonInput value={cpassword} placeholder="Confirm Password" onIonChange={(e: any) => setCPassword(e.target.value)}></IonInput>
                     <IonButton onClick={handleRegisterUser}>Register</IonButton>
                 </IonContent>
-                <IonToast
+                <IonToast position="top"
                     isOpen={showToast}
                     message={toastMessage}
-                    duration={5000}
+                    duration={1000}
                     onDidDismiss={() => setShowToast(false)}
                 />
             </IonPage>

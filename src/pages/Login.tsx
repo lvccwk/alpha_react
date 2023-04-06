@@ -129,9 +129,10 @@ const LoginPage: React.FC = () => {
 
 
                 <IonToast
+                    position="top"
                     isOpen={showToast}
                     message={toastMessage}
-                    duration={5000}
+                    duration={1000}
                     onDidDismiss={() => setShowToast(false)}
                 />
             </IonContent>
