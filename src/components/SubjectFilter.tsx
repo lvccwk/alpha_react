@@ -1,7 +1,6 @@
 import { AlertButton, IonButton, IonButtons, IonContent, IonIcon, IonPopover, useIonAlert } from "@ionic/react";
 import { addCircle, closeCircle, filter, star } from "ionicons/icons";
 import React from "react";
-import AddToCartBtn from "./AddToCartBtn";
 
 import './SubjectFilter.css';
 import SubjectFilterList from "./SubjectFilterList";

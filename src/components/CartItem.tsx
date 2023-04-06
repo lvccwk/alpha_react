@@ -3,7 +3,6 @@ import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, 
 import CheckBox from './CheckBox';
 import ButtonX from './ButtonX';
 import { useQuery } from '@tanstack/react-query';
-import DeleteButton from './DeleteButton';
 import { useHistory } from 'react-router';
 import { fetchCart, fetchDropFromCart } from '../api/fetchAll';
 import { useAppSelector } from '../redux/store';
@@ -40,8 +39,8 @@ function CartItem() {
   const log = useAppSelector(state => state.user.isLoggedIn)
   const { data, isLoading, error, refetch } = useQuery({
     queryKey: ["cartItem"],
-    queryFn: () => fetchCart(id),
-    // refetchInterval: 2500,
+    queryFn: async () => await fetchCart(id),
+    refetchInterval: 500,
     // refetchOnWindowFocus: false,
     // refetchOnReconnect: true,
   });
@@ -51,11 +50,11 @@ function CartItem() {
     history.push(`/productpage/` + id);
   }
 
-  const onClickDropFromCart = (id: number) => {
-    fetchDropFromCart(id)
+  const onClickDropFromCart = async (id: number) => {
+    await fetchDropFromCart(id)
     refetch()
   }
- 
+
   return (
     <>
 
@@ -71,7 +70,7 @@ function CartItem() {
           ${item.product.price}
           <IonButtons>
             <IonButton onClick={() => onClickDropFromCart(item.id)}>
-                <IonIcon slot="icon-only" icon={closeCircle} ></IonIcon>
+              <IonIcon slot="icon-only" icon={closeCircle} ></IonIcon>
             </IonButton>
           </IonButtons>
           <CheckBox />

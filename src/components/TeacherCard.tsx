@@ -3,7 +3,6 @@ import { IonCard, IonCardContent, IonNav } from '@ionic/react';
 import './TeacherCard.css';
 import { fetchTeacher, fetchTeacherAll } from '../api/fetchAll';
 import { useQuery } from '@tanstack/react-query';
-import AddToCartBtn from './AddToCartBtn';
 import photo from '../../src/photo/brandi-redd-6H9H-tYPUQQ-unsplash.jpg'
 import { useHistory } from 'react-router-dom';
 import TutorProfile from '../pages/TutorProfile';
