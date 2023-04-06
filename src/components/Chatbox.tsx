@@ -4,6 +4,7 @@ import './ListCard.css';
 import {
     fetchChatHistoryAll
 } from "../api/fetchAll";
+import DateTime from './DateTime';
 
 interface Chatroom {
     id: number;
@@ -16,11 +17,10 @@ interface Chatroom {
 }
 
 function Chatbox() {
-    const { data, isLoading, error, refetch } = useQuery({
+    const { data } = useQuery({
         queryKey: ["chatroomHistory"],
         queryFn: fetchChatHistoryAll, //redux login state
     });
-
     return (
         <>
             {Array.isArray(data) &&
@@ -31,13 +31,13 @@ function Chatbox() {
                         </IonCardHeader>
                         <IonCardContent>
                             {item.content}
+                            <DateTime />
                         </IonCardContent>
                         <IonCardSubtitle>{item.created_at}</IonCardSubtitle>
                     </IonCard>
                 ))}
         </>
     );
-
 }
 export default Chatbox;
 
