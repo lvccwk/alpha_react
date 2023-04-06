@@ -193,7 +193,7 @@ export const fetchDropFromCart = async (id: number): Promise<FetchUserAllModel> 
 			'Content-Type': 'application/json'
 		},
 
-		body: JSON.stringify({id})
+		body: JSON.stringify({ id })
 	});
 
 	if (res.ok) {
@@ -271,13 +271,14 @@ export const fetchAddCart = async (obj: {
 	}
 };
 
-export const fetchIsBuying = async (id:number,is_buying: boolean): Promise<FetchUserAllModel> => {
-	console.log('fetchIsBuying= '+is_buying);
+export const fetchIsBuying = async (id: number, is_buying: boolean): Promise<FetchUserAllModel> => {
+	console.log('fetchIsBuying= ' + is_buying);
 
 	const res = await fetch(`http://localhost:3000/cartDetails/${id}`, {
 		method: 'PUT',
 		headers: {
-			'Content-Type': 'application/json',Authorization: `Bearer ${localStorage.getItem('token')}`
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${localStorage.getItem('token')}`
 		},
 		body: JSON.stringify({
 			is_buying
@@ -292,19 +293,18 @@ export const fetchIsBuying = async (id:number,is_buying: boolean): Promise<Fetch
 	}
 };
 
-export const fetchFile  = async (file: File): Promise<FetchUserAllModel> => {
+export const fetchFile = async (file: File): Promise<FetchUserAllModel> => {
 	console.log('fetchFile');
 	const formData = new FormData();
-  	formData.append('file', file);
+	formData.append('file', file);
 
 	const res = await fetch(`http://localhost:3000/users/file`, {
 		method: 'POST',
 		headers: {
-			'Content-Type': 'multipart/form-data',
+			// 'Content-Type': 'multipart/form-data',
 			Authorization: `Bearer ${localStorage.getItem('token')}`
 		},
 		body: formData
-		
 	});
 
 	try {
@@ -312,11 +312,10 @@ export const fetchFile  = async (file: File): Promise<FetchUserAllModel> => {
 		return data;
 	} catch (error) {
 		console.log(error);
-		
-	 	throw new Error('fetchFile FAILED');
-		
+
+		throw new Error('fetchFile FAILED');
 	}
-// console.log(res);
+	// console.log(res);
 
 	// if (res.ok) {
 	// 	const data = await res.json();
@@ -325,11 +324,6 @@ export const fetchFile  = async (file: File): Promise<FetchUserAllModel> => {
 	// 	throw new Error('fetchFile FAILED');
 	// }
 };
-
-
-
-
-
 
 /*
 USER TABLE:

@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import { fetchFile } from '../api/fetchAll';
 function FileUpload() {
-  const [selectedFile, setSelectedFile] = useState<File|null>(null);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
-  const handleFileInput = (e:any) => {
+  const handleFileInput = (e: any) => {
     setSelectedFile(e.target.files[0]);
+    console.log(e.target.files[0])
   };
 
-  const handleSubmit = async(e:any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     // TODO: Handle file upload
     if (!selectedFile) {
@@ -18,10 +19,10 @@ function FileUpload() {
       console.log(selectedFile);
       await fetchFile(selectedFile);
       console.log('File uploaded successfully');
-    } catch(error){
+    } catch (error) {
       console.log(error);
     }
-    
+
   };
 
   return (
