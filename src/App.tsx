@@ -49,7 +49,6 @@ import Chatroom from './pages/Chatroom';
 import "./App.css"
 import TutorProfile from './pages/TutorProfile';
 import Register from './pages/Register';
-import LoginFirebase from './pages/LoginFirebase';
 import LoginPage from './components/Login';
 
 
@@ -80,7 +79,6 @@ const App: React.FC = () => {
             <Route path="/ProductPage/:productId" exact={true} ><ProductPage /></Route>
             <Route path="/tutorprofile/:teacherId" exact={true} ><TutorProfile /></Route>
             <Route path="/register" render={() => <Register />} exact={true} />
-            <Route path="/loginFirebase" render={() => <LoginFirebase />} exact={true} />
           </IonRouterOutlet>
 
           <IonTabBar slot="bottom">
