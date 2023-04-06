@@ -1,3 +1,4 @@
+import { log } from 'console';
 import {
 	CartDetailInterface,
 	CartInterface,
@@ -290,6 +291,46 @@ export const fetchIsBuying = async (id:number,is_buying: boolean): Promise<Fetch
 		throw new Error('fetchIsBuying FAILED');
 	}
 };
+
+export const fetchFile  = async (file: File): Promise<FetchUserAllModel> => {
+	console.log('fetchFile');
+	const formData = new FormData();
+  	formData.append('file', file);
+
+	const res = await fetch(`http://localhost:3000/users/file`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'multipart/form-data',
+			Authorization: `Bearer ${localStorage.getItem('token')}`
+		},
+		body: formData
+		
+	});
+
+	try {
+		const data = await res.json();
+		return data;
+	} catch (error) {
+		console.log(error);
+		
+	 	throw new Error('fetchFile FAILED');
+		
+	}
+// console.log(res);
+
+	// if (res.ok) {
+	// 	const data = await res.json();
+	// 	return data;
+	// } else {
+	// 	throw new Error('fetchFile FAILED');
+	// }
+};
+
+
+
+
+
+
 /*
 USER TABLE:
 model Users {
