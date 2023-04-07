@@ -15,7 +15,7 @@ export interface FetchUserModel {
 }
 
 // export const fetchUser = async (id: number | null): Promise<FetchUserModel> => {
-// 	const res = await fetch(`http://192.168.59.63:3000/users`);
+// 	const res = await fetch(`http://192.168.1.200:3000/users`);
 
 // 	if (res.ok) {
 // 		const data = await res.json();
@@ -29,7 +29,7 @@ export interface FetchUserModel {
 // };
 
 export const fetchUser = async (): Promise<FetchUserModel> => {
-	const res = await fetch(`http://192.168.59.63:3000/users`, {
+	const res = await fetch(`http://192.168.1.200:3000/users`, {
 		headers: {
 			Authorization: `Bearer ${localStorage.getItem('token')}`
 		}
@@ -52,7 +52,7 @@ export const loginUser = async (obj: {
 }): Promise<FetchUserModel> => {
 	console.log('LoginUser');
 
-	const res = await fetch(`http://192.168.59.63:3000/users/login`, {
+	const res = await fetch(`http://192.168.1.200:3000/users/login`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
@@ -79,7 +79,7 @@ export const fetchAddUser = async (obj: {
 }): Promise<FetchUserModel> => {
 	console.log('fetchAddUser');
 
-	const res = await fetch(`http://192.168.59.63:3000/users/reg`, {
+	const res = await fetch(`http://192.168.1.200:3000/users/reg`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
@@ -107,7 +107,7 @@ export const fetchUpdateUser = async (obj: {
 	//image: string,
 }): Promise<void> => {
 	console.log('fetchUpdateUsers', obj);
-	const res = await fetch(`http://192.168.59.63:3000/users`, {
+	const res = await fetch(`http://192.168.1.200:3000/users`, {
 		method: 'PUT',
 		headers: {
 			'Content-Type': 'application/json',
@@ -130,7 +130,7 @@ export const fetchUpdateUser = async (obj: {
 export const fetchDeleteUser = async (): Promise<void> => {
 	console.log('fetchDeleteUser');
 
-	const res = await fetch(`http://192.168.59.63:3000/users`, {
+	const res = await fetch(`http://192.168.1.200:3000/users`, {
 		method: 'DELETE',
 		headers: {
 			'Content-Type': 'application/json',

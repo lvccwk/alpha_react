@@ -8,6 +8,7 @@ import ToolBar from '../components/Toolbar';
 
 
 const ShoppingCart: React.FC = () => {
+
     return (
         <>
             <IonPage>
@@ -18,6 +19,7 @@ const ShoppingCart: React.FC = () => {
                     <IonButton>
                         前往付款
                     </IonButton>
+                    <Button />
                 </IonContent>
             </IonPage>
         </>

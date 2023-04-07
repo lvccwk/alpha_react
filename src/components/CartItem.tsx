@@ -60,9 +60,9 @@ function CartItem() {
   }
 
   const setIsBuying = async (id: number, is_buying: boolean) => {
-    if(is_buying === true){
+    if (is_buying === true) {
       await fetchIsBuying(id, false)
-    } else if (is_buying === false){
+    } else if (is_buying === false) {
       await fetchIsBuying(id, true)
     }
     refetch()
@@ -87,7 +87,10 @@ function CartItem() {
             </IonButton>
           </IonButtons>
           <IonCheckbox slot="end" checked={item.is_buying} onClick={() => setIsBuying(item.id, item.is_buying)}></IonCheckbox>
+
+
         </IonItem>
+
       ))}
 
 
