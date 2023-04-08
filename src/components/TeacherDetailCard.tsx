@@ -2,9 +2,10 @@ import React from 'react';
 import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonItem, IonLabel, IonList, IonThumbnail } from '@ionic/react';
 
 import './TeacherDetailCard';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { fetchTeacher } from '../api/fetchAll';
+import DateTime from './DateTime';
 
 function TeacherDetailCard() {
     const params = useParams()
@@ -13,6 +14,8 @@ function TeacherDetailCard() {
         queryKey: ["teacherDetailCard"],
         queryFn: () => fetchTeacher(Number(teacherId)),
     });
+
+
     return (
         <IonCard>
             <IonCardHeader>
@@ -49,7 +52,9 @@ function TeacherDetailCard() {
                         <IonLabel>Item</IonLabel>
                     </IonItem>
                 </IonList>
+
             </IonCardContent>
+
         </IonCard>
     );
 }

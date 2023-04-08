@@ -83,7 +83,8 @@
     ]
   },
   "devDependencies": {
-    "@capacitor/cli": "4.7.0"
+    "@capacitor/cli": "4.7.0",
+    "@types/pusher-js": "^5.1.0"
   },
   "description": "An Ionic project"
 }

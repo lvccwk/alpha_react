@@ -3,9 +3,11 @@ import { IonButton, IonCard, IonCardContent, IonCardSubtitle, IonCardTitle } fro
 import { fetchTeacher } from '../api/fetchAll';
 import { useQuery } from '@tanstack/react-query';
 import photo from '../../src/photo/brandi-redd-6H9H-tYPUQQ-unsplash.jpg'
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import './TeacherDetail.css';
 import Avatar from './Avatar';
+import TimePicker from './TimePicker';
+import DateTime from './DateTime';
 
 function TeacherDetail() {
     const params = useParams()
@@ -15,7 +17,7 @@ function TeacherDetail() {
         queryFn: () => fetchTeacher(Number(teacherId)),
     });
 
-    console.log(`TeacherId =`, data?.id)
+    console.log(`TeacherId =`, teacherId)
 
     const [visitCount, setVisitCount] = useState(0);
     const visitCountRef = useRef(0);
@@ -34,12 +36,15 @@ function TeacherDetail() {
         localStorage.setItem('visitCount', String(visitCountRef.current));
     }, [visitCount]);
 
-
+    const history = useHistory();
+    const onClickAppoinmentPage = (id: number) => {
+        history.push(`/timeslot/` + id);
+    }
     return (
         <>
             <IonCard>
                 <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '10px' }}>
-                    <IonButton>預約 {data?.user.username}</IonButton>  <IonButton>聯絡 {data?.user.username}</IonButton>
+                    <IonButton onClick={() => onClickAppoinmentPage(Number(teacherId))}>預約 {data?.user.username}</IonButton>  <IonButton>聯絡 {data?.user.username}</IonButton>
                 </div>
                 <br></br>
                 <div style={{ display: 'flex', justifyContent: 'center' }}>  <Avatar /></div>
@@ -57,7 +62,9 @@ function TeacherDetail() {
                 <IonCardContent className="ion-padding">
                     <div style={{ display: 'flex', justifyContent: 'center' }}><h2>{data?.user.username} 的時間表</h2> </div>
                     <br></br>
+                    <DateTime />
                 </IonCardContent>
+                {/* <TimePicker /> */}
             </IonCard>
 
         </>

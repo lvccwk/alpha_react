@@ -51,6 +51,8 @@ import TutorProfile from './pages/TutorProfile';
 import Register from './pages/Register';
 import PurchaseHistory from './pages/PurchaseHistory';
 import UploadProduct from './pages/UploadProduct';
+import TimeSlot from './pages/TimeSlot';
+import PrivateMessage from './pages/PrivateMessage';
 
 
 setupIonicReact();
@@ -82,6 +84,8 @@ const App: React.FC = () => {
             <Route path="/register" render={() => <Register />} exact={true} />
             <Route path="/purchasehistory" render={() => <PurchaseHistory />} exact={true} />
             <Route path="/uploadproduct" render={() => <UploadProduct />} exact={true} />
+            <Route path="/timeslot/:teacherId" render={() => <TimeSlot />} exact={true} />
+            <Route path="/privateMessage/:id" render={() => <PrivateMessage />} exact={true} />
             <Route path="/success.html" exact={true} ></Route>
             <Route path="/fail.html" exact={true} ></Route>
           </IonRouterOutlet>
