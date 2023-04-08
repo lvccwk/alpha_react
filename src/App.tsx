@@ -49,7 +49,6 @@ import Chatroom from './pages/Chatroom';
 import "./App.css"
 import TutorProfile from './pages/TutorProfile';
 import Register from './pages/Register';
-import LoginPage from './components/Login';
 import PurchaseHistory from './pages/PurchaseHistory';
 import UploadProduct from './pages/UploadProduct';
 

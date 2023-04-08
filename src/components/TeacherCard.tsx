@@ -1,22 +1,19 @@
-import React from 'react';
-import { IonCard, IonCardContent, IonNav } from '@ionic/react';
+import { IonCard, IonCardContent } from '@ionic/react';
 import './TeacherCard.css';
-import { fetchTeacher, fetchTeacherAll } from '../api/fetchAll';
+import { fetchTeacherAll } from '../api/fetchAll';
 import { useQuery } from '@tanstack/react-query';
 import photo from '../../src/photo/brandi-redd-6H9H-tYPUQQ-unsplash.jpg'
 import { useHistory } from 'react-router-dom';
-import TutorProfile from '../pages/TutorProfile';
 import { TeacherInterface } from '../interface/interface';
-import { fetchUser } from '../api/fetchUser';
+
 
 
 function TeacherCard() {
     const history = useHistory();
     const { data, isLoading, error, refetch } = useQuery({
-        queryKey: ["teacherAllABC"],
+        queryKey: ["teacherAllList"],
         queryFn: fetchTeacherAll,
     });
-
 
     const onClickEditProfile = (id: number) => {
         history.push(`/tutorprofile/` + id);
