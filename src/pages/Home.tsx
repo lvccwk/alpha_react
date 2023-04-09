@@ -8,7 +8,7 @@ import Refresh from '../components/Refresh';
 
 
 
-const Tab2: React.FC = () => {
+const Home: React.FC = () => {
 
   return (
 
@@ -55,4 +55,4 @@ const Tab2: React.FC = () => {
   );
 };
 
-export default Tab2;
+export default Home;

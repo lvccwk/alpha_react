@@ -48,7 +48,7 @@ export interface FetchUserAllModel {
 export const fetchCart = async (id: number): Promise<FetchUserAllModel> => {
 	console.log('fetchCart');
 
-	const res = await fetch(`http://192.168.1.200:3000/carts/${id}`, {
+	const res = await fetch(`http://localhost:3000/carts/${id}`, {
 		headers: {
 			Authorization: `Bearer ${localStorage.getItem('token')}`
 		}
@@ -64,7 +64,7 @@ export const fetchCart = async (id: number): Promise<FetchUserAllModel> => {
 
 export const fetchChatHistoryAll = async (): Promise<FetchUserAllModel> => {
 	console.log('fetchChatHisttory');
-	const res = await fetch(`http://192.168.1.200:3000/chatroomHistorys/`);
+	const res = await fetch(`http://localhost:3000/chatroomHistorys/`);
 	if (res.ok) {
 		const data = await res.json();
 		console.log(data);
@@ -76,7 +76,7 @@ export const fetchChatHistoryAll = async (): Promise<FetchUserAllModel> => {
 
 export const fetchTeacher = async (id: number): Promise<FetchUserAllModel> => {
 	console.log('fetchUser');
-	const res = await fetch(`http://192.168.1.200:3000/teachers/${id}`);
+	const res = await fetch(`http://localhost:3000/teachers/${id}`);
 
 	if (res.ok) {
 		const data = await res.json();
@@ -90,7 +90,7 @@ export const fetchTeacher = async (id: number): Promise<FetchUserAllModel> => {
 export const fetchTeacherAll = async (): Promise<FetchUserAllModel> => {
 	console.log('fetchUser');
 
-	const res = await fetch(`http://192.168.1.200:3000/teachers`);
+	const res = await fetch(`http://localhost:3000/teachers`);
 
 	if (res.ok) {
 		const data = await res.json();
@@ -110,7 +110,7 @@ export const fetchTeacherAll = async (): Promise<FetchUserAllModel> => {
 // }): Promise<FetchUserAllModel> => {
 // 	console.log('fetchAddUser');
 
-// 	const res = await fetch('http://192.168.1.200:3000/cartDetails/', {
+// 	const res = await fetch('http://localhost:3000/cartDetails/', {
 // 		method: 'POST',
 // 		headers: {
 // 			'Content-Type': 'application/json'
@@ -142,7 +142,7 @@ export const fetchUpdateUser = async (obj: {
 }): Promise<FetchUserAllModel> => {
 	console.log('fetchUpdateUsers');
 
-	const res = await fetch('http://192.168.1.200:3000/users', {
+	const res = await fetch('http://localhost:3000/users', {
 		method: 'PUT',
 		headers: {
 			'Content-Type': 'application/json'
@@ -166,7 +166,7 @@ export const fetchUpdateUser = async (obj: {
 export const fetchDeleteUser = async (id: number): Promise<FetchUserAllModel> => {
 	console.log('fetchDeleteUser');
 
-	const res = await fetch(`http://192.168.1.200:3000/users/${id}`, {
+	const res = await fetch(`http://localhost:3000/users/${id}`, {
 		method: 'DELETE',
 		headers: {
 			'Content-Type': 'application/json'
@@ -187,7 +187,7 @@ export const fetchDeleteUser = async (id: number): Promise<FetchUserAllModel> =>
 export const fetchDropFromCart = async (id: number): Promise<FetchUserAllModel> => {
 	console.log('fetchDropFromCart');
 
-	const res = await fetch(`http://192.168.1.200:3000/cartDetails/${id}`, {
+	const res = await fetch(`http://localhost:3000/cartDetails/${id}`, {
 		method: 'Delete',
 		headers: {
 			'Content-Type': 'application/json'
@@ -207,7 +207,7 @@ export const fetchDropFromCart = async (id: number): Promise<FetchUserAllModel> 
 export const fetchCourse = async (): Promise<FetchUserAllModel> => {
 	console.log('fetchCourse');
 
-	const res = await fetch(`http://192.168.1.200:3000/products/Course`);
+	const res = await fetch(`http://localhost:3000/products/Course`);
 
 	if (res.ok) {
 		const data = await res.json();
@@ -221,7 +221,7 @@ export const fetchCourse = async (): Promise<FetchUserAllModel> => {
 export const fetchNote = async (): Promise<FetchUserAllModel> => {
 	console.log('fetchNote');
 
-	const res = await fetch(`http://192.168.1.200:3000/products/Note`);
+	const res = await fetch(`http://localhost:3000/products/Note`);
 
 	if (res.ok) {
 		const data = await res.json();
@@ -235,7 +235,7 @@ export const fetchNote = async (): Promise<FetchUserAllModel> => {
 export const fetchProduct = async (id: number): Promise<FetchUserAllModel> => {
 	console.log('fetchProduct');
 
-	const res = await fetch(`http://192.168.1.200:3000/products/${id}`);
+	const res = await fetch(`http://localhost:3000/products/${id}`);
 
 	if (res.ok) {
 		const data = await res.json();
@@ -253,7 +253,7 @@ export const fetchAddCart = async (obj: {
 }): Promise<FetchUserAllModel> => {
 	console.log('fetchAddCart');
 
-	const res = await fetch('http://192.168.1.200:3000/cartDetails', {
+	const res = await fetch('http://localhost:3000/cartDetails', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
@@ -274,7 +274,7 @@ export const fetchAddCart = async (obj: {
 export const fetchIsBuying = async (id: number, is_buying: boolean): Promise<FetchUserAllModel> => {
 	console.log('fetchIsBuying= ' + is_buying);
 
-	const res = await fetch(`http://192.168.1.200:3000/cartDetails/${id}`, {
+	const res = await fetch(`http://localhost:3000/cartDetails/${id}`, {
 		method: 'PUT',
 		headers: {
 			'Content-Type': 'application/json',
@@ -296,7 +296,7 @@ export const fetchIsBuying = async (id: number, is_buying: boolean): Promise<Fet
 export const stripeCheckOut = async (id: number): Promise<FetchUserAllModel> => {
 	// console.log('fetchIsBuying= ' + is_buying);
 
-	const res = await fetch(`http://192.168.1.200:3000/cartDetails/stripe/${id}`, {
+	const res = await fetch(`http://localhost:3000/cartDetails/stripe/${id}`, {
 		headers: {
 			'Content-Type': 'application/json',
 			Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -316,7 +316,7 @@ export const fetchFile = async (file: File): Promise<FetchUserAllModel> => {
 	const formData = new FormData();
 	formData.append('file', file);
 
-	const res = await fetch(`http://192.168.1.200:3000/users/file`, {
+	const res = await fetch(`http://localhost:3000/users/file`, {
 		method: 'POST',
 		headers: {
 			// 'Content-Type': 'multipart/form-data',

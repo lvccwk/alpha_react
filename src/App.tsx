@@ -53,6 +53,7 @@ import PurchaseHistory from './pages/PurchaseHistory';
 import UploadProduct from './pages/UploadProduct';
 import TimeSlot from './pages/TimeSlot';
 import PrivateMessage from './pages/PrivateMessage';
+import Chat from './config/ChatRoomFirebase';
 
 
 setupIonicReact();
@@ -73,7 +74,7 @@ const App: React.FC = () => {
             <Route path="/tutor" render={() => <Tutor />} exact={true} />
             <Route path="/home" render={() => <Home />} exact={true} />
             <Route path="/shoppingcart" render={() => <ShoppingCart />} exact={true} />
-            <Route path="/chatroom" render={() => <Chatroom />} exact={true} />
+            <Route path="/chatroom" render={() => <Chat user={''} recipient={''} />} exact={true} />
             <Route path="/login" render={() => <Login />} exact={true} />
             <Route exact path="/facebook-callback"><FacebookCallback></FacebookCallback></Route>
             <Route path="/userprofile" render={() => <UserProfile />} exact={true} />
