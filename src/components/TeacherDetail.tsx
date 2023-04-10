@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { IonCard, IonCardContent, IonCardSubtitle, IonCardTitle } from '@ionic/react';
 import { fetchTeacher } from '../api/fetchAll';
+import TeacherBookmark from './TeacherBookmark';
 import { useQuery } from '@tanstack/react-query';
 import photo from '../../src/photo/brandi-redd-6H9H-tYPUQQ-unsplash.jpg'
 import { useParams } from 'react-router-dom';
@@ -43,6 +44,7 @@ function TeacherDetail() {
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
                     <p>瀏覽次數：{visitCount}</p>
                 </div>
+                <TeacherBookmark />
                 <img alt="Silhouette of mountains" src={photo} />
                 <IonCardContent>
                     <IonCardSubtitle>導師介紹</IonCardSubtitle><br></br>
