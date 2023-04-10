@@ -4,6 +4,13 @@ import './ListCard.css';
 import {
     fetchChatHistoryAll
 } from "../api/fetchAll";
+import { useEffect, useState } from 'react';
+import io, { Socket } from 'socket.io-client'
+import { MessagePort } from 'worker_threads';
+import MessageInput from './MessageInput';
+import Messages from './Messages';
+
+
 
 interface Chatroom {
     id: number;
@@ -16,13 +23,34 @@ interface Chatroom {
 }
 
 function Chatbox() {
-    const { data } = useQuery({
-        queryKey: ["chatroomHistory"],
-        queryFn: fetchChatHistoryAll, //redux login state
-    });
+    const [socket, setSocket] = useState<Socket>()
+    const [messages, setMessage] = useState<string[]>([])
+
+    const send = (value: string) => {
+        socket?.emit("message", value)
+    }
+
+    // const { data } = useQuery({
+    //     queryKey: ["chatroomHistory"],
+    //     queryFn: fetchChatHistoryAll, //redux login state
+    // });
+    useEffect(() => {
+        const newSocket = io("http://localhost:3001")
+        setSocket(newSocket)
+    }, [setSocket])
+
+    const messageListener = (message: string) => {
+        setMessage([...messages, message])
+    }
+    useEffect(() => {
+        socket?.on('message', messageListener)
+        return () => {
+            socket?.off('message', messageListener)
+        }
+    }, [messageListener])
     return (
         <>
-            {Array.isArray(data) &&
+            {/* {Array.isArray(data) &&
                 data.map((item: Chatroom) => (
                     <IonCard key={item.id}>
                         <IonCardHeader>
@@ -34,7 +62,10 @@ function Chatbox() {
                         </IonCardContent>
                         <IonCardSubtitle>{item.created_at}</IonCardSubtitle>
                     </IonCard>
-                ))}
+                ))} */}
+            {" "}
+            <MessageInput send={send} />
+            <Messages messages={messages} />
         </>
     );
 }
