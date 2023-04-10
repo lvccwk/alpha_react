@@ -6,13 +6,8 @@ export default function UserProfileSettings() {
     <>
       <IonPage>
         <Toolbar />
-
-        <IonContent>
-          <div>
-            <h1>Profile Settings</h1>
-            <EditUserProfile />
-          </div>
-
+        <IonContent className="ion-padding">
+          <EditUserProfile />
         </IonContent>
       </IonPage>
     </>

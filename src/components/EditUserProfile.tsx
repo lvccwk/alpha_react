@@ -1,7 +1,13 @@
 import {
   IonButton,
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCardSubtitle,
+  IonCardTitle,
   IonCheckbox,
   IonCol,
+  IonContent,
   IonGrid,
   IonInput,
   IonItem,
@@ -15,13 +21,14 @@ import { useHistory } from "react-router-dom";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useForm } from "react-hook-form"
 import { useAppSelector } from "../redux/store";
-
+import './../../src/components/UiDesign/EditProfile.css'
 import {
   FetchUserModel,
   fetchUser,
   fetchUpdateUser,
 
 } from "../api/fetchUser";
+import Avatar from "./Avatar";
 
 export default function EditUserProfile() {
   const id = useAppSelector(state => state.user.id)
@@ -64,20 +71,23 @@ export default function EditUserProfile() {
   }
   return (
     <div>
-      <form id="edit-profile" onSubmit={handleSubmit(onSubmit)}>
-        <IonGrid>
-          <IonRow>
-            <IonCol>
-              <IonInput {...register("username")} />
-              <IonInput {...register("password")} />
-              <IonInput readonly {...register("email")} />
-            </IonCol>
-            <IonCol>
-              <IonButton type="submit" form={"edit-profile"} >Update</IonButton>
-            </IonCol>
-          </IonRow>
-        </IonGrid>
-      </form>
-    </div>
+      <IonCard className="editProfilCard">
+        {/* <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" /> */}
+        <IonCardHeader>
+          <IonCardTitle> 編輯個人資料 </IonCardTitle>
+          <div className='userlogo'><Avatar /></div>
+
+          {/* <IonCardSubtitle>Card Subtitle</IonCardSubtitle> */}
+        </IonCardHeader>
+        <IonCardContent>
+          <form className='editProfileSetting' id="edit-profile" onSubmit={handleSubmit(onSubmit)}>
+            <IonInput aria-label="Custom input" class="custom" {...register("username")} /><br></br>
+            <IonInput aria-label="Custom input" class="custom" {...register("password")} /><br></br>
+            <IonInput aria-label="Custom input" class="custom" readonly {...register("email")} /><br></br>
+            <IonButton type="submit" form={"edit-profile"} >Update</IonButton>
+          </form>
+        </IonCardContent>
+      </IonCard>
+    </div >
   )
 }
