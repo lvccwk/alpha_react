@@ -5,7 +5,8 @@ import { Link, Redirect, useHistory } from "react-router-dom"
 import { fetchAddUser } from "../api/fetchUser"
 import ToolBar from "../components/Toolbar"
 import { registerUser } from "../config/FirebaseConfig"
-
+import './../../src/components/UiDesign/Login.css'
+import Refresh from "../components/Refresh"
 
 const Register: React.FC = () => {
     const [user_type, setUserType] = useState('');
@@ -62,28 +63,33 @@ const Register: React.FC = () => {
         <>
             <IonPage>
                 <ToolBar />
-                <IonContent className="ion-padding">
-                    <IonSelect
-                        value={user_type}
-                        placeholder="Select User Type"
-                        onIonChange={(e: any) => setUserType(e.detail.value)} >
-                        <IonSelectOption value="teacher">導師</IonSelectOption>
-                        <IonSelectOption value="student">學生</IonSelectOption>
-                    </IonSelect>
-                    {/* <IonInput value={user_type} placeholder="User_type?" onIonChange={(e: any) => setUsertype(e.target.value)}></IonInput> */}
-                    <IonInput value={username} placeholder="username" onIonChange={(e: any) => { console.log(e); setUsername(e.target.value) }}></IonInput>
-                    <IonInput value={email} placeholder="email" onIonChange={(e: any) => setUseremail(e.target.value)}></IonInput>
-                    <IonInput value={password} placeholder="password" onIonChange={(e: any) => setPassword(e.target.value)}></IonInput>
-                    <IonInput value={cpassword} placeholder="Confirm Password" onIonChange={(e: any) => setCPassword(e.target.value)}></IonInput>
-                    <IonButton onClick={handleRegisterUser}>Register</IonButton>
+                <IonContent className="ion-padding" >選擇帳戶類別
+                    <Refresh />
+                    <div className="register">
+                        <IonSelect
+                            // aria-label="Custom input" class="custom"
+                            value={user_type}
+                            placeholder="Select User Type"
+                            onIonChange={(e: any) => setUserType(e.detail.value)} >
+                            <IonSelectOption value="teacher">導師</IonSelectOption>
+                            <IonSelectOption value="student">學生</IonSelectOption>
+                        </IonSelect>
+                        {/* <IonInput value={user_type} placeholder="User_type?" onIonChange={(e: any) => setUsertype(e.target.value)}></IonInput> */}
+                        <IonInput aria-label="Custom input" class="custom" value={username} placeholder="username" onIonChange={(e: any) => { console.log(e); setUsername(e.target.value) }}>用戶名稱：</IonInput><br></br>
+                        <IonInput aria-label="Custom input" class="custom" value={email} placeholder="email" onIonChange={(e: any) => setUseremail(e.target.value)}>電郵</IonInput><br></br>
+                        <IonInput aria-label="Custom input" class="custom" value={password} placeholder="password" onIonChange={(e: any) => setPassword(e.target.value)}>密碼</IonInput><br></br>
+                        <IonInput aria-label="Custom input" class="custom" value={cpassword} placeholder="Confirm Password" onIonChange={(e: any) => setCPassword(e.target.value)}>確認密碼</IonInput><br></br>
+                        <IonButton onClick={handleRegisterUser}>註冊</IonButton>
+                    </div >
                 </IonContent>
+
                 <IonToast position="top"
                     isOpen={showToast}
                     message={toastMessage}
                     duration={1000}
                     onDidDismiss={() => setShowToast(false)}
                 />
-            </IonPage>
+            </IonPage >
         </>
     );
 };

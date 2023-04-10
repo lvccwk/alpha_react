@@ -26,7 +26,7 @@ function TeacherCard() {
         <>
             {Array.isArray(data) && data.map((item: TeacherInterface) => (
                 <IonCard key={item.id}>
-                    <button className='btn-card' onClick={() => onClickEditProfile(item.id)}>
+                    <button className='btn-localhost' onClick={() => onClickEditProfile(item.id)}>
                         <img alt="Silhouette of mountains" src={photo} />
                         {/* <IonCardTitle>${item.id}</IonCardTitle> */}
                         <IonCardContent>{item.user.username}</IonCardContent>

@@ -1,4 +1,4 @@
-import { IonButton, IonContent, IonInput, IonPage } from "@ionic/react";
+import { IonButton, IonCard, IonContent, IonIcon, IonInput, IonPage } from "@ionic/react";
 import { FacebookAuthProvider, signInWithPopup } from "firebase/auth";
 import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
@@ -9,7 +9,9 @@ import { loginUser } from "../api/fetchUser";
 import { useMutation } from "@tanstack/react-query";
 import { useDispatch } from "react-redux";
 import { generalLogin } from "../redux/userSlice";
-
+import './../../src/components/UiDesign/Login.css'
+import { logoFacebook, logoIonic } from "ionicons/icons";
+import photo from '../../src/photo/brandi-redd-6H9H-tYPUQQ-unsplash.jpg'
 
 const LoginPage: React.FC = () => {
 
@@ -99,7 +101,7 @@ const LoginPage: React.FC = () => {
     return (
         <IonPage>
             <Toolbar />
-            <IonContent>
+            <IonContent style={{ backgroundImage: `url(${photo})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', height: '100vh' }}>
                 <br />
                 {/* <h1>Google Login Page</h1>
                 {loggedIn ? (
@@ -107,26 +109,33 @@ const LoginPage: React.FC = () => {
                 ) : (
                     <button onClick={handleGoogleLogin}>Sign in with Google</button>
                 )} */}
+                {/* <UiCard /> */}
+                <IonContent className="ion-padding" >
+                    <IonCard className="login"><IonIcon icon={logoIonic} className="iconlogin" color="primary" ></IonIcon>
+                    </IonCard>
+                    <div className='loginCard'>
+                        <IonInput
+                            aria-label="Custom input"
+                            class="custom"
+                            value={email}
+                            placeholder="email"
+                            onIonChange={(e: any) => setUserEmail(e.target.value)}
+                        >Email :</IonInput>
+                        <br></br>
+                        <IonInput
+                            aria-label="Custom input"
+                            class="custom"
+                            value={password}
+                            type='password' placeholder="Password?"
+                            onIonChange={(e: any) => setPassword(e.target.value)}
+                        >密碼 :</IonInput>
+                        <br></br>
+                        <IonButton onClick={login}>一般登入</IonButton>
+                        <br></br>
+                        <IonButton onClick={onFacebookLogin}> <IonIcon size="large" icon={logoFacebook} /> <span></span>Facebook 登入</IonButton>
+                        <p>新用戶？<Link to="/register">按此註冊</Link></p>
+                    </div>
 
-                <IonContent className="ion-padding">
-                    <IonInput
-                        value={email}
-                        placeholder="email"
-                        onIonChange={(e: any) => setUserEmail(e.target.value)}
-                    >Email :</IonInput>
-
-                    <IonInput
-                        value={password}
-                        type='password' placeholder="Password?"
-                        onIonChange={(e: any) => setPassword(e.target.value)}
-                    >密碼 :</IonInput>
-                    <IonButton onClick={login}>一般登入</IonButton>
-
-                    <h1>Facebook Login Page</h1>
-                    <IonButton onClick={onFacebookLogin}>Login via Facebook</IonButton>
-
-
-                    <p>新用戶？<Link to="/register">按此註冊</Link></p>
                 </IonContent>
 
 
@@ -139,7 +148,7 @@ const LoginPage: React.FC = () => {
                     onDidDismiss={() => setShowToast(false)}
                 />
             </IonContent>
-        </IonPage>
+        </IonPage >
     );
 }
 

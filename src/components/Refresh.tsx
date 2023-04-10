@@ -13,7 +13,7 @@ function Refresh() {
     return (
         <>
 
-            <IonRefresher slot="fixed" onIonRefresh={handleRefresh}>
+            <IonRefresher color='#fffff' slot="fixed" onIonRefresh={handleRefresh}>
                 <IonRefresherContent></IonRefresherContent>
             </IonRefresher>
 
