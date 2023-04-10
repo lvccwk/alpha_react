@@ -55,6 +55,9 @@ import TimeSlot from './pages/TimeSlot';
 import PrivateMessage from './pages/PrivateMessage';
 import Chat from './config/ChatRoomFirebase';
 import InputMessage from './config/FirebaseConfig';
+import Success from './pages/Success';
+import StripePurchaseFailPage from './pages/Fail';
+import StripePurchaseSuccessPage from './pages/Success';
 
 
 setupIonicReact();
@@ -75,7 +78,8 @@ const App: React.FC = () => {
             <Route path="/tutor" render={() => <Tutor />} exact={true} />
             <Route path="/home" render={() => <Home />} exact={true} />
             <Route path="/shoppingcart" render={() => <ShoppingCart />} exact={true} />
-            <Route path="/chatroom/:id" render={() => <InputMessage />} exact={true} />
+            {/* <Route path="/chatroom/:id" render={() => <InputMessage />} exact={true} /> */}
+            <Route path="/chatroom/:id" render={() => <Chatroom />} exact={true} />
             <Route path="/login" render={() => <Login />} exact={true} />
             <Route exact path="/facebook-callback"><FacebookCallback></FacebookCallback></Route>
             <Route path="/userprofile" render={() => <UserProfile />} exact={true} />
@@ -88,8 +92,8 @@ const App: React.FC = () => {
             <Route path="/uploadproduct" render={() => <UploadProduct />} exact={true} />
             <Route path="/timeslot/:teacherId" render={() => <TimeSlot />} exact={true} />
             <Route path="/privateMessage/:id" render={() => <PrivateMessage />} exact={true} />
-            <Route path="/success.html" exact={true} ></Route>
-            <Route path="/fail.html" exact={true} ></Route>
+            <Route path="/success.html" render={() => < StripePurchaseSuccessPage />} exact={true} ></Route>
+            <Route path="/fail.html" render={() => < StripePurchaseFailPage />} exact={true} ></Route>
           </IonRouterOutlet>
 
           <IonTabBar slot="bottom">
