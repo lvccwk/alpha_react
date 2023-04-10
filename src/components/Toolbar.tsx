@@ -1,4 +1,4 @@
-import { IonBackButton, IonButtons, IonHeader, IonIcon, IonTitle, IonToolbar } from '@ionic/react';
+import { IonBackButton, IonButton, IonButtons, IonHeader, IonIcon, IonTitle, IonToolbar } from '@ionic/react';
 import { personCircle } from "ionicons/icons";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
@@ -27,14 +27,19 @@ function ToolBar() {
     return (
         <IonHeader>
             <IonToolbar>
+
                 <IonButtons slot="start">
-                    <IonBackButton> <IonTitle>Back Button</IonTitle></IonBackButton>
+
+                    <IonBackButton color="light"> <IonTitle>Back Button</IonTitle></IonBackButton>
                 </IonButtons>
 
                 <IonButtons slot="end">
-                    <IonIcon slot="icon-only" icon={personCircle} onClick={handleUser} ></IonIcon>
+                    <IonButton onClick={handleUser} >
+                        <IonIcon slot="icon-only" icon={personCircle} style={{ color: "#ffff", fontSize: "40px" }} />
+                    </IonButton>
                 </IonButtons>
                 <IonTitle>Alpha Learning</IonTitle>
+
             </IonToolbar>
         </IonHeader >
     );

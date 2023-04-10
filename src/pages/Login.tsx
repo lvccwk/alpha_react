@@ -100,8 +100,6 @@ const LoginPage: React.FC = () => {
         <IonPage>
             <Toolbar />
             <IonContent>
-                <h1>Facebook Login Page</h1>
-                <button onClick={onFacebookLogin}>Login via Facebook</button>
                 <br />
                 {/* <h1>Google Login Page</h1>
                 {loggedIn ? (
@@ -123,6 +121,11 @@ const LoginPage: React.FC = () => {
                         onIonChange={(e: any) => setPassword(e.target.value)}
                     >密碼 :</IonInput>
                     <IonButton onClick={login}>一般登入</IonButton>
+
+                    <h1>Facebook Login Page</h1>
+                    <IonButton onClick={onFacebookLogin}>Login via Facebook</IonButton>
+
+
                     <p>新用戶？<Link to="/register">按此註冊</Link></p>
                 </IonContent>
 
