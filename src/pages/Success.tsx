@@ -22,6 +22,7 @@ const StripePurchaseSuccessPage: React.FC = () => {
     return (
         <IonPage>
             <ToolBar />
+            <h1>Payment Succuess</h1>
             <IonContent className="ion-padding">
                 <p>Your payment of ${amount} has been processed successfully.</p>
                 <IonButton expand="block" onClick={handleClick}>

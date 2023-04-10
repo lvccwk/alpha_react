@@ -1,5 +1,6 @@
 import { IonPage, IonContent, IonHeader, IonToolbar, IonTitle, IonButton } from '@ionic/react';
 import { useLocation, useHistory } from 'react-router-dom';
+import ToolBar from '../components/Toolbar';
 
 interface LocationState {
     errorMessage?: string;
@@ -16,11 +17,8 @@ const StripePurchaseFailPage: React.FC = () => {
 
     return (
         <IonPage>
-            <IonHeader>
-                <IonToolbar>
-                    <IonTitle>Payment Failed</IonTitle>
-                </IonToolbar>
-            </IonHeader>
+            <ToolBar />
+            <h1>Payment Failed</h1>
             <IonContent className="ion-padding">
                 <p>Sorry, your payment could not be processed.</p>
                 {errorMessage && <p className="ion-text-color-danger">{errorMessage}</p>}
