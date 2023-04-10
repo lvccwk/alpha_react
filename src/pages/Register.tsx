@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react"
 import { Link, Redirect, useHistory } from "react-router-dom"
 import { fetchAddUser } from "../api/fetchUser"
 import ToolBar from "../components/Toolbar"
-import { registerUser } from "../config/firebaseConfig"
+import { registerUser } from "../config/FirebaseConfig"
 
 
 const Register: React.FC = () => {

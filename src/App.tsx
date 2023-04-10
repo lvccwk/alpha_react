@@ -49,9 +49,12 @@ import Chatroom from './pages/Chatroom';
 import "./App.css"
 import TutorProfile from './pages/TutorProfile';
 import Register from './pages/Register';
-import LoginPage from './components/Login';
 import PurchaseHistory from './pages/PurchaseHistory';
 import UploadProduct from './pages/UploadProduct';
+import TimeSlot from './pages/TimeSlot';
+import PrivateMessage from './pages/PrivateMessage';
+import Chat from './config/ChatRoomFirebase';
+import InputMessage from './config/FirebaseConfig';
 
 
 setupIonicReact();
@@ -72,7 +75,7 @@ const App: React.FC = () => {
             <Route path="/tutor" render={() => <Tutor />} exact={true} />
             <Route path="/home" render={() => <Home />} exact={true} />
             <Route path="/shoppingcart" render={() => <ShoppingCart />} exact={true} />
-            <Route path="/chatroom" render={() => <Chatroom />} exact={true} />
+            <Route path="/chatroom/:id" render={() => <InputMessage />} exact={true} />
             <Route path="/login" render={() => <Login />} exact={true} />
             <Route exact path="/facebook-callback"><FacebookCallback></FacebookCallback></Route>
             <Route path="/userprofile" render={() => <UserProfile />} exact={true} />
@@ -83,7 +86,10 @@ const App: React.FC = () => {
             <Route path="/register" render={() => <Register />} exact={true} />
             <Route path="/purchasehistory" render={() => <PurchaseHistory />} exact={true} />
             <Route path="/uploadproduct" render={() => <UploadProduct />} exact={true} />
+            <Route path="/timeslot/:teacherId" render={() => <TimeSlot />} exact={true} />
+            <Route path="/privateMessage/:id" render={() => <PrivateMessage />} exact={true} />
             <Route path="/success.html" exact={true} ></Route>
+            <Route path="/fail.html" exact={true} ></Route>
           </IonRouterOutlet>
 
           <IonTabBar slot="bottom">

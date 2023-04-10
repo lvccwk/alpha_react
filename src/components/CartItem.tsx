@@ -1,6 +1,5 @@
-import React, { useEffect } from 'react';
-import { IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonItem, IonLabel, IonList, IonButton, IonThumbnail, IonButtons, IonIcon, IonCheckbox } from '@ionic/react';
-import ButtonX from './ButtonX';
+
+import { IonItem, IonLabel, IonButton, IonThumbnail, IonButtons, IonIcon, IonCheckbox } from '@ionic/react';
 import { useQuery } from '@tanstack/react-query';
 import { useHistory } from 'react-router';
 import { fetchCart, fetchDropFromCart, fetchIsBuying } from '../api/fetchAll';
@@ -60,9 +59,9 @@ function CartItem() {
   }
 
   const setIsBuying = async (id: number, is_buying: boolean) => {
-    if(is_buying === true){
+    if (is_buying === true) {
       await fetchIsBuying(id, false)
-    } else if (is_buying === false){
+    } else if (is_buying === false) {
       await fetchIsBuying(id, true)
     }
     refetch()
@@ -87,7 +86,10 @@ function CartItem() {
             </IonButton>
           </IonButtons>
           <IonCheckbox slot="end" checked={item.is_buying} onClick={() => setIsBuying(item.id, item.is_buying)}></IonCheckbox>
+
+
         </IonItem>
+
       ))}
 
 

@@ -4,7 +4,6 @@ import './ListCard.css';
 import {
     fetchChatHistoryAll
 } from "../api/fetchAll";
-import DateTime from './DateTime';
 
 interface Chatroom {
     id: number;
@@ -31,7 +30,7 @@ function Chatbox() {
                         </IonCardHeader>
                         <IonCardContent>
                             {item.content}
-                            <DateTime />
+
                         </IonCardContent>
                         <IonCardSubtitle>{item.created_at}</IonCardSubtitle>
                     </IonCard>

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import Toolbar from "../components/Toolbar";
 import { IonToast } from '@ionic/react';
-import { loginUserWithGoogle } from "../config/firebaseConfig";
+import { loginUserWithGoogle } from "../config/FirebaseConfig";
 import { loginUser } from "../api/fetchUser";
 import { useMutation } from "@tanstack/react-query";
 import { useDispatch } from "react-redux";

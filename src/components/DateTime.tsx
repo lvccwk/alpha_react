@@ -1,19 +1,44 @@
 import React from 'react';
-import { IonDatetime } from '@ionic/react';
-function DateTime() {
-    const isWeekday = (dateString: string) => {
-        const date = new Date(dateString);
-        const utcDay = date.getUTCDay();
+import { IonContent, IonDatetime, IonPage } from '@ionic/react';
+import { useParams } from 'react-router-dom';
+import { fetchTeacher } from '../api/fetchAll';
+import { useQuery } from '@tanstack/react-query';
+import TimeScheduleList from './TimeScheduleList';
 
-        /**
-         * Date will be enabled if it is not
-         * Sunday or Saturday
-         */
-        return utcDay !== 0 && utcDay !== 6;
-    }
+function DateTime() {
+    const params = useParams()
+    const teacherId = Object.values(params)[0]
+    const { data, isLoading, error, refetch } = useQuery({
+        queryKey: ["teacherAppointment"],
+        queryFn: () => fetchTeacher(Number(teacherId)),
+    });
+
+    console.log(`TeacherId =`, data?.id)
+    // const handleDateChange = (event: CustomEvent<any>) => {
+    //     const selectedDate = new Date(event.detail.value);
+    //     const day = selectedDate.getDay();
+    //     alert(`You selected day ${day}`);
+    // };
+
+    const handleDateChange = (event: any) => {
+        const selectedDate = event.detail.value;
+        const date = selectedDate.slice(0, 10);
+        // Call your function here with the selected date
+        console.log('Selected date:', date);
+    };
+
 
     return (
-        <IonDatetime isDateEnabled={isWeekday}></IonDatetime>
+
+        <div>
+            <IonDatetime
+                presentation="date"
+                onIonChange={handleDateChange}
+            />
+            <TimeScheduleList />
+        </div>
+
     );
 }
+
 export default DateTime;
