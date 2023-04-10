@@ -99,7 +99,7 @@ const LoginPage: React.FC = () => {
     }
 
     return (
-        <IonPage>
+        <IonPage className="loginpage">
             <Toolbar />
             <IonContent style={{ backgroundImage: `url(${photo})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', height: '100vh' }}>
                 <br />
@@ -135,10 +135,7 @@ const LoginPage: React.FC = () => {
                         <IonButton onClick={onFacebookLogin}> <IonIcon size="large" icon={logoFacebook} /> <span></span>Facebook 登入</IonButton>
                         <p>新用戶？<Link to="/register">按此註冊</Link></p>
                     </div>
-
                 </IonContent>
-
-
 
                 <IonToast
                     position="top"

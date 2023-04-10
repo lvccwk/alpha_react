@@ -1,4 +1,4 @@
-import { IonContent, IonPage, IonGrid, useIonViewWillEnter } from '@ionic/react';
+import { IonContent, IonPage, IonGrid, useIonViewWillEnter, IonButton, IonCard, IonCardTitle, IonCardSubtitle } from '@ionic/react';
 import { useState, useEffect, useLayoutEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -10,7 +10,8 @@ import { fetchUser, fetchDeleteUser, fetchUpdateUser } from "../api/fetchUser";
 import { userLogout } from "../redux/userSlice";
 import { useAppSelector } from "../redux/store";
 import jwtDecode from 'jwt-decode';
-
+import './../../src/components/UiDesign/UserProfile.css'
+import Avatar from '../components/Avatar';
 
 export default function UserProfile() {
   const history = useHistory();
@@ -24,7 +25,7 @@ export default function UserProfile() {
   //   //username: '',
 
   // }); // State to hold updated user data
-  
+
   const handleEditProfile = () => {
     history.push('/userprofilesettings');
   }
@@ -58,9 +59,9 @@ export default function UserProfile() {
     return (
       <IonPage>
         <Toolbar />
-        <IonContent>
-          <div>
-            Error: {JSON.stringify(error)}
+        <IonContent className='ion-padding'>
+          <div className='userprofile'>
+            錯誤: {JSON.stringify(error)}
           </div>
         </IonContent>
       </IonPage>
@@ -70,9 +71,9 @@ export default function UserProfile() {
     return (
       <IonPage>
         <Toolbar />
-        <IonContent>
-          <div>
-            LOADING11232131
+        <IonContent className='ion-padding'>
+          <div className='userprofile'>
+            資料載入中...
           </div>
         </IonContent>
       </IonPage>
@@ -80,43 +81,30 @@ export default function UserProfile() {
   } else {
     //if (error) return <div>Error: {error.message}</div>;
     return (
-      <IonPage>
+      <IonPage className='userprofilepage'>
         <Toolbar />
+        <IonContent className='ion-padding'>
+          <div className='userlogo'><Avatar /></div>
 
-        <IonContent>
-          <div>
-            <h1>Profile</h1>
-            <div>IMAGE|{data.image}</div>
-            <div>USERNAME|{data.username}</div>
-            <div>USERTYPE|{data.user_type}</div>
-            <div>EMAIL|{data.email}</div>
-            {/* <div>
-              <input
-                type="text"
-                placeholder="New Username"
-                onChange={(e) =>
-                  setNewUserData({
-                    ...newUserData,
-                    username: e.target.value,
-                  })
-                }
-              />
-              <button onClick={() => handleUpdateUser(newUserData)}>Update User</button>
-            </div>
-            <button onClick={() => handleDeleteUser(2)}>DEL !!!!</button> */}
+          <div className='userprofile'>
 
-            <button onClick={handleEditProfile}>EDIT USER PROFILE</button>
+            <IonCard className='profileCard'>
+              <IonContent>
+                <IonCardTitle>個人資料</IonCardTitle>
+                {/* <IonContent>|{data.image}</IonContent> */}
+                <IonCardSubtitle>USERNAME|{data.username}</IonCardSubtitle>
+                <IonCardSubtitle>USERTYPE|{data.user_type}</IonCardSubtitle>
+                <IonCardSubtitle>EMAIL|{data.email}</IonCardSubtitle>
+              </IonContent>
+            </IonCard>
+            <IonButton onClick={handleEditProfile}>EDIT USER PROFILE</IonButton>
             <br></br>
-            <button onClick={handlePurchaseHistory}>PURCHASE HISTORY</button>
+            <IonButton onClick={handlePurchaseHistory}>PURCHASE HISTORY</IonButton>
             <br></br>
-            <button onClick={handleLogout}>LOGOUT</button>
+            <IonButton onClick={handleLogout}>LOGOUT</IonButton>
             <br></br>
-            {/* <button onClick={handleDeleteUser}>DELETE ACCOUNT</button> */}
-            <IonGrid >
-              <DeleteUserAlert />    
-            </IonGrid>
+            <DeleteUserAlert />
           </div>
-
         </IonContent>
       </IonPage>
     );

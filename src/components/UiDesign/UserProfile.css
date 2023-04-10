@@ -1,0 +1,27 @@
+.userprofile {
+    display: flex;
+    padding-inline: 25px;
+    align-items: stretch;
+    flex-direction: column;
+    color:aqua
+  }
+
+.profileCard {
+    width: 300px;
+    height: 300px;
+    display: flex;
+    justify-content: space-evenly;
+    align-content: space-around;
+    flex-wrap: wrap;
+    flex-direction: column;
+    --border-radius: 20px;
+}
+
+.userlogo {
+    display: flex;
+    justify-content: center;
+}
+
+.userprofilepage{
+
+}

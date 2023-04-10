@@ -48,5 +48,10 @@
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
-    align-items: stretch;
+    align-content: center;
+        padding-inline: 20px;
+  }
+
+  .loginpage{
+    --background: black !important
   }

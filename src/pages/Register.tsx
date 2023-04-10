@@ -63,9 +63,9 @@ const Register: React.FC = () => {
         <>
             <IonPage>
                 <ToolBar />
-                <IonContent className="ion-padding" >選擇帳戶類別
+                <IonContent className="ion-padding" >
                     <Refresh />
-                    <div className="register">
+                    <div className="register">選擇帳戶類別
                         <IonSelect
                             // aria-label="Custom input" class="custom"
                             value={user_type}
