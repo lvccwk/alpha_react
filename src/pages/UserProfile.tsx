@@ -1,4 +1,4 @@
-import { IonContent, IonPage, IonGrid, useIonViewWillEnter, IonButton, IonCard, IonCardTitle, IonCardSubtitle } from '@ionic/react';
+import { IonContent, IonPage, IonGrid, useIonViewWillEnter, IonButton, IonCard, IonCardTitle, IonCardSubtitle, IonCardHeader, IonCardContent } from '@ionic/react';
 import { useState, useEffect, useLayoutEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -84,19 +84,23 @@ export default function UserProfile() {
       <IonPage className='userprofilepage'>
         <Toolbar />
         <IonContent className='ion-padding'>
-          <div className='userlogo'><Avatar /></div>
 
+          <IonCard className='profileCard' >
+            <div className='userlogo'><Avatar /></div>
+            <IonCardHeader>
+              <IonCardTitle>{data.username}</IonCardTitle>
+              <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
+            </IonCardHeader>
+
+            <IonCardContent>
+              用戶名稱: {data.username}
+              <br></br>
+              用戶類別 : {data.user_type}
+              <br></br>
+              電郵 : {data.email}
+            </IonCardContent>
+          </IonCard>
           <div className='userprofile'>
-
-            <IonCard className='profileCard'>
-              <IonContent>
-                <IonCardTitle>個人資料</IonCardTitle>
-                {/* <IonContent>|{data.image}</IonContent> */}
-                <IonCardSubtitle>USERNAME|{data.username}</IonCardSubtitle>
-                <IonCardSubtitle>USERTYPE|{data.user_type}</IonCardSubtitle>
-                <IonCardSubtitle>EMAIL|{data.email}</IonCardSubtitle>
-              </IonContent>
-            </IonCard>
             <IonButton onClick={handleEditProfile}>EDIT USER PROFILE</IonButton>
             <br></br>
             <IonButton onClick={handlePurchaseHistory}>PURCHASE HISTORY</IonButton>

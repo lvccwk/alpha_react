@@ -7,14 +7,17 @@
   }
 
 .profileCard {
-    width: 300px;
-    height: 300px;
-    display: flex;
-    justify-content: space-evenly;
+    /* width: 100px;
+    height: 100px; */
+    /* display: flex; */
+    /* justify-content: space-evenly;
     align-content: space-around;
     flex-wrap: wrap;
     flex-direction: column;
-    --border-radius: 20px;
+    --border-radius: 20px; */
+    padding-inline: 20px;
+    background: white;
+    border-radius: 20px
 }
 
 .userlogo {
