@@ -55,6 +55,9 @@ import TimeSlot from './pages/TimeSlot';
 import PrivateMessage from './pages/PrivateMessage';
 import Chat from './config/ChatRoomFirebase';
 import InputMessage from './config/FirebaseConfig';
+import Success from './pages/Success';
+import StripePurchaseFailPage from './pages/Fail';
+import StripePurchaseSuccessPage from './pages/Success';
 
 
 setupIonicReact();
@@ -89,8 +92,8 @@ const App: React.FC = () => {
             <Route path="/uploadproduct" render={() => <UploadProduct />} exact={true} />
             <Route path="/timeslot/:teacherId" render={() => <TimeSlot />} exact={true} />
             <Route path="/privateMessage/:id" render={() => <PrivateMessage />} exact={true} />
-            <Route path="/success.html" exact={true} ></Route>
-            <Route path="/fail.html" exact={true} ></Route>
+            <Route path="/success.html" render={() => < StripePurchaseSuccessPage />} exact={true} ></Route>
+            <Route path="/fail.html" render={() => < StripePurchaseFailPage />} exact={true} ></Route>
           </IonRouterOutlet>
 
           <IonTabBar slot="bottom">
