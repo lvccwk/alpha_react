@@ -9,6 +9,8 @@ import io, { Socket } from 'socket.io-client'
 import { MessagePort } from 'worker_threads';
 import MessageInput from './MessageInput';
 import Messages from './Messages';
+import { useParams } from 'react-router-dom';
+import { useAppSelector } from '../redux/store';
 
 
 
@@ -23,8 +25,13 @@ interface Chatroom {
 }
 
 function Chatbox() {
+    const sender_id = useAppSelector(state => state.user.id)
+    const log = useAppSelector(state => state.user.isLoggedIn)
+    const params = useParams()
+    const receiver_id = Object.values(params)[0]
     const [socket, setSocket] = useState<Socket>()
     const [messages, setMessage] = useState<string[]>([])
+    console.log(`receiver_idreceiver_id`, receiver_id)
 
     const send = (value: string) => {
         socket?.emit("message", value)
@@ -35,7 +42,7 @@ function Chatbox() {
     //     queryFn: fetchChatHistoryAll, //redux login state
     // });
     useEffect(() => {
-        const newSocket = io("http://localhost:3001")
+        const newSocket = io("http://localhost:3001/")
         setSocket(newSocket)
     }, [setSocket])
 
@@ -48,6 +55,21 @@ function Chatbox() {
             socket?.off('message', messageListener)
         }
     }, [messageListener])
+
+
+    // const sendPrivateMessage = (message: string, sender: string, receiver: string) => {
+    //     socket?.emit('privateMessage', { message, sender, receiver });
+    // }
+
+    // useEffect(() => {
+    //     socket?.on('privateMessage', messageListener)
+    //     return () => {
+    //         socket?.off('privateMessage', messageListener)
+    //     }
+    // }, [messageListener])
+
+    // // usage example
+    // sendPrivateMessage('Hello', 'sender_id', 'receiver_id');
     return (
         <>
             {/* {Array.isArray(data) &&
@@ -66,8 +88,8 @@ function Chatbox() {
             {" "}
             <MessageInput send={send} />
             <Messages messages={messages} />
+
         </>
     );
 }
 export default Chatbox;
-
