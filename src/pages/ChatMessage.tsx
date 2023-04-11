@@ -5,18 +5,18 @@ import ToolBar from '../components/Toolbar';
 import './Resource.css';
 import ChatroomContact from '../components/UiDesign/ChatroomContact';
 
-const Chatroom: React.FC = () => {
+const ChatMessage: React.FC = () => {
     return (
         <>
             <IonPage >
                 <ToolBar />
-                <IonContent>
-                    {/* <Chatbox /> */}
-                    <ChatroomContact />
+                <IonContent className='ion-padding'>
+                    <Chatbox />
+
                 </IonContent>
             </IonPage>
         </>
     );
 };
 
-export default Chatroom;
+export default ChatMessage;

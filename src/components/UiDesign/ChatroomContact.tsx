@@ -1,11 +1,11 @@
 import React from 'react';
 import { IonAvatar, IonItem, IonLabel, IonThumbnail } from '@ionic/react';
-
+import './ChatroomContact.css'
 function ChatroomContact() {
     return (
         <>
             <IonItem>
-                <IonAvatar slot="start">
+                <IonAvatar className='chatPeople' slot="start">
                     <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
                 </IonAvatar>
                 <IonLabel>
