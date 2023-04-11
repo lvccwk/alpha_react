@@ -328,7 +328,7 @@ export const fetchFile = async (file: File): Promise<FetchUserAllModel> => {
 	const formData = new FormData();
 	formData.append('file', file);
 
-	const res = await fetch(`http://localhost:3000/users/file`, {
+	const res = await fetch(`http://localhost:3000/products`, {
 		method: 'POST',
 		headers: {
 			// 'Content-Type': 'multipart/form-data',
@@ -377,6 +377,35 @@ export const fetchCreateBookmark = async (obj: {
 		return data;
 	} else {
 		throw new Error('fetchCreateBookmark FAILED');
+	}
+};
+
+export const fetchCreateProduct = async (obj: {
+	name: string;
+	price: number;
+	product_type: string;
+	user_id: number;
+	subject_id: number;
+	teacher_id: number;
+}): Promise<FetchUserAllModel> => {
+	console.log('fetchCreateProduct');
+
+	const res = await fetch(`http://localhost:3000/products`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+			//Authorization: `Bearer ${localStorage.getItem('token')}`
+		},
+		body: JSON.stringify({
+			obj
+		})
+	});
+
+	if (res.ok) {
+		const data = await res.json();
+		return data;
+	} else {
+		throw new Error('fetchCreateProduct FAILED');
 	}
 };
 
