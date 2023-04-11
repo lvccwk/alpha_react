@@ -1,4 +1,4 @@
-import { IonContent, IonPage, IonGrid, useIonViewWillEnter, IonButton, IonCard, IonCardTitle, IonCardSubtitle, IonCardHeader, IonCardContent } from '@ionic/react';
+import { IonContent, IonPage, IonGrid, useIonViewWillEnter, IonButton, IonCard, IonCardTitle, IonCardSubtitle, IonCardHeader, IonCardContent, IonIcon } from '@ionic/react';
 import { useState, useEffect, useLayoutEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -12,6 +12,7 @@ import { useAppSelector } from "../redux/store";
 import jwtDecode from 'jwt-decode';
 import './../../src/components/UiDesign/UserProfile.css'
 import Avatar from '../components/Avatar';
+import { exitOutline } from 'ionicons/icons';
 
 export default function UserProfile() {
   const history = useHistory();
@@ -84,12 +85,14 @@ export default function UserProfile() {
       <IonPage className='userprofilepage'>
         <Toolbar />
         <IonContent className='ion-padding'>
-
+          <IonButton className='exitbtn' onClick={handleLogout}><IonIcon icon={exitOutline} className='exit' color="white"  ></IonIcon></IonButton>
           <IonCard className='profileCard' >
             <div className='userlogo'><Avatar /></div>
             <IonCardHeader>
-              <IonCardTitle>{data.username}</IonCardTitle>
+              <IonButton onClick={handleEditProfile}>EDIT USER PROFILE</IonButton>
+              <IonButton onClick={handlePurchaseHistory}>PURCHASE HISTORY</IonButton>
               <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
+              <IonCardTitle>{data.username}</IonCardTitle>
             </IonCardHeader>
 
             <IonCardContent>
@@ -101,11 +104,8 @@ export default function UserProfile() {
             </IonCardContent>
           </IonCard>
           <div className='userprofile'>
-            <IonButton onClick={handleEditProfile}>EDIT USER PROFILE</IonButton>
             <br></br>
-            <IonButton onClick={handlePurchaseHistory}>PURCHASE HISTORY</IonButton>
-            <br></br>
-            <IonButton onClick={handleLogout}>LOGOUT</IonButton>
+
             <br></br>
             <DeleteUserAlert />
           </div>

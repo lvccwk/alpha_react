@@ -1,23 +1,23 @@
 .userprofile {
-    display: flex;
+    /* display: flex;
     padding-inline: 25px;
     align-items: stretch;
     flex-direction: column;
-    color:aqua
+   */
   }
 
 .profileCard {
     /* width: 100px;
     height: 100px; */
-    /* display: flex; */
-    /* justify-content: space-evenly;
+    /* display: flex;
+    justify-content: space-evenly;
     align-content: space-around;
     flex-wrap: wrap;
     flex-direction: column;
-    --border-radius: 20px; */
+    --border-radius: 20px;
     padding-inline: 20px;
     background: white;
-    border-radius: 20px
+    border-radius: 20px */
 }
 
 .userlogo {
@@ -25,6 +25,10 @@
     justify-content: center;
 }
 
-.userprofilepage{
-
+.exit{
+    font-size: 30px;
+}
+.exitbtn{
+    border-radius: 20px;
+    padding-left: 270px;
 }

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import Pusher from "pusher-js";
-import './PrivateMessage.css'
+import { useAppSelector } from "../redux/store";
 interface Message {
     username: string;
     message: string;

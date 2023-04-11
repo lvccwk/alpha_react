@@ -12,8 +12,6 @@ import Messages from './Messages';
 import { useParams } from 'react-router-dom';
 import { useAppSelector } from '../redux/store';
 
-
-
 interface Chatroom {
     id: number;
     username: string;
@@ -28,25 +26,33 @@ function Chatbox() {
     const sender_id = useAppSelector(state => state.user.id)
     const log = useAppSelector(state => state.user.isLoggedIn)
     const params = useParams()
-    const receiver_id = Object.values(params)[0]
+    const receiver_id = (Number(Object.values(params)[0]))
     const [socket, setSocket] = useState<Socket>()
     const [messages, setMessage] = useState<string[]>([])
-    console.log(`receiver_idreceiver_id`, receiver_id)
-
     const send = (value: string) => {
-        socket?.emit("message", value)
+        socket?.emit("privateMessage", value, sender_id, receiver_id)
     }
+
+
 
     // const { data } = useQuery({
     //     queryKey: ["chatroomHistory"],
     //     queryFn: fetchChatHistoryAll, //redux login state
     // });
     useEffect(() => {
-        const newSocket = io("http://localhost:3001/")
-        setSocket(newSocket)
-    }, [setSocket])
+        if (!socket) {
+            const newSocket = io("http://localhost:3001/")
+            setSocket(newSocket)
+        } else {
+            console.log(socket)
+            socket?.emit("joinRoom", sender_id, receiver_id)
+            console.log(`sender_id = `, sender_id)
+            console.log(`receiver_id = `, receiver_id)
+        }
+    }, [socket])
 
     const messageListener = (message: string) => {
+        console.log('message')
         setMessage([...messages, message])
     }
     useEffect(() => {
