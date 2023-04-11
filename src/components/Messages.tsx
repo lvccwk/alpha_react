@@ -1,9 +1,12 @@
 import React from "react";
 
 export default function Messages({ messages }: { messages: string[] }) {
-    return <div>{
-        messages.map((message, index) =>
-            <div key={index}>{message}</div>
-        )
-    }</div>
+    return <div className="container">
+        <div className="messageList">{
+
+            messages.map((message, index) =>
+                <div className='textMessage' key={index}>{message}</div>
+            )
+        }</div>
+    </div>
 }

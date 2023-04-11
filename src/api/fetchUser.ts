@@ -14,19 +14,23 @@ export interface FetchUserModel {
 	name: string;
 }
 
-// export const fetchUser = async (id: number | null): Promise<FetchUserModel> => {
-// 	const res = await fetch(`http://localhost:3000/users`);
+export const fetchUserCheck = async (id: number | null): Promise<FetchUserModel> => {
+	const res = await fetch(`http://localhost:3000/users/${id}`, {
+		headers: {
+			Authorization: `Bearer ${localStorage.getItem('token')}`
+		}
+	});
 
-// 	if (res.ok) {
-// 		const data = await res.json();
-// 		console.log({
-// 			fetchUser: data
-// 		});
-// 		return data;
-// 	} else {
-// 		throw new Error('fetchUser FAILED');
-// 	}
-// };
+	if (res.ok) {
+		const data = await res.json();
+		console.log({
+			fetchUser: data
+		});
+		return data;
+	} else {
+		throw new Error('fetchUser FAILED');
+	}
+};
 
 export const fetchUser = async (): Promise<FetchUserModel> => {
 	const res = await fetch(`http://localhost:3000/users`, {
