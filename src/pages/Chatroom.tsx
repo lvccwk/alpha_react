@@ -9,8 +9,9 @@ const Chatroom: React.FC = () => {
     return (
         <>
             <IonPage >
+
                 <ToolBar />
-                <IonContent>
+                <IonContent class='ion-padding'>
                     {/* <Chatbox /> */}
                     <ChatroomContact />
                 </IonContent>
