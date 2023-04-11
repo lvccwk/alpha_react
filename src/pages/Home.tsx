@@ -32,7 +32,7 @@ const Home: React.FC = () => {
           {/* CARD */}
 
           {/* SEARCH BAR */}
-          <IonSearchbar placeholder="Custom Placeholder">
+          <IonSearchbar placeholder="輸入搜尋內容">
 
           </IonSearchbar>
 

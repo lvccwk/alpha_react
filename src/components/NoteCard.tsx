@@ -31,7 +31,7 @@ function NoteCard() {
         queryFn: () => fetchUser(),
     });
     
-    console.log("cartID=" + user?.cart[0].id)
+    // console.log("cartID=" + user?.cart[0].id)
 
     const history = useHistory();
     const onClickProductPage = (id:number) => {
@@ -67,7 +67,7 @@ function NoteCard() {
                 product_id: id,
                 is_buying: false,
             };
-            console.log(obj)
+            // console.log(obj)
             fetchAddCart(obj)
             addToCartAlert()
         }
