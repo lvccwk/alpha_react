@@ -12,7 +12,6 @@ const ChatMessage: React.FC = () => {
                 <ToolBar />
                 <IonContent className='ion-padding'>
                     <Chatbox />
-
                 </IonContent>
             </IonPage>
         </>
