@@ -14,6 +14,9 @@ const Register: React.FC = () => {
     const [email, setUseremail] = useState('email@gmail.com');
     const [password, setPassword] = useState('12345678');
     const [cpassword, setCPassword] = useState('12345678');
+    const [isTeacher, setIsTeacher] = useState(false);
+    const [teacherinfo, setTeacherinfo] = useState("");
+
     const [showToast, setShowToast] = useState(false);
     const [toastMessage, setToastMessage] = useState('');
 
@@ -26,6 +29,7 @@ const Register: React.FC = () => {
         console.log("user_type: ", user_type)
         console.log('email:', email)
         console.log('toastMessage', toastMessage)
+
 
         if (password !== cpassword) {
             setShowToast(true);
@@ -70,10 +74,30 @@ const Register: React.FC = () => {
                             // aria-label="Custom input" class="custom"
                             value={user_type}
                             placeholder="Select User Type"
-                            onIonChange={(e: any) => setUserType(e.detail.value)} >
+                            onIonChange={(e: any) => {
+                                setUserType(e.detail.value);
+                                setIsTeacher(e.detail.value === "teacher");
+                            }}
+                        >
                             <IonSelectOption value="teacher">導師</IonSelectOption>
                             <IonSelectOption value="student">學生</IonSelectOption>
-                        </IonSelect>
+
+                        </IonSelect><br/> 
+                        
+                        {isTeacher && (
+                            <>
+                            導師簡介
+                            <IonInput
+                                aria-label="Custom input"
+                                class="custom"
+                                value={teacherinfo}
+                                placeholder="Teacher Input"
+                                onIonChange={(e: any) => setTeacherinfo(e.target.value)}
+                            >
+                                
+                            </IonInput>
+                            </>
+                        )}
                         {/* <IonInput value={user_type} placeholder="User_type?" onIonChange={(e: any) => setUsertype(e.target.value)}></IonInput> */}
                         <IonInput aria-label="Custom input" class="custom" value={username} placeholder="username" onIonChange={(e: any) => { console.log(e); setUsername(e.target.value) }}>用戶名稱：</IonInput><br></br>
                         <IonInput aria-label="Custom input" class="custom" value={email} placeholder="email" onIonChange={(e: any) => setUseremail(e.target.value)}>電郵</IonInput><br></br>
