@@ -89,6 +89,8 @@ export interface CartDetailInterface {
 	is_buying: boolean;
 	created_at: Date;
 	updated_at: Date;
+	map: any;
+	length: any;
 }
 
 export interface ProductRatingInterface {

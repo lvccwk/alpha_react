@@ -1,5 +1,5 @@
 import React from 'react';
-import { IonButton } from '@ionic/react';
+import { IonButton , useIonAlert} from '@ionic/react';
 import { useQuery } from '@tanstack/react-query';
 import { fetchCart, fetchIsBuying, stripeCheckOut } from '../api/fetchAll';
 import { useAppSelector } from '../redux/store';
@@ -23,7 +23,17 @@ function Button() {
             window.location.href = response.url
         } catch (e) {
             console.log(e)
+            noCartItemAlert()
         }
+    }
+
+    const [presentAlert] = useIonAlert();
+    const noCartItemAlert = () => {
+        presentAlert({
+            header: '提示信息',
+            message: '請選取想要購買的產品',
+            buttons: ['OK'],
+        })
     }
 
     return (

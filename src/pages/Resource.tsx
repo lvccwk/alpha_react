@@ -14,7 +14,7 @@ const Resource: React.FC = () => {
         <IonContent >
           {/* <b>資源庫</b> */}
 
-          <b>資源庫</b>
+          {/* <b>資源庫</b> */}
           <IonSearchbar placeholder="輸入搜尋內容"></IonSearchbar>
           {/* <SubjectFilter /> */}
 

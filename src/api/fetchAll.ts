@@ -44,6 +44,8 @@ export interface FetchUserAllModel {
 	subject: SubjectInterface;
 	url: string;
 	student_id: number;
+	course: any;
+	length: number;
 }
 
 export const fetchUserAll = async (): Promise<FetchUserAllModel> => {
@@ -58,7 +60,7 @@ export const fetchUserAll = async (): Promise<FetchUserAllModel> => {
 	}
 };
 
-export const fetchCart = async (id: number): Promise<FetchUserAllModel> => {
+export const fetchCart = async (id: any): Promise<FetchUserAllModel> => {
 	console.log('fetchCart');
 
 	const res = await fetch(`http://localhost:3000/carts/${id}`, {
@@ -200,7 +202,7 @@ export const fetchDeleteUser = async (id: number): Promise<FetchUserAllModel> =>
 export const fetchDropFromCart = async (id: number): Promise<FetchUserAllModel> => {
 	console.log('fetchDropFromCart');
 
-	const res = await fetch(`http://localhost:3000/cartDetails/${id}`, {
+	const res = await fetch(`http://localhost:3000/cartDetails/drop/${id}`, {
 		method: 'Delete',
 		headers: {
 			'Content-Type': 'application/json'
@@ -409,14 +411,13 @@ export const fetchAddPurchaseHistory = async (id: any): Promise<FetchUserAllMode
 	const deleteRes = await fetch(`http://localhost:3000/cartDetails/${data.id}`, {
 		method: 'DELETE'
 	});
-	const delData = await deleteRes.json();
 
 	// let purchaseHistorys = await fetch(`http://localhost:3000/purchaseHistorys/${id}`)
 	// const phData = await purchaseHistorys.json();
 	// console.log("purchaseHistory=",phData)
 
 	if (deleteRes.ok) {
-		console.log("Add to Purchase History Success")
+		const delData = await deleteRes.json();
 		return delData;
 	} else {
 		throw new Error('fetchAddPurchaseHistory FAILED');
@@ -474,6 +475,24 @@ export const fetchCreateProduct = async (obj: {
 		return data;
 	} else {
 		throw new Error('fetchCreateProduct FAILED');
+	}
+};
+
+export const fetchPurchaseHistory = async (id: any): Promise<FetchUserAllModel> => {
+	console.log('fetchPurchaseHistory');
+
+	const res = await fetch(`http://localhost:3000/purchaseHistorys/${id}`, {
+		headers: {
+			Authorization: `Bearer ${localStorage.getItem('token')}`
+		}
+	});
+
+	if (res.ok) {
+		const data = await res.json();
+		console.log(data);
+		return data;
+	} else {
+		throw new Error('fetchPurchaseHistory FAILED');
 	}
 };
 

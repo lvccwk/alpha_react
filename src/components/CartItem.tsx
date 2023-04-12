@@ -5,6 +5,7 @@ import { useHistory } from 'react-router';
 import { fetchCart, fetchDropFromCart, fetchIsBuying } from '../api/fetchAll';
 import { useAppSelector } from '../redux/store';
 import { closeCircle } from 'ionicons/icons';
+import Button from '../components/Button';
 
 interface CartItemInfo {
   id: number;
@@ -35,18 +36,13 @@ interface ProductInterface {
 function CartItem() {
   const id = useAppSelector(state => state.user.id)
   const log = useAppSelector(state => state.user.isLoggedIn)
-  const { data, refetch } = useQuery({
+  const { data, isLoading, refetch } = useQuery({
     queryKey: ["cartItem"],
     queryFn: async () => await fetchCart(id),
     // refetchInterval: 500,
     // refetchOnWindowFocus: false,
     // refetchOnReconnect: true,
   });
-
-  // const setIsBuyingToFalse = async (id: any) => {
-  //   fetchSetToFalse(id)
-  // }
-  // setIsBuyingToFalse(data?.id)
 
   const history = useHistory();
   const onClickProductPage = (id: number) => {
@@ -67,7 +63,16 @@ function CartItem() {
     refetch()
   }
 
-  return (
+  console.log(data?.cart_detail.length)
+
+if (isLoading) return <>loading</>
+
+  if(data?.cart_detail.length === 0){
+    return (
+      <div>尚未加入產品</div>
+    )
+  } else 
+{  return (
     <>
 
       {Array.isArray(data?.cart_detail) && data?.cart_detail.map((item: CartItemInfo) => (
@@ -87,13 +92,12 @@ function CartItem() {
           </IonButtons>
           <IonCheckbox slot="end" checked={item.is_buying} onClick={() => setIsBuying(item.id, item.is_buying)}></IonCheckbox>
 
-
         </IonItem>
-
       ))}
+      <Button />
 
 
     </>
-  );
+  );}
 }
 export default CartItem;
