@@ -13,7 +13,7 @@ function Avatar() {
     // });
     return (
         <>
-            <IonAvatar>
+            <IonAvatar className='userPhoto'>
                 <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
             </IonAvatar>
 

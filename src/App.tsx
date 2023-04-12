@@ -58,6 +58,7 @@ import InputMessage from './config/FirebaseConfig';
 import Success from './pages/Success';
 import StripePurchaseFailPage from './pages/Fail';
 import StripePurchaseSuccessPage from './pages/Success';
+import ChatMessage from './pages/ChatMessage';
 
 
 setupIonicReact();
@@ -79,7 +80,8 @@ const App: React.FC = () => {
             <Route path="/home" render={() => <Home />} exact={true} />
             <Route path="/shoppingcart" render={() => <ShoppingCart />} exact={true} />
             {/* <Route path="/chatroom/:id" render={() => <InputMessage />} exact={true} /> */}
-            <Route path="/chatroom/:id" render={() => <Chatroom />} exact={true} />
+            <Route path="/chatroom/:id" render={() => <ChatMessage />} exact={true} />
+            <Route path="/chatroom" render={() => <Chatroom />} exact={true} />
             <Route path="/login" render={() => <Login />} exact={true} />
             <Route exact path="/facebook-callback"><FacebookCallback></FacebookCallback></Route>
             <Route path="/userprofile" render={() => <UserProfile />} exact={true} />

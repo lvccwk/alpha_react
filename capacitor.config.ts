@@ -1,10 +1,10 @@
 import { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.starter',
-  appName: 'myApp',
-  webDir: 'build',
-  bundledWebRuntime: false
+	appId: 'alpha.learning.app',
+	appName: 'Alpha Learning',
+	webDir: 'build',
+	bundledWebRuntime: false
 };
 
 export default config;
