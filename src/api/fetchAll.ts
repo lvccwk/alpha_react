@@ -45,6 +45,18 @@ export interface FetchUserAllModel {
 	url: string;
 }
 
+export const fetchUserAll = async (): Promise<FetchUserAllModel> => {
+	console.log('fetchUserAll');
+	const res = await fetch(`http://localhost:3000/users/all`);
+	if (res.ok) {
+		const data = await res.json();
+		console.log(data);
+		return data;
+	} else {
+		throw new Error('fetchUser FAILED');
+	}
+};
+
 export const fetchCart = async (id: number): Promise<FetchUserAllModel> => {
 	console.log('fetchCart');
 
@@ -343,16 +355,16 @@ export const fetchFile = async (file: File): Promise<FetchUserAllModel> => {
 	// }
 };
 
-export const fetchCreateBookmark = async (obj:{
-	user_id: number,
-	teacher_id: number
+export const fetchCreateBookmark = async (obj: {
+	user_id: number;
+	teacher_id: number;
 }): Promise<FetchUserAllModel> => {
 	console.log('fetchCreateBookmark');
-	
-	const res  = await fetch(`http://localhost:3000/followedTeachers`, {
+
+	const res = await fetch(`http://localhost:3000/followedTeachers`, {
 		method: 'POST',
 		headers: {
-			'Content-Type': 'application/json',
+			'Content-Type': 'application/json'
 			//Authorization: `Bearer ${localStorage.getItem('token')}`
 		},
 		body: JSON.stringify({
@@ -360,7 +372,7 @@ export const fetchCreateBookmark = async (obj:{
 		})
 	});
 
-	if (res.ok){
+	if (res.ok) {
 		const data = await res.json();
 		return data;
 	} else {
@@ -380,7 +392,7 @@ export const fetchCreateProduct = async (obj: {
 	const res = await fetch(`http://localhost:3000/products`, {
 		method: 'POST',
 		headers: {
-			'Content-Type': 'application/json',
+			'Content-Type': 'application/json'
 			//Authorization: `Bearer ${localStorage.getItem('token')}`
 		},
 		body: JSON.stringify({
@@ -395,13 +407,6 @@ export const fetchCreateProduct = async (obj: {
 		throw new Error('fetchCreateProduct FAILED');
 	}
 };
-
-
-
-
-	
-
-
 
 /*
 USER TABLE:
