@@ -14,29 +14,30 @@ import {
   IonLabel,
   IonRow,
   useIonViewWillEnter,
+  IonSelect,
+  IonSelectOption,
 } from "@ionic/react";
 import React, { useState } from 'react';
-import { fetchFile, fetchCreateProduct } from '../api/fetchAll';
+import { FetchUserAllModel, fetchFile, fetchCreateProduct } from '../api/fetchAll';
+import { useForm } from "react-hook-form"
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 function FileUpload() {
+  const [name, setName] = useState<string>("");
+  const [price, setPrice] = useState<number>(0);
+  const [product, setProduct] = useState<string>("");
+  const [subject, setSubject] = useState<string>("");
+
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
-  // const fetchCreateItem = useMutation(fetchCreateProduct, {
-  //   onSuccess(data, variables, context) {
-  //     refetch();
-  //   },
-  //   onError: (error) => {
-  //     console.error("Failed to create product: ", error);
-  //   },
-  // });
 
-  const handleFileInput = (e: any) => {
+  const handleCreateProduct = (e: any) => {
     setSelectedFile(e.target.files[0]);
+    const formData = new FormData();
     console.log(e.target.files[0])
   };
 
-  const handleSubmit = async (e: any) => {
+  const onSubmit = async (e: any) => {
     e.preventDefault();
     // TODO: Handle file upload
     if (!selectedFile) {
@@ -56,12 +57,19 @@ function FileUpload() {
   return (
     <IonCard>
       <IonCardContent>
-        <form onSubmit={handleSubmit}>
-          <IonInput />
-          <IonInput />
-          <IonInput />
-          <input type="file" onChange={handleFileInput} />
-
+        <form onSubmit={onSubmit}>
+          <IonInput placeholder="Name" /><br />
+          <IonInput placeholder="Price ($ HKD)"/><br />
+          <IonSelect
+            value={product}
+            placeholder="Select Product Type"
+            onIonChange={(e: any) => setProduct(e.detail.value)} >
+            <IonSelectOption value="course">課程</IonSelectOption>
+            <IonSelectOption value="notes">筆記</IonSelectOption>
+          </IonSelect><br />
+          
+          <input type="file" onChange={handleCreateProduct} />
+          <br />
           <button type="submit">UPLOAD</button>
         </form>
       </IonCardContent>

@@ -372,7 +372,6 @@ export const fetchCreateProduct = async (obj: {
 	name: string;
 	price: number;
 	product_type: string;
-	user_id: number;
 	subject_id: number;
 	teacher_id: number;
 }): Promise<FetchUserAllModel> => {
