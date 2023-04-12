@@ -40,8 +40,8 @@ function CartItem() {
     queryKey: ["cartItem"],
     queryFn: async () => await fetchCart(id),
     // refetchInterval: 500,
-    // refetchOnWindowFocus: false,
-    // refetchOnReconnect: true,
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: true,
   });
 
   const history = useHistory();
@@ -65,39 +65,40 @@ function CartItem() {
 
   console.log(data?.cart_detail.length)
 
-if (isLoading) return <>loading</>
+  if (isLoading) return <>loading</>
 
-  if(data?.cart_detail.length === 0){
+  if (data?.cart_detail.length === 0) {
     return (
       <div>尚未加入產品</div>
     )
-  } else 
-{  return (
-    <>
+  } else {
+    return (
+      <>
 
-      {Array.isArray(data?.cart_detail) && data?.cart_detail.map((item: CartItemInfo) => (
-        <IonItem key={item.id}>
-          <IonThumbnail slot="start">
-            <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
-          </IonThumbnail>
-          <IonLabel>{item.product.name}</IonLabel>
-          <IonButton onClick={() => onClickProductPage(item.product_id)}>
-            詳細
-          </IonButton>
-          ${item.product.price}
-          <IonButtons>
-            <IonButton onClick={() => onClickDropFromCart(item.id)}>
-              <IonIcon slot="icon-only" icon={closeCircle} ></IonIcon>
+        {Array.isArray(data?.cart_detail) && data?.cart_detail.map((item: CartItemInfo) => (
+          <IonItem key={item.id}>
+            <IonThumbnail slot="start">
+              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+            </IonThumbnail>
+            <IonLabel>{item.product.name}</IonLabel>
+            <IonButton onClick={() => onClickProductPage(item.product_id)}>
+              詳細
             </IonButton>
-          </IonButtons>
-          <IonCheckbox slot="end" checked={item.is_buying} onClick={() => setIsBuying(item.id, item.is_buying)}></IonCheckbox>
+            ${item.product.price}
+            <IonButtons>
+              <IonButton onClick={() => onClickDropFromCart(item.id)}>
+                <IonIcon slot="icon-only" icon={closeCircle} ></IonIcon>
+              </IonButton>
+            </IonButtons>
+            <IonCheckbox slot="end" checked={item.is_buying} onClick={() => setIsBuying(item.id, item.is_buying)}></IonCheckbox>
 
-        </IonItem>
-      ))}
-      <Button />
+          </IonItem>
+        ))}
+        <Button />
 
 
-    </>
-  );}
+      </>
+    );
+  }
 }
 export default CartItem;
