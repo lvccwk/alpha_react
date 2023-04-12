@@ -81,6 +81,7 @@ export default function UserProfile() {
               <IonButton onClick={handleEditProfile}>EDIT USER PROFILE</IonButton>
               <IonButton onClick={handlePurchaseHistory}>PURCHASE HISTORY</IonButton>
               <IonButton >UPLOAD COURSE / NOTES</IonButton>
+              <h1>老師版</h1>
               <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
               <IonCardTitle>{data?.username}</IonCardTitle>
             </IonCardHeader>
@@ -109,12 +110,15 @@ export default function UserProfile() {
       <IonPage className='userprofilepage'>
         <Toolbar />
         <IonContent className='ion-padding'>
+
           <IonButton className='exitbtn' onClick={handleLogout}><IonIcon icon={exitOutline} className='exit' color="white"  ></IonIcon></IonButton>
+
           <IonCard className='profileCard' >
             <div className='userlogo'><Avatar /></div>
             <IonCardHeader>
               <IonButton onClick={handleEditProfile}>EDIT USER PROFILE</IonButton>
               <IonButton onClick={handlePurchaseHistory}>PURCHASE HISTORY</IonButton>
+              <h1>學生版</h1>
               <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
               <IonCardTitle>{data.username}</IonCardTitle>
             </IonCardHeader>
