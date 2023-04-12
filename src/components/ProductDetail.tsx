@@ -67,6 +67,8 @@ function ProductDetail() {
                     <br />
                     評分:{data?.avg_rating}
                     <br />
+                    詳細內容:{data?.info}
+                    <br />
                     <IonButton onClick={() => handleAddToCart(data?.id)}>
                         加入購物車
                     </IonButton>
