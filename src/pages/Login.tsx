@@ -111,8 +111,8 @@ const LoginPage: React.FC = () => {
                 )} */}
                 {/* <UiCard /> */}
                 <IonContent className="ion-padding" >
-                    <IonCard className="login"><IonIcon icon={logoIonic} className="iconlogin" color="primary" ></IonIcon>
-                    </IonCard>
+                    {/* <IonCard className="login"><IonIcon icon={logoIonic} className="iconlogin" color="primary" ></IonIcon>
+                    </IonCard> */}
                     <div className='loginCard'>
                         <IonInput
                             aria-label="Custom input"

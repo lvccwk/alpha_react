@@ -424,11 +424,36 @@ export const fetchAddPurchaseHistory = async (id: any): Promise<FetchUserAllMode
 	}
 };
 
+export const fetchCreateTeacher = async (obj:{
+	user_id: number;
+	info: string;
+	rating: number;
+}): Promise<FetchUserAllModel> => {
+	console.log('fetchCreateTeacher');
+	
+	const res = await fetch(`http://localhost:3000/teachers`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify({
+			obj
+		})
+	});
+	
+	if(res.ok) {
+		const data = await res.json();
+		return data;
+	} else {
+		throw new Error('fetchCreateTeacher FAILED');
+	}
+
+}
+
 export const fetchCreateProduct = async (obj: {
 	name: string;
 	price: number;
 	product_type: string;
-	user_id: number;
 	subject_id: number;
 	teacher_id: number;
 }): Promise<FetchUserAllModel> => {
