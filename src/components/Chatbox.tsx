@@ -65,37 +65,23 @@ function Chatbox() {
     }, [messageListener])
 
     function Messages({ messages, senderId }: { messages: string[], senderId: string }) {
-        if (sender_id == sender?.id) {
-            return (
-                <div className='container'>
-                    <div className="messageList">
-                        {messages.map((message, index) => (
-                            <div key={message}>
-                                <div className="messageHeader">{sender?.username} : </div>
-                                <br></br>
-                                <div className="textMessage">{message}</div>
-                                <br></br>
-                            </div>
-                        ))}
-                    </div>
+        return (
+            <div className='container'>
+                <div className="messageList">
+                    {messages.map((message, index) => (
+
+                        <div key={message}>
+                            <div className="messageHeader">{
+                                sender_id === message[1] ? sender?.username : receiver?.username
+                            } : </div>
+                            <br></br>
+                            <div className="textMessage">{message}</div>
+                            <br></br>
+                        </div>
+                    ))}
                 </div>
-            );
-        } else {
-            return (
-                <div className='container'>
-                    <div className="messageList">
-                        {messages.map((message, index) => (
-                            <div key={index}>
-                                <div className="messageHeader">{receiver?.username} : </div>
-                                <br></br>
-                                <div className="textMessage">{message}</div>
-                                <br></br>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            );
-        }
+            </div>
+        );
 
     }
 
