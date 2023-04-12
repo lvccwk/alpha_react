@@ -1,6 +1,9 @@
 import { IonPage, IonContent, IonHeader, IonToolbar, IonTitle, IonButton } from '@ionic/react';
 import { useLocation, useHistory } from 'react-router-dom';
 import ToolBar from '../components/Toolbar';
+import { fetchUser } from '../api/fetchUser';
+import { useQuery } from '@tanstack/react-query';
+import { fetchAddPurchaseHistory } from '../api/fetchAll';
 
 interface LocationState {
     amount: number;
@@ -10,6 +13,13 @@ const StripePurchaseSuccessPage: React.FC = () => {
     const location = useLocation<LocationState>();
     const amount = location.state && location.state.amount;
     const history = useHistory();
+
+    const { data: user } = useQuery({
+        queryKey: ["user"],
+        queryFn: () => fetchUser(),
+    });
+
+    fetchAddPurchaseHistory(user?.id)
 
     const handleClick = () => {
         history.push('/');

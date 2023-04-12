@@ -43,6 +43,7 @@ export interface FetchUserAllModel {
 	private_message: PrivateMessageInterface;
 	subject: SubjectInterface;
 	url: string;
+	student_id: number;
 }
 
 export const fetchUserAll = async (): Promise<FetchUserAllModel> => {
@@ -377,6 +378,48 @@ export const fetchCreateBookmark = async (obj: {
 		return data;
 	} else {
 		throw new Error('fetchCreateBookmark FAILED');
+	}
+};
+
+export const fetchAddPurchaseHistory = async (id: any): Promise<FetchUserAllModel> => {
+	console.log('fetchAddPurchaseHistory');
+
+	const res = await fetch(`http://localhost:3000/carts/isBuying/${id}`, {
+		headers: {
+			Authorization: `Bearer ${localStorage.getItem('token')}`
+		}
+	});
+
+	const data = await res.json();
+
+	for(let x = 0; x < data.cart_detail.length; x++){
+		await fetch(`http://localhost:3000/purchaseHistorys`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify({
+			product_id: data.cart_detail[x].product_id,
+			student_id: id
+		})
+	});
+	// console.log("TESTING=",x)
+	}
+
+	const deleteRes = await fetch(`http://localhost:3000/cartDetails/${data.id}`, {
+		method: 'DELETE'
+	});
+	const delData = await deleteRes.json();
+
+	// let purchaseHistorys = await fetch(`http://localhost:3000/purchaseHistorys/${id}`)
+	// const phData = await purchaseHistorys.json();
+	// console.log("purchaseHistory=",phData)
+
+	if (deleteRes.ok) {
+		console.log("Add to Purchase History Success")
+		return delData;
+	} else {
+		throw new Error('fetchAddPurchaseHistory FAILED');
 	}
 };
 
