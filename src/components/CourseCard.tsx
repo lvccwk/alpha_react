@@ -40,13 +40,19 @@ function CourseCard() {
     const isLoggedIn = useAppSelector(state => state.user.isLoggedIn)
 
     const { data: purchaseHistory } = useQuery({
-        queryKey: ["purchasehistory"],
-        queryFn: async () => await fetchPurchaseHistory(user?.id),
+        queryKey: ["purchasehistory", user?.id],
+        queryFn: async () => {
+            if(user?.id)
+            { return await fetchPurchaseHistory(user?.id)}
+        }
     });
     const { data: cart } = useQuery({
-        queryKey: ["cartItem"],
-        queryFn: async () => await fetchCart(user?.id),
-        });
+        queryKey: ["cartItems", user?.id],
+        queryFn: async () => {
+            if(user?.id)
+            {return await fetchCart(user?.id)}
+        }
+    });
 
 
     useEffect(()=>{
@@ -88,7 +94,7 @@ function CourseCard() {
         })
     }
 
-    const handleAddToCart = (id: number) => {
+    const handleAddToCart = async (id: number) => {
         if (isLoggedIn === false) {
             pleaseLogin()
         } else {
@@ -97,7 +103,7 @@ function CourseCard() {
                 product_id: id,
                 is_buying: false,
             };
-            fetchAddCart(obj)
+            await fetchAddCart(obj)
             addToCartAlert()
             refetch()
         }
