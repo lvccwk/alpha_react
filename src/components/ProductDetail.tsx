@@ -1,6 +1,6 @@
-import React from 'react';
-import { IonAvatar, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonItem, IonLabel, useIonAlert } from '@ionic/react';
-import { fetchAddCart, fetchProduct, fetchTeacher, fetchTeacherAll, } from '../api/fetchAll';
+import React, { useEffect, useState } from 'react';
+import { IonAvatar, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonItem, IonLabel, useIonAlert, useIonViewWillEnter } from '@ionic/react';
+import { fetchAddCart, fetchCart, fetchProduct, fetchPurchaseHistory, fetchTeacher, fetchTeacherAll, } from '../api/fetchAll';
 import { useQuery } from '@tanstack/react-query';
 import photo from '../../src/photo/brandi-redd-6H9H-tYPUQQ-unsplash.jpg'
 import { useHistory, useParams } from 'react-router-dom';
@@ -11,17 +11,58 @@ import { useAppSelector } from '../redux/store';
 function ProductDetail() {
     const params = useParams()
     const productId = Object.values(params)[0]
+    const [phID, setPhID] = useState<number[]>([])
+    const [cartID, setCartID] = useState<number[]>([])
+    const isLoggedIn = useAppSelector(state => state.user.isLoggedIn)
 
     const { data: user } = useQuery({
         queryKey: ["user"],
-        queryFn: () => fetchUser(),
+        queryFn: async () => await fetchUser(),
+        refetchOnWindowFocus: false,
+        refetchOnReconnect: true,
     });
 
-    const { data } = useQuery({
+    const { data: product, refetch } = useQuery({
         queryKey: ["productDetail"],
-        queryFn: () => fetchProduct(Number(productId)),
+        queryFn: async () => await fetchProduct(Number(productId)),
+        refetchOnWindowFocus: false,
+        refetchOnReconnect: true,
     });
-    console.log(`ProductDetail`, data)
+    
+    const { data: purchaseHistory } = useQuery({
+        queryKey: ["purchasehistory", user?.id],
+        queryFn: async () => {
+            if (user?.id) { return await fetchPurchaseHistory(user?.id) }
+            return []
+        },
+        refetchOnWindowFocus: false,
+        refetchOnReconnect: true,
+    });
+    const { data: cart } = useQuery({
+        queryKey: ["cartItems", user?.id, product],
+        queryFn: async () => {
+            if (user?.id) { return await fetchCart(user?.id) }
+            return []
+        },
+        refetchOnWindowFocus: false,
+        refetchOnReconnect: true,
+    });
+
+    useIonViewWillEnter(()=>{
+        refetch()
+      })
+     
+    useEffect(() => {
+        if (user) {
+        }
+        setPhID(purchaseHistory?.map((obj: { product_id: any; }) => {
+            return obj.product_id;
+        }))
+
+        // setCartID(cart?.cart_detail?.map((obj: { product_id: any; }) => {
+        //     return obj.product_id;
+        // }))
+    }, [purchaseHistory, cart, product])
 
     const [presentAlert] = useIonAlert();
     const addToCartAlert = () => {
@@ -40,9 +81,7 @@ function ProductDetail() {
         })
     }
 
-    const isLoggedIn = useAppSelector(state => state.user.isLoggedIn)
-
-    const handleAddToCart = (id: any) => {
+    const handleAddToCart = async (id: any) => {
         if (isLoggedIn === false) {
             pleaseLogin()
         } else {
@@ -51,27 +90,48 @@ function ProductDetail() {
                 product_id: id,
                 is_buying: false,
             };
-            console.log(obj)
-            fetchAddCart(obj)
+            await fetchAddCart(obj)
             addToCartAlert()
+            refetch()
         }
     }
+
+    console.log(cartID)
+    const addToCartCondition1 = phID.includes(Number(productId))
+    const addToCartCondition2 = cartID.includes(Number(productId))
 
     return (
         <>
             <IonCard>
                 <img alt="Silhouette of mountains" src={photo} />
-                <IonCardContent>老師:{data?.teacher.user.username}
+                <IonCardContent>老師:{product?.teacher.user.username}
                     <br />
-                    {data?.name}
+                    {product?.name}
                     <br />
-                    評分:{data?.avg_rating}
+                    評分:{product?.avg_rating}
                     <br />
-                    詳細內容:{data?.info}
+                    詳細內容:{product?.info}
                     <br />
-                    <IonButton onClick={() => handleAddToCart(data?.id)}>
-                        加入購物車
-                    </IonButton>
+                    {isLoggedIn === false && (
+                        <IonButton onClick={() => handleAddToCart(productId)}>
+                            加入購物車
+                        </IonButton>
+                    )}
+                    {isLoggedIn === true && addToCartCondition1 === true && (
+                        <IonButton disabled={true}>
+                            已購買
+                        </IonButton>
+                    )}
+                    {isLoggedIn === true && addToCartCondition2 === true && (
+                        <IonButton disabled={true}>
+                            已加入購物車
+                        </IonButton>
+                    )}
+                    {isLoggedIn === true && addToCartCondition1 === false && addToCartCondition2 === false && (
+                        <IonButton onClick={() => handleAddToCart(Number(productId))}>
+                            加入購物車
+                        </IonButton>
+                    )}
                 </IonCardContent>
             </IonCard>
         </>

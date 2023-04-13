@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query/build/lib/useQuery"
 import React, { useEffect, useState } from "react"
 import { Link, Redirect, useHistory } from "react-router-dom"
 import { fetchAddUser } from "../api/fetchUser"
+import { fetchCreateTeacher } from "../api/fetchAll"
 import ToolBar from "../components/Toolbar"
 import { registerUser } from "../config/FirebaseConfig"
 import './../../src/components/UiDesign/Login.css'
@@ -60,6 +61,9 @@ const Register: React.FC = () => {
             if (username.trim() !== '' && password.trim() !== '' && password === cpassword) {
                 fetchData();
             }
+            if (isTeacher && teacherinfo) {
+                //fetchCreateTeacher()
+            }
         }
     };
 
@@ -95,7 +99,7 @@ const Register: React.FC = () => {
                                 onIonChange={(e: any) => setTeacherinfo(e.target.value)}
                             >
                                 
-                            </IonInput>
+                            </IonInput><br/> 
                             </>
                         )}
                         {/* <IonInput value={user_type} placeholder="User_type?" onIonChange={(e: any) => setUsertype(e.target.value)}></IonInput> */}

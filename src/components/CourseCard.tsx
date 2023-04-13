@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { IonButton, IonCard, IonCardContent, useIonAlert } from '@ionic/react';
+import { IonButton, IonCard, IonCardContent, useIonAlert, useIonViewWillEnter } from '@ionic/react';
 import './TeacherCard.css';
 import { fetchAddCart, fetchCart, fetchCourse, fetchPurchaseHistory } from '../api/fetchAll';
 import { useQuery } from '@tanstack/react-query';
@@ -40,7 +40,6 @@ function CourseCard() {
         refetchOnReconnect: true,
     });
 
-
     const { data: purchaseHistory } = useQuery({
         queryKey: ["purchasehistory", user?.id],
         queryFn: async () => {
@@ -55,30 +54,26 @@ function CourseCard() {
         queryFn: async () => {
             if (user?.id) { return await fetchCart(user?.id) }
             return null
-
         },
         refetchOnWindowFocus: false,
         refetchOnReconnect: true,
     });
 
+    useIonViewWillEnter(()=>{
+        refetch()
+      })
 
     useEffect(() => {
-        console.log(cart?.cart_detail)
         if (user) {
-
         }
         setPhID(purchaseHistory?.map((obj: { product_id: any; }) => {
             return obj.product_id;
         }))
-        // console.log("phID=",phID)
 
         setCartID(cart?.cart_detail?.map((obj: { product_id: any; }) => {
             return obj.product_id;
         }))
-        // console.log("cartID=",cartID)
     }, [purchaseHistory, cart, course])
-
-
 
     const history = useHistory();
     const onClickProductPage = (id: number) => {
@@ -116,8 +111,6 @@ function CourseCard() {
             refetch()
         }
     }
-
-    console.log(course)
 
     return (
         <>
