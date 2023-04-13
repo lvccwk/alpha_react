@@ -62,6 +62,10 @@ const LoginPage: React.FC = () => {
     })
 
     const login = async () => {
+        console.log({
+            email,
+            password
+        })
         mutate({
             email,
             password

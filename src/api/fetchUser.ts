@@ -51,6 +51,24 @@ export const fetchUser = async (): Promise<FetchUserModel> => {
 	}
 };
 
+export const fetchAllUser = async (): Promise<FetchUserModel> => {
+	const res = await fetch(`http://localhost:3000/users/all`, {
+		headers: {
+			Authorization: `Bearer ${localStorage.getItem('token')}`
+		}
+	});
+	console.log(res);
+	if (res.ok) {
+		const data = await res.json();
+		console.log({
+			fetchUser: data
+		});
+		return data;
+	} else {
+		throw new Error('fetchUser FAILED');
+	}
+};
+
 export const loginUser = async (obj: {
 	email: string;
 	password: string;
