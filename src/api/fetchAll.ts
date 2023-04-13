@@ -453,7 +453,7 @@ export const fetchAddPurchaseHistory = async (id: any): Promise<FetchUserAllMode
 export const fetchCreateTeacher = async (obj: {
 	user_id: number;
 	info: string;
-	rating: number;
+	rating: number|null;
 }): Promise<FetchUserAllModel> => {
 	console.log('fetchCreateTeacher');
 
