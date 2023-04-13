@@ -33,13 +33,14 @@ function CourseCard() {
         refetchOnReconnect: true,
     });
 
-    const { data: user } = useQuery({
+    const { data: user, refetch: userFetch } = useQuery({
         queryKey: ["user"],
         queryFn: async () => await fetchUser(),
         refetchOnWindowFocus: false,
         refetchOnReconnect: true,
     });
 
+    console.log(`user`, user)
     const { data: purchaseHistory } = useQuery({
         queryKey: ["purchasehistory", user?.id],
         queryFn: async () => {
@@ -59,9 +60,10 @@ function CourseCard() {
         refetchOnReconnect: true,
     });
 
-    useIonViewWillEnter(()=>{
+    useIonViewWillEnter(() => {
         refetch()
-      })
+        userFetch()
+    })
 
     useEffect(() => {
         if (user) {
@@ -70,9 +72,12 @@ function CourseCard() {
             return obj.product_id;
         }))
 
-        setCartID(cart?.cart_detail?.map((obj: { product_id: any; }) => {
-            return obj.product_id;
-        }))
+        if (cart?.cart_detail) {
+            setCartID(cart?.cart_detail?.map((obj: { product_id: any; }) => {
+                return obj.product_id;
+            }))
+        }
+
     }, [purchaseHistory, cart, course])
 
     const history = useHistory();
@@ -101,17 +106,29 @@ function CourseCard() {
         if (isLoggedIn === false) {
             pleaseLogin()
         } else {
+            console.log({
+                user
+            })
+
             let obj = {
                 cart_id: user?.cart[0].id,
                 product_id: id,
                 is_buying: false,
             };
+
             await fetchAddCart(obj)
             addToCartAlert()
             refetch()
         }
     }
 
+    console.log({
+        course,
+        phID,
+        cartID,
+        user,
+        cart
+    })
     return (
         <>
             {Array.isArray(course) && Array.isArray(phID) && Array.isArray(cartID) && course.map((item: Course) => (

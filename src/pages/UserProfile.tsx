@@ -19,6 +19,7 @@ export default function UserProfile() {
   const dispatch = useDispatch();
   const id = useAppSelector(state => state.user.id)
   const loggedIn = useAppSelector(state => state.user.isLoggedIn)
+
   console.log("id", id)
   console.log("login:", loggedIn)
   // const [userData, setUserData] = useState({
@@ -32,6 +33,7 @@ export default function UserProfile() {
   }
 
   const handleLogout = () => {
+    remove()
     dispatch(userLogout());
     console.log("yesLOGOUT");
     history.push("/home")
@@ -41,8 +43,7 @@ export default function UserProfile() {
     history.push("/purchasehistory")
   }
 
-
-  const { data, isLoading, error, refetch } = useQuery({
+  const { data, isLoading, error, refetch, remove } = useQuery({
     queryKey: ["user"],
     queryFn: () => fetchUser(), //redux login state,
     // enabled: false,
@@ -51,6 +52,7 @@ export default function UserProfile() {
     retry: false,
   });
 
+  console.log(data)
   useIonViewWillEnter(() => {
     console.log("ionViewWillEnter")
     refetch()

@@ -12,6 +12,7 @@ export interface FetchUserModel {
 	product: ProductInterface;
 	product_name: string;
 	name: string;
+	json: any;
 }
 
 export const fetchUserCheck = async (id: number | null): Promise<FetchUserModel> => {
@@ -34,6 +35,24 @@ export const fetchUserCheck = async (id: number | null): Promise<FetchUserModel>
 
 export const fetchUser = async (): Promise<FetchUserModel> => {
 	const res = await fetch(`http://localhost:3000/users`, {
+		headers: {
+			Authorization: `Bearer ${localStorage.getItem('token')}`
+		}
+	});
+	console.log(res);
+	if (res.ok) {
+		const data = await res.json();
+		console.log({
+			fetchUser: data
+		});
+		return data;
+	} else {
+		throw new Error('fetchUser FAILED');
+	}
+};
+
+export const fetchAllUser = async (): Promise<FetchUserModel> => {
+	const res = await fetch(`http://localhost:3000/users/all`, {
 		headers: {
 			Authorization: `Bearer ${localStorage.getItem('token')}`
 		}
