@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { useAppSelector } from "../redux/store";
 import { IonButton, IonIcon, IonToast } from '@ionic/react';
 import { bookmark, bookmarkOutline } from 'ionicons/icons';
-import { fetchTeacher, fetchCreateBookmark } from '../api/fetchAll';
+import { fetchTeacher, fetchCreateBookmark, fetchDeleteBookmark } from '../api/fetchAll';
 
 
 
@@ -16,7 +16,7 @@ function TeacherBookmark() {
     const params = useParams()
     const teacherId = Object.values(params)[0]
     const { data, isLoading, error, refetch } = useQuery({
-        queryKey: ["teacherDetail"],
+        queryKey: ["teacherDetailBookMark"],
         queryFn: () => fetchTeacher(Number(teacherId)),
     });
 
@@ -28,9 +28,12 @@ function TeacherBookmark() {
             user_id: Number(studentId),
             teacher_id: Number(teacherId)
         }
-        if (!isBookmarked) {
-            fetchCreateBookmark(obj);
+        fetchCreateBookmark(obj);
+        if (isBookmarked) {
+            fetchDeleteBookmark(obj);
         }
+
+
         setShowToast(true);
         console.log(obj.user_id, obj.teacher_id);
     };
@@ -39,7 +42,7 @@ function TeacherBookmark() {
     return (
         <>
             <button onClick={handleClick}>
-                <IonIcon icon={isBookmarked ? bookmark : bookmarkOutline} color={isBookmarked ? 'primary' : 'medium'} />
+                <IonIcon icon={isBookmarked ? bookmark : bookmark} color={isBookmarked ? 'primary' : 'medium'} />
                 {/* {isBookmarked ? 'Bookmarked' : 'Bookmark'} */}
             </button>
             <IonToast isOpen={showToast} message={toastMessage} duration={3000} onDidDismiss={() => setShowToast(false)} />

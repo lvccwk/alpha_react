@@ -393,6 +393,29 @@ export const fetchFile = async (file: File): Promise<FetchUserAllModel> => {
 	// }
 };
 
+export const fetchDeleteBookmark = async (obj: {
+	user_id: number;
+	teacher_id: number;
+}): Promise<FetchUserAllModel> => {
+	console.log('fetchCreateBookmark');
+
+	const res = await fetch(`http://localhost:3000/followedTeachers`, {
+		method: 'DELETE',
+		headers: {
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${localStorage.getItem('token')}`
+		},
+		body: JSON.stringify(obj)
+	});
+
+	if (res.ok) {
+		const data = await res.json();
+		return data;
+	} else {
+		throw new Error('fetchCreateBookmark FAILED');
+	}
+};
+
 export const fetchCreateBookmark = async (obj: {
 	user_id: number;
 	teacher_id: number;
@@ -402,12 +425,10 @@ export const fetchCreateBookmark = async (obj: {
 	const res = await fetch(`http://localhost:3000/followedTeachers`, {
 		method: 'POST',
 		headers: {
-			'Content-Type': 'application/json'
-			//Authorization: `Bearer ${localStorage.getItem('token')}`
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${localStorage.getItem('token')}`
 		},
-		body: JSON.stringify({
-			obj
-		})
+		body: JSON.stringify(obj)
 	});
 
 	if (res.ok) {
