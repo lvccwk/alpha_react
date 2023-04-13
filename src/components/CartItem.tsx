@@ -1,5 +1,5 @@
 
-import { IonItem, IonLabel, IonButton, IonThumbnail, IonButtons, IonIcon, IonCheckbox } from '@ionic/react';
+import { IonItem, IonLabel, IonButton, IonThumbnail, IonButtons, IonIcon, IonCheckbox, useIonViewWillEnter } from '@ionic/react';
 import { useQuery } from '@tanstack/react-query';
 import { useHistory } from 'react-router';
 import { fetchCart, fetchDropFromCart, fetchIsBuying } from '../api/fetchAll';
@@ -44,6 +44,10 @@ function CartItem() {
     refetchOnReconnect: true,
   });
 
+  useIonViewWillEnter(()=>{
+    refetch()
+  })
+  
   const history = useHistory();
   const onClickProductPage = (id: number) => {
     history.push(`/productpage/` + id);

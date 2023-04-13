@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { IonButton, IonCard, IonCardContent, useIonAlert } from '@ionic/react';
+import { IonButton, IonCard, IonCardContent, useIonAlert, useIonViewWillEnter } from '@ionic/react';
 import './TeacherCard.css';
 import { fetchAddCart, fetchCart, fetchCourse, fetchPurchaseHistory } from '../api/fetchAll';
 import { useQuery } from '@tanstack/react-query';
@@ -61,6 +61,9 @@ function CourseCard() {
         refetchOnReconnect: true,
     });
 
+    useIonViewWillEnter(()=>{
+        refetch()
+      })
 
     useEffect(() => {
         console.log(cart?.cart_detail)
