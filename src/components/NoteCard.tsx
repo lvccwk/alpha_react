@@ -1,7 +1,7 @@
-import React from 'react';
-import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCol, IonGrid, IonRow, useIonAlert } from '@ionic/react';
+import React, { useEffect, useState } from 'react';
+import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCol, IonGrid, IonRow, useIonAlert, useIonViewWillEnter } from '@ionic/react';
 import './TeacherCard.css';
-import { fetchAddCart, fetchNote } from '../api/fetchAll';
+import { fetchAddCart, fetchCart, fetchNote, fetchPurchaseHistory } from '../api/fetchAll';
 import { useQuery } from '@tanstack/react-query';
 import photo from '../../src/photo/brandi-redd-6H9H-tYPUQQ-unsplash.jpg'
 import { useHistory } from 'react-router';
@@ -21,23 +21,64 @@ interface Note {
 }
 
 function NoteCard() {
-    const { data: note } = useQuery({
+    const [phID, setPhID] = useState<number[]>([])
+    const [cartID, setCartID] = useState<number[]>([])
+    const isLoggedIn = useAppSelector(state => state.user.isLoggedIn)
+
+    const { data: note, refetch } = useQuery({
         queryKey: ["note"],
-        queryFn: fetchNote,
+        queryFn: async () => await fetchNote(),
+        // refetchInterval: 500,
+        refetchOnWindowFocus: false,
+        refetchOnReconnect: true,
     });
 
     const { data: user } = useQuery({
         queryKey: ["user"],
-        queryFn: () => fetchUser(),
+        queryFn: async () => await fetchUser(),
+        refetchOnWindowFocus: false,
+        refetchOnReconnect: true,
     });
-    
-    // console.log("cartID=" + user?.cart[0].id)
+
+    const { data: purchaseHistory } = useQuery({
+        queryKey: ["purchasehistory", user?.id],
+        queryFn: async () => {
+            if (user?.id) { return await fetchPurchaseHistory(user?.id) }
+            return []
+        },
+        refetchOnWindowFocus: false,
+        refetchOnReconnect: true,
+    });
+    const { data: cart } = useQuery({
+        queryKey: ["cartItems", user?.id, note],
+        queryFn: async () => {
+            if (user?.id) { return await fetchCart(user?.id) }
+            return null
+        },
+        refetchOnWindowFocus: false,
+        refetchOnReconnect: true,
+    });
+
+    useIonViewWillEnter(()=>{
+        refetch()
+      })
+
+    useEffect(() => {
+        if (user) {
+        }
+        setPhID(purchaseHistory?.map((obj: { product_id: any; }) => {
+            return obj.product_id;
+        }))
+
+        setCartID(cart?.cart_detail?.map((obj: { product_id: any; }) => {
+            return obj.product_id;
+        }))
+    }, [purchaseHistory, cart, note])
 
     const history = useHistory();
     const onClickProductPage = (id:number) => {
         history.push(`/productpage/` + id);
     }
-
 
     const [presentAlert] = useIonAlert();
     const addToCartAlert = () => {
@@ -56,9 +97,7 @@ function NoteCard() {
         })
     }
 
-    const isLoggedIn = useAppSelector(state => state.user.isLoggedIn)
-
-    const handleAddToCart = (id: number) => {
+    const handleAddToCart = async (id: number) => {
         if (isLoggedIn === false) {
             pleaseLogin()
         } else {
@@ -67,24 +106,41 @@ function NoteCard() {
                 product_id: id,
                 is_buying: false,
             };
-            // console.log(obj)
-            fetchAddCart(obj)
+            await fetchAddCart(obj)
             addToCartAlert()
+            refetch()
         }
     }
 
     return (
         <>
-            {Array.isArray(note) && note.map((item: Note) => (
+            {Array.isArray(note) && Array.isArray(phID) && Array.isArray(cartID) && note.map((item: Note) => (
                 <IonCard key={item.id}>
                     <img alt="Silhouette of mountains" src={photo} />
                     <IonCardContent>老師:{item.teacher.user.username}   {item.name} ${item.price} 評分:{item.avg_rating}
                         <IonButton onClick={() => onClickProductPage(item.id)}>
                             詳細資料
                         </IonButton>
-                        <IonButton onClick={() => handleAddToCart(item.id)}>
-                            加入購物車
-                        </IonButton>
+                        {isLoggedIn === false && (
+                            <IonButton onClick={() => handleAddToCart(item.id)}>
+                                加入購物車
+                            </IonButton>
+                        )}
+                        {isLoggedIn === true && phID.includes(item.id) && (
+                            <IonButton disabled={true}>
+                                已購買
+                            </IonButton>
+                        )}
+                        {isLoggedIn === true && cartID.includes(item.id) && (
+                            <IonButton disabled={true}>
+                                已加入購物車
+                            </IonButton>
+                        )}
+                        {isLoggedIn === true && phID.includes(item.id) === false && cartID.includes(item.id) === false && (
+                            <IonButton onClick={() => handleAddToCart(item.id)}>
+                                加入購物車
+                            </IonButton>
+                        )}
                     </IonCardContent>
                 </IonCard>
             ))}

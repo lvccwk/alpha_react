@@ -68,19 +68,8 @@ export default function UserProfile() {
       </IonPage>
     )
   }
-  if (isLoading || !data) {
-    return (
-      <IonPage>
-        <Toolbar />
-        <IonContent className='ion-padding'>
-          <div className='userprofile'>
-            資料載入中...
-          </div>
-        </IonContent>
-      </IonPage>
-    );
-  } else {
-    //if (error) return <div>Error: {error.message}</div>;
+  if (data?.user_type !== 'student') {
+    console.log('teacher')
     return (
       <IonPage className='userprofilepage'>
         <Toolbar />
@@ -91,6 +80,45 @@ export default function UserProfile() {
             <IonCardHeader>
               <IonButton onClick={handleEditProfile}>EDIT USER PROFILE</IonButton>
               <IonButton onClick={handlePurchaseHistory}>PURCHASE HISTORY</IonButton>
+              <IonButton >UPLOAD COURSE / NOTES</IonButton>
+              <h1>老師版</h1>
+              <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
+              <IonCardTitle>{data?.username}</IonCardTitle>
+            </IonCardHeader>
+
+            <IonCardContent>
+              用戶名稱: {data?.username}
+              <br></br>
+              用戶類別 : {data?.user_type}
+              <br></br>
+              電郵 : {data?.email}
+            </IonCardContent>
+          </IonCard>
+          <div className='userprofile'>
+            <br></br>
+
+            <br></br>
+            <DeleteUserAlert />
+          </div>
+        </IonContent>
+      </IonPage>
+    );
+  } else {
+    //if (error) return <div>Error: {error.message}</div>;
+    console.log('student')
+    return (
+      <IonPage className='userprofilepage'>
+        <Toolbar />
+        <IonContent className='ion-padding'>
+
+          <IonButton className='exitbtn' onClick={handleLogout}><IonIcon icon={exitOutline} className='exit' color="white"  ></IonIcon></IonButton>
+
+          <IonCard className='profileCard' >
+            <div className='userlogo'><Avatar /></div>
+            <IonCardHeader>
+              <IonButton onClick={handleEditProfile}>EDIT USER PROFILE</IonButton>
+              <IonButton onClick={handlePurchaseHistory}>PURCHASE HISTORY</IonButton>
+              <h1>學生版</h1>
               <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
               <IonCardTitle>{data.username}</IonCardTitle>
             </IonCardHeader>
@@ -100,7 +128,7 @@ export default function UserProfile() {
               <br></br>
               用戶類別 : {data.user_type}
               <br></br>
-              電郵 : {data.email}
+              12321電郵 : {data.email}
             </IonCardContent>
           </IonCard>
           <div className='userprofile'>

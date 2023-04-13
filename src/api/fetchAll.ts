@@ -77,9 +77,35 @@ export const fetchCart = async (id: any): Promise<FetchUserAllModel> => {
 	}
 };
 
-export const fetchChatHistoryAll = async (): Promise<FetchUserAllModel> => {
-	console.log('fetchChatHisttory');
-	const res = await fetch(`http://localhost:3000/chatroomHistorys/`);
+export const fetchChatHistory = async (): Promise<FetchUserAllModel> => {
+	console.log('fetchChatHistoryAll');
+	const res = await fetch(`http://localhost:3000/privateMessages/`);
+	if (res.ok) {
+		const data = await res.json();
+		console.log(data);
+		return data;
+	} else {
+		throw new Error('fetchUser FAILED');
+	}
+};
+
+export const addChatRecord = async (obj: {
+	from_id: number;
+	to_id: number;
+	content: string;
+}): Promise<FetchUserAllModel> => {
+	console.log('addChatRecord');
+
+	const res = await fetch('http://localhost:3000/privateMessages/', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${localStorage.getItem('token')}`
+		},
+
+		body: JSON.stringify({ from_id: obj.from_id, to_id: obj.to_id, content: obj.content })
+	});
+
 	if (res.ok) {
 		const data = await res.json();
 		console.log(data);
@@ -394,18 +420,18 @@ export const fetchAddPurchaseHistory = async (id: any): Promise<FetchUserAllMode
 
 	const data = await res.json();
 
-	for(let x = 0; x < data.cart_detail.length; x++){
+	for (let x = 0; x < data.cart_detail.length; x++) {
 		await fetch(`http://localhost:3000/purchaseHistorys`, {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify({
-			product_id: data.cart_detail[x].product_id,
-			student_id: id
-		})
-	});
-	// console.log("TESTING=",x)
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				product_id: data.cart_detail[x].product_id,
+				student_id: id
+			})
+		});
+		// console.log("TESTING=",x)
 	}
 
 	const deleteRes = await fetch(`http://localhost:3000/cartDetails/${data.id}`, {
@@ -424,13 +450,13 @@ export const fetchAddPurchaseHistory = async (id: any): Promise<FetchUserAllMode
 	}
 };
 
-export const fetchCreateTeacher = async (obj:{
+export const fetchCreateTeacher = async (obj: {
 	user_id: number;
 	info: string;
 	rating: number;
 }): Promise<FetchUserAllModel> => {
 	console.log('fetchCreateTeacher');
-	
+
 	const res = await fetch(`http://localhost:3000/teachers`, {
 		method: 'POST',
 		headers: {
@@ -440,15 +466,14 @@ export const fetchCreateTeacher = async (obj:{
 			obj
 		})
 	});
-	
-	if(res.ok) {
+
+	if (res.ok) {
 		const data = await res.json();
 		return data;
 	} else {
 		throw new Error('fetchCreateTeacher FAILED');
 	}
-
-}
+};
 
 export const fetchCreateProduct = async (obj: {
 	name: string;
