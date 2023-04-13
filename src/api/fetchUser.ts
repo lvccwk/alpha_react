@@ -12,6 +12,7 @@ export interface FetchUserModel {
 	product: ProductInterface;
 	product_name: string;
 	name: string;
+	json: any;
 }
 
 export const fetchUserCheck = async (id: number | null): Promise<FetchUserModel> => {

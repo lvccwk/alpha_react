@@ -46,6 +46,10 @@ export interface FetchUserAllModel {
 	student_id: number;
 	course: any;
 	length: number;
+	content: string;
+	created_at: string;
+	from_id: number;
+	to_id: number;
 }
 
 export const fetchUserAll = async (): Promise<FetchUserAllModel> => {
@@ -77,9 +81,14 @@ export const fetchCart = async (id: any): Promise<FetchUserAllModel> => {
 	}
 };
 
-export const fetchChatHistory = async (): Promise<FetchUserAllModel> => {
+export const fetchChatHistory = async (sender_id: number): Promise<FetchUserAllModel[]> => {
 	console.log('fetchChatHistoryAll');
-	const res = await fetch(`http://localhost:3000/privateMessages/`);
+	const res = await fetch(`http://localhost:3000/privateMessages/all/?receipt=${sender_id}`, {
+		headers: {
+			Authorization: `Bearer ${localStorage.getItem('token')}`
+		}
+	});
+
 	if (res.ok) {
 		const data = await res.json();
 		console.log(data);
