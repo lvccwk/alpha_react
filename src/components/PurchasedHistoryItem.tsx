@@ -20,7 +20,7 @@ interface ProductInterface {
   updated_at: Date;
 }
 
-function PurchasedItem() {
+function PurchasedHistoryItem() {
   const userId = useAppSelector(state => state.user.id)
 
   const { data: purchaseHistory, isLoading, refetch } = useQuery({
@@ -40,8 +40,8 @@ function PurchasedItem() {
   })
   
   const history = useHistory();
-  const onClickProductPage = (id: number) => {
-    history.push(`/productpage/` + id);
+  const onClickPurchasedItem = (id: number) => {
+    history.push(`/PurchasedItem/` + id);
   }
 
   console.log(purchaseHistory?.length)
@@ -62,7 +62,8 @@ function PurchasedItem() {
               <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
             </IonThumbnail>
             <IonLabel>{item.product.name}</IonLabel>
-            <IonButton onClick={() => onClickProductPage(item.product_id)}>
+            {/* {item.product.product_type} */}
+            <IonButton onClick={() => onClickPurchasedItem(item.product_id)}>
               詳細
             </IonButton>
             {/* ${item.product.price} */}
@@ -73,4 +74,4 @@ function PurchasedItem() {
     );
   }
 }
-export default PurchasedItem;
+export default PurchasedHistoryItem;

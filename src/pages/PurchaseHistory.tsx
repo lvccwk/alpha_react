@@ -2,7 +2,7 @@ import { IonButton, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardS
 import { Route } from 'react-router';
 
 import ToolBar from '../components/Toolbar';
-import PurchasedItem from '../components/PurchasedItem';
+import PurchasedHistoryItem from '../components/PurchasedHistoryItem';
 
 const PurchaseHistory: React.FC = () => {
 
@@ -12,7 +12,7 @@ const PurchaseHistory: React.FC = () => {
                 <ToolBar />
                 <IonContent>
                     <IonCardTitle>Purchase History</IonCardTitle>
-                    <PurchasedItem />
+                    <PurchasedHistoryItem />
                 </IonContent>
             </IonPage>
         </>
