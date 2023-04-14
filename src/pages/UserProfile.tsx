@@ -59,6 +59,9 @@ export default function UserProfile() {
     history.push(`/uploadproduct/${teacher_id}`)
   }
 
+  const handleAvailableTime = () => {
+    history.push(`/availabletime/${teacher_id}`)
+  }
 
   useIonViewWillEnter(() => {
     console.log("ionViewWillEnter")
@@ -90,6 +93,7 @@ export default function UserProfile() {
               <IonButton onClick={handleEditProfile}>EDIT USER PROFILE</IonButton>
               <IonButton onClick={handlePurchaseHistory}>PURCHASE HISTORY</IonButton>
               <IonButton onClick={handleRedirectUpload}>UPLOAD COURSE / NOTES</IonButton>
+              <IonButton onClick={handleAvailableTime}>UPLOAD Available_time</IonButton>
               <h1>老師版</h1>
               <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
               <IonCardTitle>{data?.username}</IonCardTitle>
