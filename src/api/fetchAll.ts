@@ -50,6 +50,7 @@ export interface FetchUserAllModel {
 	created_at: string;
 	from_id: number;
 	to_id: number;
+	file_url: string;
 }
 
 export const fetchUserAll = async (): Promise<FetchUserAllModel> => {
