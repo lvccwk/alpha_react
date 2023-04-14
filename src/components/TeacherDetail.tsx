@@ -20,41 +20,26 @@ function TeacherDetail() {
 
     console.log(`TeacherId =`, teacherId)
 
-    const [visitCount, setVisitCount] = useState(0);
-    const visitCountRef = useRef(0);
-    useEffect(() => {
-        const storedCount = localStorage.getItem('visitCount');
-        if (storedCount) {
-            setVisitCount(parseInt(storedCount) + 1);
-            visitCountRef.current = parseInt(storedCount) + 1;
-        } else {
-            setVisitCount(1);
-            visitCountRef.current = 1;
-        }
-    }, []);
-
-    useEffect(() => {
-        localStorage.setItem('visitCount', String(visitCountRef.current));
-    }, [visitCount]);
-
     const history = useHistory();
     const onClickAppoinmentPage = (id: number) => {
         history.push(`/timeslot/` + id);
+    }
+
+    const onClickContactPage = (id: number) => {
+        history.push(`/chatroom/` + id);
     }
     return (
         <>
             <IonCard>
                 <div style={{ display: 'flex', justifyContent: 'center', paddingTop: '10px' }}>
-                    <IonButton onClick={() => onClickAppoinmentPage(Number(teacherId))}>預約 {data?.user.username}</IonButton>  <IonButton>聯絡 {data?.user.username}</IonButton>
+                    <IonButton onClick={() => onClickAppoinmentPage(Number(teacherId))}>預約 {data?.user.username}</IonButton>  <IonButton onClick={() => onClickContactPage(Number(teacherId))}>聯絡 {data?.user.username}</IonButton>
                 </div>
                 <br></br>
                 <div style={{ display: 'flex', justifyContent: 'center' }}>  <Avatar /></div>
                 <IonCardTitle>{data?.user.username}</IonCardTitle>
                 <IonCardSubtitle>Email : {data?.user.email}</IonCardSubtitle>
                 <IonCardSubtitle>教學年資： 1</IonCardSubtitle>
-                <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <p>瀏覽次數：{visitCount}</p>
-                </div>
+
                 <TeacherBookmark />
                 <img alt="Silhouette of mountains" src={photo} />
                 <IonCardContent>

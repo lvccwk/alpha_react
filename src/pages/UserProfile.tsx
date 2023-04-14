@@ -90,10 +90,10 @@ export default function UserProfile() {
           <IonCard className='profileCard' >
             <div className='userlogo'><Avatar /></div>
             <IonCardHeader>
-              <IonButton onClick={handleEditProfile}>EDIT USER PROFILE</IonButton>
+              {/* <IonButton onClick={handleEditProfile}>EDIT USER PROFILE</IonButton>
               <IonButton onClick={handlePurchaseHistory}>PURCHASE HISTORY</IonButton>
               <IonButton onClick={handleRedirectUpload}>UPLOAD COURSE / NOTES</IonButton>
-              <IonButton onClick={handleAvailableTime}>UPLOAD Available_time</IonButton>
+              <IonButton onClick={handleAvailableTime}>UPLOAD Available_time</IonButton> */}
               <h1>老師版</h1>
               <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
               <IonCardTitle>{data?.username}</IonCardTitle>
@@ -106,7 +106,14 @@ export default function UserProfile() {
               <br></br>
               電郵 : {data?.email}
             </IonCardContent>
+            <IonCardHeader>
+              <IonButton onClick={handleEditProfile}>EDIT USER PROFILE</IonButton>
+              <IonButton onClick={handlePurchaseHistory}>PURCHASE HISTORY</IonButton>
+              <IonButton onClick={handleRedirectUpload}>UPLOAD COURSE / NOTES</IonButton>
+              <IonButton onClick={handleAvailableTime}>UPLOAD Available_time</IonButton>
+            </IonCardHeader>
           </IonCard>
+
           <div className='userprofile'>
             <br></br>
 
