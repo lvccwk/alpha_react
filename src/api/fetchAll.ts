@@ -452,7 +452,7 @@ export const fetchAddPurchaseHistory = async (id: any): Promise<FetchUserAllMode
 	});
 
 	const data = await res.json();
-
+	console.log('data', data);
 	for (let x = 0; x < data.cart_detail.length; x++) {
 		await fetch(`http://localhost:3000/purchaseHistorys`, {
 			method: 'POST',

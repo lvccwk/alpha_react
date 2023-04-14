@@ -59,7 +59,7 @@ function PurchasedHistoryList() {
         {Array.isArray(purchaseHistory) && purchaseHistory.map((item: ProductInterface) => (
           <IonItem key={item.id}>
             <IonThumbnail slot="start">
-              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+              <img src={`${item.product.image}`} />
             </IonThumbnail>
             <IonLabel>{item.product.name}</IonLabel>
             {/* {item.product.product_type} */}
