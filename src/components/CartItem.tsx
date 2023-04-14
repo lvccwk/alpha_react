@@ -35,7 +35,7 @@ interface ProductInterface {
 
 function CartItem() {
   const id = useAppSelector(state => state.user.id)
-  const log = useAppSelector(state => state.user.isLoggedIn)
+  // const log = useAppSelector(state => state.user.isLoggedIn)
   const { data, isLoading, refetch } = useQuery({
     queryKey: ["cartItem"],
     queryFn: async () => await fetchCart(id),
@@ -66,8 +66,6 @@ function CartItem() {
     }
     refetch()
   }
-
-  console.log(data?.cart_detail.length)
 
   if (isLoading) return <>loading</>
 

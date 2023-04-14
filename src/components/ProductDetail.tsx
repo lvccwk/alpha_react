@@ -15,7 +15,7 @@ function ProductDetail() {
     const [cartID, setCartID] = useState<number[]>([])
     const isLoggedIn = useAppSelector(state => state.user.isLoggedIn)
 
-    const { data: user } = useQuery({
+    const { data: user, refetch: userFetch } = useQuery({
         queryKey: ["user"],
         queryFn: async () => await fetchUser(),
         refetchOnWindowFocus: false,
@@ -42,7 +42,7 @@ function ProductDetail() {
         queryKey: ["cartItems", user?.id, product],
         queryFn: async () => {
             if (user?.id) { return await fetchCart(user?.id) }
-            return []
+            return null
         },
         refetchOnWindowFocus: false,
         refetchOnReconnect: true,
@@ -50,6 +50,7 @@ function ProductDetail() {
 
     useIonViewWillEnter(()=>{
         refetch()
+        userFetch()
       })
      
     useEffect(() => {
@@ -59,9 +60,11 @@ function ProductDetail() {
             return obj.product_id;
         }))
 
-        // setCartID(cart?.cart_detail?.map((obj: { product_id: any; }) => {
-        //     return obj.product_id;
-        // }))
+        if (cart?.cart_detail) {
+            setCartID(cart?.cart_detail?.map((obj: { product_id: any; }) => {
+                return obj.product_id;
+            }))
+        }
     }, [purchaseHistory, cart, product])
 
     const [presentAlert] = useIonAlert();
@@ -96,7 +99,7 @@ function ProductDetail() {
         }
     }
 
-    console.log(cartID)
+    // console.log(cartID)
     const addToCartCondition1 = phID.includes(Number(productId))
     const addToCartCondition2 = cartID.includes(Number(productId))
 
