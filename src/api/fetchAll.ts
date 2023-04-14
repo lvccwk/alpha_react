@@ -51,6 +51,7 @@ export interface FetchUserAllModel {
 	from_id: number;
 	to_id: number;
 	file_url: string;
+	ok: any;
 }
 
 export const fetchUserAll = async (): Promise<FetchUserAllModel> => {
@@ -483,26 +484,21 @@ export const fetchAddPurchaseHistory = async (id: any): Promise<FetchUserAllMode
 	}
 };
 
-export const fetchCreateTeacher = async (obj: {
-	user_id: number;
-	info: string;
-}): Promise<void> => {
+export const fetchCreateTeacher = async (obj: { user_id: number; info: string }): Promise<void> => {
 	console.log('fetchCreateTeacher');
-	console.log("object",obj);
+	console.log('object', obj);
 	const res = await fetch(`http://localhost:3000/teachers`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
 		},
-		body: JSON.stringify(
-			obj
-		)
+		body: JSON.stringify(obj)
 	});
 	console.log(res);
 	if (res.ok) {
 		//const data = await res.json();
 		//console.log(data);
-		return ;
+		return;
 	} else {
 		throw new Error('fetchCreateTeacher FAILED');
 	}

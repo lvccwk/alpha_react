@@ -17,6 +17,8 @@ import {
   IonSelect,
   IonSelectOption,
   IonToast,
+  IonLoading,
+  IonAlert,
 } from "@ionic/react";
 import React, { useState } from 'react';
 import { FetchUserAllModel, fetchFile, fetchCreateProduct } from '../api/fetchAll';
@@ -26,6 +28,7 @@ import { useHistory, useParams } from 'react-router-dom';
 
 function FileUpload() {
   const params = useParams()
+  const history = useHistory();
   const [name, setName] = useState<string>("");
   const [price, setPrice] = useState<number | null>(null);
   const [product, setProduct] = useState<string | null>(null);
@@ -36,6 +39,8 @@ function FileUpload() {
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
   const teacherId = (Number(Object.values(params)[0]))
+  const [showLoading, setShowLoading] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
   const handleFile = (e: any) => {
     setSelectedFile(e.target.files[0]);
   };
@@ -44,13 +49,12 @@ function FileUpload() {
     setSelectedImage(e.target.files[0]);
   };
 
+  const onClickBackProfilePage = () => {
+    history.push(`/userprofile`);
+  }
+
   const onSubmit = async (e: any) => {
     e.preventDefault();
-    console.log("NAME", name);
-    console.log("PRICE", price);
-    console.log("PRODUCT", product);
-
-    // console.log(e.target.files[0])
 
     if (!name || !price || !product || !subject || !info || !selectedFile || !selectedImage) {
       console.error('Please fill in all fields');
@@ -68,12 +72,6 @@ function FileUpload() {
           subject_id: subject,
           teacher_id: teacherId
         }
-        console.log('form data:', obj)
-        console.log("FILE", selectedFile);
-        console.log('image', selectedImage)
-        // await fetchFile(selectedFile);
-
-        console.log('subject_id', subject)
         const formData = new FormData();
         formData.append('file', selectedFile);
         formData.append('name', name);
@@ -83,16 +81,20 @@ function FileUpload() {
         formData.append('subject_id', String(subject));
         formData.append('teacher_id', String(teacherId));
         formData.append('image', selectedImage);
-
+        setShowLoading(true);
         const res = await fetchCreateProduct(formData)
-
+        if (res.ok) {
+          // setToastMessage('你的資料已成功上傳');
+          setShowLoading(false);
+        }
+        setShowAlert(true);
+        setShowLoading(false);
         console.log('Product uploaded successfully');
       } catch (error) {
         console.log(error);
+        setShowLoading(false);
       }
     }
-
-
   };
 
   return (
@@ -117,6 +119,13 @@ function FileUpload() {
 
             </IonInput><br />
 
+            課程/筆記簡介
+            <IonInput aria-label="Custom input"
+              value={info}
+              placeholder="Info"
+              onIonChange={(e: any) => { console.log(e); setInfo(e.target.value) }}>
+
+            </IonInput><br />
             選擇課程/筆記
             <IonSelect
               value={product}
@@ -144,17 +153,26 @@ function FileUpload() {
               <IonSelectOption value="11">中國歷史</IonSelectOption>
             </IonSelect><br />
 
-            課程/筆記簡介
-            <IonInput aria-label="Custom input"
-              value={info}
-              placeholder="Info"
-              onIonChange={(e: any) => { console.log(e); setInfo(e.target.value) }}>
 
-            </IonInput><br />
-            <input type="file" onChange={handleImage} />課程/筆記圖片<br /><br />
-            <input type="file" onChange={handleFile} />課程/筆記檔案<br /><br />
+            課程/筆記圖片
+            <input type="file" onChange={handleImage} /><br /><br />
+            課程/筆記檔案
+            <input type="file" onChange={handleFile} /><br /><br />
 
-            <IonButton type="submit">UPLOAD</IonButton>
+            <IonButton type="submit">UPLOAD</IonButton><br></br>
+            <IonButton onClick={onClickBackProfilePage}>返回上一頁</IonButton>
+            <IonLoading
+              isOpen={showLoading}
+              message={'上傳中..'}
+              duration={0}
+            />
+            <IonAlert
+              isOpen={showAlert}
+              onDidDismiss={() => setShowAlert(false)}
+              header={'上傳成功!'}
+              message={'你的資料已上傳成功'}
+              buttons={['OK']}
+            />
           </form>
         </IonCardContent>
       </IonCard>
@@ -162,7 +180,7 @@ function FileUpload() {
       <IonToast position="top"
         isOpen={showToast}
         message={toastMessage}
-        duration={1000}
+        duration={3000}
         onDidDismiss={() => setShowToast(false)}
       />
     </>
