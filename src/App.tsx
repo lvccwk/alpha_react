@@ -93,7 +93,7 @@ const App: React.FC = () => {
             <Route path="/tutorprofile/:teacherId" exact={true} ><TutorProfile /></Route>
             <Route path="/register" render={() => <Register />} exact={true} />
             <Route path="/purchasehistory" render={() => <PurchaseHistory />} exact={true} />
-            <Route path="/uploadproduct" render={() => <UploadProduct />} exact={true} />
+            <Route path="/uploadproduct/:teacherId" render={() => <UploadProduct />} exact={true} />
             <Route path="/timeslot/:teacherId" render={() => <TimeSlot />} exact={true} />
             <Route path="/privateMessage/:id" render={() => <PrivateMessage />} exact={true} />
             <Route path="/success.html" render={() => < StripePurchaseSuccessPage />} exact={true} ></Route>

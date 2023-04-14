@@ -4,16 +4,16 @@ import FileUpload from '../components/FileUpload';
 import ToolBar from '../components/Toolbar';
 
 const UploadProduct: React.FC = () => {
-    return (
-      <>
-        <IonPage>
-          <ToolBar />
-          <IonContent>
-                <FileUpload />  
-          </IonContent>
-        </IonPage>
-      </>
-    );
-  };
-  
-  export default UploadProduct;
+  return (
+    <>
+      <IonPage>
+        <ToolBar />
+        <IonContent>
+          <FileUpload />
+        </IonContent>
+      </IonPage>
+    </>
+  );
+};
+
+export default UploadProduct;

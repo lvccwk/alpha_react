@@ -51,8 +51,15 @@ export default function UserProfile() {
     refetchOnReconnect: false,
     retry: false,
   });
+  // console.log(data)
+  // console.log('teacher_id', data?.teacher[0].id)
+  const teacher_id = (Number(data?.teacher[0].id))
 
-  console.log(data)
+  const handleRedirectUpload = () => {
+    history.push(`/uploadproduct/${teacher_id}`)
+  }
+
+
   useIonViewWillEnter(() => {
     console.log("ionViewWillEnter")
     refetch()
@@ -82,7 +89,7 @@ export default function UserProfile() {
             <IonCardHeader>
               <IonButton onClick={handleEditProfile}>EDIT USER PROFILE</IonButton>
               <IonButton onClick={handlePurchaseHistory}>PURCHASE HISTORY</IonButton>
-              <IonButton >UPLOAD COURSE / NOTES</IonButton>
+              <IonButton onClick={handleRedirectUpload}>UPLOAD COURSE / NOTES</IonButton>
               <h1>老師版</h1>
               <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
               <IonCardTitle>{data?.username}</IonCardTitle>

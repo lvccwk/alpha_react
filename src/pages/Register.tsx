@@ -17,20 +17,11 @@ const Register: React.FC = () => {
     const [cpassword, setCPassword] = useState('12345678');
     const [isTeacher, setIsTeacher] = useState(false);
     const [teacherinfo, setTeacherinfo] = useState("");
-
     const [showToast, setShowToast] = useState(false);
     const [toastMessage, setToastMessage] = useState('');
-
     const history = useHistory();
 
     const handleRegisterUser = () => {
-        console.log("username: ", username)
-        console.log("password: ", password)
-        console.log("cpassword: ", cpassword)
-        console.log("user_type: ", user_type)
-        console.log('email:', email)
-        console.log('toastMessage', toastMessage)
-
 
         if (password !== cpassword) {
             setShowToast(true);
@@ -62,7 +53,7 @@ const Register: React.FC = () => {
                 fetchData();
             }
             if (isTeacher && teacherinfo) {
-                //fetchCreateTeacher()
+                // fetchCreateTeacher()
             }
         }
     };
@@ -86,20 +77,18 @@ const Register: React.FC = () => {
                             <IonSelectOption value="teacher">導師</IonSelectOption>
                             <IonSelectOption value="student">學生</IonSelectOption>
 
-                        </IonSelect><br/> 
-                        
+                        </IonSelect><br />
                         {isTeacher && (
                             <>
-                            導師簡介
-                            <IonInput
-                                aria-label="Custom input"
-                                class="custom"
-                                value={teacherinfo}
-                                placeholder="Teacher Input"
-                                onIonChange={(e: any) => setTeacherinfo(e.target.value)}
-                            >
-                                
-                            </IonInput><br/> 
+                                導師簡介
+                                <IonInput
+                                    aria-label="Custom input"
+                                    class="custom"
+                                    value={teacherinfo}
+                                    placeholder="Teacher Input"
+                                    onIonChange={(e: any) => setTeacherinfo(e.target.value)}
+                                >
+                                </IonInput><br />
                             </>
                         )}
                         {/* <IonInput value={user_type} placeholder="User_type?" onIonChange={(e: any) => setUsertype(e.target.value)}></IonInput> */}
