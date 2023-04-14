@@ -11,6 +11,7 @@ function TimePicker() {
         queryKey: ["timeScheduleLists"],
         queryFn: () => fetchTeacher(Number(teacherId)),
     });
+
     const currentDatetime = new Date().toISOString(); // get the current datetime as ISO string
     const [selectedDatetime, setSelectedDatetime] = useState(null); // state to store the selected datetime value
 
@@ -31,11 +32,7 @@ function TimePicker() {
                 <IonDatetime locale="zh-HK" hourCycle="h23" min={currentDatetime} onIonChange={handleDatetimeChange}></IonDatetime>
                 <IonButton onClick={handleSubmit}>提交你的預約時間</IonButton>
             </div>
-            <div>
-                {data?.user.username} 每節課堂為一小時
-                <IonDatetime locale="zh-HK" hourCycle="h23" min={currentDatetime} onIonChange={handleDatetimeChange}></IonDatetime>
-                <IonButton onClick={handleSubmit}>提交你的預約時間</IonButton>
-            </div>
+
         </>
 
     );

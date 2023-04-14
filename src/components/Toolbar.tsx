@@ -23,6 +23,10 @@ function ToolBar() {
             console.log('noLOGIN');
         }
     }
+    // const handleBackPage = () => {
+    //     history.push('')
+    //   }
+
 
     return (
         <IonHeader>
@@ -31,6 +35,7 @@ function ToolBar() {
                 <IonButtons slot="start">
 
                     <IonBackButton color="light"> <IonTitle>Back Button</IonTitle></IonBackButton>
+                    {/* <IonButton onClick={handleBackPage} ></IonButton> */}
                 </IonButtons>
 
                 <IonButtons slot="end">
