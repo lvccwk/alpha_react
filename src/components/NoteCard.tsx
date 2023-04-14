@@ -33,7 +33,7 @@ function NoteCard() {
         refetchOnReconnect: true,
     });
 
-    const { data: user } = useQuery({
+    const { data: user, refetch: userFetch  } = useQuery({
         queryKey: ["user"],
         queryFn: async () => await fetchUser(),
         refetchOnWindowFocus: false,
@@ -61,6 +61,7 @@ function NoteCard() {
 
     useIonViewWillEnter(()=>{
         refetch()
+        userFetch()
       })
 
     useEffect(() => {

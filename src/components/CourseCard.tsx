@@ -40,7 +40,7 @@ function CourseCard() {
         refetchOnReconnect: true,
     });
 
-    console.log(`user`, user)
+    // console.log(`user`, user)
     const { data: purchaseHistory } = useQuery({
         queryKey: ["purchasehistory", user?.id],
         queryFn: async () => {
@@ -77,7 +77,6 @@ function CourseCard() {
                 return obj.product_id;
             }))
         }
-
     }, [purchaseHistory, cart, course])
 
     const history = useHistory();
@@ -106,9 +105,9 @@ function CourseCard() {
         if (isLoggedIn === false) {
             pleaseLogin()
         } else {
-            console.log({
-                user
-            })
+            // console.log({
+            //     user
+            // })
 
             let obj = {
                 cart_id: user?.cart[0].id,
@@ -122,13 +121,13 @@ function CourseCard() {
         }
     }
 
-    console.log({
-        course,
-        phID,
-        cartID,
-        user,
-        cart
-    })
+    // console.log({
+    //     course,
+    //     phID,
+    //     cartID,
+    //     user,
+    //     cart
+    // })
     return (
         <>
             {Array.isArray(course) && Array.isArray(phID) && Array.isArray(cartID) && course.map((item: Course) => (
