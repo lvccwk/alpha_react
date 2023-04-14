@@ -365,8 +365,10 @@ export const fetchFile = async (file: File): Promise<FetchUserAllModel> => {
 	console.log('fetchFile');
 	const formData = new FormData();
 	formData.append('file', file);
+	formData.append('name', 'abcd');
+	formData.append('sacas', 'sacas');
 
-	const res = await fetch(`http://localhost:3000/products`, {
+	const res = await fetch(`http://localhost:3000/users/file`, {
 		method: 'POST',
 		headers: {
 			// 'Content-Type': 'multipart/form-data',
@@ -492,9 +494,7 @@ export const fetchCreateTeacher = async (obj: {
 		headers: {
 			'Content-Type': 'application/json'
 		},
-		body: JSON.stringify({
-			obj
-		})
+		body: JSON.stringify(obj)
 	});
 
 	if (res.ok) {
@@ -505,24 +505,16 @@ export const fetchCreateTeacher = async (obj: {
 	}
 };
 
-export const fetchCreateProduct = async (obj: {
-	name: string;
-	price: number;
-	product_type: string;
-	subject_id: number;
-	teacher_id: number;
-}): Promise<FetchUserAllModel> => {
+export const fetchCreateProduct = async (formData: FormData): Promise<FetchUserAllModel> => {
 	console.log('fetchCreateProduct');
 
 	const res = await fetch(`http://localhost:3000/products`, {
 		method: 'POST',
 		headers: {
-			'Content-Type': 'application/json'
-			//Authorization: `Bearer ${localStorage.getItem('token')}`
+			// 'Content-Type': 'application/json'
+			Authorization: `Bearer ${localStorage.getItem('token')}`
 		},
-		body: JSON.stringify({
-			obj
-		})
+		body: formData
 	});
 
 	if (res.ok) {

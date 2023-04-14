@@ -34,7 +34,7 @@ function CourseCard() {
     });
 
     const { data: user, refetch: userFetch } = useQuery({
-        queryKey: ["user"],
+        queryKey: ["users"],
         queryFn: async () => await fetchUser(),
         refetchOnWindowFocus: false,
         refetchOnReconnect: true,
@@ -42,7 +42,7 @@ function CourseCard() {
 
     console.log(`user`, user)
     const { data: purchaseHistory } = useQuery({
-        queryKey: ["purchasehistory", user?.id],
+        queryKey: ["purchasehistorys", user?.id],
         queryFn: async () => {
             if (user?.id) { return await fetchPurchaseHistory(user?.id) }
             return []
@@ -51,7 +51,7 @@ function CourseCard() {
         refetchOnReconnect: true,
     });
     const { data: cart } = useQuery({
-        queryKey: ["cartItems", user?.id, course],
+        queryKey: ["cartItemss", user?.id, course],
         queryFn: async () => {
             if (user?.id) { return await fetchCart(user?.id) }
             return null

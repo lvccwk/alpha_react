@@ -1,4 +1,4 @@
-import { CartDetailInterface, ProductInterface } from '../interface/interface';
+import { CartDetailInterface, ProductInterface, TeacherInterface } from '../interface/interface';
 
 export interface FetchUserModel {
 	id: number;
@@ -13,6 +13,7 @@ export interface FetchUserModel {
 	product_name: string;
 	name: string;
 	json: any;
+	teacher: TeacherInterface[];
 }
 
 export const fetchUserCheck = async (id: number | null): Promise<FetchUserModel> => {
