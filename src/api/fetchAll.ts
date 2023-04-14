@@ -483,23 +483,23 @@ export const fetchAddPurchaseHistory = async (id: any): Promise<FetchUserAllMode
 export const fetchCreateTeacher = async (obj: {
 	user_id: number;
 	info: string;
-	rating: number|null;
-}): Promise<FetchUserAllModel> => {
+}): Promise<void> => {
 	console.log('fetchCreateTeacher');
-
+	console.log("object",obj);
 	const res = await fetch(`http://localhost:3000/teachers`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
 		},
-		body: JSON.stringify({
+		body: JSON.stringify(
 			obj
-		})
+		)
 	});
-
+	console.log(res);
 	if (res.ok) {
-		const data = await res.json();
-		return data;
+		//const data = await res.json();
+		//console.log(data);
+		return ;
 	} else {
 		throw new Error('fetchCreateTeacher FAILED');
 	}
