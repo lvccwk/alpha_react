@@ -50,6 +50,7 @@ export interface FetchUserAllModel {
 	created_at: string;
 	from_id: number;
 	to_id: number;
+	file_url: string;
 }
 
 export const fetchUserAll = async (): Promise<FetchUserAllModel> => {
@@ -365,8 +366,10 @@ export const fetchFile = async (file: File): Promise<FetchUserAllModel> => {
 	console.log('fetchFile');
 	const formData = new FormData();
 	formData.append('file', file);
+	formData.append('name', 'abcd');
+	formData.append('sacas', 'sacas');
 
-	const res = await fetch(`http://localhost:3000/products`, {
+	const res = await fetch(`http://localhost:3000/users/file`, {
 		method: 'POST',
 		headers: {
 			// 'Content-Type': 'multipart/form-data',
@@ -449,7 +452,7 @@ export const fetchAddPurchaseHistory = async (id: any): Promise<FetchUserAllMode
 	});
 
 	const data = await res.json();
-
+	console.log('data', data);
 	for (let x = 0; x < data.cart_detail.length; x++) {
 		await fetch(`http://localhost:3000/purchaseHistorys`, {
 			method: 'POST',
@@ -505,24 +508,16 @@ export const fetchCreateTeacher = async (obj: {
 	}
 };
 
-export const fetchCreateProduct = async (obj: {
-	name: string;
-	price: number;
-	product_type: string;
-	subject_id: number;
-	teacher_id: number;
-}): Promise<FetchUserAllModel> => {
+export const fetchCreateProduct = async (formData: FormData): Promise<FetchUserAllModel> => {
 	console.log('fetchCreateProduct');
 
 	const res = await fetch(`http://localhost:3000/products`, {
 		method: 'POST',
 		headers: {
-			'Content-Type': 'application/json'
-			//Authorization: `Bearer ${localStorage.getItem('token')}`
+			// 'Content-Type': 'application/json'
+			Authorization: `Bearer ${localStorage.getItem('token')}`
 		},
-		body: JSON.stringify({
-			obj
-		})
+		body: formData
 	});
 
 	if (res.ok) {

@@ -5,6 +5,8 @@ import { useQuery } from '@tanstack/react-query';
 import photo from '../../src/photo/brandi-redd-6H9H-tYPUQQ-unsplash.jpg'
 import { useHistory, useParams } from 'react-router-dom';
 import './TeacherDetail.css';
+import { Browser } from '@capacitor/browser';
+
 
 function PurchasedItemDetail() {
     const params = useParams()
@@ -17,19 +19,28 @@ function PurchasedItemDetail() {
         refetchOnReconnect: true,
     });
 
-    useIonViewWillEnter(()=>{
+    useIonViewWillEnter(() => {
         refetch()
-      })
+    })
+
+
+    const openCapacitorSite = async () => {
+        console.log('download note')
+        await Browser.open({ url: `${product?.file_url}` });
+    };
+
 
     return (
         <>
             <IonCard>
-                <img alt="Silhouette of mountains" src={photo} />
+                <img src={`${product?.image}`} />
                 <IonCardContent>老師:{product?.teacher.user.username}
                     <br />
                     {product?.name}
                     <br />
                     評分:{product?.avg_rating}
+                    <br />
+                    <IonButton onClick={() => openCapacitorSite()}>下載筆記</IonButton>
                     <br />
                     詳細內容:{product?.info}
                     <br />

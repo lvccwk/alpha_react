@@ -20,25 +20,25 @@ interface ProductInterface {
   updated_at: Date;
 }
 
-function PurchasedHistoryItem() {
+function PurchasedHistoryList() {
   const userId = useAppSelector(state => state.user.id)
 
   const { data: purchaseHistory, isLoading, refetch } = useQuery({
-      queryKey: ["purchasehistory", userId],
-      queryFn: async () => {
-          if (userId) { return await fetchPurchaseHistory(userId) }
-          return []
-      },
-      refetchOnWindowFocus: false,
-      refetchOnReconnect: true,
+    queryKey: ["purchasehistory", userId],
+    queryFn: async () => {
+      if (userId) { return await fetchPurchaseHistory(userId) }
+      return []
+    },
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: true,
   });
 
   console.log(purchaseHistory)
 
-  useIonViewWillEnter(()=>{
+  useIonViewWillEnter(() => {
     refetch()
   })
-  
+
   const history = useHistory();
   const onClickPurchasedItem = (id: number) => {
     history.push(`/PurchasedItem/` + id);
@@ -59,7 +59,7 @@ function PurchasedHistoryItem() {
         {Array.isArray(purchaseHistory) && purchaseHistory.map((item: ProductInterface) => (
           <IonItem key={item.id}>
             <IonThumbnail slot="start">
-              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
+              <img src={`${item.product.image}`} />
             </IonThumbnail>
             <IonLabel>{item.product.name}</IonLabel>
             {/* {item.product.product_type} */}
@@ -69,9 +69,9 @@ function PurchasedHistoryItem() {
             {/* ${item.product.price} */}
           </IonItem>
         ))}
-        
+
       </>
     );
   }
 }
-export default PurchasedHistoryItem;
+export default PurchasedHistoryList;

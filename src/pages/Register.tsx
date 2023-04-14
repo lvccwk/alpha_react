@@ -138,30 +138,28 @@
                                 <IonSelectOption value="teacher">導師</IonSelectOption>
                                 <IonSelectOption value="student">學生</IonSelectOption>
 
-                            </IonSelect><br />
-
-                            {isTeacher && (
-                                <>
-                                    導師簡介
-                                    <IonInput
-                                        aria-label="Custom input"
-                                        class="custom"
-                                        value={teacherinfo}
-                                        placeholder="Teacher Input"
-                                        onIonChange={(e: any) => setTeacherinfo(e.target.value)}
-                                    >
-
-                                    </IonInput><br />
-                                </>
-                            )}
-                            {/* <IonInput value={user_type} placeholder="User_type?" onIonChange={(e: any) => setUsertype(e.target.value)}></IonInput> */}
-                            <IonInput aria-label="Custom input" class="custom" value={username} placeholder="username" onIonChange={(e: any) => { console.log(e); setUsername(e.target.value) }}>用戶名稱：</IonInput><br></br>
-                            <IonInput aria-label="Custom input" class="custom" value={email} placeholder="email" onIonChange={(e: any) => setUseremail(e.target.value)}>電郵</IonInput><br></br>
-                            <IonInput aria-label="Custom input" class="custom" value={password} placeholder="password" onIonChange={(e: any) => setPassword(e.target.value)}>密碼</IonInput><br></br>
-                            <IonInput aria-label="Custom input" class="custom" value={cpassword} placeholder="Confirm Password" onIonChange={(e: any) => setCPassword(e.target.value)}>確認密碼</IonInput><br></br>
-                            <IonButton onClick={handleRegisterUser}>註冊</IonButton>
-                        </div >
-                    </IonContent>
+                        </IonSelect><br />
+                        {isTeacher && (
+                            <>
+                                導師簡介
+                                <IonInput
+                                    aria-label="Custom input"
+                                    class="custom"
+                                    value={teacherinfo}
+                                    placeholder="Teacher Input"
+                                    onIonChange={(e: any) => setTeacherinfo(e.target.value)}
+                                >
+                                </IonInput><br />
+                            </>
+                        )}
+                        {/* <IonInput value={user_type} placeholder="User_type?" onIonChange={(e: any) => setUsertype(e.target.value)}></IonInput> */}
+                        <IonInput aria-label="Custom input" class="custom" value={username} placeholder="username" onIonChange={(e: any) => { console.log(e); setUsername(e.target.value) }}>用戶名稱：</IonInput><br></br>
+                        <IonInput aria-label="Custom input" class="custom" value={email} placeholder="email" onIonChange={(e: any) => setUseremail(e.target.value)}>電郵</IonInput><br></br>
+                        <IonInput aria-label="Custom input" class="custom" value={password} placeholder="password" onIonChange={(e: any) => setPassword(e.target.value)}>密碼</IonInput><br></br>
+                        <IonInput aria-label="Custom input" class="custom" value={cpassword} placeholder="Confirm Password" onIonChange={(e: any) => setCPassword(e.target.value)}>確認密碼</IonInput><br></br>
+                        <IonButton onClick={handleRegisterUser}>註冊</IonButton>
+                    </div >
+                </IonContent>
 
                     <IonToast position="top"
                         isOpen={showToast}
