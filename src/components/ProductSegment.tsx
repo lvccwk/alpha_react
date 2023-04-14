@@ -28,7 +28,7 @@ function ProductSegment() {
                     <p>
                         <IonGrid>
                             <IonRow>
-                                <IonCol><CourseCard /></IonCol>
+                                <CourseCard />
                             </IonRow>
                         </IonGrid>
                     </p>
@@ -38,7 +38,7 @@ function ProductSegment() {
                     <p>
                         <IonGrid >
                             <IonRow>
-                                <IonCol>    <NoteCard />  </IonCol>
+                                <NoteCard />
                             </IonRow>
 
                         </IonGrid>

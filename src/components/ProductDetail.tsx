@@ -11,7 +11,7 @@ import { useAppSelector } from '../redux/store';
 function ProductDetail() {
     const params = useParams()
     const productId = Object.values(params)[0]
-    const [phID, setPhID] = useState<number[]>([])
+    const [phID, setPhID] = useState<number[] | null>(null);
     const [cartID, setCartID] = useState<number[]>([])
     const isLoggedIn = useAppSelector(state => state.user.isLoggedIn)
 
@@ -28,7 +28,7 @@ function ProductDetail() {
         refetchOnWindowFocus: false,
         refetchOnReconnect: true,
     });
-    
+
     const { data: purchaseHistory } = useQuery({
         queryKey: ["purchasehistory", user?.id],
         queryFn: async () => {
@@ -48,11 +48,11 @@ function ProductDetail() {
         refetchOnReconnect: true,
     });
 
-    useIonViewWillEnter(()=>{
+    useIonViewWillEnter(() => {
         refetch()
         userFetch()
-      })
-     
+    })
+
     useEffect(() => {
         if (user) {
         }
@@ -100,7 +100,8 @@ function ProductDetail() {
     }
 
     // console.log(cartID)
-    const addToCartCondition1 = phID.includes(Number(productId))
+    console.log('phID', phID)
+    const addToCartCondition1 = phID?.includes(Number(productId))
     const addToCartCondition2 = cartID.includes(Number(productId))
 
     return (
