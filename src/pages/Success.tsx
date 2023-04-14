@@ -4,29 +4,44 @@ import ToolBar from '../components/Toolbar';
 import { fetchUser } from '../api/fetchUser';
 import { useQuery } from '@tanstack/react-query';
 import { fetchAddPurchaseHistory } from '../api/fetchAll';
+import { useEffect, useState } from 'react';
 
 interface LocationState {
     amount: number;
 }
 
+interface User {
+    id: number;
+}
 const StripePurchaseSuccessPage: React.FC = () => {
     const location = useLocation<LocationState>();
     const amount = location.state && location.state.amount;
     const history = useHistory();
 
-    const { data: user } = useQuery({
-        queryKey: ["user"],
+    const [userDataLoaded, setUserDataLoaded] = useState(false);
+    const [user, setUser] = useState<User | undefined>();
+
+    const { refetch } = useQuery({
+        queryKey: ["userPayment"],
         queryFn: () => fetchUser(),
+        onSuccess: (data) => {
+            setUser(data);
+            setUserDataLoaded(true);
+        },
     });
 
-    fetchAddPurchaseHistory(user?.id)
+    useEffect(() => {
+        if (user && userDataLoaded) {
+            fetchAddPurchaseHistory(user.id);
+        }
+    }, [user, userDataLoaded]);
 
     const handleClick = () => {
-        history.push('/');
+        history.push("/");
     };
 
     const handleClickPurchaseHistory = () => {
-        history.push('/purchasehistory');
+        history.push("/purchasehistory");
     };
 
     return (
@@ -42,7 +57,6 @@ const StripePurchaseSuccessPage: React.FC = () => {
                     Purchase History
                 </IonButton>
             </IonContent>
-
         </IonPage>
     );
 };

@@ -31,14 +31,17 @@ function FileUpload() {
   const [product, setProduct] = useState<string | null>(null);
   const [subject, setSubject] = useState<number | null>(null);
   const [info, setInfo] = useState<string>("");
-
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-
+  const [selectedImage, setSelectedImage] = useState<File | null>(null);
   const [showToast, setShowToast] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
   const teacherId = (Number(Object.values(params)[0]))
   const handleFile = (e: any) => {
     setSelectedFile(e.target.files[0]);
+  };
+
+  const handleImage = (e: any) => {
+    setSelectedImage(e.target.files[0]);
   };
 
   const onSubmit = async (e: any) => {
@@ -49,7 +52,7 @@ function FileUpload() {
 
     // console.log(e.target.files[0])
 
-    if (!name || !price || !product || !subject || !info || !selectedFile) {
+    if (!name || !price || !product || !subject || !info || !selectedFile || !selectedImage) {
       console.error('Please fill in all fields');
       setShowToast(true);
       setToastMessage('資料不能留空');
@@ -63,10 +66,11 @@ function FileUpload() {
           info: info,
           product_type: product,
           subject_id: subject,
-          teacher_id: teacherId,
+          teacher_id: teacherId
         }
         console.log('form data:', obj)
         console.log("FILE", selectedFile);
+        console.log('image', selectedImage)
         // await fetchFile(selectedFile);
 
         console.log('subject_id', subject)
@@ -78,6 +82,7 @@ function FileUpload() {
         formData.append('product_type', product);
         formData.append('subject_id', String(subject));
         formData.append('teacher_id', String(teacherId));
+        formData.append('image', selectedImage);
 
         const res = await fetchCreateProduct(formData)
 
@@ -146,8 +151,8 @@ function FileUpload() {
               onIonChange={(e: any) => { console.log(e); setInfo(e.target.value) }}>
 
             </IonInput><br />
-
-            <input type="file" onChange={handleFile} /><br /><br />
+            <input type="file" onChange={handleImage} />課程/筆記圖片<br /><br />
+            <input type="file" onChange={handleFile} />課程/筆記檔案<br /><br />
 
             <IonButton type="submit">UPLOAD</IonButton>
           </form>
