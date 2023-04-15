@@ -44,7 +44,7 @@ export interface FetchUserAllModel {
 	subject: SubjectInterface;
 	url: string;
 	student_id: number;
-	course: any;
+	course: any | null;
 	length: number;
 	content: string;
 	created_at: string;
@@ -52,6 +52,7 @@ export interface FetchUserAllModel {
 	to_id: number;
 	file_url: string;
 	ok: any;
+	filter: any | null;
 }
 
 export const fetchUserAll = async (): Promise<FetchUserAllModel> => {

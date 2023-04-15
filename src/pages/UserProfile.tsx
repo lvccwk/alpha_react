@@ -53,7 +53,7 @@ export default function UserProfile() {
   });
   // console.log(data)
   // console.log('teacher_id', data?.teacher[0].id)
-  const teacher_id = (Number(data?.teacher[0].id))
+  const teacher_id = (Number(data?.teacher[0]?.id))
 
   const handleRedirectUpload = () => {
     history.push(`/uploadproduct/${teacher_id}`)

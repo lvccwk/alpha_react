@@ -13,7 +13,7 @@ import {
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { cart, chatbubblesOutline, homeOutline, libraryOutline, people } from 'ionicons/icons';
+import { cart, cartOutline, chatbubbles, chatbubblesOutline, home, homeOutline, library, libraryOutline, people, peopleOutline } from 'ionicons/icons';
 
 
 /* Core CSS required for Ionic components to work properly */
@@ -47,7 +47,7 @@ import Home from './pages/Home';
 import Resource from './pages/Resource';
 import Tutor from './pages/Tutor';
 import Chatroom from './pages/Chatroom';
-import "./App.css"
+import "./App.css";
 import TutorProfile from './pages/TutorProfile';
 import Register from './pages/Register';
 import PurchaseHistory from './pages/PurchaseHistory';
@@ -61,6 +61,7 @@ import StripePurchaseFailPage from './pages/Fail';
 import StripePurchaseSuccessPage from './pages/Success';
 import ChatMessage from './pages/ChatMessage';
 import UploadAvailableTime from './pages/UploadAvailableTime';
+
 
 
 setupIonicReact();
@@ -105,22 +106,22 @@ const App: React.FC = () => {
           <IonTabBar slot="bottom">
             <IonTabButton tab="resource" href="/resource">
               <IonIcon icon={libraryOutline} />
-              <IonLabel>資源</IonLabel>
+              <IonLabel >資源</IonLabel>
             </IonTabButton>
 
             <IonTabButton tab="tutor" href="/tutor" >
-              <IonIcon icon={people} />
-              <IonLabel>導師</IonLabel>
+              <IonIcon icon={peopleOutline} />
+              <IonLabel  >導師</IonLabel>
             </IonTabButton>
 
             <IonTabButton tab="home" href="/home">
               <IonIcon icon={homeOutline} />
-              <IonLabel>首頁</IonLabel>
+              <IonLabel  >首頁</IonLabel>
             </IonTabButton>
 
             <IonTabButton tab="shoppingcart" href="/shoppingcart">
-              <IonIcon icon={cart} />
-              <IonLabel>購物車</IonLabel>
+              <IonIcon icon={cartOutline} />
+              <IonLabel  >購物車</IonLabel>
             </IonTabButton>
 
             <IonTabButton tab="chatroom" href="/chatroom">
@@ -129,6 +130,8 @@ const App: React.FC = () => {
             </IonTabButton>
 
           </IonTabBar>
+
+
         </IonTabs>
       </IonReactRouter>
     </IonApp>

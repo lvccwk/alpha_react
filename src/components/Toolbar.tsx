@@ -2,7 +2,6 @@ import { IonBackButton, IonButton, IonButtons, IonHeader, IonIcon, IonTitle, Ion
 import { personCircle } from "ionicons/icons";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import '../components/ActionSheet';
 import { useAppSelector } from "../redux/store";
 import "./Toolbar.css";
 
@@ -31,9 +30,7 @@ function ToolBar() {
     return (
         <IonHeader>
             <IonToolbar>
-
                 <IonButtons slot="start">
-
                     <IonBackButton color="light"> <IonTitle>Back Button</IonTitle></IonBackButton>
                     {/* <IonButton onClick={handleBackPage} ></IonButton> */}
                 </IonButtons>
