@@ -113,13 +113,10 @@ export default function UserProfile() {
               <IonButton onClick={handleAvailableTime}>UPLOAD Available_time</IonButton>
             </IonCardHeader>
           </IonCard>
-
           <div className='userprofile'>
-            <br></br>
-
-            <br></br>
             <DeleteUserAlert />
           </div>
+          <br /><br /><br /><br /><br /><br />
         </IonContent>
       </IonPage>
     );

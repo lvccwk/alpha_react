@@ -9,7 +9,7 @@ import { useAppSelector } from "../redux/store";
 import { fetchUser } from '../api/fetchUser';
 import { TeacherInterface, UserInterface } from '../interface/interface';
 
-interface Course {
+export interface Course {
     id: number;
     name: string;
     price: number;
@@ -18,6 +18,7 @@ interface Course {
     teacher: TeacherInterface;
     teacher_id: number;
     user: UserInterface;
+    info: string;
 }
 
 function CourseCard() {

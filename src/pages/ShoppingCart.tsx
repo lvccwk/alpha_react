@@ -22,8 +22,8 @@ const ShoppingCart: React.FC = () => {
                 )}
                 {isLoggedIn === true && (
                     <IonContent  >
-                        <IonCardTitle>你的購物車</IonCardTitle>
                         <IonCard className='ion-padding'>
+                            <IonCardTitle>你的購物車</IonCardTitle>
                             <CartItem />
                         </IonCard>
                     </IonContent>

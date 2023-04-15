@@ -257,6 +257,20 @@ export const fetchDropFromCart = async (id: number): Promise<FetchUserAllModel> 
 	}
 };
 
+export const fetchCourseByid = async (id: number): Promise<FetchUserAllModel> => {
+	console.log('fetchCourseByid');
+
+	const res = await fetch(`http://localhost:3000/products/${id}`);
+
+	if (res.ok) {
+		const data = await res.json();
+		console.log(data);
+		return data;
+	} else {
+		throw new Error('fetchCourse FAILED');
+	}
+};
+
 export const fetchCourse = async (): Promise<FetchUserAllModel> => {
 	console.log('fetchCourse');
 

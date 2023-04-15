@@ -1,4 +1,4 @@
-import { IonPage, IonContent, IonHeader, IonToolbar, IonTitle, IonButton } from '@ionic/react';
+import { IonPage, IonContent, IonHeader, IonToolbar, IonTitle, IonButton, IonCardTitle } from '@ionic/react';
 import { useLocation, useHistory } from 'react-router-dom';
 import ToolBar from '../components/Toolbar';
 import { fetchUser } from '../api/fetchUser';
@@ -47,8 +47,9 @@ const StripePurchaseSuccessPage: React.FC = () => {
     return (
         <IonPage>
             <ToolBar />
-            <h1>Payment Succuess</h1>
+
             <IonContent className="ion-padding">
+                <IonCardTitle>Payment Succuess</IonCardTitle>
                 <p>Your payment of ${amount} has been processed successfully.</p>
                 <IonButton expand="block" onClick={handleClick}>
                     Back to Home

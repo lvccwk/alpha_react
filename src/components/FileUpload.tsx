@@ -111,7 +111,7 @@ function FileUpload() {
 
             </IonInput><br />
 
-            價錢
+            價錢 `$ HKD`
             <IonInput aria-label="Custom input"
               value={price}
               placeholder="Price ($ HKD)"
@@ -171,7 +171,8 @@ function FileUpload() {
               onDidDismiss={() => setShowAlert(false)}
               header={'上傳成功!'}
               message={'你的資料已上傳成功'}
-              buttons={['OK']}
+              buttons={['返回上一頁!']}
+              onClick={onClickBackProfilePage}
             />
           </form>
         </IonCardContent>

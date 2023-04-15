@@ -16,7 +16,7 @@ function DeleteUserAlert() {
   const id = useAppSelector(state => state.user.id)
   const loggedIn = useAppSelector(state => state.user.isLoggedIn)
   return (
-    <IonButton
+    <IonButton color={'danger'}
       onClick={() =>
         presentAlert({
           header: '確定要刪除您的帳戶嗎?',

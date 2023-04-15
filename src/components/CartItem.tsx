@@ -1,5 +1,5 @@
 
-import { IonItem, IonLabel, IonButton, IonThumbnail, IonButtons, IonIcon, IonCheckbox, useIonViewWillEnter, IonCard, IonCardContent, IonCardHeader, IonCardTitle } from '@ionic/react';
+import { IonItem, IonLabel, IonButton, IonThumbnail, IonButtons, IonIcon, IonCheckbox, useIonViewWillEnter, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonImg, IonCardSubtitle } from '@ionic/react';
 import { useQuery } from '@tanstack/react-query';
 import { useHistory } from 'react-router';
 import { fetchCart, fetchDropFromCart, fetchIsBuying } from '../api/fetchAll';
@@ -91,6 +91,7 @@ function CartItem() {
       <>
         {Array.isArray(data?.cart_detail) && data?.cart_detail.map((item: CartItemInfo) => (
           <div>
+            <br />
             <IonItem key={item.id}>
               <div className='cartList' onClick={() => onClickProductPage(item.product_id)}>
                 <IonThumbnail className='image-size' slot="start">
@@ -99,7 +100,7 @@ function CartItem() {
                 <IonLabel className='ion-padding'>
                   <h2>{item.product.name}</h2>
                   {/* <p>Size: {item.product.size}</p> */}
-                  <h3>價錢: ${item.product.price}</h3>
+                  <h3>HKD: ${item.product.price}</h3>
                 </IonLabel>
               </div>
               <IonButtons>
@@ -112,9 +113,10 @@ function CartItem() {
 
           </div>
         ))}
-        <br />
+        <br /><br />
+
         <Button />
-        <br /><br /> <br /><br />
+        <br /><br />
       </>
     );
   }

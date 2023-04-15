@@ -1,9 +1,9 @@
 import React from 'react';
-import { IonButton , useIonAlert} from '@ionic/react';
+import { IonButton, IonCardSubtitle, useIonAlert } from '@ionic/react';
 import { useQuery } from '@tanstack/react-query';
 import { fetchCart, fetchIsBuying, stripeCheckOut } from '../api/fetchAll';
 import { useAppSelector } from '../redux/store';
-
+import './UiDesign/CartPage.css'
 
 function Button() {
     const id = useAppSelector(state => state.user.id)
@@ -38,11 +38,14 @@ function Button() {
 
     return (
         <>
-            {cart_id !== undefined && (
-                <IonButton onClick={() => checkout(cart_id)}>
-                    前往付款 stripe
-                </IonButton>
-            )}
+            <div className='checkout'>
+                <IonCardSubtitle>付款方式 ： Stripe</IonCardSubtitle>
+                {cart_id !== undefined && (
+                    <IonButton onClick={() => checkout(cart_id)}>
+                        前往付款
+                    </IonButton>
+                )}
+            </div>
         </>
     );
 }

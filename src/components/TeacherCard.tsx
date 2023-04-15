@@ -7,7 +7,7 @@ import { useHistory } from 'react-router-dom';
 import { TeacherInterface } from '../interface/interface';
 import { useState } from 'react';
 
-function TeacherCard() {
+function TeacherList() {
     const [searchText, setSearchText] = useState('');
     const { data, isLoading, error, refetch } = useQuery({
         queryKey: ["teacherAllList"],
@@ -44,7 +44,7 @@ function TeacherCard() {
     );
 };
 
-export default TeacherCard;
+export default TeacherList;
 
 
 

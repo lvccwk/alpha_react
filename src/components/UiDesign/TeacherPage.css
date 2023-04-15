@@ -1,0 +1,25 @@
+.teacher-avatar{
+    display: flex;
+    justify-content: center;
+
+}
+
+.teacher-contact{
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+}
+
+.teacher-info {
+    display: flex;
+    justify-content: center;
+    padding-top: 10px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.teacher-fonts {
+    display: flex;
+    justify-content: center;
+font-size: 18px;
+}
