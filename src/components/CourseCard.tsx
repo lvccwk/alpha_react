@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { IonButton, IonCard, IonCardContent, IonSearchbar, SearchbarChangeEventDetail, useIonAlert, useIonViewWillEnter } from '@ionic/react';
+import { IonButton, IonCard, IonCardContent, IonContent, IonSearchbar, SearchbarChangeEventDetail, useIonAlert, useIonViewWillEnter } from '@ionic/react';
 import './TeacherCard.css';
 import { fetchAddCart, fetchCart, fetchCourse, fetchPurchaseHistory } from '../api/fetchAll';
 import { useQuery } from '@tanstack/react-query';
@@ -143,7 +143,7 @@ function CourseCard() {
         <>
             <IonSearchbar value={searchText} onIonChange={handleSearch}></IonSearchbar>
             {Array.isArray(filteredCourses) && Array.isArray(phID) && Array.isArray(cartID) && filteredCourses.map((item: Course) => (
-                <IonCard key={item.id}>
+                <div key={item.id}>
                     {/* your existing code ... */}
                     {Array.isArray(course) && Array.isArray(phID) && Array.isArray(cartID) && course.map((item: Course) => (
                         <IonCard key={item.id}>
@@ -175,7 +175,7 @@ function CourseCard() {
                             </IonCardContent>
                         </IonCard>
                     ))}
-                </IonCard>
+                </div>
             ))}
 
         </>

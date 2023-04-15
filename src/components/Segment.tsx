@@ -26,20 +26,18 @@ function Segment() {
             {selectedSegment === 'default' ? (
                 <div>
                     <p>
-                        <IonGrid>
-                            <IonRow>
-                                <IonCol><TeacherCard /></IonCol>
-                            </IonRow>
-                        </IonGrid>
+
+                        <TeacherCard />
+
                     </p>
                 </div>
             ) : (
                 <div>
                     <h1>己追蹤的老師</h1>
                     <p>
-                        <IonGrid >
-                            <ListCard />
-                        </IonGrid>
+
+                        <ListCard />
+
                     </p>
                 </div>
             )}

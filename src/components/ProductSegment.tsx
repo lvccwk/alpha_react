@@ -26,22 +26,17 @@ function ProductSegment() {
             {selectedSegment === 'default' ? (
                 <div>
                     <p>
-                        <IonGrid>
-                            <IonRow>
-                                <CourseCard />
-                            </IonRow>
-                        </IonGrid>
+
+                        <CourseCard />
+
                     </p>
                 </div>
             ) : (
                 <div>
                     <p>
-                        <IonGrid >
-                            <IonRow>
-                                <NoteCard />
-                            </IonRow>
 
-                        </IonGrid>
+                        <NoteCard />
+
                     </p>
                 </div>
             )}

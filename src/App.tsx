@@ -79,6 +79,7 @@ const App: React.FC = () => {
           Use the component prop when your component depends on the RouterComponentProps passed in automatically.
         */}
             <Route path="/resource" render={() => <Resource />} exact={true} />
+
             <Route path="/tutor" render={() => <Tutor />} exact={true} />
             <Route path="/home" render={() => <Home />} exact={true} />
             <Route path="/shoppingcart" render={() => <ShoppingCart />} exact={true} />
@@ -89,10 +90,12 @@ const App: React.FC = () => {
             <Route exact path="/facebook-callback"><FacebookCallback></FacebookCallback></Route>
             <Route path="/userprofile" render={() => <UserProfile />} exact={true} />
             <Route path="/userprofilesettings" exact={true} ><UserProfileSettings /></Route>
-            <Route path="/ProductList" exact={true} ><ProductList /></Route>
-            <Route path="/ProductPage/:productId" exact={true} ><ProductPage /></Route>
-            <Route path="/PurchasedItem/:productId" exact={true} ><PurchasedItem /></Route>
-            <Route path="/tutorprofile/:teacherId" exact={true} ><TutorProfile /></Route>
+
+            <Route path="/ProductList" render={() => <ProductList />} exact={true} />
+            <Route path="/ProductPage/:productId" render={() => <ProductPage />} exact={true} />
+            <Route path="/PurchasedItem/:productId" render={() => <PurchasedItem />} exact={true} />
+            <Route path="/tutorprofile/:teacherId" render={() => <TutorProfile />} exact={true} />
+
             <Route path="/register" render={() => <Register />} exact={true} />
             <Route path="/purchasehistory" render={() => <PurchaseHistory />} exact={true} />
             <Route path="/uploadproduct/:teacherId" render={() => <UploadProduct />} exact={true} />

@@ -10,10 +10,13 @@ const Resource: React.FC = () => {
   return (
     <>
       <IonPage id="main-content">
+
         <ToolBar />
-        <IonContent >
+        <IonContent className='ion-padding' >
+          <IonCardTitle>資源列表</IonCardTitle>
+          <br></br>
           {/* <b>資源庫</b> */}
-          <IonSearchbar placeholder="輸入搜尋內容"></IonSearchbar>
+
           {/* <SubjectFilter /> */}
 
           <ProductSegment />

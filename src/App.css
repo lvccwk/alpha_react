@@ -18,13 +18,11 @@ ion-tab-bar {
     bottom: 0;
     width:90%;
     height: 8%;
-    --background :#eff1f2;
+    --background :#eff1f2df;
     --color:#616161;;
     align-self: center;
     border-radius: 20px;
     margin-bottom: 10px;
+    --border-style: none;
   }
 
-/* .tabButton.tab-selected  {
-    color: rgb(255, 255, 255);
-} */

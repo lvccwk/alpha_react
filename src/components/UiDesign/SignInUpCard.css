@@ -1,0 +1,15 @@
+.logo {
+    max-width: 120px;
+    margin-bottom: 16px;
+  }
+
+  .shoppingCart{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+  .shoppingCartWithNoLogin{
+
+    font-size: 164px;
+
+  }
