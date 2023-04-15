@@ -1,6 +1,6 @@
 import './Home.css';
 import React from 'react';
-import { IonButton, IonCardTitle, IonContent, IonIcon, IonPage, IonText } from '@ionic/react';
+import { IonButton, IonCardContent, IonCardTitle, IonContent, IonIcon, IonItem, IonPage, IonText } from '@ionic/react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Keyboard, Navigation, Pagination, Scrollbar, Zoom } from 'swiper';
 
@@ -64,7 +64,7 @@ const Home: React.FC = () => {
 
         <br></br>
         <div className='course'>
-          <IonCardTitle>熱門課程</IonCardTitle><IonButton onClick={onClickResourcePage} className='course-btn'>查看更多課程<IonIcon className="" icon={chevronForward} /></IonButton>
+          <IonCardTitle>熱門課程</IonCardTitle><div onClick={onClickResourcePage} className='course-btn'>查看更多課程<IonIcon className="" icon={chevronForward} /></div>
         </div>
         <Swiper
           modules={[Autoplay, Navigation, Pagination]}

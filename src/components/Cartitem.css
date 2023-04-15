@@ -1,0 +1,13 @@
+.cartList{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    width: 80%;
+    
+}
+
+.image-size { 
+    --size: 80px;
+    width: var(--size);
+    height: var(--size);
+}

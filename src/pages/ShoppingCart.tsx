@@ -1,4 +1,4 @@
-import { IonButton, IonCardTitle, IonContent, IonPage } from '@ionic/react';
+import { IonButton, IonCard, IonCardTitle, IonContent, IonPage } from '@ionic/react';
 import React from 'react';
 import Button from '../components/Button';
 import CartItem from '../components/CartItem';
@@ -21,9 +21,11 @@ const ShoppingCart: React.FC = () => {
                     </IonContent>
                 )}
                 {isLoggedIn === true && (
-                    <IonContent className='ion-padding' >
+                    <IonContent  >
                         <IonCardTitle>你的購物車</IonCardTitle>
-                        <CartItem />
+                        <IonCard className='ion-padding'>
+                            <CartItem />
+                        </IonCard>
                     </IonContent>
                 )}
             </IonPage>

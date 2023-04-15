@@ -1,11 +1,12 @@
 
-import { IonItem, IonLabel, IonButton, IonThumbnail, IonButtons, IonIcon, IonCheckbox, useIonViewWillEnter } from '@ionic/react';
+import { IonItem, IonLabel, IonButton, IonThumbnail, IonButtons, IonIcon, IonCheckbox, useIonViewWillEnter, IonCard, IonCardContent, IonCardHeader, IonCardTitle } from '@ionic/react';
 import { useQuery } from '@tanstack/react-query';
 import { useHistory } from 'react-router';
 import { fetchCart, fetchDropFromCart, fetchIsBuying } from '../api/fetchAll';
 import { useAppSelector } from '../redux/store';
-import { closeCircle } from 'ionicons/icons';
+import { cart, closeCircle, person } from 'ionicons/icons';
 import Button from '../components/Button';
+import './Cartitem.css'
 
 interface CartItemInfo {
   id: number;
@@ -44,10 +45,10 @@ function CartItem() {
     refetchOnReconnect: true,
   });
 
-  useIonViewWillEnter(()=>{
+  useIonViewWillEnter(() => {
     refetch()
   })
-  
+
   const history = useHistory();
   const onClickProductPage = (id: number) => {
     history.push(`/productpage/` + id);
@@ -71,34 +72,49 @@ function CartItem() {
 
   if (data?.cart_detail.length === 0) {
     return (
-      <div>尚未加入產品</div>
+      <IonCard>
+        <IonCardContent >
+          <IonCardHeader>
+            <div className='shoppingCart'>
+              <IonIcon className="shoppingCartWithNoLogin" icon={cart} />
+              <br></br>
+              <IonCardTitle>暫時沒有貨品</IonCardTitle>
+              <br></br>
+            </div>
+          </IonCardHeader>
+        </IonCardContent>
+      </IonCard>
+
     )
   } else {
     return (
       <>
-
         {Array.isArray(data?.cart_detail) && data?.cart_detail.map((item: CartItemInfo) => (
-          <IonItem key={item.id}>
-            <IonThumbnail slot="start">
-              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/thumbnail.svg" />
-            </IonThumbnail>
-            <IonLabel>{item.product.name}</IonLabel>
-            <IonButton onClick={() => onClickProductPage(item.product_id)}>
-              詳細
-            </IonButton>
-            ${item.product.price}
-            <IonButtons>
-              <IonButton onClick={() => onClickDropFromCart(item.id)}>
-                <IonIcon slot="icon-only" icon={closeCircle} ></IonIcon>
-              </IonButton>
-            </IonButtons>
-            <IonCheckbox slot="end" checked={item.is_buying} onClick={() => setIsBuying(item.id, item.is_buying)}></IonCheckbox>
+          <div>
+            <IonItem key={item.id}>
+              <div className='cartList' onClick={() => onClickProductPage(item.product_id)}>
+                <IonThumbnail className='image-size' slot="start">
+                  <img alt="Product thumbnail" src={item.product.image} />
+                </IonThumbnail>
+                <IonLabel className='ion-padding'>
+                  <h2>{item.product.name}</h2>
+                  {/* <p>Size: {item.product.size}</p> */}
+                  <h3>價錢: ${item.product.price}</h3>
+                </IonLabel>
+              </div>
+              <IonButtons>
+                <IonButton onClick={() => onClickDropFromCart(item.id)}>
+                  <IonIcon slot="icon-only" icon={closeCircle} ></IonIcon>
+                </IonButton>
+              </IonButtons>
+              <IonCheckbox slot="end" checked={item.is_buying} onClick={() => setIsBuying(item.id, item.is_buying)}></IonCheckbox>
+            </IonItem>
 
-          </IonItem>
+          </div>
         ))}
+        <br />
         <Button />
-
-
+        <br /><br /> <br /><br />
       </>
     );
   }

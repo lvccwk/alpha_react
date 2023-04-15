@@ -53,8 +53,6 @@ function Chatbox() {
             setSocket(newSocket)
         } else {
             socket?.emit("joinRoom", sender_id, receiver_id)
-
-
         }
     }, [socket])
 

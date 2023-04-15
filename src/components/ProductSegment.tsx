@@ -25,19 +25,11 @@ function ProductSegment() {
 
             {selectedSegment === 'default' ? (
                 <div>
-                    <p>
-
-                        <CourseCard />
-
-                    </p>
+                    <CourseCard />
                 </div>
             ) : (
                 <div>
-                    <p>
-
-                        <NoteCard />
-
-                    </p>
+                    <NoteCard />
                 </div>
             )}
         </>

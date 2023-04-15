@@ -23,11 +23,11 @@ const ChatHistory: React.FC<Props> = ({ sender_username, receiver_username, chat
             {chatMessage &&
                 chatMessage.map((chatMessage) => (
                     <div key={chatMessage.id}>
-                        <p> {chatMessage.from_id === sender_id
+                        <h3> {chatMessage.from_id === sender_id
                             ? sender_username
                             : receiver_username
-                        },{new Date(chatMessage.created_at).toLocaleString()}</p>
-                        <p>{chatMessage.content}</p>
+                        },{new Date(chatMessage.created_at).toLocaleString()}</h3>
+                        <h3>{chatMessage.content}</h3>
                     </div>
                 ))}
         </div>

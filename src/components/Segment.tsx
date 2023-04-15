@@ -25,20 +25,12 @@ function Segment() {
 
             {selectedSegment === 'default' ? (
                 <div>
-                    <p>
-
-                        <TeacherCard />
-
-                    </p>
+                    <TeacherCard />
                 </div>
             ) : (
                 <div>
                     <h1>己追蹤的老師</h1>
-                    <p>
-
-                        <ListCard />
-
-                    </p>
+                    <ListCard />
                 </div>
             )}
         </>
