@@ -12,7 +12,7 @@ import { useAppSelector } from "../redux/store";
 import jwtDecode from 'jwt-decode';
 import './../../src/components/UiDesign/UserProfile.css'
 import Avatar from '../components/Avatar';
-import { exitOutline } from 'ionicons/icons';
+import { exitOutline, power } from 'ionicons/icons';
 
 export default function UserProfile() {
   const history = useHistory();
@@ -85,11 +85,12 @@ export default function UserProfile() {
     return (
       <IonPage className='userprofilepage'>
         <Toolbar />
-        <IonContent className='ion-padding'>
-          <IonButton className='exitbtn' onClick={handleLogout}><IonIcon icon={exitOutline} className='exit' color="white"  ></IonIcon></IonButton>
+        <IonContent className='userCard'>
+          <IonButton className='exitbtn' color="danger" onClick={handleLogout}><IonIcon icon={power} className='exit' ></IonIcon></IonButton>
+          <div className='userlogo'><Avatar /></div>
           <IonCard className='profileCard' >
-            <div className='userlogo'><Avatar /></div>
-            <IonCardHeader>
+            {/* <div className='userlogo'><Avatar /></div> */}
+            <IonCardHeader className='infocard'>
               {/* <IonButton onClick={handleEditProfile}>EDIT USER PROFILE</IonButton>
               <IonButton onClick={handlePurchaseHistory}>PURCHASE HISTORY</IonButton>
               <IonButton onClick={handleRedirectUpload}>UPLOAD COURSE / NOTES</IonButton>
@@ -97,6 +98,7 @@ export default function UserProfile() {
               <h1>老師版</h1>
               <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
               <IonCardTitle>{data?.username}</IonCardTitle>
+              <br /><br /><br />
             </IonCardHeader>
 
             <IonCardContent>
@@ -115,9 +117,11 @@ export default function UserProfile() {
           </IonCard>
           <div className='userprofile'>
             <DeleteUserAlert />
+            <br /><br /><br /><br /><br /><br />
           </div>
           <br /><br /><br /><br /><br /><br />
         </IonContent>
+
       </IonPage>
     );
   } else {

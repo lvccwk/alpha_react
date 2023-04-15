@@ -1,9 +1,17 @@
+
+.userCard {
+  --background-image: url('./../../../src/photo/1.png');
+  --background-size: cover; /* scale the image to cover the entire element */
+  --background-position: center; /* center the image within the element */
+}
+
+
 .userprofile {
-    /* display: flex;
+    display: flex;
     padding-inline: 25px;
     align-items: stretch;
     flex-direction: column;
-   */
+
   }
 
 .profileCard {
@@ -21,14 +29,43 @@
 }
 
 .userlogo {
+    position: absolute;
+    top: 13%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
     display: flex;
     justify-content: center;
+    align-items: center;
+    max-width: 80%; /* set a maximum width for the logo */
+    height: auto; /* let the height adjust based on the width */
 }
 
+.userlogo img {
+    max-width: 100%; /* make sure the image itself fits inside the container */
+    height: auto; /* let the height adjust based on the width */
+}
+
+.profileCard {
+    --background:#f3f7fd;
+    position: relative;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    top: 10%;
+    border-radius: 50px;
+    z-index: -1;
+ --padding-left: -10px;
+ --padding-right: -10px;
+}
 .exit{
     font-size: 30px;
 }
+
 .exitbtn{
-    border-radius: 20px;
-    padding-left: 270px;
+    --border-radius: 60px;
+    width:fit-content;
+    padding-left:80%;
+    --color:light;
 }
+
