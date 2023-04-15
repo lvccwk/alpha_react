@@ -1,4 +1,4 @@
-import { IonContent, IonPage, IonSearchbar, } from '@ionic/react';
+import { IonCardTitle, IonContent, IonPage, IonSearchbar, } from '@ionic/react';
 
 import Segment from '../components/Segment';
 import ToolBar from '../components/Toolbar';
@@ -9,8 +9,9 @@ const Tutor: React.FC = () => {
         <>
             <IonPage>
                 <ToolBar />
-                <IonContent>
-                    <IonSearchbar placeholder="輸入搜尋內容"></IonSearchbar>
+                <IonContent className='ion-padding'>
+                    <IonCardTitle>導師列表</IonCardTitle>
+                    <br></br>
                     <Segment />
                 </IonContent>
             </IonPage>

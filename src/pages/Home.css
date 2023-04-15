@@ -1,7 +1,32 @@
 
 
-ion-card-header.ios {
+/* ion-card-header.ios {
     display: flex;
     flex-flow: column-reverse;
 
+  } */
+
+
+
+  .swiper-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+  }
+  
+  .swiper-title {
+    display: block;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 10px 0;
+  }
+  .course {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .course-btn {
+    --background: transparent;
+    --color: var(--ion-color-primary);
+    /* border: 2px solid var(--ion-color-primary); */
   }

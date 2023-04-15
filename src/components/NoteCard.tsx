@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCol, IonGrid, IonRow, useIonAlert, useIonViewWillEnter } from '@ionic/react';
+import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCol, IonGrid, IonRow, IonSearchbar, SearchbarChangeEventDetail, useIonAlert, useIonViewWillEnter } from '@ionic/react';
 import './TeacherCard.css';
 import { fetchAddCart, fetchCart, fetchNote, fetchPurchaseHistory } from '../api/fetchAll';
 import { useQuery } from '@tanstack/react-query';
@@ -24,7 +24,7 @@ function NoteCard() {
     const [phID, setPhID] = useState<number[]>([])
     const [cartID, setCartID] = useState<number[]>([])
     const isLoggedIn = useAppSelector(state => state.user.isLoggedIn)
-
+    const [searchText, setSearchText] = useState<string>("");
     const { data: note, refetch } = useQuery({
         queryKey: ["note"],
         queryFn: async () => await fetchNote(),
@@ -33,7 +33,7 @@ function NoteCard() {
         refetchOnReconnect: true,
     });
 
-    const { data: user, refetch: userFetch  } = useQuery({
+    const { data: user, refetch: userFetch } = useQuery({
         queryKey: ["user"],
         queryFn: async () => await fetchUser(),
         refetchOnWindowFocus: false,
@@ -59,10 +59,10 @@ function NoteCard() {
         refetchOnReconnect: true,
     });
 
-    useIonViewWillEnter(()=>{
+    useIonViewWillEnter(() => {
         refetch()
         userFetch()
-      })
+    })
 
     useEffect(() => {
         if (user) {
@@ -77,7 +77,7 @@ function NoteCard() {
     }, [purchaseHistory, cart, note])
 
     const history = useHistory();
-    const onClickProductPage = (id:number) => {
+    const onClickProductPage = (id: number) => {
         history.push(`/productpage/` + id);
     }
 
@@ -89,7 +89,7 @@ function NoteCard() {
             buttons: ['OK'],
         })
     }
-    
+
     const pleaseLogin = () => {
         presentAlert({
             header: '提示信息',
@@ -113,37 +113,53 @@ function NoteCard() {
         }
     }
 
+    const handleSearch = (event: CustomEvent<SearchbarChangeEventDetail>) => {
+        setSearchText(event.detail.value || "");
+    };
+
+    const filteredCourses = note?.filter((item: { teacher: { user: { username: string; }; }; name: string; }) => {
+        const lowerCaseSearchText = searchText.toLowerCase();
+        const teacherName = item.teacher.user.username.toLowerCase();
+        const courseName = item.name.toLowerCase();
+        return teacherName.includes(lowerCaseSearchText) || courseName.includes(lowerCaseSearchText);
+    });
     return (
         <>
-            {Array.isArray(note) && Array.isArray(phID) && Array.isArray(cartID) && note.map((item: Note) => (
-                <IonCard key={item.id}>
-                    <img alt="Silhouette of mountains" src={photo} />
-                    <IonCardContent>老師:{item.teacher.user.username}   {item.name} ${item.price} 評分:{item.avg_rating}
-                        <IonButton onClick={() => onClickProductPage(item.id)}>
-                            詳細資料
-                        </IonButton>
-                        {isLoggedIn === false && (
-                            <IonButton onClick={() => handleAddToCart(item.id)}>
-                                加入購物車
-                            </IonButton>
-                        )}
-                        {isLoggedIn === true && phID.includes(item.id) && (
-                            <IonButton disabled={true}>
-                                已購買
-                            </IonButton>
-                        )}
-                        {isLoggedIn === true && cartID.includes(item.id) && (
-                            <IonButton disabled={true}>
-                                已加入購物車
-                            </IonButton>
-                        )}
-                        {isLoggedIn === true && phID.includes(item.id) === false && cartID.includes(item.id) === false && (
-                            <IonButton onClick={() => handleAddToCart(item.id)}>
-                                加入購物車
-                            </IonButton>
-                        )}
-                    </IonCardContent>
-                </IonCard>
+            <IonSearchbar value={searchText} onIonChange={handleSearch}></IonSearchbar>
+            {Array.isArray(filteredCourses) && Array.isArray(phID) && Array.isArray(cartID) && filteredCourses.map((item: Note) => (
+                <div key={item.id}>
+                    {/* your existing code ... */}
+                    {Array.isArray(note) && Array.isArray(phID) && Array.isArray(cartID) && note.map((item: Note) => (
+                        <IonCard key={item.id}>
+                            <img alt="Silhouette of mountains" src={photo} />
+                            <IonCardContent>老師:{item.teacher.user.username}   {item.name} ${item.price} 評分:{item.avg_rating}
+                                <IonButton onClick={() => onClickProductPage(item.id)}>
+                                    詳細資料
+                                </IonButton>
+                                {isLoggedIn === false && (
+                                    <IonButton onClick={() => handleAddToCart(item.id)}>
+                                        加入購物車
+                                    </IonButton>
+                                )}
+                                {isLoggedIn === true && phID.includes(item.id) && (
+                                    <IonButton disabled={true}>
+                                        已購買
+                                    </IonButton>
+                                )}
+                                {isLoggedIn === true && cartID.includes(item.id) && (
+                                    <IonButton disabled={true}>
+                                        已加入購物車
+                                    </IonButton>
+                                )}
+                                {isLoggedIn === true && phID.includes(item.id) === false && cartID.includes(item.id) === false && (
+                                    <IonButton onClick={() => handleAddToCart(item.id)}>
+                                        加入購物車
+                                    </IonButton>
+                                )}
+                            </IonCardContent>
+                        </IonCard>
+                    ))}
+                </div>
             ))}
         </>
     );

@@ -4,21 +4,38 @@ import ExploreContainer from '../components/ExploreContainer';
 import ToolBar from '../components/Toolbar';
 import './Resource.css';
 import ChatroomContact from '../components/UiDesign/ChatroomContact';
+import { useAppSelector } from '../redux/store';
+import SignInUpCard from '../components/UiDesign/SignInUpCard';
 
 
 const Chatroom: React.FC = () => {
-    return (
-        <>
-            <IonPage >
-                <ToolBar />
-                <IonContent class='ion-padding'>
-                    <IonCardHeader>通訊錄</IonCardHeader>
-                    {/* <Chatbox /> */}
-                    <ChatroomContact />
-                </IonContent>
-            </IonPage>
-        </>
-    );
-};
+    const isLoggedIn = useAppSelector(state => state.user.isLoggedIn)
+    if (isLoggedIn === false) {
+        return (
+            <>
+                <IonPage >
+                    <ToolBar />
+                    <IonContent class='ion-padding'>
+                        <IonCardTitle>通訊錄</IonCardTitle>
+                        <SignInUpCard />
+                    </IonContent>
+                </IonPage>
+            </>
+        )
+    } else {
 
+        return (
+            <>
+                <IonPage >
+                    <ToolBar />
+                    <IonContent class='ion-padding'>
+                        <IonCardTitle>通訊錄</IonCardTitle>
+                        {/* <Chatbox /> */}
+                        <ChatroomContact />
+                    </IonContent>
+                </IonPage>
+            </>
+        );
+    };
+}
 export default Chatroom;

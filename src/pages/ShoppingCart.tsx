@@ -4,27 +4,27 @@ import Button from '../components/Button';
 import CartItem from '../components/CartItem';
 import ToolBar from '../components/Toolbar';
 import { useAppSelector } from '../redux/store';
+import SignInUpCard from '../components/UiDesign/SignInUpCard';
 
 
 const ShoppingCart: React.FC = () => {
     const isLoggedIn = useAppSelector(state => state.user.isLoggedIn)
-    
-
 
     return (
         <>
             <IonPage>
                 <ToolBar />
                 {isLoggedIn === false && (
-                    <IonContent>
-                        你尚未登入
+                    <IonContent className='ion-padding'>
+                        <IonCardTitle>你的購物車</IonCardTitle>
+                        <SignInUpCard />
                     </IonContent>
                 )}
                 {isLoggedIn === true && (
-                <IonContent>
-                    <IonCardTitle>購物車</IonCardTitle>
-                    <CartItem />
-                </IonContent>
+                    <IonContent className='ion-padding' >
+                        <IonCardTitle>你的購物車</IonCardTitle>
+                        <CartItem />
+                    </IonContent>
                 )}
             </IonPage>
         </>
