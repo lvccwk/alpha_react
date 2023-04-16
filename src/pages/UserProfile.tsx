@@ -84,44 +84,46 @@ export default function UserProfile() {
           <IonButton className='exitbtn' color="danger" onClick={handleLogout}><IonIcon icon={power} className='exit' ></IonIcon></IonButton>
           <div className='userlogo'><Avatar /></div>
           <IonCard className='profileCard' >
-            <h1>2</h1>
-            <IonCardHeader className='infocard'>
-              <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
-              <IonCardTitle>{data?.username}</IonCardTitle>
-              <br /> <br /><br />
-            </IonCardHeader>
 
-            <IonCardContent className='userButtonContainer' >
-              <IonButton className='userButtonleft' onClick={handleEditProfile}>更改個人資料</IonButton>
-              <IonButton className='userButtonright' onClick={handlePurchaseHistory}>購買資料</IonButton>
-            </IonCardContent>
-            <br />
-            用戶名稱: {data?.username}
-            <br />
-            用戶類別 : {data?.user_type}
-            <br />
-            電郵 : {data?.email}
-            <br /><br /><br /><br />
-            {/* </IonCardContent> */}
+            <div className='CardContent'>
+              <IonCardHeader >
+                <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
+                <IonCardTitle>{data?.username}</IonCardTitle>
+                <br /> <br /><br />
+              </IonCardHeader>
+
+              <IonCardContent className='userButtonContainer' >
+                <IonButton className='userButtonleft' onClick={handleEditProfile}>更改個人資料</IonButton>
+                <IonButton className='userButtonright' onClick={handlePurchaseHistory}>購買資料</IonButton>
+              </IonCardContent>
+
+            </div>
+            <br /><br /><br /><br /><br /><br />
           </IonCard>
+
           <IonCard className='infocardDetail'>
-            {/* <IonButton onClick={handleRedirectUpload}>UPLOAD COURSE / NOTES</IonButton> */}
-            {/* <IonButton onClick={handleAvailableTime}>UPLOAD Available_time</IonButton> */}
-            <br /> <br />
-            用戶名稱: {data?.username}
-            <br />
-            用戶類別 : {data?.user_type}
-            <br />
-            電郵 : {data?.email}
-            <br />
-          </IonCard>
-          <br /><br /><br /><br /><br /><br />
-          <br /><br /><br /><br /><br /><br />
-          <div >
-            <DeleteUserAlert />
-          </div>
-        </IonContent>
 
+            <div className='infocardInside'>
+              <br /> <br />
+              用戶名稱: {data?.username}
+              <br />
+              用戶類別 : {data?.user_type}
+              <br />
+              電郵 : {data?.email}
+              <br />
+              <IonCardContent className='userButtonContainer' >
+                <IonButton className='userButtonleft' onClick={handleRedirectUpload}>上載課程/筆記</IonButton>
+                <IonButton className='userButtonright' onClick={handlePurchaseHistory}>上載記錄</IonButton>
+              </IonCardContent>
+              {/* <IonButton onClick={handleRedirectUpload}>UPLOAD COURSE / NOTES</IonButton> */}
+              <br /><br /><br />
+              <DeleteUserAlert />
+            </div>
+
+            <br /><br /><br /><br /><br /><br />
+            <br /><br /><br /><br /><br /><br />
+          </IonCard>
+        </IonContent>
       </IonPage>
     );
   } else {

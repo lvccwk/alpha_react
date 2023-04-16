@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { IonButton, IonCard, IonCardContent, IonCardSubtitle, IonCardTitle } from '@ionic/react';
+import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent } from '@ionic/react';
 import { fetchCourse, fetchCourseByid, fetchTeacher } from '../api/fetchAll';
 import TeacherBookmark from './TeacherBookmark';
 import { useQuery } from '@tanstack/react-query';
@@ -13,6 +13,7 @@ import DateTime from './DateTime';
 import './../../src/components/UiDesign/TeacherPage.css'
 import { TeacherInterface } from '../interface/interface';
 import { Course } from './CourseCard';
+import ListCard from './ListCard';
 function TeacherDetail() {
     const params = useParams()
     const studentId = useAppSelector((state) => state.user.id);
@@ -22,16 +23,13 @@ function TeacherDetail() {
         queryFn: () => fetchTeacher(Number(teacherId)),
     });
 
-    const { data: course } = useQuery({
-        queryKey: ["courses"],
-        queryFn: async () => await fetchCourseByid(Number(teacherId)),
-        // refetchInterval: 500,
-        refetchOnWindowFocus: false,
-        refetchOnReconnect: true,
-    });
-    console.log(`course`, course)
-    const arr = course
-
+    // const { data: course } = useQuery({
+    //     queryKey: ["courses"],
+    //     queryFn: async () => await fetchCourseByid(Number(teacherId)),
+    //     // refetchInterval: 500,
+    //     refetchOnWindowFocus: false,
+    //     refetchOnReconnect: true,
+    // });
 
 
     const history = useHistory();
@@ -43,56 +41,62 @@ function TeacherDetail() {
         history.push(`/chatroom/` + id);
     }
 
-    const onClickEditProfile = (id: number) => {
-        history.push(`/product/${course?.product.id}`);
-    };
+    // const onClickEditProfile = (id: number) => {
+    //     history.push(`/product/${course?.product.id}`);
+    // };
+
     if (studentId) {
         return (
             <>
-                <br />
-                <div className="teacher-avatar">
-                    <Avatar />
-                </div>
-                <div className="teacher-info">
-                    <IonCardTitle>{data?.user.username}</IonCardTitle>
-                    <IonCardSubtitle>Email : {data?.user.email}</IonCardSubtitle>
-                    <IonCardSubtitle>教學年資： 1</IonCardSubtitle>
-                </div>
-                <div className="teacher-contact">
-                    <IonButton onClick={() => onClickContactPage(Number(teacherId))}>聯絡 {data?.user.username}</IonButton>
-                </div>
-                <TeacherBookmark />
-                <IonCard>
-                    <img alt="Silhouette of mountains" src={photo} />
-                    <IonCardContent>
-                        <IonCardSubtitle>導師介紹</IonCardSubtitle><br></br>
-                        {data?.info}
-                    </IonCardContent>
-                    {/* <IonCardContent className="ion-padding">
-                        <div style={{ display: 'flex', justifyContent: 'center' }}><h2>{data?.user.username} 的時間表</h2> </div>
-                        <br></br>
-                        <DateTime />
-                    </IonCardContent> */}
-                    {/* <TimePicker /> */}
-                </IonCard >
+                <IonContent className='teacherCard'>
+                    <br />
 
-                <IonCardSubtitle className='teacher-fonts'>{data?.user.username}的課程 / 筆記</IonCardSubtitle>
+                    <div className="teacher-avatar">
+                        <Avatar />
+                    </div>
+                    <TeacherBookmark />
+                    <IonCard className='teacherProfileCard' >
+                        <br /><br />
+                        <div className='teacherCardContent'>
+                            <IonCardHeader>
+                                {/* <IonCardSubtitle className='teacherFont'>Email : {data?.user.email}</IonCardSubtitle> */}
+                                <IonCardTitle>{data?.user.username}</IonCardTitle>
+                                {/* <br /> <br /><br /> */}
+                            </IonCardHeader>
+                            <IonCardContent className='teacherButtonContainer' >
+                                <IonButton className='teacherButtonleft' onClick={() => onClickContactPage(Number(teacherId))}>聯絡 {data?.user.username}</IonButton>
+                                <IonButton className='teacherButtonright' onClick={() => onClickContactPage(Number(teacherId))}>聯絡 {data?.user.username}</IonButton>
+                                <br /><br /><br /><br />
+                            </IonCardContent>
+                        </div>
+                    </IonCard>
 
-                <IonCard>
-                    {Array.isArray(course) &&
-                        course.map((item: Course) => (
-                            <div key={item.id}>
-                                <IonCard onClick={() => onClickEditProfile(item.id)}>
-                                    <img alt="Silhouette of mountains" src={photo} />
-                                    <IonCardContent>{item.info}</IonCardContent>
-                                </IonCard>
-                            </div>
-                        ))}
-                </IonCard >
-                <br /><br /><br /><br />
+
+                    <IonCard className='teacherInfocardDetails'>
+                        <div className='teacherinfocardInsides'>
+                            <IonCardSubtitle className='teacherFonts'>
+                                導師介紹:<br></br>{data?.info}
+                            </IonCardSubtitle>
+                            <br /><br /><br />
+                        </div>
+
+                    </IonCard>
+
+
+                    {/* <IonCardSubtitle className='teacher-fonts'>{data?.user.username}的課程 / 筆記</IonCardSubtitle> */}
+                    {/* {Array.isArray(course) &&
+                            course.map((item: Course) => (
+                                <div key={item.id}>
+                                    <IonCard onClick={() => onClickEditProfile(item.id)}>
+                                        <img alt="Silhouette of mountains" src={photo} />
+                                        <IonCardContent>{item.info}</IonCardContent>
+                                    </IonCard>
+                                </div>
+                            ))} */}
+
+                </IonContent>
             </>
         );
-
     } else {
         return (
             <>

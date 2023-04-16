@@ -9,7 +9,7 @@ import { fetchUser, fetchDeleteUser, fetchUpdateUser } from "../api/fetchUser";
 import ToolBar from '../components/Toolbar';
 import TeacherDetail from '../components/TeacherDetail';
 import ProductDetail from '../components/ProductDetail';
-
+import './../../src/components/UiDesign/TeacherPage.css'
 
 const TutorProfile: React.FC = () => {
     console.log("TutorProfile")
@@ -17,11 +17,10 @@ const TutorProfile: React.FC = () => {
 
     return (
         <>
-            <IonPage>
+            <IonPage className='userprofilepage'>
                 <ToolBar />
-                <IonContent>
-                    <TeacherDetail />
-                </IonContent>
+                <TeacherDetail />
+
             </IonPage>
         </>
     );

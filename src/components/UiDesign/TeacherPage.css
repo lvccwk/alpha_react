@@ -1,7 +1,40 @@
+ion-content.teacherCard {
+    --background: url('./../../photo/bg.png') no-repeat center/cover fixed !important;
+  }
+
+
+  .teacherCard {
+    --background-image: url('./../../../src/photo/1.png');
+  
+    --background-size: cover; /* scale the image to cover the entire element */
+    --background-position: center; /* center the image within the element */
+  }
+
 .teacher-avatar{
+    position: absolute;
+    top: 12%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
     display: flex;
     justify-content: center;
+    align-items: center;
+    max-width: 80%; /* set a maximum width for the logo */
+    height: auto; /* let the height adjust based on the width */
+}
 
+.teacherCard1 {
+    --background:#cfdff0;
+    position: relative;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    top: 10%;
+    border-radius: 50px;
+    z-index: -1;
+ --padding-left: -10px;
+ --padding-right: -10px;
+    width: fit-content;
 }
 
 .teacher-contact{
@@ -11,15 +44,117 @@
 }
 
 .teacher-info {
+    --background:#cfdff0;
+    position: relative;
+    flex-wrap: wrap;
     display: flex;
     justify-content: center;
-    padding-top: 10px;
-    flex-direction: column;
-    align-items: center;
+    top: 10%;
+    border-radius: 50px;
+    z-index: -1;
+ --padding-left: -10px;
+ --padding-right: -10px;
+    width: fit-content;
 }
 
 .teacher-fonts {
     display: flex;
     justify-content: center;
 font-size: 18px;
+}
+.teachercardDetail {
+    /* --background:#f3f7fd; */
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    top:350px;
+    height: 50%;
+    border-radius: 50px;
+    z-index: -1;
+     --padding-left: -10px;
+     --padding-right: -10px;
+     width: 100%;
+     margin:0 auto;
+}
+
+.teacherCardContent{
+    --background: #f3f7fd;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    top: 10%;
+}
+.teacherProfileCard {
+    --background: #cae4f5b2;
+    position: relative;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    top: 10%;
+    border-radius: 50px;
+    z-index: -1;
+    --padding-left: -10px;
+    --padding-right: -10px;
+    align-content: center;
+    align-items: center;
+    width: 100%;
+    margin:0 auto;
+}
+.teacherButtonleft{
+    --border-radius:20px;
+    width:50%;
+    box-shadow:2cm;
+}
+
+.teacherButtonright{
+    --background-color: white;
+    --border-radius:20px;
+    width:50%;
+    box-shadow:2cm;
+}
+
+.teacherButtonContainer {
+    position: relative; 
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    height: 300px;
+}
+
+.teacherInfocardDetail {
+    /* --background:#f3f7fd; */
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    top:330px;
+    height: 50%;
+    border-radius: 50px;
+    z-index: -1;
+     --padding-left: -10px;
+     --padding-right: -10px;
+     width: 100%;
+     margin:0 auto;
+}
+
+.teacherInfocardDetails {
+    /* --background:#f3f7fd; */
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    top:380px;
+    height: 50%;
+    border-radius: 50px;
+    z-index: -1;
+     --padding-left: -10px;
+     --padding-right: -10px;
+     width: 100%;
+     margin:0 auto;
+}
+
+.teacherFont{
+    font-size: 14px;
+}
+
+.teacherFonts{
+    font-size: 18px;
 }

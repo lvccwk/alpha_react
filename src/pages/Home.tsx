@@ -31,7 +31,9 @@ const Home: React.FC = () => {
   const onClickResourcePage = () => {
     history.push(`/resource/`);
   }
-
+  const onClickTutorPage = () => {
+    history.push(`/tutor/`);
+  }
   return (
     <IonPage>
       <ToolBar />
@@ -50,22 +52,38 @@ const Home: React.FC = () => {
             spaceBetween={15}
           >
             <SwiperSlide>
-              <img
-                src={photo2}
-                alt="Slide 1"
-              />
+              <div className='img-1'>
+                <img
+                  src={photo2}
+                  alt="Slide 1"
+                />
+                <div className='img-1-text'>
+                  <h1>全天候開放，隨時隨地學習</h1>
+
+                </div>
+              </div>
             </SwiperSlide>
             <SwiperSlide>
-              <img
-                src={photo3}
-                alt="Slide 2"
-              />
+              <div className='img-1'>
+                <img
+                  src={photo3}
+                  alt="Slide 2"
+                />
+                <div className='img-1-text'>
+                  <h1>實時操題訓練。學習無界限</h1>
+                </div>
+              </div>
             </SwiperSlide>
             <SwiperSlide>
-              <img
-                src={photo4}
-                alt="Slide 2"
-              />
+              <div className='img-1'>
+                <img
+                  src={photo4}
+                  alt="Slide 3"
+                />
+                <div className='img-1-text'>
+                  <h1>個性化學習體驗</h1>
+                </div>
+              </div>
             </SwiperSlide>
           </Swiper>
         </IonCard>
@@ -73,12 +91,13 @@ const Home: React.FC = () => {
 
         <IonCard>
           <IonCardHeader>
-            <IonCardTitle>Card Title</IonCardTitle>
-            <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
+            <IonCardTitle>線上補習問功課平台</IonCardTitle>
+            {/* <IonCardSubtitle>Card Subtitle</IonCardSubtitle> */}
           </IonCardHeader>
 
           <IonCardContent>
-            Here's a small text description for the card content. Nothing more, nothing less.
+            一站式學習平台，提供全科24小時功課問
+            答、影片課程、實時操題訓練。學習無界限。
           </IonCardContent>
         </IonCard>
 
@@ -149,7 +168,9 @@ const Home: React.FC = () => {
             <IonText className="swiper-title">The Witcher</IonText>
           </SwiperSlide> */}
         </Swiper>
-
+        <div className='course'>
+          <IonCardTitle>熱門老師</IonCardTitle><div onClick={onClickTutorPage} className='course-btn'>查看更多課程<IonIcon className="" icon={chevronForward} /></div>
+        </div>
 
         <br /><br /><br /><br /><br />
       </IonContent>

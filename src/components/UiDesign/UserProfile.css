@@ -19,7 +19,7 @@ ion-content.userCard {
   }
 
 .profileCard {
-    --background: #f3f7fd;
+    --background: #d2e4ffbf;
     position: relative;
     flex-wrap: wrap;
     display: flex;
@@ -33,6 +33,15 @@ ion-content.userCard {
     align-items: center;
     width: 100%;
     margin:0 auto;
+    height: 300px;
+}
+
+.CardContent{
+    --background: #f3f7fd;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    top: 15%;
 }
 
 .userlogo {
@@ -53,24 +62,9 @@ ion-content.userCard {
     height: auto; /* let the height adjust based on the width */
 }
 
-.profileCard {
-    --background:#cfdff0;
-    position: relative;
-    flex-wrap: wrap;
-    display: flex;
-    justify-content: center;
-    top: 10%;
-    border-radius: 50px;
-    z-index: -1;
- --padding-left: -10px;
- --padding-right: -10px;
-    width: fit-content;
-}
-
 .infocardDetail {
-    --background:#f3f7fd;
+    /* --background:#f3f7fd; */
     position: absolute;
-    flex-wrap: wrap;
     display: flex;
     justify-content: center;
     top:350px;
