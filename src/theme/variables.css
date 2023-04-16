@@ -3,6 +3,15 @@ http://ionicframework.com/docs/theming/ */
 
 /** Ionic CSS Variables **/
 :root {
+  /* These examples use the same color: sienna. */
+  --ion-text-color: #242221;
+  --ion-text-color-rgb: 160, 82, 45;
+  /* --ion-background-color:none; */
+  /* These examples use the same color: lightsteelblue. */
+  /* --ion-background-color: #b0c4de; */
+  /* --ion-background-color-rgb: 176, 196, 222; */
+
+
   /** primary **/
   --ion-color-primary: #005497;
   --ion-color-primary-rgb: 56, 128, 255;

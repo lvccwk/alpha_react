@@ -1,6 +1,6 @@
 import './Home.css';
 import React from 'react';
-import { IonButton, IonCardContent, IonCardTitle, IonContent, IonIcon, IonItem, IonPage, IonText } from '@ionic/react';
+import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, IonIcon, IonItem, IonPage, IonText } from '@ionic/react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Keyboard, Navigation, Pagination, Scrollbar, Zoom } from 'swiper';
 
@@ -35,49 +35,104 @@ const Home: React.FC = () => {
   return (
     <IonPage>
       <ToolBar />
-      <IonContent className='ion-padding'>
-        <Swiper
-          modules={[Autoplay, Keyboard, Pagination, Scrollbar, Zoom]}
-          autoplay={true}
-          // autoplay={{ delay: 2000 }}
-          keyboard={true}
-          pagination={{ clickable: true }}
-          scrollbar={{ draggable: true }}
-          zoom={true}
-          slidesPerView={1}
-          spaceBetween={15}
-        >
-          <SwiperSlide>
-            <img
-              src={photo2}
-              alt="Slide 1"
-            />
-          </SwiperSlide>
-          <SwiperSlide>
-            <img
-              src={photo3}
-              alt="Slide 2"
-            />
-          </SwiperSlide>
+      <IonContent >
+        <IonCardTitle></IonCardTitle>
+        <IonCard>
+          <Swiper
+            modules={[Autoplay, Keyboard, Pagination, Scrollbar, Zoom]}
+            autoplay={true}
+            // autoplay={{ delay: 2000 }}
+            keyboard={true}
+            pagination={{ clickable: true }}
+            scrollbar={{ draggable: true }}
+            zoom={true}
+            slidesPerView={1}
+            spaceBetween={15}
+          >
+            <SwiperSlide>
+              <img
+                src={photo2}
+                alt="Slide 1"
+              />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img
+                src={photo3}
+                alt="Slide 2"
+              />
+            </SwiperSlide>
+            <SwiperSlide>
+              <img
+                src={photo4}
+                alt="Slide 2"
+              />
+            </SwiperSlide>
+          </Swiper>
+        </IonCard>
 
-        </Swiper>
 
-        <br></br>
+        <IonCard>
+          <IonCardHeader>
+            <IonCardTitle>Card Title</IonCardTitle>
+            <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
+          </IonCardHeader>
+
+          <IonCardContent>
+            Here's a small text description for the card content. Nothing more, nothing less.
+          </IonCardContent>
+        </IonCard>
+
         <div className='course'>
           <IonCardTitle>熱門課程</IonCardTitle><div onClick={onClickResourcePage} className='course-btn'>查看更多課程<IonIcon className="" icon={chevronForward} /></div>
         </div>
         <Swiper
-          modules={[Autoplay, Navigation, Pagination]}
+          modules={[Autoplay, Keyboard, Pagination, Scrollbar, Zoom]}
           autoplay={{ delay: 5000 }}
           navigation={true}
           pagination={{ clickable: true }}
-          slidesPerView={1}
-          spaceBetween={10}
+          slidesPerView={2}
+          spaceBetween={-10}
         >
-          <SwiperSlide>
+          {/* <SwiperSlide>
             <TeacherCard />
-          </SwiperSlide>
+          </SwiperSlide> */}
           <SwiperSlide>
+            <IonCard className='courseCard'>
+              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
+              <IonCardHeader>
+                <IonCardTitle className='courseCardContent'>Card Title</IonCardTitle>
+              </IonCardHeader>
+            </IonCard>
+          </SwiperSlide>
+
+          <SwiperSlide>
+            <IonCard className='courseCard'>
+              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
+              <IonCardHeader>
+                <IonCardTitle className='courseCardContent'>Card Title</IonCardTitle>
+              </IonCardHeader>
+            </IonCard>
+          </SwiperSlide>
+
+          <SwiperSlide>
+            <IonCard className='courseCard'>
+              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
+              <IonCardHeader>
+                <IonCardTitle className='courseCardContent'>Card Title</IonCardTitle>
+              </IonCardHeader>
+            </IonCard>
+          </SwiperSlide>
+
+          <SwiperSlide>
+            <IonCard className='courseCard'>
+              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
+              <IonCardHeader>
+                <IonCardTitle className='courseCardContent'>Card Title</IonCardTitle>
+              </IonCardHeader>
+            </IonCard>
+          </SwiperSlide>
+
+          {/* <SwiperSlide>
             <img
               src="https://picsum.photos/id/1015/800/450"
               alt="Slide 2"
@@ -92,28 +147,12 @@ const Home: React.FC = () => {
               className="swiper-image"
             />
             <IonText className="swiper-title">The Witcher</IonText>
-          </SwiperSlide>
-          <SwiperSlide>
-            <img
-              src="https://picsum.photos/id/1019/800/450"
-              alt="Slide 4"
-              className="swiper-image"
-            />
-            <IonText className="swiper-title">Narcos</IonText>
-          </SwiperSlide>
-          <SwiperSlide>
-            <img
-              src="https://picsum.photos/id/1002/800/450"
-              alt="Slide 5"
-              className="swiper-image"
-            />
-            <IonText className="swiper-title">Black Mirror</IonText>
-          </SwiperSlide>
+          </SwiperSlide> */}
         </Swiper>
+
+
+        <br /><br /><br /><br /><br />
       </IonContent>
-
-
-
     </IonPage >
   );
 };

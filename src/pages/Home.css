@@ -6,7 +6,9 @@
 
   } */
 
-
+  ion-content {
+    /* --background: url('./../photo/bg.png') no-repeat center/cover fixed; */
+  }
 
   .swiper-image {
     width: 100%;
@@ -24,9 +26,20 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 20px;
+    
   }
   .course-btn {
     --background: transparent;
     --color: var(--ion-color-primary);
     /* border: 2px solid var(--ion-color-primary); */
+  }
+
+  .courseCard {
+    width: 90%;
+
+  }
+
+  .courseCardContent{
+    font-size: 20px;
   }

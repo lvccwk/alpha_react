@@ -1,6 +1,10 @@
+ion-content.userCard {
+    --background: url('./../../photo/bg.png') no-repeat center/cover fixed !important;
+  }
 
 .userCard {
   --background-image: url('./../../../src/photo/1.png');
+
   --background-size: cover; /* scale the image to cover the entire element */
   --background-position: center; /* center the image within the element */
 }
@@ -9,28 +13,31 @@
 .userprofile {
     display: flex;
     padding-inline: 25px;
-    align-items: stretch;
-    flex-direction: column;
-
+    /* align-items: stretch;
+    flex-direction: column; */
+    
   }
 
 .profileCard {
-    /* width: 100px;
-    height: 100px; */
-    /* display: flex;
-    justify-content: space-evenly;
-    align-content: space-around;
+    --background: #f3f7fd;
+    position: relative;
     flex-wrap: wrap;
-    flex-direction: column;
-    --border-radius: 20px;
-    padding-inline: 20px;
-    background: white;
-    border-radius: 20px */
+    display: flex;
+    justify-content: center;
+    top: 10%;
+    border-radius: 50px;
+    z-index: -1;
+    --padding-left: -10px;
+    --padding-right: -10px;
+    align-content: center;
+    align-items: center;
+    width: 100%;
+    margin:0 auto;
 }
 
 .userlogo {
     position: absolute;
-    top: 13%;
+    top: 12%;
     left: 50%;
     transform: translateX(-50%);
     z-index: 2;
@@ -47,7 +54,7 @@
 }
 
 .profileCard {
-    --background:#f3f7fd;
+    --background:#cfdff0;
     position: relative;
     flex-wrap: wrap;
     display: flex;
@@ -57,15 +64,55 @@
     z-index: -1;
  --padding-left: -10px;
  --padding-right: -10px;
+    width: fit-content;
+}
+
+.infocardDetail {
+    --background:#f3f7fd;
+    position: absolute;
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    top:350px;
+    height: 50%;
+    border-radius: 50px;
+    z-index: -1;
+     --padding-left: -10px;
+     --padding-right: -10px;
+     width: 100%;
+     margin:0 auto;
 }
 .exit{
     font-size: 30px;
 }
 
 .exitbtn{
+    position: relative;
+    top: 5%;
+    right:5% ;
     --border-radius: 60px;
     width:fit-content;
     padding-left:80%;
     --color:light;
+
 }
 
+.userButtonContainer {
+    position: relative; 
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+}
+
+.userButtonleft{
+    --border-radius:20px;
+    width:50%;
+    box-shadow:2cm;
+}
+
+.userButtonright{
+    --background-color: white;
+    --border-radius:20px;
+    width:50%;
+    box-shadow:2cm;
+}
