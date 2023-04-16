@@ -1,4 +1,4 @@
-import { IonCard, IonCardContent, IonSearchbar, SearchbarChangeEventDetail } from '@ionic/react';
+import { IonCard, IonCardContent, IonCardSubtitle, IonImg, IonSearchbar, IonText, SearchbarChangeEventDetail } from '@ionic/react';
 import './TeacherCard.css';
 import { fetchTeacherAll } from '../api/fetchAll';
 import { useQuery } from '@tanstack/react-query';
@@ -6,10 +6,13 @@ import photo from '../../src/photo/brandi-redd-6H9H-tYPUQQ-unsplash.jpg'
 import { useHistory } from 'react-router-dom';
 import { TeacherInterface } from '../interface/interface';
 import { useState } from 'react';
+import './../../src/components/UiDesign/Tutor.css'
+import Avatar from './Avatar';
+import AvatarChat from './UiDesign/AvatarChat';
 
 function TeacherList() {
     const [searchText, setSearchText] = useState('');
-    const { data, isLoading, error, refetch } = useQuery({
+    const { data: teacherAll, isLoading, error, refetch } = useQuery({
         queryKey: ["teacherAllList"],
         queryFn: fetchTeacherAll,
     });
@@ -22,9 +25,12 @@ function TeacherList() {
     const handleSearch = (e: CustomEvent) => {
         setSearchText(e.detail.value!);
     };
+    console.log('teacherAll', teacherAll)
 
-    const filteredData = data?.filter((item: any) =>
-        item.user.username.toLowerCase().includes(searchText.toLowerCase())
+    const filteredData = teacherAll?.filter((item: any) =>
+        item.user.username.toString().includes(searchText.toString()) ||
+        item.info.toString().includes(searchText.toString())
+
     );
 
     return (
@@ -33,13 +39,20 @@ function TeacherList() {
 
             {Array.isArray(filteredData) &&
                 filteredData.map((item: TeacherInterface) => (
-                    <div key={item.id}>
-                        <IonCard onClick={() => onClickEditProfile(item.id)}>
-                            <img alt="Silhouette of mountains" src={photo} />
-                            <IonCardContent>{item.user.username}</IonCardContent>
-                        </IonCard>
-                    </div>
-                ))}
+                    <div className='teacherCardContainer' key={item.id}>
+                        <IonCard className='teacherCardComp' onClick={() => onClickEditProfile(item.id)}>
+                            <div className='photoTutor'><IonImg className='imga' src={photo} /></div>
+                            <IonCardSubtitle className='font-inbox-top'>{item.user.username}</IonCardSubtitle>
+                            <IonCardSubtitle className='font-inbox'>香港中文大學{item.info}</IonCardSubtitle>
+                            <IonCardSubtitle className='font-inbox'>教學經驗 ： 1 年</IonCardSubtitle>
+                            {/* <IonCard className='imgTeacher' >
+                                <IonImg src={photo} />
+                            </IonCard> */}
+                        </IonCard >
+                    </div >
+                ))
+            }
+
         </>
     );
 };

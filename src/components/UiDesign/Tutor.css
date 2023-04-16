@@ -1,0 +1,59 @@
+ion-content.segment{
+    --background: url('./../../photo/bg5.png') no-repeat center/cover fixed !important;
+    padding: 20px;
+  }
+
+
+  .segment {
+    --background-image: url('./../../../src/photo/1.png');
+    --background-size: cover; /* scale the image to cover the entire element */
+    --background-position: center; /* center the image within the element */
+    --padding: 20px;
+  }
+
+  .teacherCardContainer {
+  width: calc(50%);
+  box-sizing: border-box;
+  display: inline-block;
+  }
+
+.teacherCardComp {
+    border-radius: 20px;
+    margin-bottom: 10px;
+    --border-style: none;
+   height: 200px;
+   display: flex;
+   flex-wrap: wrap;
+   text-align: right;
+   align-items: center;
+   justify-content: center;
+  }
+
+.photoTutor{
+  width:200px;
+  height:120px;
+  top: -20px;
+}
+
+.imgTeacher{
+    border-radius: 20px;
+    top:-20px;
+    height: 190px;
+    width: 120px;
+    bottom: 0;
+    width:100%;
+}
+
+.font-inbox {
+  display: inline-block;
+  margin-right: 10px; /* add a 10px margin between each div */
+  margin-bottom: 10px; /* add a 10px margin below each div to move it to the next line */
+  font-size:12px;
+}
+
+.font-inbox-top {
+  display: inline-block;
+  margin-right: 10px; /* add a 10px margin between each div */
+  margin-bottom: 10px; /* add a 10px margin below each div to move it to the next line */
+  font-size: 20px;
+}

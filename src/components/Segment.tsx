@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { IonCol, IonGrid, IonLabel, IonRow, IonSegment, IonSegmentButton } from '@ionic/react';
+import { IonCard, IonCardTitle, IonCol, IonContent, IonGrid, IonLabel, IonRow, IonSegment, IonSegmentButton } from '@ionic/react';
 import ToolBar from './Toolbar';
 import ListCard from './ListCard';
 import Refresh from './Refresh';
 import TeacherCard from './TeacherCard';
-
+import './../../src/components/UiDesign/Tutor.css'
 function Segment() {
     const [selectedSegment, setSelectedSegment] = useState('default');
 
@@ -14,7 +14,7 @@ function Segment() {
 
     return (
         <>
-            <IonSegment value={selectedSegment} onIonChange={handleSegmentChange}>
+            <IonSegment className='ion-padding' value={selectedSegment} onIonChange={handleSegmentChange}>
                 <IonSegmentButton value="default">
                     <IonLabel>名師庫</IonLabel>
                 </IonSegmentButton>
