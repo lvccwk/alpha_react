@@ -1,4 +1,5 @@
 import {
+  IonAlert,
   IonButton,
   IonCard,
   IonCardContent,
@@ -8,7 +9,6 @@ import {
   IonCheckbox,
   IonCol,
   IonContent,
-  IonGrid,
   IonInput,
   IonItem,
   IonLabel,
@@ -21,7 +21,6 @@ import { useHistory } from "react-router-dom";
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { useForm } from "react-hook-form"
 import { useAppSelector } from "../redux/store";
-import './../../src/components/UiDesign/EditProfile.css'
 import {
   FetchUserModel,
   fetchUser,
@@ -29,8 +28,13 @@ import {
 
 } from "../api/fetchUser";
 import Avatar from "./Avatar";
+import './../../src/components/UiDesign/UserProfile.css'
+import AvatarChat from "./UiDesign/AvatarChat";
+
+
 
 export default function EditUserProfile() {
+  const [showAlert, setShowAlert] = useState(false);
   const id = useAppSelector(state => state.user.id)
   const { data: user, isLoading, error, refetch } = useQuery<FetchUserModel>({
     queryKey: ["userEditProfile"],
@@ -55,6 +59,7 @@ export default function EditUserProfile() {
   const fetchUpdateItem = useMutation(fetchUpdateUser, {
     onSuccess(data, variables, context) {
       refetch();
+      setShowAlert(true);
     },
     onError: (error) => {
       console.error("Failed to update user: ", error);
@@ -65,29 +70,39 @@ export default function EditUserProfile() {
     console.log(state)
     fetchUpdateItem.mutate(state);
   }
+
   const history = useHistory();
   const onClickHomePage = () => {
     history.push('/userprofile');
   }
-  return (
-    <div>
-      <IonCard className="editProfilCard">
-        {/* <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" /> */}
-        <IonCardHeader>
-          <IonCardTitle> 編輯個人資料 </IonCardTitle>
-          <div className='userlogo'><Avatar /></div>
 
-          {/* <IonCardSubtitle>Card Subtitle</IonCardSubtitle> */}
-        </IonCardHeader>
-        <IonCardContent>
-          <form className='editProfileSetting' id="edit-profile" onSubmit={handleSubmit(onSubmit)}>
-            <IonInput aria-label="Custom input" class="custom" {...register("username")} /><br></br>
-            <IonInput aria-label="Custom input" class="custom" {...register("password")} /><br></br>
-            <IonInput aria-label="Custom input" class="custom" readonly {...register("email")} /><br></br>
-            <IonButton type="submit" form={"edit-profile"} >Update</IonButton>
-          </form>
-        </IonCardContent>
-      </IonCard>
-    </div >
+
+  return (
+
+    <IonCard className="editProfilCard">
+      {/* <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" /> */}
+      <IonCardHeader>
+        <IonCardTitle> 編輯個人資料 </IonCardTitle>
+        <div className='userlogo'> </div>
+      </IonCardHeader>
+      <IonCardContent>
+        <form className='editProfileSetting' id="edit-profile" onSubmit={handleSubmit(onSubmit)}>
+          <IonInput aria-label="Custom input" class="custom" {...register("username")} /><br></br>
+          <IonInput aria-label="Custom input" class="custom" {...register("password")} /><br></br>
+          <IonInput aria-label="Custom input" class="custom" readonly {...register("email")} /><br></br>
+          <IonButton type="submit" form={"edit-profile"} >更新</IonButton>
+        </form>
+      </IonCardContent>
+      <IonAlert
+        isOpen={showAlert}
+        onDidDismiss={() => setShowAlert(false)}
+        header={'更新成功'}
+        message={'您的個人資料已更新。'}
+        buttons={['確定']}
+        onClick={onClickHomePage}
+      />
+    </IonCard>
+
+
   )
 }
