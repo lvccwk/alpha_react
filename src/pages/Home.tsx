@@ -169,9 +169,18 @@ const Home: React.FC = () => {
           </SwiperSlide> */}
         </Swiper>
         <div className='course'>
-          <IonCardTitle>熱門老師</IonCardTitle><div onClick={onClickTutorPage} className='course-btn'>查看更多課程<IonIcon className="" icon={chevronForward} /></div>
+          <IonCardTitle>熱門老師</IonCardTitle><div onClick={onClickTutorPage} className='course-btn'>查看更多導師<IonIcon className="" icon={chevronForward} /></div>
         </div>
+        <IonCard>
+          <IonCardHeader>
+            <IonCardTitle>一機在手 隨問隨到！</IonCardTitle>
+            {/* <IonCardSubtitle>Card Subtitle</IonCardSubtitle> */}
+          </IonCardHeader>
 
+          <IonCardContent>
+            只要一機在手，問題不再是問題！
+          </IonCardContent>
+        </IonCard>
         <br /><br /><br /><br /><br />
       </IonContent>
     </IonPage >

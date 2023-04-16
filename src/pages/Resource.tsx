@@ -4,8 +4,8 @@ import ExploreContainer from '../components/ExploreContainer';
 import ProductSegment from '../components/ProductSegment';
 import SubjectFilter from '../components/SubjectFilter';
 import ToolBar from '../components/Toolbar';
-import './../../src/components/UiDesign/Resource.css';
 
+import './../../src/components/UiDesign/Resource.css';
 const Resource: React.FC = () => {
   return (
     <>

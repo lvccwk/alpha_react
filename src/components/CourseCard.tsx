@@ -146,42 +146,44 @@ function CourseCard() {
             {Array.isArray(filteredCourses) && Array.isArray(phID) && Array.isArray(cartID) && filteredCourses.map((item: Course) => (
                 <div key={item.id}>
                     {/* your existing code ... */}
-                    {Array.isArray(course) && Array.isArray(phID) && Array.isArray(cartID) && course.map((item: Course) => (
-                        <IonCard className='courseCardBackground' key={item.id}>
-                            <img alt="Silhouette of mountains" src={photo} />
-                            <IonCardContent>老師:{item.teacher.user.username}   {item.name} ${item.price} 評分:{item.avg_rating}
-                            </IonCardContent>
+                    <div style={{ display: 'flex', justifyContent: 'center' }}>
+                        {Array.isArray(course) && Array.isArray(phID) && Array.isArray(cartID) && course.map((item: Course) => (
+                            <IonCard className='courseCardBackground' key={item.id}>
+                                <img alt="Silhouette of mountains" src={photo} />
+                                <IonCardContent className='courseCardText'>老師:{item.teacher.user.username}   {item.name} ${item.price} 評分:{item.avg_rating}
+                                </IonCardContent>
 
-                            <IonFooter className='courseItemPrice'>
-                                <IonButton onClick={() => onClickProductPage(item.id)}>
-                                    詳細資料
-                                </IonButton>
-                                {isLoggedIn === false && (
-                                    <IonButton onClick={() => handleAddToCart(item.id)}>
-                                        加入購物車
+                                <IonFooter className='courseItemPrice'>
+                                    <IonButton onClick={() => onClickProductPage(item.id)}>
+                                        詳細資料
                                     </IonButton>
-                                )}
-                                {isLoggedIn === true && phID.includes(item.id) && (
-                                    <IonButton disabled={true}>
-                                        已購買
-                                    </IonButton>
-                                )}
-                                {isLoggedIn === true && cartID.includes(item.id) && (
-                                    <IonButton disabled={true}>
-                                        已加入購物車
-                                    </IonButton>
-                                )}
-                                {isLoggedIn === true && phID.includes(item.id) === false && cartID.includes(item.id) === false && (
-                                    <IonButton onClick={() => handleAddToCart(item.id)}>
-                                        加入購物車
-                                    </IonButton>
-                                )}
-                            </IonFooter>
-                        </IonCard>
-                    ))}
+                                    {isLoggedIn === false && (
+                                        <IonButton onClick={() => handleAddToCart(item.id)}>
+                                            加入購物車
+                                        </IonButton>
+                                    )}
+                                    {isLoggedIn === true && phID.includes(item.id) && (
+                                        <IonButton disabled={true}>
+                                            已購買
+                                        </IonButton>
+                                    )}
+                                    {isLoggedIn === true && cartID.includes(item.id) && (
+                                        <IonButton disabled={true}>
+                                            已加入購物車
+                                        </IonButton>
+                                    )}
+                                    {isLoggedIn === true && phID.includes(item.id) === false && cartID.includes(item.id) === false && (
+                                        <IonButton onClick={() => handleAddToCart(item.id)}>
+                                            加入購物車
+                                        </IonButton>
+                                    )}
+                                </IonFooter>
+                            </IonCard>
+
+                        ))}
+                    </div>
                 </div>
             ))}
-
         </>
     );
 }

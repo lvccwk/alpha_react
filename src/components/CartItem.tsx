@@ -72,18 +72,18 @@ function CartItem() {
 
   if (data?.cart_detail.length === 0) {
     return (
-      <IonCard>
-        <IonCardContent >
-          <IonCardHeader>
-            <div className='shoppingCart'>
-              <IonIcon className="shoppingCartWithNoLogin" icon={cart} />
-              <br></br>
-              <IonCardTitle>暫時沒有貨品</IonCardTitle>
-              <br></br>
-            </div>
-          </IonCardHeader>
-        </IonCardContent>
-      </IonCard>
+
+      <IonCardContent >
+        <IonCardHeader>
+          <div className='shoppingCart'>
+            <IonIcon className="shoppingCartWithNoLogin" icon={cart} />
+            <br></br>
+            <IonCardTitle>暫時沒有貨品</IonCardTitle>
+            <br></br>
+          </div>
+        </IonCardHeader>
+      </IonCardContent>
+
 
     )
   } else {
@@ -105,10 +105,10 @@ function CartItem() {
               </div>
               <IonButtons>
                 <IonButton onClick={() => onClickDropFromCart(item.id)}>
-                  <IonIcon slot="icon-only" icon={closeCircle} ></IonIcon>
+                  <IonIcon slot="icon-only" icon={closeCircle} color='danger'></IonIcon>
                 </IonButton>
               </IonButtons>
-              <IonCheckbox slot="end" checked={item.is_buying} onClick={() => setIsBuying(item.id, item.is_buying)}></IonCheckbox>
+              <IonCheckbox slot="end" checked={item.is_buying} color='success' onClick={() => setIsBuying(item.id, item.is_buying)}></IonCheckbox>
             </IonItem>
 
           </div>

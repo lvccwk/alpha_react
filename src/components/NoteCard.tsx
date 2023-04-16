@@ -130,37 +130,39 @@ function NoteCard() {
                 <div key={item.id}>
                     {/* your existing code ... */}
                     {Array.isArray(note) && Array.isArray(phID) && Array.isArray(cartID) && note.map((item: Note) => (
-                        <IonCard className='courseCardBackground' key={item.id}>
-                            <img alt="Silhouette of mountains" src={photo} />
-                            <IonCardContent>老師:{item.teacher.user.username}   {item.name} ${item.price} 評分:{item.avg_rating}
+                        <div style={{ display: 'flex', justifyContent: 'center' }}>
+                            <IonCard className='courseCardBackground' key={item.id}>
+                                <img src={photo} style={{ width: '330px', objectFit: 'contain' }} />
+                                <IonCardContent className='coursePhoto'>老師:{item.teacher.user.username}   {item.name} ${item.price} 評分:{item.avg_rating}
 
-                            </IonCardContent>
-                            <IonFooter className='courseItemPrice'>
-                                <IonButton onClick={() => onClickProductPage(item.id)}>
-                                    詳細資料
-                                </IonButton>
-                                {isLoggedIn === false && (
-                                    <IonButton onClick={() => handleAddToCart(item.id)}>
-                                        加入購物車
+                                </IonCardContent>
+                                <IonFooter className='courseItemPrice'>
+                                    <IonButton onClick={() => onClickProductPage(item.id)}>
+                                        詳細資料
                                     </IonButton>
-                                )}
-                                {isLoggedIn === true && phID.includes(item.id) && (
-                                    <IonButton disabled={true}>
-                                        已購買
-                                    </IonButton>
-                                )}
-                                {isLoggedIn === true && cartID.includes(item.id) && (
-                                    <IonButton disabled={true}>
-                                        已加入購物車
-                                    </IonButton>
-                                )}
-                                {isLoggedIn === true && phID.includes(item.id) === false && cartID.includes(item.id) === false && (
-                                    <IonButton onClick={() => handleAddToCart(item.id)}>
-                                        加入購物車
-                                    </IonButton>
-                                )}
-                            </IonFooter>
-                        </IonCard>
+                                    {isLoggedIn === false && (
+                                        <IonButton onClick={() => handleAddToCart(item.id)}>
+                                            加入購物車
+                                        </IonButton>
+                                    )}
+                                    {isLoggedIn === true && phID.includes(item.id) && (
+                                        <IonButton disabled={true}>
+                                            已購買
+                                        </IonButton>
+                                    )}
+                                    {isLoggedIn === true && cartID.includes(item.id) && (
+                                        <IonButton disabled={true}>
+                                            已加入購物車
+                                        </IonButton>
+                                    )}
+                                    {isLoggedIn === true && phID.includes(item.id) === false && cartID.includes(item.id) === false && (
+                                        <IonButton onClick={() => handleAddToCart(item.id)}>
+                                            加入購物車
+                                        </IonButton>
+                                    )}
+                                </IonFooter>
+                            </IonCard>
+                        </div>
                     ))}
                 </div>
             ))}

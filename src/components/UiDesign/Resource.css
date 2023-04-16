@@ -27,20 +27,25 @@ ion-content.resource{
 }
 .courseCardBackground{
     border-radius: 20px;
+    height: 350px;
+    width: 320px;
+
 }
 
 .coursePhoto {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 210px;
-
-  }
-  
+}
 
 .courseItemPrice{
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 18px;
+}
+
+.courseCardText{
+    display: flex;
+    justify-content: center;
 }

@@ -5,3 +5,12 @@
     justify-content: space-evenly;
     
 }
+ion-content.shoppingCart{
+    --background: url('./../../photo/bg5.png') no-repeat center/cover fixed !important;
+    padding: 20px;
+}
+
+.shoppingCartCard {
+    padding:20px;
+    border-radius: 20px;
+}
