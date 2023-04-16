@@ -5,7 +5,7 @@ import ToolBar from '../components/Toolbar';
 import ChatroomContact from '../components/UiDesign/ChatroomContact';
 import { useAppSelector } from '../redux/store';
 import SignInUpCard from '../components/UiDesign/SignInUpCard';
-
+import './../../src/components/UiDesign/Chatroom.css'
 
 const Chatroom: React.FC = () => {
     const isLoggedIn = useAppSelector(state => state.user.isLoggedIn)
@@ -14,8 +14,8 @@ const Chatroom: React.FC = () => {
             <>
                 <IonPage >
                     <ToolBar />
-                    <IonContent class='ion-padding'>
-                        <IonCardTitle>通訊錄</IonCardTitle>
+                    <IonContent className='chatroomContent'>
+                        <IonCardTitle className='ion-padding'>通訊錄</IonCardTitle>
                         <SignInUpCard />
                     </IonContent>
                 </IonPage>
@@ -27,8 +27,8 @@ const Chatroom: React.FC = () => {
             <>
                 <IonPage >
                     <ToolBar />
-                    <IonContent class='ion-padding'>
-                        <IonCardTitle>通訊錄</IonCardTitle>
+                    <IonContent className='chatroomContent'>
+                        <IonCardTitle className='ion-padding' >通訊錄</IonCardTitle>
                         {/* <Chatbox /> */}
                         <ChatroomContact />
                     </IonContent>

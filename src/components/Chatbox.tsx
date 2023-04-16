@@ -116,7 +116,8 @@ function Chatbox() {
             </IonAvatar>
             </IonCardTitle>
             <ChatHistory chatMessage={chatMessage} sender_username={sender?.username} receiver_username={receiver?.username} />
-            {" "}
+            {/* {" "} */}
+            <h2>-------------聊天記錄-------------</h2>
             <Messages messages={messages} senderId={sender_id} sender={sender?.username} receiver={receiver?.username} />
             <MessageInput send={(val: string) => send(val, sender_id)} />
         </>
