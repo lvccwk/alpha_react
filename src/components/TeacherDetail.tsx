@@ -58,13 +58,13 @@ function TeacherDetail() {
                     <IonCard className='teacherProfileCard' >
                         <br /><br />
                         <div className='teacherCardContent'>
-                            <IonCardHeader>
+                            <IonCardHeader className='usernameInfo'>
                                 {/* <IonCardSubtitle className='teacherFont'>Email : {data?.user.email}</IonCardSubtitle> */}
-                                <IonCardTitle>{data?.user.username}</IonCardTitle>
+                                <IonCardTitle>導師 : {data?.user.username}</IonCardTitle>
                                 {/* <br /> <br /><br /> */}
                             </IonCardHeader>
                             <IonCardContent className='teacherButtonContainer' >
-                                <IonButton className='teacherButtonleft' onClick={() => onClickContactPage(Number(teacherId))}>聯絡 {data?.user.username}</IonButton>
+                                <IonButton className='teacherButtonleft' onClick={() => onClickContactPage(Number(teacherId))}>查看{data?.user.username}商品</IonButton>
                                 <IonButton className='teacherButtonright' onClick={() => onClickContactPage(Number(teacherId))}>聯絡 {data?.user.username}</IonButton>
                                 <br /><br /><br /><br />
                             </IonCardContent>
@@ -74,14 +74,16 @@ function TeacherDetail() {
 
                     <IonCard className='teacherInfocardDetails'>
                         <div className='teacherinfocardInsides'>
-                            <IonCardSubtitle className='teacherFonts'>
-                                導師介紹:<br></br>{data?.info}
-                            </IonCardSubtitle>
+                            <IonCardContent className='teacherFonts'>
+                                <h1>導師介紹:  </h1>
+                                <br></br>{data?.info}
+                                大家好，我是一位補習老師，我的名字是______。我畢業於______大學，主修______。我有多年的教學經驗，曾為不同年齡和程度的學生進行補習。我喜歡教學，因為我相信每個學生都有自己的潛力，只需要找到適合他們的教學方法和學習節奏。我會根據學生的程度和需求，設計出合適的教學計劃和練習，讓學生能夠在學習中逐步提高，達到他們的學習目標。我也會鼓勵學生主動思考和發問，幫助他們建立自信，從而更好地掌握知識和技能。希望能夠成為學生學習路上的良師益友，共同進步。
+                                <br /><br /><br />
+                            </IonCardContent>
                             <br /><br /><br />
                         </div>
-
                     </IonCard>
-
+                    <br />
 
                     {/* <IonCardSubtitle className='teacher-fonts'>{data?.user.username}的課程 / 筆記</IonCardSubtitle> */}
                     {/* {Array.isArray(course) &&
@@ -100,39 +102,46 @@ function TeacherDetail() {
     } else {
         return (
             <>
-                <br />
-                <div className="teacher-avatar">
-                    <Avatar />
-                </div>
-                <div className="teacher-info">
-                    <IonCardTitle>{data?.user.username}</IonCardTitle>
-                    <IonCardSubtitle>Email : {data?.user.email}</IonCardSubtitle>
-                    <IonCardSubtitle>教學年資： 1</IonCardSubtitle>
-                </div>
-                <div className="teacher-contact">
-                    <IonButton onClick={() => onClickContactPage(Number(teacherId))}>聯絡 {data?.user.username}</IonButton>
-                </div>
-                <TeacherBookmark />
-                <IonCard>
-                    <img alt="Silhouette of mountains" src={photo} />
-                    <IonCardContent>
-                        <IonCardSubtitle>導師介紹</IonCardSubtitle><br></br>
-                        {data?.info}
-                    </IonCardContent>
-                    {/* <IonCardContent className="ion-padding">
-                        <div style={{ display: 'flex', justifyContent: 'center' }}><h2>{data?.user.username} 的時間表</h2> </div>
-                        <br></br>
-                        <DateTime />
-                    </IonCardContent> */}
-                    {/* <TimePicker /> */}
-                </IonCard >
+                <IonContent className='teacherCard'>
+                    <br />
 
-                <IonCardSubtitle className='teacher-fonts'>{data?.user.username}的課程 / 筆記</IonCardSubtitle>
+                    <div className="teacher-avatar">
+                        <Avatar />
+                    </div>
+                    <TeacherBookmark />
+                    <IonCard className='teacherProfileCard' >
+                        <br /><br />
+                        <div className='teacherCardContent'>
+                            <IonCardHeader>
+                                {/* <IonCardSubtitle className='teacherFont'>Email : {data?.user.email}</IonCardSubtitle> */}
+                                <IonCardTitle>{data?.user.username}</IonCardTitle>
+                                {/* <br /> <br /><br /> */}
+                            </IonCardHeader>
+                            <IonCardContent className='teacherButtonContainer' >
+                                <IonButton className='teacherButtonleft' onClick={() => onClickContactPage(Number(teacherId))}>聯絡 {data?.user.username}</IonButton>
+                                <IonButton className='teacherButtonright' onClick={() => onClickContactPage(Number(teacherId))}>聯絡 {data?.user.username}</IonButton>
+                                <br /><br /><br /><br />
+                            </IonCardContent>
+                        </div>
+                    </IonCard>
 
-                <IonCard>
 
-                </IonCard >
-                <br /><br /><br /><br />
+                    <IonCard className='teacherInfocardDetails'>
+                        <div className='teacherinfocardInsides'>
+                            <IonCardContent className='teacherFonts'>
+                                <h1>導師介紹:  </h1>
+                                <br></br>{data?.info}
+                                大家好，我是一位補習老師，我的名字是______。我畢業於______大學，主修______。我有多年的教學經驗，曾為不同年齡和程度的學生進行補習。我喜歡教學，因為我相信每個學生都有自己的潛力，只需要找到適合他們的教學方法和學習節奏。我會根據學生的程度和需求，設計出合適的教學計劃和練習，讓學生能夠在學習中逐步提高，達到他們的學習目標。我也會鼓勵學生主動思考和發問，幫助他們建立自信，從而更好地掌握知識和技能。希望能夠成為學生學習路上的良師益友，共同進步。
+                                <br /><br /><br />
+                            </IonCardContent>
+                            <br /><br /><br />
+                        </div>
+                    </IonCard>
+                    <br />
+
+
+
+                </IonContent>
             </>
         );
     }

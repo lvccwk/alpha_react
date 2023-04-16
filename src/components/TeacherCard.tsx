@@ -43,7 +43,7 @@ function TeacherList() {
                         <IonCard className='teacherCardComp' onClick={() => onClickEditProfile(item.id)}>
                             <div className='photoTutor'><IonImg className='imga' src={photo} /></div>
                             <IonCardSubtitle className='font-inbox-top'>{item.user.username}</IonCardSubtitle>
-                            <IonCardSubtitle className='font-inbox'>香港中文大學{item.info}</IonCardSubtitle>
+                            <IonCardSubtitle className='font-inbox'>香港中文大學</IonCardSubtitle>
                             <IonCardSubtitle className='font-inbox'>教學經驗 ： 1 年</IonCardSubtitle>
                             {/* <IonCard className='imgTeacher' >
                                 <IonImg src={photo} />

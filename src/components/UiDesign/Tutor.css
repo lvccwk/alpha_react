@@ -21,7 +21,7 @@ ion-content.segment{
     border-radius: 20px;
     margin-bottom: 10px;
     --border-style: none;
-   height: 200px;
+   height: 220px;
    display: flex;
    flex-wrap: wrap;
    text-align: right;
@@ -38,7 +38,7 @@ ion-content.segment{
 .imgTeacher{
     border-radius: 20px;
     top:-20px;
-    height: 190px;
+    height: 210px;
     width: 120px;
     bottom: 0;
     width:100%;
@@ -48,7 +48,7 @@ ion-content.segment{
   display: inline-block;
   margin-right: 10px; /* add a 10px margin between each div */
   margin-bottom: 10px; /* add a 10px margin below each div to move it to the next line */
-  font-size:12px;
+  font-size:10px;
 }
 
 .font-inbox-top {
@@ -56,4 +56,5 @@ ion-content.segment{
   margin-right: 10px; /* add a 10px margin between each div */
   margin-bottom: 10px; /* add a 10px margin below each div to move it to the next line */
   font-size: 20px;
+  
 }

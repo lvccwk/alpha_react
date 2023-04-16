@@ -142,7 +142,7 @@ font-size: 18px;
     display: flex;
     justify-content: center;
     top:380px;
-    height: 50%;
+    height: 100%;
     border-radius: 50px;
     z-index: -1;
      --padding-left: -10px;
@@ -157,4 +157,10 @@ font-size: 18px;
 
 .teacherFonts{
     font-size: 18px;
+    word-wrap: break-word;
+    word-break: break-word;
+    padding: 30px;
+}
+.usernameInfo{
+    font-size: larger;
 }
