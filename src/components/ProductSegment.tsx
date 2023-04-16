@@ -14,7 +14,7 @@ function ProductSegment() {
 
     return (
         <>
-            <IonSegment value={selectedSegment} onIonChange={handleSegmentChange}>
+            <IonSegment className='ion-padding' value={selectedSegment} onIonChange={handleSegmentChange}>
                 <IonSegmentButton value="default">
                     <IonLabel>課程</IonLabel>
                 </IonSegmentButton>

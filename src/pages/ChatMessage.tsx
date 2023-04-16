@@ -2,7 +2,6 @@ import { IonButton, IonButtons, IonCard, IonCardContent, IonCardHeader, IonCardS
 import Chatbox from '../components/Chatbox';
 import ExploreContainer from '../components/ExploreContainer';
 import ToolBar from '../components/Toolbar';
-import './Resource.css';
 import ChatroomContact from '../components/UiDesign/ChatroomContact';
 
 const ChatMessage: React.FC = () => {

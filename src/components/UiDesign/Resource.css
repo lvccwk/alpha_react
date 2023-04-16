@@ -1,0 +1,46 @@
+
+
+ion-content.resource{
+    --background: url('./../../photo/bg5.png') no-repeat center/cover fixed !important;
+    padding: 20px;
+  }
+
+.courseContainer{
+    display: flex;
+    align-items: center;
+}
+
+.courseIcon{
+    size: large;
+
+}
+
+.courseButton {
+    display: flex;
+    position: relative;
+    -ms-flex-order: 1;
+    order: 1;
+    width: 100%;
+    z-index: 10;
+    flex-direction: row;
+    justify-content: center;
+}
+.courseCardBackground{
+    border-radius: 20px;
+}
+
+.coursePhoto {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 210px;
+
+  }
+  
+
+.courseItemPrice{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+}

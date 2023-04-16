@@ -12,7 +12,6 @@ const Tutor: React.FC = () => {
                 <IonContent className='segment'>
 
                     <IonCardTitle className='ion-padding'>導師列表</IonCardTitle>
-
                     <br></br>
                     <Segment />
 

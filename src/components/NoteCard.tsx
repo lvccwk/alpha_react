@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCol, IonGrid, IonRow, IonSearchbar, SearchbarChangeEventDetail, useIonAlert, useIonViewWillEnter } from '@ionic/react';
+import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonCol, IonFooter, IonGrid, IonRow, IonSearchbar, SearchbarChangeEventDetail, useIonAlert, useIonViewWillEnter } from '@ionic/react';
 import './TeacherCard.css';
 import { fetchAddCart, fetchCart, fetchNote, fetchPurchaseHistory } from '../api/fetchAll';
 import { useQuery } from '@tanstack/react-query';
@@ -8,7 +8,7 @@ import { useHistory } from 'react-router';
 import { useAppSelector } from "../redux/store";
 import { fetchUser } from '../api/fetchUser';
 import { TeacherInterface, UserInterface } from '../interface/interface';
-
+import './../../src/components/UiDesign/Resource.css'
 interface Note {
     id: number;
     name: string;
@@ -130,9 +130,12 @@ function NoteCard() {
                 <div key={item.id}>
                     {/* your existing code ... */}
                     {Array.isArray(note) && Array.isArray(phID) && Array.isArray(cartID) && note.map((item: Note) => (
-                        <IonCard key={item.id}>
+                        <IonCard className='courseCardBackground' key={item.id}>
                             <img alt="Silhouette of mountains" src={photo} />
                             <IonCardContent>老師:{item.teacher.user.username}   {item.name} ${item.price} 評分:{item.avg_rating}
+
+                            </IonCardContent>
+                            <IonFooter className='courseItemPrice'>
                                 <IonButton onClick={() => onClickProductPage(item.id)}>
                                     詳細資料
                                 </IonButton>
@@ -156,7 +159,7 @@ function NoteCard() {
                                         加入購物車
                                     </IonButton>
                                 )}
-                            </IonCardContent>
+                            </IonFooter>
                         </IonCard>
                     ))}
                 </div>

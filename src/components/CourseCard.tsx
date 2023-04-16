@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { IonButton, IonCard, IonCardContent, IonContent, IonSearchbar, SearchbarChangeEventDetail, useIonAlert, useIonViewWillEnter } from '@ionic/react';
+import { IonButton, IonCard, IonCardContent, IonContent, IonFooter, IonSearchbar, SearchbarChangeEventDetail, useIonAlert, useIonViewWillEnter } from '@ionic/react';
 import './TeacherCard.css';
 import { fetchAddCart, fetchCart, fetchCourse, fetchPurchaseHistory } from '../api/fetchAll';
 import { useQuery } from '@tanstack/react-query';
@@ -8,7 +8,7 @@ import { useHistory } from 'react-router';
 import { useAppSelector } from "../redux/store";
 import { fetchUser } from '../api/fetchUser';
 import { TeacherInterface, UserInterface } from '../interface/interface';
-
+import './../../src/components/UiDesign/Resource.css'
 export interface Course {
     id: number;
     name: string;
@@ -147,9 +147,12 @@ function CourseCard() {
                 <div key={item.id}>
                     {/* your existing code ... */}
                     {Array.isArray(course) && Array.isArray(phID) && Array.isArray(cartID) && course.map((item: Course) => (
-                        <IonCard key={item.id}>
+                        <IonCard className='courseCardBackground' key={item.id}>
                             <img alt="Silhouette of mountains" src={photo} />
                             <IonCardContent>老師:{item.teacher.user.username}   {item.name} ${item.price} 評分:{item.avg_rating}
+                            </IonCardContent>
+
+                            <IonFooter className='courseItemPrice'>
                                 <IonButton onClick={() => onClickProductPage(item.id)}>
                                     詳細資料
                                 </IonButton>
@@ -173,7 +176,7 @@ function CourseCard() {
                                         加入購物車
                                     </IonButton>
                                 )}
-                            </IonCardContent>
+                            </IonFooter>
                         </IonCard>
                     ))}
                 </div>
