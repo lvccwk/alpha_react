@@ -1,11 +1,11 @@
-import { IonItem, IonLabel, IonButton, IonThumbnail, IonButtons, IonIcon, IonCheckbox, useIonViewWillEnter } from '@ionic/react';
+import { IonItem, IonLabel, IonButton, IonThumbnail, IonButtons, IonIcon, IonCheckbox, useIonViewWillEnter, IonCard, IonCardHeader, IonCardTitle, IonContent } from '@ionic/react';
 import { useQuery } from '@tanstack/react-query';
 import { useHistory } from 'react-router';
 import { fetchCart, fetchDropFromCart, fetchIsBuying, fetchPurchaseHistory } from '../api/fetchAll';
 import { useAppSelector } from '../redux/store';
-import { closeCircle } from 'ionicons/icons';
+import { cart, closeCircle, person } from 'ionicons/icons';
 import { fetchUser } from '../api/fetchUser';
-
+import './../../src/components/UiDesign/CartPage.css'
 interface ProductInterface {
   id: number;
   product_id: number;
@@ -50,26 +50,41 @@ function PurchasedHistoryList() {
 
   if (purchaseHistory?.length === 0) {
     return (
-      <div>尚未購買產品</div>
+      <IonCard className='purchaseCart'>
+
+        <IonCardHeader>
+          <div className='shoppingCart'>
+            <IonIcon className="shoppingCartWithNoLogin" icon={cart} />
+            <br></br>
+            <IonCardTitle>Purchase History</IonCardTitle>
+            尚未購買產品
+            <br></br>
+          </div>
+
+        </IonCardHeader>
+      </IonCard>
     )
   } else {
     return (
       <>
+        <IonContent className='purchaseHistoryList'>
 
-        {Array.isArray(purchaseHistory) && purchaseHistory.map((item: ProductInterface) => (
-          <IonItem key={item.id}>
-            <IonThumbnail slot="start">
-              <img src={`${item.product.image}`} />
-            </IonThumbnail>
-            <IonLabel>{item.product.name}</IonLabel>
-            {/* {item.product.product_type} */}
-            <IonButton onClick={() => onClickPurchasedItem(item.product_id)}>
-              詳細
-            </IonButton>
-            {/* ${item.product.price} */}
-          </IonItem>
-        ))}
-
+          <IonCard className='purchaseCart' style={{ padding: '20px' }}>
+            {Array.isArray(purchaseHistory) && purchaseHistory.map((item: ProductInterface) => (
+              <IonItem key={item.id}>
+                <IonThumbnail slot="start">
+                  <img src={`${item.product.image}`} />
+                </IonThumbnail>
+                <IonLabel>{item.product.name}</IonLabel>
+                {/* {item.product.product_type} */}
+                <IonButton onClick={() => onClickPurchasedItem(item.product_id)}>
+                  詳細
+                </IonButton>
+                {/* ${item.product.price} */}
+              </IonItem>
+            ))}
+          </IonCard>
+        </IonContent>
       </>
     );
   }

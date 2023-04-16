@@ -14,15 +14,21 @@ ion-tab-bar {
     /* --height: 1000px;  */
     /* --padding-top: 20px; */
     /* --padding-bottom: 20px; */
+/*     
     position: absolute;
     bottom: 0;
     width:90%;
-    height: 8%;
-    --background :#eff1f2df;
+  
+    --background :#f4f4f4;
     --color:#616161;;
     align-self: center;
     border-radius: 20px;
     margin-bottom: 10px;
-    --border-style: none;
+    --border-style: none; */
+
+    height: 50px;
   }
 
+/* .label-bottom {
+    margin-top: 10px;
+} */

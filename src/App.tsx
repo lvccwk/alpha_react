@@ -109,27 +109,27 @@ const App: React.FC = () => {
 
           <IonTabBar slot="bottom">
             <IonTabButton tab="resource" href="/resource">
-              <IonIcon icon={libraryOutline} />
-              <IonLabel >資源</IonLabel>
+              <IonIcon className="label-bottom" size='large' icon={libraryOutline} />
+              <IonLabel>資源</IonLabel>
             </IonTabButton>
 
             <IonTabButton tab="tutor" href="/tutor" >
-              <IonIcon icon={peopleOutline} />
+              <IonIcon className="label-bottom" size='large' icon={peopleOutline} />
               <IonLabel  >導師</IonLabel>
             </IonTabButton>
 
             <IonTabButton tab="home" href="/home">
-              <IonIcon icon={homeOutline} />
+              <IonIcon className="label-bottom" size='large' icon={homeOutline} />
               <IonLabel  >首頁</IonLabel>
             </IonTabButton>
 
             <IonTabButton tab="shoppingcart" href="/shoppingcart">
-              <IonIcon icon={cartOutline} />
+              <IonIcon className="label-bottom" size='large' icon={cartOutline} />
               <IonLabel  >購物車</IonLabel>
             </IonTabButton>
 
             <IonTabButton tab="chatroom" href="/chatroom">
-              <IonIcon icon={chatbubblesOutline} />
+              <IonIcon className="label-bottom" size='large' icon={chatbubblesOutline} />
               <IonLabel>訊息</IonLabel>
             </IonTabButton>
 

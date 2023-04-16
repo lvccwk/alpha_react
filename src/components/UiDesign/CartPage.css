@@ -14,3 +14,76 @@ ion-content.shoppingCart{
     padding:20px;
     border-radius: 20px;
 }
+.purchaseCart {
+    padding:20px;
+    border-radius: 20px;
+}
+
+ion-content.purchaseHistorys{
+    --background: url('./../../photo/bg5.png') no-repeat center/cover fixed !important;
+    padding: 20px !important;
+}
+
+.purchaseHistoryList{
+    --background: url('./../../photo/bg5.png') no-repeat center/cover fixed !important;
+    padding: 20px;
+}
+
+/* 
+.purchaseCart {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 1rem;
+    padding: 1rem;
+    background-color: #f2f2f2;
+    border-radius: 0.5rem;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  } */
+/*   
+  .purchaseCart ion-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    background-color: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  } */
+  
+  .purchaseCart ion-thumbnail {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+  
+  .purchaseCart ion-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .purchaseCart ion-label {
+    flex: 1;
+    margin: 0 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  .purchaseCart ion-button {
+    margin-left: 1rem;
+    background-color: #007aff;
+    color: #fff;
+    border-radius: 0.5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .purchaseCart ion-button:hover {
+    background-color: #0062cc;
+  }

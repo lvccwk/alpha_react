@@ -16,7 +16,7 @@ const ShoppingCart: React.FC = () => {
                 <ToolBar />
                 {isLoggedIn === false && (
                     <IonContent className='shoppingCart'>
-                        <IonCard className='ion-shoppingCartCard'>
+                        <IonCard className='shoppingCartCard'>
                             <IonCardTitle>你的購物車</IonCardTitle>
                             <SignInUpCard />
                         </IonCard>

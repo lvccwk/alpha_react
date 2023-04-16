@@ -3,15 +3,16 @@ import { Route } from 'react-router';
 
 import ToolBar from '../components/Toolbar';
 import PurchasedHistoryList from '../components/PurchasedHistoryList';
-
+import './../../src/components/UiDesign/CartPage.css'
+import { person } from 'ionicons/icons';
 const PurchaseHistory: React.FC = () => {
 
     return (
         <>
             <IonPage>
                 <ToolBar />
-                <IonContent>
-                    <IonCardTitle>Purchase History</IonCardTitle>
+                <IonContent className='purchaseHistory'>
+                    <IonCardTitle className='ion-padding' >購買記錄</IonCardTitle>
                     <PurchasedHistoryList />
                 </IonContent>
             </IonPage>

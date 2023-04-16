@@ -1,4 +1,4 @@
-import { IonCard, IonCardContent, IonCardSubtitle, IonImg, IonSearchbar, IonText, SearchbarChangeEventDetail } from '@ionic/react';
+import { IonButton, IonCard, IonCardContent, IonCardSubtitle, IonImg, IonSearchbar, IonText, SearchbarChangeEventDetail } from '@ionic/react';
 import './TeacherCard.css';
 import { fetchTeacherAll } from '../api/fetchAll';
 import { useQuery } from '@tanstack/react-query';
@@ -43,8 +43,9 @@ function TeacherList() {
                         <IonCard className='teacherCardComp' onClick={() => onClickEditProfile(item.id)}>
                             <div className='tutorPhoto'><IonImg className='imga' src={photo} /></div>
                             <IonCardSubtitle className='font-inbox-top'>{item.user.username}</IonCardSubtitle>
-                            <IonCardSubtitle className='font-inbox'>香港中文大學</IonCardSubtitle>
-                            <IonCardSubtitle className='font-inbox'>教學經驗 ： 1 年</IonCardSubtitle>
+                            {/* <IonCardSubtitle className='font-inbox'>香港中文大學</IonCardSubtitle> */}
+                            <IonButton className='font-inbox'>中文科 ： 1 年教學經驗</IonButton>
+
                             {/* <IonCard className='imgTeacher' >
                                 <IonImg src={photo} />
                             </IonCard> */}
