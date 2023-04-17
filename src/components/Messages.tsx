@@ -7,11 +7,11 @@ export default function Messages({ messages, senderId, sender, receiver }: { mes
             <div className="messageList">
                 {messages.map((message, index) => (
                     <div key={index}>
-                        <div className="messageHeader">{
+                        <div className="">{
                             senderId === message[1] ? sender : receiver
                         } : </div>
                         <br></br>
-                        <div className="textMessage">{message}</div>
+                        <div className="">{message[0]}</div>
                         <br></br>
                     </div>
                 ))}
