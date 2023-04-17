@@ -46,8 +46,8 @@ export default function UserProfile() {
     refetchOnReconnect: false,
     retry: false,
   });
-  console.log(data)
-  console.log('teacher_id', data?.teacher[0].id)
+
+
   const teacher_id = (Number(data?.teacher[0]?.id))
 
   const handleRedirectUpload = () => {
@@ -130,7 +130,48 @@ export default function UserProfile() {
     //if (error) return <div>Error: {error.message}</div>;
     console.log('student')
     return (
-      <div>學生版</div>
+      <IonPage className='userprofilepage'>
+      <Toolbar />
+      <IonContent className='userCard'>
+        <IonButton className='exitbtn' color="danger" onClick={handleLogout}><IonIcon icon={power} className='exit' ></IonIcon></IonButton>
+        <div className='userlogo'><Avatar /></div>
+        <IonCard className='profileCard' >
+
+          <div className='CardContent'>
+            <IonCardHeader >
+              <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
+              <IonCardTitle>{data?.username}</IonCardTitle>
+              <br /> <br /><br />
+            </IonCardHeader>
+
+            <IonCardContent className='userButtonContainer' >
+              <IonButton className='userButtonleft' onClick={handleEditProfile}>更改個人資料</IonButton>
+              <IonButton className='userButtonright' onClick={handlePurchaseHistory}>購買資料</IonButton>
+            </IonCardContent>
+
+          </div>
+          <br /><br /><br /><br /><br /><br />
+        </IonCard>
+
+        <IonCard className='infocardDetail'>
+
+          <div className='infocardInside'>
+            <br /> <br />
+            用戶名稱: {data?.username}
+            <br />
+            用戶類別 : {data?.user_type}
+            <br />
+            電郵 : {data?.email}
+            <br />
+            <br /><br /><br />
+            <DeleteUserAlert />
+          </div>
+
+          <br /><br /><br /><br /><br /><br />
+          <br /><br /><br /><br /><br /><br />
+        </IonCard>
+      </IonContent>
+    </IonPage>
     );
   }
 }

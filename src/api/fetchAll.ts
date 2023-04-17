@@ -29,7 +29,7 @@ export interface FetchUserAllModel {
 	cart_id: number;
 	product_id: number;
 	is_buying: boolean;
-	teacher_id: number;
+	teacher_id:any |null;
 	cart: CartInterface;
 	user: UserInterface;
 	cart_detail: CartDetailInterface;
@@ -53,6 +53,7 @@ export interface FetchUserAllModel {
 	file_url: string;
 	ok: any;
 	filter: any | null;
+
 }
 
 export const fetchUserAll = async (): Promise<FetchUserAllModel> => {
