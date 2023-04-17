@@ -52,6 +52,7 @@ import "./App.css";
 import TutorProfile from './pages/TutorProfile';
 import Register from './pages/Register';
 import PurchaseHistory from './pages/PurchaseHistory';
+import UploadHistory from './pages/UploadHistory';
 import UploadProduct from './pages/UploadProduct';
 import TimeSlot from './pages/TimeSlot';
 import PrivateMessage from './pages/PrivateMessage';
@@ -99,6 +100,7 @@ const App: React.FC = () => {
 
             <Route path="/register" render={() => <Register />} exact={true} />
             <Route path="/purchasehistory" render={() => <PurchaseHistory />} exact={true} />
+            <Route path="/uploadhistory/:teacherId" render={() => <UploadHistory />} exact={true} />
             <Route path="/uploadproduct/:teacherId" render={() => <UploadProduct />} exact={true} />
             <Route path="/availabletime/:teacherId" render={() => <UploadAvailableTime />} exact={true} />
             <Route path="/timeslot/:teacherId" render={() => <TimeSlot />} exact={true} />
