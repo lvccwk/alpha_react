@@ -38,7 +38,6 @@ export interface Course {
 }
 
 const Home: React.FC = () => {
-
   const { data: course } = useQuery({
     queryKey: ["homepagecourse"],
     queryFn: async () => await fetchCourse(),
@@ -138,10 +137,10 @@ const Home: React.FC = () => {
         </div>
         <Swiper
           modules={[Autoplay, Keyboard, Pagination, Scrollbar, Zoom]}
-          autoplay={{ delay: 5000 }}
+          autoplay={true}
           navigation={true}
           pagination={{ clickable: true }}
-          slidesPerView={2.5}
+          slidesPerView={2}
           spaceBetween={-10}
         >
           {/* <SwiperSlide>
@@ -151,7 +150,7 @@ const Home: React.FC = () => {
             <SwiperSlide>
 
               <IonCard className='courseCard' onClick={() => onClickProductPage(item.id)}>
-                <div className='coursePhotoHome' ><IonImg src={item.image} /></div>
+                <div><IonImg className='coursePhotoHome' src={item.image} /></div>
                 <IonCardSubtitle className='courseCardContent'>{item.name}</IonCardSubtitle>
               </IonCard>
 

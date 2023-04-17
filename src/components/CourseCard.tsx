@@ -148,7 +148,7 @@ function CourseCard() {
                 <div style={{ display: 'flex', justifyContent: 'center' }} key={item.id}>
                     {/* your existing code ... */}
                     <IonCard className='courseCardBackground' key={item.id}>
-                        <img alt="Product thumbnail" className='courseCardBackground-img' src={item.image} />
+                        <img alt="Product thumbnail" className='courseCardBackground-img' src={item.image} style={{ width: '350px', objectFit: 'cover' }} />
                         <IonCardContent className='courseCardText'>老師:{item.teacher.user.username}{item.name} ${item.price} 評分:{item.avg_rating ? item.avg_rating : "暫無"}
                         </IonCardContent>
                         <IonFooter className='courseItemPrice'>
