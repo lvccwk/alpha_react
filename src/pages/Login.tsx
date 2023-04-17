@@ -123,7 +123,7 @@ const LoginPage: React.FC = () => {
                             class="custom"
                             value={email}
                             placeholder="email"
-                            onIonChange={(e: any) => setUserEmail(e.target.value)}
+                            onInput={(e: any) => setUserEmail(e.target.value)}
                         >Email :</IonInput>
                         <br></br>
                         <IonInput
@@ -131,7 +131,7 @@ const LoginPage: React.FC = () => {
                             class="custom"
                             value={password}
                             type='password' placeholder="Password?"
-                            onIonChange={(e: any) => setPassword(e.target.value)}
+                            onInput={(e: any) => setPassword(e.target.value)}
                         >密碼 :</IonInput>
                         <br></br>
                         <IonButton onClick={login}>一般登入</IonButton>
