@@ -12,10 +12,10 @@
 
     const Register: React.FC = () => {
         const [user_type, setUserType] = useState('');
-        const [username, setUsername] = useState('username');
-        const [email, setUseremail] = useState('email@gmail.com');
-        const [password, setPassword] = useState('12345678');
-        const [cpassword, setCPassword] = useState('12345678');
+        const [username, setUsername] = useState('');
+        const [email, setUseremail] = useState('');
+        const [password, setPassword] = useState('');
+        const [cpassword, setCPassword] = useState('');
         const [isTeacher, setIsTeacher] = useState(false);
         const [teacherinfo, setTeacherinfo] = useState("");
         const [school, setSchool] = useState("");
@@ -178,10 +178,13 @@
                             </>
                         )}
                         {/* <IonInput value={user_type} placeholder="User_type?" onIonChange={(e: any) => setUsertype(e.target.value)}></IonInput> */}
-                        <IonInput aria-label="Custom input" class="custom" value={username} placeholder="username" onIonChange={(e: any) => { console.log(e); setUsername(e.target.value) }}>用戶名稱：</IonInput><br></br>
-                        <IonInput aria-label="Custom input" class="custom" value={email} placeholder="email" onIonChange={(e: any) => setUseremail(e.target.value)}>電郵</IonInput><br></br>
-                        <IonInput aria-label="Custom input" class="custom" value={password} placeholder="password" onIonChange={(e: any) => setPassword(e.target.value)}>密碼</IonInput><br></br>
-                        <IonInput aria-label="Custom input" class="custom" value={cpassword} placeholder="Confirm Password" onIonChange={(e: any) => setCPassword(e.target.value)}>確認密碼</IonInput><br></br>
+                        <IonInput aria-label="Custom input" class="custom" value={username} placeholder="username" onInput={(e: any) => { console.log(e); setUsername(e.target.value) }}>用戶名稱：</IonInput><br></br>
+                        <IonInput aria-label="Custom input" class="custom" value={email} placeholder="email" onInput={(e: any) => setUseremail(e.target.value)}>電郵</IonInput><br></br>
+                        <IonInput aria-label="Custom input" class="custom" value={password} placeholder="password" onInput={(e: any) => setPassword(e.target.value)}>密碼</IonInput><br></br>
+                        <IonInput aria-label="Custom input" class="custom" value={cpassword} placeholder="Confirm Password" onInput={(e: any) => {
+                            console.log(e.target.value)
+                            return setCPassword(e.target.value)}
+                        }>確認密碼</IonInput><br></br>
                         <IonButton onClick={handleRegisterUser}>註冊</IonButton>
                     </div >
                 </IonContent>

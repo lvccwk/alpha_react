@@ -37,24 +37,26 @@ function TeacherBookmark() {
 
         try {
             if (!isBookmarked) {
+                console.log("create",obj.user_id, obj.teacher_id);
                 await fetchCreateBookmark(obj);
                 setIsBookmarked(true);
                 setShowToast(true);
             } else {
+                console.log("delete",obj.user_id, obj.teacher_id);
                 // const { data, isLoading, error, refetch } = useQuery(['teacherDetailBookMark', teacherId], () =>
                 //     fetchTeacher(Number(teacherId))
                 // );
                 // obj
-                // await fetchDeleteBookmark(obj);
-                // setIsBookmarked(false);
-                // setShowToast(true);
+                await fetchDeleteBookmark(obj);
+                setIsBookmarked(false);
+                setShowToast(true);
             }
         } catch (error) {
-            console.log('Error:', error);
+            //console.log('Error:', error);
             setShowToast(true);
         }
 
-        console.log(obj.user_id, obj.teacher_id);
+        
     };
 
     const toastMessage = isBookmarked ? 'Teacher bookmarked' : 'Bookmark removed';
