@@ -18,6 +18,8 @@
         const [cpassword, setCPassword] = useState('12345678');
         const [isTeacher, setIsTeacher] = useState(false);
         const [teacherinfo, setTeacherinfo] = useState("");
+        const [school, setSchool] = useState("");
+        const [experience, setExperience] = useState(0);
 
         const [showToast, setShowToast] = useState(false);
         const [toastMessage, setToastMessage] = useState('');
@@ -50,6 +52,8 @@
             mutationFn: async (obj: {
                 user_id: number;
                 info: string;
+                school: string;
+                experience: number;
             }) => await
                 fetchCreateTeacher(obj),   
                 onSuccess: () => {
@@ -68,10 +72,13 @@
             useEffect(() => {
                 if (createUser.isSuccess) {
                   if (isTeacher) {
-                    console.log(createUser.data!.id, teacherinfo);
+                    console.log(createUser.data!.id, teacherinfo, school, experience);
                     createTeacher.mutate({
                       user_id: createUser.data!.id,
-                      info: teacherinfo
+                      info: teacherinfo,
+                      school: school,
+                      experience: experience
+
                     });
                   }
                 }
@@ -148,6 +155,24 @@
                                     value={teacherinfo}
                                     placeholder="Teacher Input"
                                     onIonChange={(e: any) => setTeacherinfo(e.target.value)}
+                                >
+                                </IonInput><br />
+                                學校
+                                <IonInput
+                                    aria-label="Custom input"
+                                    class="custom"
+                                    value={school}
+                                    placeholder="Teacher Input"
+                                    onIonChange={(e: any) => setSchool(e.target.value)}
+                                >
+                                </IonInput><br />
+                                經驗年數
+                                <IonInput
+                                    aria-label="Custom input"
+                                    class="custom"
+                                    value={experience}
+                                    placeholder="Teacher Input"
+                                    onIonChange={(e: any) => setExperience(parseInt(e.target.value))}
                                 >
                                 </IonInput><br />
                             </>

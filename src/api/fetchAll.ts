@@ -500,24 +500,38 @@ export const fetchAddPurchaseHistory = async (id: any): Promise<FetchUserAllMode
 	}
 };
 
-export const fetchCreateTeacher = async (obj: { user_id: number; info: string }): Promise<void> => {
+export const fetchCreateTeacher = async (obj: {
+	 user_id: number;
+	 info: string;
+	 school: string;
+	 experience: number;
+	}): Promise<void> => {
 	console.log('fetchCreateTeacher');
 	console.log('object', obj);
-	const res = await fetch(`http://localhost:3000/teachers`, {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify(obj)
-	});
-	console.log(res);
-	if (res.ok) {
-		//const data = await res.json();
-		//console.log(data);
-		return;
-	} else {
-		throw new Error('fetchCreateTeacher FAILED');
+	try {
+		obj.experience = Number(obj.experience);
+		const res = await fetch(`http://localhost:3000/teachers`, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(obj)
+		});
+		console.log(res);
+		//console.log(await res.json());
+		
+	} catch (error) {
+		console.log(error);
+		
 	}
+
+	// if (res.ok) {
+	// 	//const data = await res.json();
+	// 	//console.log(data);
+	// 	return;
+	// } else {
+	// 	throw new Error('fetchCreateTeacher FAILED');
+	// }
 };
 
 export const fetchCreateProduct = async (formData: FormData): Promise<FetchUserAllModel> => {
