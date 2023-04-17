@@ -41,6 +41,9 @@ ion-content.resource{
     height: 200px; /* Change this value to adjust the height of the image */
     object-fit: cover;
   }
+
+
+
 .coursePhoto {
     display: flex;
     align-items: center;

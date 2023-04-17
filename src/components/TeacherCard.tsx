@@ -41,7 +41,7 @@ function TeacherList() {
                 filteredData.map((item: TeacherInterface) => (
                     <div className='teacherCardContainer' key={item.id}>
                         <IonCard className='teacherCardComp' onClick={() => onClickEditProfile(item.id)}>
-                            <div className='tutorPhoto'><IonImg className='imga' src={photo} /></div>
+                            <div className='tutorPhoto'><IonImg src={photo} /></div>
                             <IonCardSubtitle className='font-inbox-top'>{item.user.username}</IonCardSubtitle>
                             {/* <IonCardSubtitle className='font-inbox'>香港中文大學</IonCardSubtitle> */}
                             <IonButton className='font-inbox'>中文科 ： 1 年教學經驗</IonButton>

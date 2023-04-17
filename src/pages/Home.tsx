@@ -1,6 +1,6 @@
 import './Home.css';
 import React from 'react';
-import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, IonIcon, IonItem, IonPage, IonText } from '@ionic/react';
+import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, IonIcon, IonImg, IonItem, IonPage, IonText } from '@ionic/react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Keyboard, Navigation, Pagination, Scrollbar, Zoom } from 'swiper';
 import { fetchCourse, fetchTeacherAll } from '../api/fetchAll';
@@ -141,7 +141,7 @@ const Home: React.FC = () => {
           autoplay={{ delay: 5000 }}
           navigation={true}
           pagination={{ clickable: true }}
-          slidesPerView={2}
+          slidesPerView={2.5}
           spaceBetween={-10}
         >
           {/* <SwiperSlide>
@@ -149,12 +149,12 @@ const Home: React.FC = () => {
           </SwiperSlide> */}
           {Array.isArray(course) && course.map((item: Course) => (
             <SwiperSlide>
+
               <IonCard className='courseCard' onClick={() => onClickProductPage(item.id)}>
-              <img alt="Product thumbnail" src={item.image} />
-                <IonCardHeader>
-                  <IonCardTitle className='courseCardContent'>{item.name}</IonCardTitle>
-                </IonCardHeader>
+                <div className='coursePhotoHome' ><IonImg src={item.image} /></div>
+                <IonCardSubtitle className='courseCardContent'>{item.name}</IonCardSubtitle>
               </IonCard>
+
             </SwiperSlide>
           ))}
 
@@ -216,7 +216,7 @@ const Home: React.FC = () => {
           {Array.isArray(teacherAll) && teacherAll.map((item: TeacherInterface) => (
             <SwiperSlide>
               <IonCard className='courseCard' onClick={() => onClickTeacherProfile(item.id)}>
-              <img alt="Product thumbnail" src={item.user.image} />
+                <img alt="Product thumbnail" src={item.user.image} />
                 <IonCardHeader>
                   <IonCardTitle className='courseCardContent'>{item.user.username}</IonCardTitle>
                 </IonCardHeader>
