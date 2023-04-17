@@ -15,8 +15,8 @@ import photo from '../../src/photo/brandi-redd-6H9H-tYPUQQ-unsplash.jpg'
 
 const LoginPage: React.FC = () => {
 
-    const [email, setUserEmail] = useState('email@gmail.com');
-    const [password, setPassword] = useState('12345678')
+    const [email, setUserEmail] = useState('');
+    const [password, setPassword] = useState('')
     const [showToast, setShowToast] = useState(false);
     const [toastMessage, setToastMessage] = useState('');
     const history = useHistory();
