@@ -35,7 +35,6 @@ function Chatbox() {
             console.log(`sender_id = `, sender_id);
             console.log(`receiver_id = `, receiver_id);
             bottomRef.current?.scrollIntoView({ behavior: 'auto' });
-
         } catch (error) {
             console.error(error);
         }
@@ -111,7 +110,9 @@ function Chatbox() {
             sender_username: sender?.username!,
             receiver_username: receiver?.username!,
             from_id: sender_id,
-            created_at: new Date().toDateString(),
+            created_at: new Date().toLocaleString("en-US", { timeZone: "Asia/Hong_Kong" }),
+
+
             content: msg
         }
         setMessage(v => [...v, msgObj])
