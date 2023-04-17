@@ -107,7 +107,7 @@ function ProductDetail() {
     return (
         <>
             <IonCard>
-                <img alt="Silhouette of mountains" src={photo} />
+            <img alt="Product thumbnail" src={product?.image} />
                 <IonCardContent>老師:{product?.teacher.user.username}
                     <br />
                     {product?.name}

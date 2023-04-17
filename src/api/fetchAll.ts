@@ -572,6 +572,20 @@ export const fetchPurchaseHistory = async (id: any): Promise<FetchUserAllModel> 
 	}
 };
 
+export const fetchTeacherProduct = async (id: number): Promise<FetchUserAllModel> => {
+	console.log('fetchTeacherProduct');
+
+	const res = await fetch(`http://localhost:3000/products/teacher/${id}`);
+
+	if (res.ok) {
+		const data = await res.json();
+		console.log(data);
+		return data;
+	} else {
+		throw new Error('fetchTeacherProduct FAILED');
+	}
+};
+
 /*
 USER TABLE:
 model Users {

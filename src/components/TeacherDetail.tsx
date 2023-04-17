@@ -14,6 +14,7 @@ import './../../src/components/UiDesign/TeacherPage.css'
 import { TeacherInterface } from '../interface/interface';
 import { Course } from './CourseCard';
 import ListCard from './ListCard';
+import TeacherProduct from './TeacherDetailProductList';
 function TeacherDetail() {
     const params = useParams()
     const studentId = useAppSelector((state) => state.user.id);
@@ -22,7 +23,7 @@ function TeacherDetail() {
         queryKey: ["teacherDetail"],
         queryFn: () => fetchTeacher(Number(teacherId)),
     });
-
+    console.log(data)
     // const { data: course } = useQuery({
     //     queryKey: ["courses"],
     //     queryFn: async () => await fetchCourseByid(Number(teacherId)),
@@ -77,12 +78,15 @@ function TeacherDetail() {
                             <IonCardContent className='teacherFonts'>
                                 <h1>導師介紹:  </h1>
                                 <br></br>{data?.info}
-                                大家好，我是一位補習老師，我的名字是______。我畢業於______大學，主修______。我有多年的教學經驗，曾為不同年齡和程度的學生進行補習。我喜歡教學，因為我相信每個學生都有自己的潛力，只需要找到適合他們的教學方法和學習節奏。我會根據學生的程度和需求，設計出合適的教學計劃和練習，讓學生能夠在學習中逐步提高，達到他們的學習目標。我也會鼓勵學生主動思考和發問，幫助他們建立自信，從而更好地掌握知識和技能。希望能夠成為學生學習路上的良師益友，共同進步。
+                                {/* 大家好，我是一位補習老師，我的名字是______。我畢業於______大學，主修______。我有多年的教學經驗，曾為不同年齡和程度的學生進行補習。我喜歡教學，因為我相信每個學生都有自己的潛力，只需要找到適合他們的教學方法和學習節奏。我會根據學生的程度和需求，設計出合適的教學計劃和練習，讓學生能夠在學習中逐步提高，達到他們的學習目標。我也會鼓勵學生主動思考和發問，幫助他們建立自信，從而更好地掌握知識和技能。希望能夠成為學生學習路上的良師益友，共同進步。 */}
                                 <br /><br /><br />
+
                             </IonCardContent>
                             <br /><br /><br />
                         </div>
                     </IonCard>
+                    <IonCard><TeacherProduct /></IonCard>
+                    
                     <br />
 
                     {/* <IonCardSubtitle className='teacher-fonts'>{data?.user.username}的課程 / 筆記</IonCardSubtitle> */}
@@ -118,8 +122,8 @@ function TeacherDetail() {
                                 {/* <br /> <br /><br /> */}
                             </IonCardHeader>
                             <IonCardContent className='teacherButtonContainer' >
-                                <IonButton className='teacherButtonleft' onClick={() => onClickContactPage(Number(teacherId))}>聯絡 {data?.user.username}</IonButton>
-                                <IonButton className='teacherButtonright' onClick={() => onClickContactPage(Number(teacherId))}>聯絡 {data?.user.username}</IonButton>
+                                {/* <IonButton className='teacherButtonleft' onClick={() => onClickContactPage(Number(teacherId))}>聯絡 {data?.user.username}</IonButton>
+                                <IonButton className='teacherButtonright' onClick={() => onClickContactPage(Number(teacherId))}>聯絡 {data?.user.username}</IonButton> */}
                                 <br /><br /><br /><br />
                             </IonCardContent>
                         </div>
@@ -131,12 +135,13 @@ function TeacherDetail() {
                             <IonCardContent className='teacherFonts'>
                                 <h1>導師介紹:  </h1>
                                 <br></br>{data?.info}
-                                大家好，我是一位補習老師，我的名字是______。我畢業於______大學，主修______。我有多年的教學經驗，曾為不同年齡和程度的學生進行補習。我喜歡教學，因為我相信每個學生都有自己的潛力，只需要找到適合他們的教學方法和學習節奏。我會根據學生的程度和需求，設計出合適的教學計劃和練習，讓學生能夠在學習中逐步提高，達到他們的學習目標。我也會鼓勵學生主動思考和發問，幫助他們建立自信，從而更好地掌握知識和技能。希望能夠成為學生學習路上的良師益友，共同進步。
+                                {/* 大家好，我是一位補習老師，我的名字是______。我畢業於______大學，主修______。我有多年的教學經驗，曾為不同年齡和程度的學生進行補習。我喜歡教學，因為我相信每個學生都有自己的潛力，只需要找到適合他們的教學方法和學習節奏。我會根據學生的程度和需求，設計出合適的教學計劃和練習，讓學生能夠在學習中逐步提高，達到他們的學習目標。我也會鼓勵學生主動思考和發問，幫助他們建立自信，從而更好地掌握知識和技能。希望能夠成為學生學習路上的良師益友，共同進步。 */}
                                 <br /><br /><br />
                             </IonCardContent>
                             <br /><br /><br />
                         </div>
                     </IonCard>
+                    <IonCard><TeacherProduct /></IonCard>
                     <br />
 
 
