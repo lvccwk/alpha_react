@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { IonAvatar, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonIcon, IonItem, IonLabel, IonSearchbar, IonThumbnail } from '@ionic/react';
+import { IonAvatar, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonIcon, IonItem, IonLabel, IonList, IonSearchbar, IonThumbnail } from '@ionic/react';
 import './ChatroomContact.css'
 import { useHistory, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
@@ -72,27 +72,29 @@ function ChatroomContact() {
                     onIonChange={(e) => setSearchText(e.detail.value!)}
                     placeholder="Search users"
                 />
-                {Array.isArray(filteredUserAll) && filteredUserAll.map((userAll: UserInterface) => (
-                    <IonItem
-                        button
-                        className='chatPeopleButton'
-                        key={userAll.id}
-                        onClick={() => onClickChatBox(userAll.id)}
-                    >
-                        {/* <IonAvatar className='chatPeople' slot="start">
+                <IonList>
+                    {Array.isArray(filteredUserAll) && filteredUserAll.map((userAll: UserInterface) => (
+                        <IonItem
+                            button
+                            className='chatPeopleButton'
+                            key={userAll.id}
+                            onClick={() => onClickChatBox(userAll.id)}
+                        >
+                            {/* <IonAvatar className='chatPeople' slot="start">
                             <img alt={`Avatar for ${userAll.username}`} src={userAll.avatar} />
                             <img alt={`Avatar for ${userAll.username}`} src={userAll.avatar} />
                             
                         </IonAvatar> */}
 
-                        <IonAvatar className='chatPeople' slot="start">
-                            <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
-                        </IonAvatar>
-                        <IonLabel className='peopleName'>
-                            {userAll.username}
-                        </IonLabel>
-                    </IonItem>
-                ))}
+                            <IonAvatar className='chatPeople' slot="start">
+                                <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+                            </IonAvatar>
+                            <IonLabel className='peopleName'>
+                                {userAll.username}
+                            </IonLabel>
+                        </IonItem>
+                    ))}
+                </IonList>
             </>
         );
     }

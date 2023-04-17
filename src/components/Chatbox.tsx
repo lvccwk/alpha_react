@@ -34,6 +34,8 @@ function Chatbox() {
 
             console.log(`sender_id = `, sender_id);
             console.log(`receiver_id = `, receiver_id);
+            bottomRef.current?.scrollIntoView({ behavior: 'auto' });
+
         } catch (error) {
             console.error(error);
         }
@@ -68,7 +70,7 @@ function Chatbox() {
     }, [socket])
 
     useEffect(() => {
-        bottomRef.current?.scrollIntoView({ behavior: 'auto' });
+        // bottomRef.current?.scrollIntoView({ behavior: 'auto' });
     }, [messages])
 
 
@@ -117,14 +119,17 @@ function Chatbox() {
 
     return (
         <>
+
             <div className='msg-content'>
                 <AvatarChat /> {receiver?.username}
                 <div className='telegram-chat-history-container'>
                     <ChatHistory chatMessage={messages} addChatMessage={addChatMessage} sender_username={sender?.username} receiver_username={receiver?.username} />
                     {/* <Messages messages={messages} senderId={sender_id} sender={sender?.username} receiver={receiver?.username} /> */}
                 </div>
+                <div className='my-div'> {""}</div>
+                <MessageInput send={(val: string) => send(val, sender_id)} />
             </div>
-            <MessageInput send={(val: string) => send(val, sender_id)} />
+
             <div ref={bottomRef} />
 
         </>

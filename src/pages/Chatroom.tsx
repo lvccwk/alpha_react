@@ -11,29 +11,24 @@ const Chatroom: React.FC = () => {
     const isLoggedIn = useAppSelector(state => state.user.isLoggedIn)
     if (isLoggedIn === false) {
         return (
-            <>
-                <IonPage >
-                    <ToolBar />
-                    <IonContent className='chatroomContent'>
-                        <IonCardTitle className='ion-padding'>通訊錄</IonCardTitle>
-                        <SignInUpCard />
-                    </IonContent>
-                </IonPage>
-            </>
+            <IonPage >
+                <ToolBar />
+                <IonContent className='chatroomContent'>
+                    <IonCardTitle className='ion-padding'>通訊錄</IonCardTitle>
+                    <SignInUpCard />
+                </IonContent>
+            </IonPage>
         )
     } else {
 
         return (
-            <>
-                <IonPage >
-                    <ToolBar />
-                    <IonContent className='chatroomContent'>
-                        <IonCardTitle className='ion-padding' >通訊錄</IonCardTitle>
-                        {/* <Chatbox /> */}
-                        <ChatroomContact />
-                    </IonContent>
-                </IonPage>
-            </>
+            <IonPage >
+                <ToolBar />
+                <IonContent className='chatroomContent'>
+                    <IonCardTitle className='ion-padding' >通訊錄</IonCardTitle>
+                    <ChatroomContact />
+                </IonContent>
+            </IonPage>
         );
     };
 }
