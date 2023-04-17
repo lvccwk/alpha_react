@@ -16,16 +16,17 @@ const ShoppingCart: React.FC = () => {
                 <ToolBar />
                 {isLoggedIn === false && (
                     <IonContent className='shoppingCart'>
-                        <IonCard className='shoppingCartCard'>
-                            <IonCardTitle>你的購物車</IonCardTitle>
+                        {/* <IonCard className='shoppingCartCard'> */}
+                            <IonCardTitle className='ion-padding' >你的購物車</IonCardTitle>
                             <SignInUpCard />
-                        </IonCard>
+                        {/* </IonCard> */}
                     </IonContent>
                 )}
                 {isLoggedIn === true && (
                     <IonContent className='shoppingCart'>
+                        <IonCardTitle className='ion-padding' >你的購物車</IonCardTitle>
                         <IonCard className='shoppingCartCard'>
-                            <IonCardTitle>你的購物車</IonCardTitle>
+                            {/* <IonCardTitle>你的購物車</IonCardTitle> */}
                             <CartItem />
                         </IonCard>
                     </IonContent>
