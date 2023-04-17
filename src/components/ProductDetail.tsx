@@ -112,7 +112,7 @@ function ProductDetail() {
                     <br />
                     {product?.name}
                     <br />
-                    評分:{product?.avg_rating}
+                    評分:{product?.avg_rating?product?.avg_rating:"暫無"}
                     <br />
                     詳細內容:{product?.info}
                     <br />

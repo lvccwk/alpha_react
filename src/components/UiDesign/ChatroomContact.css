@@ -1,207 +1,10 @@
-.chatPeopleButton {
-    /* width: 100%;
-    height: 10; */
 
-}
-
-.chatPeople {
-    display: flex;
-}
-
-/* .inputChatBox {
-    background: rgb(171, 175, 181);
-    border-top:100px;
-    border-radius: 20px;
-    height: 50px;
-    padding-inline-start: 10px;
-    bottom: 0;
-    border: none;
-    outline: none;
-  
-} */
-
-.inputBarBtn{
-    --border-radius:20px
-}
-
-.container {
-    position: relative;
-    top: 40px;
-    height: 530px;
-  }
-
- /*this is chat input */
-.inputContainer {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  background-color: #f5f5f5;
-  padding: 10px;
-  box-shadow: 0px -2px 5px rgba(0, 0, 0, 0.1);
-  z-index: 1;
-}
-
-.inputBar {
-  display: flex;
-  align-items: center;
-  background-color: white;
-  border-radius: 30px;
-  padding: 5px 10px;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-}
-
-.inputChatBox {
-  flex: 1;
-  border: none;
-  outline: none;
-  padding: 10px;
-  font-size: 16px;
-}
-
-.inputBarBtn {
-  margin-left: 10px;
-  background-color: #0088cc;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.inputBarBtn:active {
-  background-color: #0077b3;
-}
-
-  /*this is chat input */
-
-
-  /*this is chat message */
-
-  .container {
-    height: calc(100% - 110px);
-    display: flex;
-    flex-direction: column;
-    overflow-y: scroll;
-    background-color: #f5f5f5;
-  }
-  
-  .messageList {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-  }
-  
-  .messageHeader {
-    font-size: 14px;
-    font-weight: bold;
-    color: #0088cc;
-    margin-bottom: 5px;
-  }
-  
-  .textMessage {
-    font-size: 16px;
-    padding: 10px;
-    border-radius: 10px;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-    max-width: 70%;
-    align-self: flex-start;
-    background-color: white;
-    color: black;
-    word-wrap: break-word;
-    margin-bottom: 10px;
-  }
-  
-  .textMessage.sent {
-    align-self: flex-end;
-    background-color: #0088cc;
-    color: white;
-  }
-  
-  .textMessage.sent:before {
-    content: "";
-    display: inline-block;
-    position: relative;
-    top: -10px;
-    border-style: solid;
-    border-width: 10px 10px 0 0;
-    border-color: #0088cc transparent transparent transparent;
-    left: -5px;
-  }
-
-  /*this is chat message */
-
-
-  /* Global styles */
+/* Global styles */
 body {
   margin: 0;
   padding: 0;
   font-family: Arial, sans-serif;
-  background-color: #f5f5f5;
-}
-
-/* Chat history container */
-.chat-history-container {
-  height: calc(100% - 110px);
-  display: flex;
-  flex-direction: column;
-  overflow-y: scroll;
-  padding: 20px;
-}
-
-/* Individual chat message */
-.chat-history-wrapper {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
-}
-
-/* Chat message header */
-.chat-history-username {
-  font-size: 14px;
-  font-weight: bold;
-  color: #0088cc;
-  margin-bottom: 5px;
-}
-
-/* Chat message time */
-.chat-history-with-time {
-  font-size: 12px;
-  color: #8b8b8b;
-  margin-bottom: 5px;
-}
-
-/* Chat message content */
-.chat-history-with-content {
-  font-size: 16px;
-  padding: 10px;
-  border-radius: 10px;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-  max-width: 70%;
-  align-self: flex-start;
-  background-color: white;
-  color: black;
-  word-wrap: break-word;
-  margin-bottom: 10px;
-}
-
-/* Sent chat message */
-.chat-history-with-content.sent {
-  align-self: flex-end;
-  background-color: #0088cc;
-  color: white;
-}
-
-/* Arrow for sent chat message */
-.chat-history-with-content.sent:before {
-  content: "";
-  display: inline-block;
-  position: relative;
-  top: -10px;
-  border-style: solid;
-  border-width: 10px 10px 0 0;
-  border-color: #0088cc transparent transparent transparent;
-  left: -5px;
+  background-color: #ffffff;
 }
 
 /* Telegram-style chat history container */
@@ -210,11 +13,12 @@ body {
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
-  background-color: #f5f5f5;
+  background-color: #ffffff;
+  padding: 10px;
 }
 
 /* Telegram-style chat message wrapper */
-.telegram-chat-history-wrapper {
+.telegram-chat-history-container > div {
   display: flex;
   flex-direction: column;
   margin-bottom: 10px;
@@ -247,6 +51,7 @@ body {
   color: black;
   word-wrap: break-word;
   margin-bottom: 10px;
+  
 }
 
 /* Telegram-style sent chat message */
@@ -254,6 +59,7 @@ body {
   align-self: flex-end;
   background-color: #0088cc;
   color: white;
+
 }
 
 /* Telegram-style arrow for sent chat message */
@@ -266,4 +72,34 @@ body {
   border-width: 10px 10px 0 0;
   border-color: #0088cc transparent transparent transparent;
   left: -5px;
+  
+}
+
+
+.textMessage {
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  /* max-width: 70%; */
+  align-self: flex-start;
+  background-color: white;
+  color: black;
+  word-wrap: break-word;
+  /* margin-bottom: 10px; */
+  /* height: 110px; */
+  position: fixed;
+  bottom: 0;
+  /* display: flex; */
+}
+
+.msg-content {
+  /* position: relative; */
+  /* padding: 10px; */
+}
+
+.textMessage.sent {
+  align-self: flex-end;
+  background-color: #0088cc;
+  color: white;
 }

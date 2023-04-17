@@ -1,22 +1,19 @@
-import { IonAvatar, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, IonIcon, IonItem, IonList } from '@ionic/react';
+import { IonButton, IonIcon } from '@ionic/react';
 import { useQuery } from "@tanstack/react-query";
-import './ListCard.css';
+import { paperPlane } from 'ionicons/icons';
+import { useEffect, useRef, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import io, { Socket } from 'socket.io-client';
+import '../../src/components/UiDesign/ChatroomContact.css';
 import {
     addChatRecord,
     fetchChatHistory
 } from "../api/fetchAll";
-import { useEffect, useState } from 'react';
-import io, { Socket } from 'socket.io-client'
-import { MessagePort } from 'worker_threads';
-import { useParams } from 'react-router-dom';
-import { useAppSelector } from '../redux/store';
-import '../../src/components/UiDesign/ChatroomContact.css'
-import { IonContext } from '@ionic/react/dist/types/contexts/IonContext';
 import { fetchUserCheck } from '../api/fetchUser';
-import Avatar from './Avatar';
-import { paperPlane } from 'ionicons/icons';
-import ChatHistory from './ChatHistory';
-import Messages from './Messages';
+import { useAppSelector } from '../redux/store';
+import ChatHistory, { MessageType } from './ChatHistory';
+import './ListCard.css';
+import AvatarChat from './UiDesign/AvatarChat';
 
 function Chatbox() {
     const sender_id = useAppSelector(state => state.user.id)
@@ -24,7 +21,8 @@ function Chatbox() {
     const params = useParams()
     const receiver_id = (Number(Object.values(params)[0]))
     const [socket, setSocket] = useState<Socket>()
-    const [messages, setMessage] = useState<string[][]>([])
+    const [messages, setMessage] = useState<MessageType[]>([])
+    const bottomRef = useRef<HTMLDivElement>(null);
 
     const send = async (value: string, sender_id: number) => {
         try {
@@ -45,33 +43,33 @@ function Chatbox() {
     console.log('receiver_id:', receiver_id)
     const { data: sender } = useQuery(["chatroomUserSender", sender_id], (Number) => fetchUserCheck(sender_id));
     console.log('sender_id:', sender_id)
-    const { data: chatMessage } = useQuery(["chatMessageHisotrys", sender_id], (Number) => fetchChatHistory(receiver_id));
+    const { data: chatMessage } = useQuery(["chatMessageHisotrys", sender_id], (Number) => fetchChatHistory(receiver_id), {
+        onSuccess(data) {
+            console.log("success")
+            const msg = data.map(v => ({
+                sender_username: sender?.username,
+                receiver_username: receiver?.username,
+                from_id: v.from_id,
+                created_at: v.created_at,
+                content: v.content
+            } as MessageType))
+            setMessage(msg)
+        },
+    });
 
     useEffect(() => {
         if (!socket) {
             const newSocket = io("http://localhost:3001/")
             setSocket(newSocket)
+
         } else {
             socket?.emit("joinRoom", sender_id, receiver_id)
         }
     }, [socket])
 
-    const messageListener = (message: string[]) => {
-
-        setMessage([...messages, message])
-        // const returnSenderId = message[1]
-        // Pass the sender ID as a prop to the Messages component
-        // console.log(`message`, message)
-
-        // return <Messages messages={message} senderId={returnSenderId} sender={sender?.username} receiver={receiver?.username} />;
-    }
-
     useEffect(() => {
-        socket?.on('message', messageListener)
-        return () => {
-            socket?.off('message', messageListener)
-        }
-    }, [messageListener])
+        bottomRef.current?.scrollIntoView({ behavior: 'auto' });
+    }, [messages])
 
 
 
@@ -85,16 +83,16 @@ function Chatbox() {
 
         return (
             <>
-                <div className="inputContainer">
+                <div className="textMessage">
                     <div className="inputBar">
                         <input
-                            className="inputChatBox"
+                            className="telegram-chat-history-with-content"
                             onChange={(e) => setValue(e.target.value)}
                             placeholder="Type your message..."
                             value={value}
                         />
-                        <IonButton className="inputBarBtn" size="default" onClick={handleSubmit}>
-                            <IonIcon size="default" icon={paperPlane} color="white" />
+                        <IonButton className="sent" size="default" onClick={handleSubmit}>
+                            <IonIcon icon={paperPlane} color="white" />
                         </IonButton>
                     </div>
                 </div>
@@ -106,20 +104,29 @@ function Chatbox() {
         messages
     })
 
+    function addChatMessage(msg: string, sender_id: number) {
+        const msgObj: MessageType = {
+            sender_username: sender?.username!,
+            receiver_username: receiver?.username!,
+            from_id: sender_id,
+            created_at: new Date().toDateString(),
+            content: msg
+        }
+        setMessage(v => [...v, msgObj])
+    }
+
     return (
         <>
-
-            <IonCardTitle style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>  <IonAvatar  >
-                <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '19px' }}>
-                    {receiver?.username}
+            <div className='msg-content'>
+                <AvatarChat /> {receiver?.username}
+                <div className='telegram-chat-history-container'>
+                    <ChatHistory chatMessage={messages} addChatMessage={addChatMessage} sender_username={sender?.username} receiver_username={receiver?.username} />
+                    {/* <Messages messages={messages} senderId={sender_id} sender={sender?.username} receiver={receiver?.username} /> */}
                 </div>
-            </IonAvatar>
-            </IonCardTitle>
-            <ChatHistory chatMessage={chatMessage} sender_username={sender?.username} receiver_username={receiver?.username} />
-            {/* {" "} */}
-            <h2>-------------聊天記錄-------------</h2>
-            <Messages messages={messages} senderId={sender_id} sender={sender?.username} receiver={receiver?.username} />
+            </div>
             <MessageInput send={(val: string) => send(val, sender_id)} />
+            <div ref={bottomRef} />
+
         </>
     );
 }
