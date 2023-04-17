@@ -33,6 +33,8 @@ function TeacherList() {
 
     );
 
+    console.log(teacherAll)
+
     return (
         <>
             <IonSearchbar value={searchText} onIonChange={handleSearch}></IonSearchbar>
@@ -41,7 +43,7 @@ function TeacherList() {
                 filteredData.map((item: TeacherInterface) => (
                     <div className='teacherCardContainer' key={item.id}>
                         <IonCard className='teacherCardComp' onClick={() => onClickEditProfile(item.id)}>
-                            <div className='tutorPhoto'><IonImg src={photo} /></div>
+                            <div className='tutorPhoto'><IonImg className='image' src={item.user.image = item.user.image ? item.user.image : "https://ionicframework.com/docs/img/demos/avatar.svg"} /></div>
                             <IonCardSubtitle className='font-inbox-top'>{item.user.username}</IonCardSubtitle>
                             {/* <IonCardSubtitle className='font-inbox'>香港中文大學</IonCardSubtitle> */}
                             <IonButton className='font-inbox'>中文科 ： 1 年教學經驗</IonButton>
