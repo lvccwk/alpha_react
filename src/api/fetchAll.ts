@@ -29,7 +29,7 @@ export interface FetchUserAllModel {
 	cart_id: number;
 	product_id: number;
 	is_buying: boolean;
-	teacher_id:any |null;
+	teacher_id: any | null;
 	cart: CartInterface;
 	user: UserInterface;
 	cart_detail: CartDetailInterface;
@@ -53,7 +53,6 @@ export interface FetchUserAllModel {
 	file_url: string;
 	ok: any;
 	filter: any | null;
-
 }
 
 export const fetchUserAll = async (): Promise<FetchUserAllModel> => {
@@ -501,11 +500,11 @@ export const fetchAddPurchaseHistory = async (id: any): Promise<FetchUserAllMode
 };
 
 export const fetchCreateTeacher = async (obj: {
-	 user_id: number;
-	 info: string;
-	 school: string;
-	 experience: number;
-	}): Promise<void> => {
+	user_id: number;
+	info: string;
+	school: string;
+	experience: number;
+}): Promise<void> => {
 	console.log('fetchCreateTeacher');
 	console.log('object', obj);
 	try {
@@ -519,10 +518,8 @@ export const fetchCreateTeacher = async (obj: {
 		});
 		console.log(res);
 		//console.log(await res.json());
-		
 	} catch (error) {
 		console.log(error);
-		
 	}
 
 	// if (res.ok) {

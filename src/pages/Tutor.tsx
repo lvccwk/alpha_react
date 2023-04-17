@@ -10,11 +10,9 @@ const Tutor: React.FC = () => {
             <IonPage>
                 <ToolBar />
                 <IonContent className='segment'>
-
                     <IonCardTitle className='ion-padding'>導師列表</IonCardTitle>
                     <br></br>
                     <Segment />
-
                 </IonContent>
             </IonPage>
         </>
