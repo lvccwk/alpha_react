@@ -10,6 +10,7 @@ import { fetchUser } from '../api/fetchUser';
 import { TeacherInterface, UserInterface } from '../interface/interface';
 import './../../src/components/UiDesign/Resource.css'
 export interface Course {
+    image: string | undefined;
     id: number;
     name: string;
     price: number;
@@ -149,8 +150,8 @@ function CourseCard() {
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
                         {Array.isArray(course) && Array.isArray(phID) && Array.isArray(cartID) && course.map((item: Course) => (
                             <IonCard className='courseCardBackground' key={item.id}>
-                                <img alt="Silhouette of mountains" src={photo} />
-                                <IonCardContent className='courseCardText'>老師:{item.teacher.user.username}   {item.name} ${item.price} 評分:{item.avg_rating}
+                                <img alt="Product thumbnail" src={item.image} />
+                                <IonCardContent className='courseCardText'>老師:{item.teacher.user.username}   {item.name} ${item.price} 評分:{item.avg_rating?item.avg_rating:"暫無"}
                                 </IonCardContent>
 
                                 <IonFooter className='courseItemPrice'>
