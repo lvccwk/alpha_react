@@ -636,7 +636,7 @@ export const fetchTeacherProduct = async (id: number): Promise<FetchUserAllModel
 
 	if (res.ok) {
 		const data = await res.json();
-		console.log(data);
+		// console.log(data);
 		return data;
 	} else {
 		throw new Error('fetchTeacherProduct FAILED');
@@ -649,8 +649,10 @@ export const fetchUpdateProduct = async (obj: {
 	price: number;
 	info: string;
 	is_onsale: boolean;
+
 }): Promise<void> => {
 	console.log('fetchUpdateProduct', obj);
+	console.log("FETCHPRODUCTONSALE",Boolean(Number(obj.is_onsale)))
 	const res = await fetch(`http://localhost:3000/products/${obj.id}`, {
 		method: 'PUT',
 		headers: {
@@ -661,7 +663,7 @@ export const fetchUpdateProduct = async (obj: {
 			name: obj.name,
 			price: obj.price,
 			info: obj.info,
-			is_onsale: obj.is_onsale
+			is_onsale: Boolean(Number(obj.is_onsale))
 		})
 	});
 
