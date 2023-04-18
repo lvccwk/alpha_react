@@ -60,7 +60,7 @@ function Chatbox() {
 
     useEffect(() => {
         if (!socket) {
-            const newSocket = io("http://localhost:3001/")
+            const newSocket = io(`${process.env.SOCKET_HOSTNAME}/`)
             setSocket(newSocket)
 
         } else {
