@@ -2,3 +2,31 @@
     background-color: rgba(233, 231, 231, 0);
     color: black;
 }
+
+/* Style for the card container */
+.card-container {
+  /* padding: 10px; */
+  border: 1px solid #ccc;
+  border-radius: 20px;
+}
+
+/* Style for the card image */
+.card-image {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+/* Style for the card title */
+.card-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Style for the card details */
+.card-details {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+

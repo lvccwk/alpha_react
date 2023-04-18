@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { IonButton, IonCard, IonCardContent, IonContent, IonFooter, IonSearchbar, SearchbarChangeEventDetail, useIonAlert, useIonViewWillEnter } from '@ionic/react';
+import { IonButton, IonCard, IonCardContent, IonCardSubtitle, IonContent, IonFooter, IonSearchbar, SearchbarChangeEventDetail, useIonAlert, useIonViewWillEnter } from '@ionic/react';
 import './TeacherCard.css';
 import { fetchAddCart, fetchCart, fetchCourse, fetchPurchaseHistory, fetchTeacherProduct } from '../api/fetchAll';
 import { useQuery } from '@tanstack/react-query';
@@ -170,8 +170,10 @@ function CourseCard() {
                     {/* your existing code ... */}
                     <IonCard className='courseCardBackground' key={item.id}>
                         <img alt="Product thumbnail" className='courseCardBackground-img' src={item.image} style={{ width: '350px', objectFit: 'cover' }} />
-                        <IonCardContent className='courseCardText'>{item.name} 老師:{item.teacher.user.username} <br />價格:${item.price} 評分:{item.avg_rating ? item.avg_rating : "暫無"}
-                        </IonCardContent>
+                        <IonCardSubtitle className='courseCardText'>{item.name} 價格:${item.price}
+                        </IonCardSubtitle>
+                        {/* <IonCardSubtitle className='courseCardText'>{item.name} 老師:{item.teacher.user.username} <br />價格:${item.price} 評分:{item.avg_rating ? item.avg_rating : "暫無"}
+                        </IonCardSubtitle> */}
                         <IonFooter className='courseItemPrice'>
                             <IonButton onClick={() => onClickProductPage(item.id)}>
                                 詳細資料

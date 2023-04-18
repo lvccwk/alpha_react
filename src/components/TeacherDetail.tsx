@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent } from '@ionic/react';
+import { IonAvatar, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent } from '@ionic/react';
 import { fetchCourse, fetchCourseByid, fetchTeacher } from '../api/fetchAll';
 import TeacherBookmark from './TeacherBookmark';
 import { useQuery } from '@tanstack/react-query';
@@ -46,28 +46,33 @@ function TeacherDetail() {
     //     history.push(`/product/${course?.product.id}`);
     // };
 
-    if (studentId) {
+    if (studentId && teacherId) {
         return (
             <>
-                <IonContent className='teacherCard'>
+                <IonContent className='teacherCard' style={{ position: 'relative' }}>
                     <br />
 
                     <div className="teacher-avatar">
-                        <Avatar />
+                        <IonAvatar className='teacher-userPhoto'>
+                            <img alt="Silhouette of a person's head" src={data?.user.image} />
+                        </IonAvatar>
                     </div>
-                    <TeacherBookmark />
+
+                    <div style={{ position: 'absolute', top: '120px', right: '330px' }}>
+                        <TeacherBookmark />
+                    </div>
+
                     <IonCard className='teacherProfileCard' >
                         <br /><br />
                         <div className='teacherCardContent'>
                             <IonCardHeader className='usernameInfo'>
                                 {/* <IonCardSubtitle className='teacherFont'>Email : {data?.user.email}</IonCardSubtitle> */}
-                                <IonCardTitle>導師 : {data?.user.username}</IonCardTitle>
+                                <IonCardTitle style={{ textAlign: 'center', marginTop: '20px' }}> {data?.user.username}</IonCardTitle>
                                 {/* <br /> <br /><br /> */}
                             </IonCardHeader>
 
                         </div>
                         <IonCardContent className='teacherButtonContainer' >
-                            <IonButton className='teacherButtonleft' onClick={() => onClickContactPage(Number(teacherId))}>查看{data?.user.username}商品</IonButton>
                             <IonButton className='teacherButtonright' onClick={() => onClickContactPage(Number(teacherId))}>聯絡 {data?.user.username}</IonButton>
                             <br /><br /><br /><br />
                         </IonCardContent>
@@ -86,20 +91,22 @@ function TeacherDetail() {
                             <br /><br /><br />
                         </div>
                     </IonCard>
-                    <IonCard><TeacherProduct /></IonCard>
+                    <br /><br /><br />  <br /><br />
+                    <div style={{ display: 'flex', justifyContent: 'center' }}>
+                        <IonButton className='teacherButtonright' onClick={() => onClickContactPage(Number(teacherId))}>
+                            聯絡 {data?.user.username}
+                        </IonButton>
+
+                    </div>
+
+
+                    <div style={{ display: 'flex', justifyContent: 'space-evenly', flexDirection: 'column-reverse' }}>
+                        <IonCard>
+                            <TeacherProduct />
+                        </IonCard>
+                    </div>
 
                     <br />
-
-                    {/* <IonCardSubtitle className='teacher-fonts'>{data?.user.username}的課程 / 筆記</IonCardSubtitle> */}
-                    {/* {Array.isArray(course) &&
-                            course.map((item: Course) => (
-                                <div key={item.id}>
-                                    <IonCard onClick={() => onClickEditProfile(item.id)}>
-                                        <img alt="Silhouette of mountains" src={photo} />
-                                        <IonCardContent>{item.info}</IonCardContent>
-                                    </IonCard>
-                                </div>
-                            ))} */}
 
                 </IonContent>
             </>
@@ -111,31 +118,33 @@ function TeacherDetail() {
                     <br />
 
                     <div className="teacher-avatar">
-                        <Avatar />
+                        <IonAvatar className='teacher-userPhoto'>
+                            <img alt="Silhouette of a person's head" src={data?.user.image} />
+                        </IonAvatar>
                     </div>
+
+
                     <TeacherBookmark />
                     <IonCard className='teacherProfileCard' >
                         <br /><br />
                         <div className='teacherCardContent'>
                             <IonCardHeader className='usernameInfo'>
                                 {/* <IonCardSubtitle className='teacherFont'>Email : {data?.user.email}</IonCardSubtitle> */}
-                                <br /> <br /><br />         <br /> <br />
-                                <IonCardTitle>導師 : {data?.user.username}</IonCardTitle>
-                                <br /> <br /><br />
+                                <IonCardTitle style={{ textAlign: 'center', marginTop: '20px' }}>導師: {data?.user.username}</IonCardTitle>
+                                {/* <br /> <br /><br /> */}
                             </IonCardHeader>
+
                         </div>
+                        <IonCardContent className='teacherButtonContainer' >
+                            <IonButton className='teacherButtonright'>聯絡 {data?.user.username} 請先登入</IonButton>
+                            <br /><br /><br /><br />
+                        </IonCardContent>
                     </IonCard>
 
-                    <IonCardContent className='teacherButtonContainer' >
-                        <IonButton className='teacherButtonleft' onClick={() => onClickContactPage(Number(teacherId))}>查看{data?.user.username}商品</IonButton>
-                        <IonButton className='teacherButtonright' onClick={() => onClickContactPage(Number(teacherId))}>聯絡 {data?.user.username}</IonButton>
-                        <br /><br /><br /><br />
-                    </IonCardContent>
 
                     <IonCard className='teacherInfocardDetails'>
                         <div className='teacherinfocardInsides'>
                             <IonCardContent className='teacherFonts'>
-
                                 <h1>導師介紹:  </h1>
                                 <br></br>{data?.info}
                                 {/* 大家好，我是一位補習老師，我的名字是______。我畢業於______大學，主修______。我有多年的教學經驗，曾為不同年齡和程度的學生進行補習。我喜歡教學，因為我相信每個學生都有自己的潛力，只需要找到適合他們的教學方法和學習節奏。我會根據學生的程度和需求，設計出合適的教學計劃和練習，讓學生能夠在學習中逐步提高，達到他們的學習目標。我也會鼓勵學生主動思考和發問，幫助他們建立自信，從而更好地掌握知識和技能。希望能夠成為學生學習路上的良師益友，共同進步。 */}
@@ -144,12 +153,22 @@ function TeacherDetail() {
                             <br /><br /><br />
                         </div>
                     </IonCard>
-                    <br /> <br /><br /><br /> <br /><br /><br /> <br /><br /><br /> <br /><br />
-                    <IonCard><TeacherProduct /></IonCard>
+                    <br /><br /><br />  <br /><br />
+                    <div style={{ display: 'flex', justifyContent: 'center' }}>
+                        <IonButton className='teacherButtonright' onClick={() => onClickContactPage(Number(teacherId))}>
+                            聯絡 {data?.user.username}
+                        </IonButton>
+
+                    </div>
+
+
+                    <div style={{ display: 'flex', justifyContent: 'space-evenly', flexDirection: 'column-reverse' }}>
+                        <IonCard>
+                            <TeacherProduct />
+                        </IonCard>
+                    </div>
 
                     <br />
-
-
 
                 </IonContent>
             </>

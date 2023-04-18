@@ -23,6 +23,12 @@ ion-content.teacherCard {
     height: auto; /* let the height adjust based on the width */
 }
 
+.teacher-userPhoto{
+    height: 100px;
+    width: 100px;
+    border: 3px solid rgb(241, 239, 239);
+}
+
 .teacherCard1 {
     --background:#cfdff0;
     position: relative;
@@ -88,9 +94,9 @@ font-size: 18px;
     --background: #cae4f5b2;
     position: relative;
     flex-wrap: wrap;
-    display: flex;
+    /* display: flex; */
     justify-content: center;
-    top: 10%;
+    top: 15%;
     border-radius: 50px;
     z-index: -1;
     --padding-left: -10px;
@@ -98,7 +104,7 @@ font-size: 18px;
     align-content: center;
     align-items: center;
     width: 100%;
-    margin:0 auto;
+    margin: 0 auto;
 }
 .teacherButtonleft{
     --border-radius:20px;
@@ -114,11 +120,12 @@ font-size: 18px;
 }
 
 .teacherButtonContainer {
-    position: relative; 
+    position: relative;
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     flex-direction: row;
     height: 300px;
+    justify-content: center;
 }
 
 .teacherInfocardDetail {

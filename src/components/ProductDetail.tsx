@@ -127,9 +127,9 @@ function ProductDetail() {
 
     return (
         <>
-            <IonCard>
-                <img alt="Product thumbnail" src={product?.image} />
-                <IonCardContent>{product?.name}
+            <IonCard className='card-container'>
+                <img className='card-image' alt="Product thumbnail" src={product?.image} />
+                <IonCardContent className='card-title'>{product?.name}
                     <br />
                     老師:{product?.teacher.user.username}
                     <br />
