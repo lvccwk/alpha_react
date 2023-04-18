@@ -1,8 +1,11 @@
 import './Home.css';
 import React from 'react';
-import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, IonIcon, IonItem, IonPage, IonText } from '@ionic/react';
+import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, IonIcon, IonImg, IonItem, IonPage, IonText } from '@ionic/react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Keyboard, Navigation, Pagination, Scrollbar, Zoom } from 'swiper';
+import { fetchCourse, fetchTeacherAll } from '../api/fetchAll';
+import { useQuery } from '@tanstack/react-query';
+import { TeacherInterface, TeacherSubjectInterface } from '../interface/interface';
 
 import 'swiper/css';
 import 'swiper/css/autoplay';
@@ -23,9 +26,34 @@ import TeacherCard from '../components/TeacherCard';
 import { chevronForward, person } from 'ionicons/icons';
 import { useHistory } from 'react-router-dom';
 
+export interface Course {
+  image: string | undefined;
+  id: number;
+  name: string;
+  price: number;
+  avg_rating: number;
+  subject_id: number;
+  teacher_id: number;
+  info: string;
+}
 
 const Home: React.FC = () => {
+  const { data: course } = useQuery({
+    queryKey: ["homepagecourse"],
+    queryFn: async () => await fetchCourse(),
+    refetchOnWindowFocus: false,
+    refetchOnReconnect: true,
+  });
 
+  const { data: teacherAll, isLoading, error, refetch } = useQuery({
+    queryKey: ["teacherAllList"],
+    queryFn: fetchTeacherAll,
+  });
+  console.log(teacherAll)
+
+  const onClickTeacherProfile = (id: number) => {
+    history.push(`/tutorprofile/${id}`);
+  };
 
   const history = useHistory();
   const onClickResourcePage = () => {
@@ -33,6 +61,9 @@ const Home: React.FC = () => {
   }
   const onClickTutorPage = () => {
     history.push(`/tutor/`);
+  }
+  const onClickProductPage = (id: number) => {
+    history.push(`/productpage/` + id);
   }
   return (
     <IonPage>
@@ -106,7 +137,7 @@ const Home: React.FC = () => {
         </div>
         <Swiper
           modules={[Autoplay, Keyboard, Pagination, Scrollbar, Zoom]}
-          autoplay={{ delay: 5000 }}
+          autoplay={true}
           navigation={true}
           pagination={{ clickable: true }}
           slidesPerView={2}
@@ -115,7 +146,18 @@ const Home: React.FC = () => {
           {/* <SwiperSlide>
             <TeacherCard />
           </SwiperSlide> */}
-          <SwiperSlide>
+          {Array.isArray(course) && course.map((item: Course) => (
+            <SwiperSlide>
+
+              <IonCard className='courseCard' onClick={() => onClickProductPage(item.id)}>
+                <div><IonImg className='coursePhotoHome' src={item.image} /></div>
+                <IonCardSubtitle className='courseCardContent'>{item.name}</IonCardSubtitle>
+              </IonCard>
+
+            </SwiperSlide>
+          ))}
+
+          {/* <SwiperSlide>
             <IonCard className='courseCard'>
               <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
               <IonCardHeader>
@@ -140,16 +182,7 @@ const Home: React.FC = () => {
                 <IonCardTitle className='courseCardContent'>Card Title</IonCardTitle>
               </IonCardHeader>
             </IonCard>
-          </SwiperSlide>
-
-          <SwiperSlide>
-            <IonCard className='courseCard'>
-              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
-              <IonCardHeader>
-                <IonCardTitle className='courseCardContent'>Card Title</IonCardTitle>
-              </IonCardHeader>
-            </IonCard>
-          </SwiperSlide>
+          </SwiperSlide> */}
 
           {/* <SwiperSlide>
             <img
@@ -171,6 +204,25 @@ const Home: React.FC = () => {
         <div className='course'>
           <IonCardTitle>熱門老師</IonCardTitle><div onClick={onClickTutorPage} className='course-btn'>查看更多導師<IonIcon className="" icon={chevronForward} /></div>
         </div>
+        <Swiper
+          modules={[Autoplay, Keyboard, Pagination, Scrollbar, Zoom]}
+          autoplay={{ delay: 5000 }}
+          navigation={true}
+          pagination={{ clickable: true }}
+          slidesPerView={2}
+          spaceBetween={-10}
+        >
+          {Array.isArray(teacherAll) && teacherAll.map((item: TeacherInterface) => (
+            <SwiperSlide>
+              <IonCard className='courseCard' onClick={() => onClickTeacherProfile(item.id)}>
+                <img alt="Product thumbnail" src={item.user.image = item.user.image ? item.user.image : "https://ionicframework.com/docs/img/demos/avatar.svg"} />
+                <IonCardHeader>
+                  <IonCardTitle className='courseCardContent'>{item.user.username}</IonCardTitle>
+                </IonCardHeader>
+              </IonCard>
+            </SwiperSlide>
+          ))}
+        </Swiper>
         <IonCard>
           <IonCardHeader>
             <IonCardTitle>一機在手 隨問隨到！</IonCardTitle>

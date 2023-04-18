@@ -34,6 +34,8 @@ function Chatbox() {
 
             console.log(`sender_id = `, sender_id);
             console.log(`receiver_id = `, receiver_id);
+            bottomRef.current?.scrollIntoView({ behavior: 'auto' });
+
         } catch (error) {
             console.error(error);
         }
@@ -59,16 +61,17 @@ function Chatbox() {
 
     useEffect(() => {
         if (!socket) {
-            const newSocket = io("http://localhost:3001/")
+            const newSocket = io(`http://localhost:3000`)
             setSocket(newSocket)
 
         } else {
             socket?.emit("joinRoom", sender_id, receiver_id)
+
         }
     }, [socket])
 
     useEffect(() => {
-        bottomRef.current?.scrollIntoView({ behavior: 'auto' });
+
     }, [messages])
 
 
@@ -109,7 +112,9 @@ function Chatbox() {
             sender_username: sender?.username!,
             receiver_username: receiver?.username!,
             from_id: sender_id,
-            created_at: new Date().toDateString(),
+            created_at: new Date().toLocaleString("en-US", { timeZone: "Asia/Hong_Kong" }),
+
+
             content: msg
         }
         setMessage(v => [...v, msgObj])
@@ -117,14 +122,17 @@ function Chatbox() {
 
     return (
         <>
+
             <div className='msg-content'>
                 <AvatarChat /> {receiver?.username}
                 <div className='telegram-chat-history-container'>
                     <ChatHistory chatMessage={messages} addChatMessage={addChatMessage} sender_username={sender?.username} receiver_username={receiver?.username} />
                     {/* <Messages messages={messages} senderId={sender_id} sender={sender?.username} receiver={receiver?.username} /> */}
                 </div>
+                <div className='my-div'> {""}</div>
+                <MessageInput send={(val: string) => send(val, sender_id)} />
             </div>
-            <MessageInput send={(val: string) => send(val, sender_id)} />
+
             <div ref={bottomRef} />
 
         </>

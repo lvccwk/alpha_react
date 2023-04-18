@@ -21,7 +21,7 @@ ion-content.segment{
     border-radius: 20px;
     margin-bottom: 10px;
     --border-style: none;
-   height: 220px;
+
    display: flex;
    flex-wrap: wrap;
    text-align: right;
@@ -32,7 +32,8 @@ ion-content.segment{
 .tutorPhoto{
   width:200px;
   height:120px;
-  top: -20px;
+  top: 30px;
+  object-fit: cover;
 }
 
 .imgTeacher{

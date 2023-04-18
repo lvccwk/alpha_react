@@ -29,7 +29,7 @@ export interface FetchUserAllModel {
 	cart_id: number;
 	product_id: number;
 	is_buying: boolean;
-	teacher_id:any |null;
+	teacher_id: any | null;
 	cart: CartInterface;
 	user: UserInterface;
 	cart_detail: CartDetailInterface;
@@ -53,12 +53,12 @@ export interface FetchUserAllModel {
 	file_url: string;
 	ok: any;
 	filter: any | null;
-
+	is_onsale: boolean;
 }
 
 export const fetchUserAll = async (): Promise<FetchUserAllModel> => {
 	console.log('fetchUserAll');
-	const res = await fetch(`http://localhost:3000/users/all`);
+	const res = await fetch(`${process.env.REACT_APP_API_SERVER}/users/all`);
 	if (res.ok) {
 		const data = await res.json();
 		console.log(data);
@@ -71,7 +71,7 @@ export const fetchUserAll = async (): Promise<FetchUserAllModel> => {
 export const fetchCart = async (id: any): Promise<FetchUserAllModel> => {
 	console.log('fetchCart');
 
-	const res = await fetch(`http://localhost:3000/carts/${id}`, {
+	const res = await fetch(`${process.env.REACT_APP_API_SERVER}/carts/${id}`, {
 		headers: {
 			Authorization: `Bearer ${localStorage.getItem('token')}`
 		}
@@ -87,11 +87,14 @@ export const fetchCart = async (id: any): Promise<FetchUserAllModel> => {
 
 export const fetchChatHistory = async (sender_id: number): Promise<FetchUserAllModel[]> => {
 	console.log('fetchChatHistoryAll');
-	const res = await fetch(`http://localhost:3000/privateMessages/all/?receipt=${sender_id}`, {
-		headers: {
-			Authorization: `Bearer ${localStorage.getItem('token')}`
+	const res = await fetch(
+		`${process.env.REACT_APP_API_SERVER}/privateMessages/all/?receipt=${sender_id}`,
+		{
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem('token')}`
+			}
 		}
-	});
+	);
 
 	if (res.ok) {
 		const data = await res.json();
@@ -109,7 +112,7 @@ export const addChatRecord = async (obj: {
 }): Promise<FetchUserAllModel> => {
 	console.log('addChatRecord');
 
-	const res = await fetch('http://localhost:3000/privateMessages/', {
+	const res = await fetch(`${process.env.REACT_APP_API_SERVER}/privateMessages/`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
@@ -130,7 +133,7 @@ export const addChatRecord = async (obj: {
 
 export const fetchTeacher = async (id: number): Promise<FetchUserAllModel> => {
 	console.log('fetchUser');
-	const res = await fetch(`http://localhost:3000/teachers/${id}`);
+	const res = await fetch(`${process.env.REACT_APP_API_SERVER}/teachers/${id}`);
 
 	if (res.ok) {
 		const data = await res.json();
@@ -144,7 +147,7 @@ export const fetchTeacher = async (id: number): Promise<FetchUserAllModel> => {
 export const fetchTeacherAll = async (): Promise<FetchUserAllModel> => {
 	console.log('fetchUser');
 
-	const res = await fetch(`http://localhost:3000/teachers`);
+	const res = await fetch(`${process.env.REACT_APP_API_SERVER}/teachers`);
 
 	if (res.ok) {
 		const data = await res.json();
@@ -164,7 +167,7 @@ export const fetchTeacherAll = async (): Promise<FetchUserAllModel> => {
 // }): Promise<FetchUserAllModel> => {
 // 	console.log('fetchAddUser');
 
-// 	const res = await fetch('http://localhost:3000/cartDetails/', {
+// 	const res = await fetch('${process.env.REACT_APP_API_SERVER}/cartDetails/', {
 // 		method: 'POST',
 // 		headers: {
 // 			'Content-Type': 'application/json'
@@ -196,7 +199,7 @@ export const fetchUpdateUser = async (obj: {
 }): Promise<FetchUserAllModel> => {
 	console.log('fetchUpdateUsers');
 
-	const res = await fetch('http://localhost:3000/users', {
+	const res = await fetch(`${process.env.REACT_APP_API_SERVER}/users`, {
 		method: 'PUT',
 		headers: {
 			'Content-Type': 'application/json'
@@ -220,7 +223,7 @@ export const fetchUpdateUser = async (obj: {
 export const fetchDeleteUser = async (id: number): Promise<FetchUserAllModel> => {
 	console.log('fetchDeleteUser');
 
-	const res = await fetch(`http://localhost:3000/users/${id}`, {
+	const res = await fetch(`${process.env.REACT_APP_API_SERVER}/users/${id}`, {
 		method: 'DELETE',
 		headers: {
 			'Content-Type': 'application/json'
@@ -241,7 +244,7 @@ export const fetchDeleteUser = async (id: number): Promise<FetchUserAllModel> =>
 export const fetchDropFromCart = async (id: number): Promise<FetchUserAllModel> => {
 	console.log('fetchDropFromCart');
 
-	const res = await fetch(`http://localhost:3000/cartDetails/drop/${id}`, {
+	const res = await fetch(`${process.env.REACT_APP_API_SERVER}/cartDetails/drop/${id}`, {
 		method: 'Delete',
 		headers: {
 			'Content-Type': 'application/json'
@@ -261,7 +264,7 @@ export const fetchDropFromCart = async (id: number): Promise<FetchUserAllModel> 
 export const fetchCourseByid = async (id: number): Promise<FetchUserAllModel> => {
 	console.log('fetchCourseByid');
 
-	const res = await fetch(`http://localhost:3000/products/${id}`);
+	const res = await fetch(`${process.env.REACT_APP_API_SERVER}/products/${id}`);
 
 	if (res.ok) {
 		const data = await res.json();
@@ -275,7 +278,7 @@ export const fetchCourseByid = async (id: number): Promise<FetchUserAllModel> =>
 export const fetchCourse = async (): Promise<FetchUserAllModel> => {
 	console.log('fetchCourse');
 
-	const res = await fetch(`http://localhost:3000/products/Course`);
+	const res = await fetch(`${process.env.REACT_APP_API_SERVER}/products/Course`);
 
 	if (res.ok) {
 		const data = await res.json();
@@ -289,7 +292,7 @@ export const fetchCourse = async (): Promise<FetchUserAllModel> => {
 export const fetchNote = async (): Promise<FetchUserAllModel> => {
 	console.log('fetchNote');
 
-	const res = await fetch(`http://localhost:3000/products/Note`);
+	const res = await fetch(`${process.env.REACT_APP_API_SERVER}/products/Note`);
 
 	if (res.ok) {
 		const data = await res.json();
@@ -303,7 +306,7 @@ export const fetchNote = async (): Promise<FetchUserAllModel> => {
 export const fetchProduct = async (id: number): Promise<FetchUserAllModel> => {
 	console.log('fetchProduct');
 
-	const res = await fetch(`http://localhost:3000/products/${id}`);
+	const res = await fetch(`${process.env.REACT_APP_API_SERVER}/products/${id}`);
 
 	if (res.ok) {
 		const data = await res.json();
@@ -321,7 +324,7 @@ export const fetchAddCart = async (obj: {
 }): Promise<FetchUserAllModel> => {
 	console.log('fetchAddCart');
 
-	const res = await fetch('http://localhost:3000/cartDetails', {
+	const res = await fetch(`${process.env.REACT_APP_API_SERVER}/cartDetails`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
@@ -342,7 +345,7 @@ export const fetchAddCart = async (obj: {
 export const fetchIsBuying = async (id: number, is_buying: boolean): Promise<FetchUserAllModel> => {
 	console.log('fetchIsBuying= ' + is_buying);
 
-	const res = await fetch(`http://localhost:3000/cartDetails/${id}`, {
+	const res = await fetch(`${process.env.REACT_APP_API_SERVER}/cartDetails/${id}`, {
 		method: 'PUT',
 		headers: {
 			'Content-Type': 'application/json',
@@ -364,7 +367,7 @@ export const fetchIsBuying = async (id: number, is_buying: boolean): Promise<Fet
 export const stripeCheckOut = async (id: number): Promise<FetchUserAllModel> => {
 	// console.log('fetchIsBuying= ' + is_buying);
 
-	const res = await fetch(`http://localhost:3000/cartDetails/stripe/${id}`, {
+	const res = await fetch(`${process.env.REACT_APP_API_SERVER}/cartDetails/stripe/${id}`, {
 		headers: {
 			'Content-Type': 'application/json',
 			Authorization: `Bearer ${localStorage.getItem('token')}`
@@ -386,7 +389,7 @@ export const fetchFile = async (file: File): Promise<FetchUserAllModel> => {
 	formData.append('name', 'abcd');
 	formData.append('sacas', 'sacas');
 
-	const res = await fetch(`http://localhost:3000/users/file`, {
+	const res = await fetch(`${process.env.REACT_APP_API_SERVER}/users/file`, {
 		method: 'POST',
 		headers: {
 			// 'Content-Type': 'multipart/form-data',
@@ -439,7 +442,7 @@ export const fetchDeleteBookmark = async (obj: {
 }): Promise<FetchUserAllModel> => {
 	console.log('fetchCreateBookmark');
 
-	const res = await fetch(`http://localhost:3000/followedTeachers`, {
+	const res = await fetch(`${process.env.REACT_APP_API_SERVER}/followedTeachers`, {
 		method: 'DELETE',
 		headers: {
 			'Content-Type': 'application/json',
@@ -462,7 +465,7 @@ export const fetchCreateBookmark = async (obj: {
 }): Promise<FetchUserAllModel> => {
 	console.log('fetchCreateBookmark');
 
-	const res = await fetch(`http://localhost:3000/followedTeachers`, {
+	const res = await fetch(`${process.env.REACT_APP_API_SERVER}/followedTeachers`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
@@ -482,7 +485,7 @@ export const fetchCreateBookmark = async (obj: {
 export const fetchAddPurchaseHistory = async (id: any): Promise<FetchUserAllModel> => {
 	console.log('fetchAddPurchaseHistory');
 
-	const res = await fetch(`http://localhost:3000/carts/isBuying/${id}`, {
+	const res = await fetch(`${process.env.REACT_APP_API_SERVER}/carts/isBuying/${id}`, {
 		headers: {
 			Authorization: `Bearer ${localStorage.getItem('token')}`
 		}
@@ -491,7 +494,7 @@ export const fetchAddPurchaseHistory = async (id: any): Promise<FetchUserAllMode
 	const data = await res.json();
 	console.log('data', data);
 	for (let x = 0; x < data.cart_detail.length; x++) {
-		await fetch(`http://localhost:3000/purchaseHistorys`, {
+		await fetch(`${process.env.REACT_APP_API_SERVER}/purchaseHistorys`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
@@ -504,11 +507,11 @@ export const fetchAddPurchaseHistory = async (id: any): Promise<FetchUserAllMode
 		// console.log("TESTING=",x)
 	}
 
-	const deleteRes = await fetch(`http://localhost:3000/cartDetails/${data.id}`, {
+	const deleteRes = await fetch(`${process.env.REACT_APP_API_SERVER}/cartDetails/${data.id}`, {
 		method: 'DELETE'
 	});
 
-	// let purchaseHistorys = await fetch(`http://localhost:3000/purchaseHistorys/${id}`)
+	// let purchaseHistorys = await fetch(`${process.env.REACT_APP_API_SERVER}/purchaseHistorys/${id}`)
 	// const phData = await purchaseHistorys.json();
 	// console.log("purchaseHistory=",phData)
 
@@ -557,16 +560,16 @@ export const fetchUserByTeacherId = async (ids: number[]): Promise<any[]> => {
 
 
 export const fetchCreateTeacher = async (obj: {
-	 user_id: number;
-	 info: string;
-	 school: string;
-	 experience: number;
-	}): Promise<void> => {
+	user_id: number;
+	info: string;
+	school: string;
+	experience: number;
+}): Promise<void> => {
 	console.log('fetchCreateTeacher');
 	console.log('object', obj);
 	try {
 		obj.experience = Number(obj.experience);
-		const res = await fetch(`http://localhost:3000/teachers`, {
+		const res = await fetch(`${process.env.REACT_APP_API_SERVER}/teachers`, {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
@@ -575,10 +578,8 @@ export const fetchCreateTeacher = async (obj: {
 		});
 		console.log(res);
 		//console.log(await res.json());
-		
 	} catch (error) {
 		console.log(error);
-		
 	}
 
 	// if (res.ok) {
@@ -593,7 +594,7 @@ export const fetchCreateTeacher = async (obj: {
 export const fetchCreateProduct = async (formData: FormData): Promise<FetchUserAllModel> => {
 	console.log('fetchCreateProduct');
 
-	const res = await fetch(`http://localhost:3000/products`, {
+	const res = await fetch(`${process.env.REACT_APP_API_SERVER}/products`, {
 		method: 'POST',
 		headers: {
 			// 'Content-Type': 'application/json'
@@ -613,7 +614,7 @@ export const fetchCreateProduct = async (formData: FormData): Promise<FetchUserA
 export const fetchPurchaseHistory = async (id: any): Promise<FetchUserAllModel> => {
 	console.log('fetchPurchaseHistory');
 
-	const res = await fetch(`http://localhost:3000/purchaseHistorys/${id}`, {
+	const res = await fetch(`${process.env.REACT_APP_API_SERVER}/purchaseHistorys/${id}`, {
 		headers: {
 			Authorization: `Bearer ${localStorage.getItem('token')}`
 		}
@@ -625,6 +626,50 @@ export const fetchPurchaseHistory = async (id: any): Promise<FetchUserAllModel> 
 		return data;
 	} else {
 		throw new Error('fetchPurchaseHistory FAILED');
+	}
+};
+
+export const fetchTeacherProduct = async (id: number): Promise<FetchUserAllModel> => {
+	console.log('fetchTeacherProduct');
+
+	const res = await fetch(`${process.env.REACT_APP_API_SERVER}/products/teacher/${id}`);
+
+	if (res.ok) {
+		const data = await res.json();
+		console.log(data);
+		return data;
+	} else {
+		throw new Error('fetchTeacherProduct FAILED');
+	}
+};
+
+export const fetchUpdateProduct = async (obj: {
+	id: number;
+	name: string;
+	price: number;
+	info: string;
+	is_onsale: boolean;
+}): Promise<void> => {
+	console.log('fetchUpdateProduct', obj);
+	const res = await fetch(`http://localhost:3000/products/${obj.id}`, {
+		method: 'PUT',
+		headers: {
+			'Content-Type': 'application/json'
+			// Authorization: `Bearer ${localStorage.getItem('token')}`
+		},
+		body: JSON.stringify({
+			name: obj.name,
+			price: obj.price,
+			info: obj.info,
+			is_onsale: obj.is_onsale
+		})
+	});
+
+	if (res.ok) {
+		console.log('update product success');
+		return;
+	} else {
+		throw new Error('fetchUpdateProduct FAILED');
 	}
 };
 

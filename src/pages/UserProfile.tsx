@@ -49,6 +49,10 @@ export default function UserProfile() {
 
 
   const teacher_id = (Number(data?.teacher[0]?.id))
+  
+  const handleUploadHistory = () => {
+    history.push(`/uploadhistory/${teacher_id}`)
+  }
 
   const handleRedirectUpload = () => {
     history.push(`/uploadproduct/${teacher_id}`)
@@ -113,7 +117,7 @@ export default function UserProfile() {
               <br />
               <IonCardContent className='userButtonContainer' >
                 <IonButton className='userButtonleft' onClick={handleRedirectUpload}>上載課程/筆記</IonButton>
-                <IonButton className='userButtonright' onClick={handlePurchaseHistory}>上載記錄</IonButton>
+                <IonButton className='userButtonright' onClick={handleUploadHistory}>上載記錄</IonButton>
               </IonCardContent>
               {/* <IonButton onClick={handleRedirectUpload}>UPLOAD COURSE / NOTES</IonButton> */}
               <br /><br /><br />

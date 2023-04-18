@@ -28,7 +28,7 @@ const PrivateMessage: React.FC = () => {
     const submit = async (e: any) => {
         e.preventDefault();
 
-        await fetch('http://localhost:3000/privateMessages/messages', {
+        await fetch(`${process.env.REACT_APP_API_SERVER}/privateMessages/messages`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({

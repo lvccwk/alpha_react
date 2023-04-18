@@ -155,9 +155,9 @@ function FileUpload() {
 
 
             課程/筆記圖片
-            <input type="file" onChange={handleImage} /><br /><br />
+            <input type="file" onInput={handleImage} /><br /><br />
             課程/筆記檔案
-            <input type="file" onChange={handleFile} /><br /><br />
+            <input type="file" onInput={handleFile} /><br /><br />
 
             <IonButton type="submit">UPLOAD</IonButton><br></br>
             <IonButton onClick={onClickBackProfilePage}>返回上一頁</IonButton>
