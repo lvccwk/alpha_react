@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { IonButton, IonCard, IonCardContent, IonContent, IonFooter, IonSearchbar, SearchbarChangeEventDetail, useIonAlert, useIonViewWillEnter } from '@ionic/react';
 import './TeacherCard.css';
-import { fetchAddCart, fetchCart, fetchCourse, fetchPurchaseHistory } from '../api/fetchAll';
+import { fetchAddCart, fetchCart, fetchCourse, fetchPurchaseHistory, fetchTeacherProduct } from '../api/fetchAll';
 import { useQuery } from '@tanstack/react-query';
 import photo from '../../src/photo/brandi-redd-6H9H-tYPUQQ-unsplash.jpg'
 import { useHistory } from 'react-router';
@@ -25,6 +25,7 @@ export interface Course {
 function CourseCard() {
     const [phID, setPhID] = useState<number[]>([])
     const [cartID, setCartID] = useState<number[]>([])
+    const [teacherProductID, setTeacherProductID] = useState<number[]>([])
     const isLoggedIn = useAppSelector(state => state.user.isLoggedIn)
     const [searchText, setSearchText] = useState<string>("");
     const { data: course, refetch } = useQuery({
@@ -61,6 +62,16 @@ function CourseCard() {
         refetchOnWindowFocus: false,
         refetchOnReconnect: true,
     });
+    
+    const { data: teacherProduct } = useQuery({
+        queryKey: ["teacherproduct", user?.teacher[0].id],
+        queryFn: async () => {
+            if (user?.teacher[0].id) { return await fetchTeacherProduct(user?.teacher[0].id) }
+            return null
+        },
+        refetchOnWindowFocus: false,
+        refetchOnReconnect: true,
+    });
 
     useIonViewWillEnter(() => {
         refetch()
@@ -79,7 +90,13 @@ function CourseCard() {
                 return obj.product_id;
             }))
         }
-    }, [purchaseHistory, cart, course])
+
+        if (user?.user_type === "teacher") {
+            setTeacherProductID(teacherProduct?.map((obj: { id: any; }) => {
+                return obj.id;
+            }))
+        }
+    }, [purchaseHistory, cart, teacherProduct, course])
 
     const history = useHistory();
     const onClickProductPage = (id: number) => {
@@ -123,6 +140,10 @@ function CourseCard() {
         }
     }
 
+    const onClickEditPage = (id: any) => {
+        history.push(`/editproduct/` + id);
+    }
+
     const handleSearch = (event: CustomEvent<SearchbarChangeEventDetail>) => {
         setSearchText(event.detail.value || "");
     };
@@ -160,17 +181,22 @@ function CourseCard() {
                                     加入購物車
                                 </IonButton>
                             )}
-                            {isLoggedIn === true && phID.includes(item.id) && (
+                            {isLoggedIn === true && teacherProductID.includes(item.id) &&(
+                                <IonButton onClick={() => onClickEditPage(item.id)}>
+                                    修改課程/筆記資料
+                                </IonButton>
+                            )}
+                            {isLoggedIn === true && teacherProductID.includes(item.id) === false && phID.includes(item.id) && (
                                 <IonButton disabled={true}>
                                     已購買
                                 </IonButton>
                             )}
-                            {isLoggedIn === true && cartID.includes(item.id) && (
+                            {isLoggedIn === true && teacherProductID.includes(item.id) === false && cartID.includes(item.id) && (
                                 <IonButton disabled={true}>
                                     已加入購物車
                                 </IonButton>
                             )}
-                            {isLoggedIn === true && phID.includes(item.id) === false && cartID.includes(item.id) === false && (
+                            {isLoggedIn === true && teacherProductID.includes(item.id) === false && phID.includes(item.id) === false && cartID.includes(item.id) === false && (
                                 <IonButton onClick={() => handleAddToCart(item.id)}>
                                     加入購物車
                                 </IonButton>

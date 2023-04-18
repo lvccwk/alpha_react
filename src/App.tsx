@@ -39,6 +39,7 @@ import './theme/variables.css';
 import Login from './pages/Login';
 import { FacebookCallback } from './components/FacebookCallback';
 import ProductList from './pages/ProductList';
+import EditProduct from './pages/EditProduct';
 import ProductPage from './pages/ProductPage';
 import PurchasedItem from './pages/PurchasedItem';
 import UserProfile from './pages/UserProfile';
@@ -95,6 +96,7 @@ const App: React.FC = () => {
 
             <Route path="/ProductList" render={() => <ProductList />} exact={true} />
             <Route path="/ProductPage/:productId" render={() => <ProductPage />} exact={true} />
+            <Route path="/EditProduct/:productId" render={() => <EditProduct />} exact={true} />
             <Route path="/PurchasedItem/:productId" render={() => <PurchasedItem />} exact={true} />
             <Route path="/tutorprofile/:teacherId" render={() => <TutorProfile />} exact={true} />
 
