@@ -413,6 +413,26 @@ export const fetchFile = async (file: File): Promise<FetchUserAllModel> => {
 	// }
 };
 
+
+export const fetchTeacherBookmark = async (id: number): Promise<FetchUserAllModel> => {
+	console.log('fetchTeacherBookmark');
+	const res = await fetch(`http://localhost:3000/followedTeachers/all`, {
+		headers: {
+			Authorization: `Bearer ${localStorage.getItem('token')}`
+		}
+	});
+	console.log(res);
+	if (res.ok) {
+		const data = await res.json();
+		console.log(
+			data
+		);
+		return data;
+	} else {
+		throw new Error('fetchTeacherBookmark FAILED');
+	}
+};
+
 export const fetchDeleteBookmark = async (obj: {
 	user_id: number;
 	teacher_id: number;
@@ -499,6 +519,42 @@ export const fetchAddPurchaseHistory = async (id: any): Promise<FetchUserAllMode
 		throw new Error('fetchAddPurchaseHistory FAILED');
 	}
 };
+
+export const fetchUserByTeacherId = async (ids: number[]): Promise<any[]> => {
+	console.log('fetchUserByTeacherId');
+	console.log(ids);
+	const userTeacherIds = []
+	for (let x = 0; x < ids.length; x++) {
+		try {
+			const res = await fetch(`http://localhost:3000/teachers/${ids[x]}`, {
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem('token')}`
+				}
+			});
+			if (res.ok) {
+				const data = await res.json();
+				console.log(data);
+				userTeacherIds.push({
+					teacher_id: ids[x],
+					user_id: data.user_id,
+					username: data.user.username
+
+				})
+			}
+			console.log("res",res);
+		} catch (error) {
+			console.log('fetchUserByTeacherId FAILED',error);
+		}
+	}
+	return userTeacherIds;
+};
+
+
+
+
+
+
+
 
 export const fetchCreateTeacher = async (obj: {
 	 user_id: number;

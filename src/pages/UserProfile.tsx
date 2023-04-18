@@ -63,18 +63,18 @@ export default function UserProfile() {
     refetch()
   })
 
-  if (error) {
-    return (
-      <IonPage>
-        <Toolbar />
-        <IonContent className='ion-padding'>
-          <div className='userprofile'>
-            錯誤: {JSON.stringify(error)}
-          </div>
-        </IonContent>
-      </IonPage>
-    )
-  }
+  // if (error) {
+  //   return (
+  //     <IonPage>
+  //       <Toolbar />
+  //       <IonContent className='ion-padding'>
+  //         <div className='userprofile'>
+  //           錯誤: {JSON.stringify(error)}
+  //         </div>
+  //       </IonContent>
+  //     </IonPage>
+  //   )
+  // }
   if (data?.user_type !== 'student') {
     console.log('teacher')
     return (

@@ -4,6 +4,7 @@ import ToolBar from './Toolbar';
 import ListCard from './ListCard';
 import Refresh from './Refresh';
 import TeacherCard from './TeacherCard';
+import FollowedTeachers from './FollowedTeachers';
 import './../../src/components/UiDesign/Tutor.css'
 function Segment() {
     const [selectedSegment, setSelectedSegment] = useState('default');
@@ -29,7 +30,9 @@ function Segment() {
                 </div>
             ) : (
                 <div>
-                    <h1>己追蹤的老師</h1>
+
+                    <FollowedTeachers />
+
                     <ListCard />
                 </div>
             )}
