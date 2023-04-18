@@ -30,9 +30,7 @@ function Segment() {
                 </div>
             ) : (
                 <div>
-
                     <FollowedTeachers />
-
                     <ListCard />
                 </div>
             )}

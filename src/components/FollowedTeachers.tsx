@@ -2,6 +2,8 @@ import { useQuery, useQueries } from '@tanstack/react-query';
 import { useAppSelector } from "../redux/store";
 import { useState } from 'react';
 import { fetchTeacherBookmark, fetchUserByTeacherId } from "../api/fetchAll";
+import { IonButton, IonCard, IonCardSubtitle, IonImg, IonList } from '@ionic/react';
+import { useHistory } from 'react-router-dom';
 
 function FollowedTeachers() {
 
@@ -18,6 +20,7 @@ function FollowedTeachers() {
       console.log("success");
     }
   });
+  const history = useHistory();
 
 
   const { data: user, refetch } = useQuery({
@@ -27,19 +30,33 @@ function FollowedTeachers() {
     refetchOnReconnect: false,
     retry: false,
   });
+
+  console.log(`checksie`, user)
+
+  const onClickEditProfile = (id: number) => {
+    history.push(`/tutorprofile/${id}`);
+  };
+
   console.log(user);
   return (
     <>
-      <div>
-        <h1>已追蹤的老師</h1>
-        {user && user.map((user) => (
-          <div key={user.id}>{user.username}</div>
-        ))}
 
-      </div>
+      <h1>已追蹤的老師</h1>
+
+      {user && user.map((user) => (
+        <IonCard key={user.id} className='bookMarkedTeacher' onClick={() => onClickEditProfile(user.teacher_id)}>
+          {/* <div className='tutorPhoto'><IonImg className='image' src={user.image = user.image ? user.image : "https://ionicframework.com/docs/img/demos/avatar.svg"} /></div> */}
+          <IonCardSubtitle className='bookMarkedTeachername'>{user.username}</IonCardSubtitle>
+          <IonButton className='bookMarkedexp'>中文科 ： 1 年教學經驗</IonButton>
+        </IonCard >
+
+      ))}
+
     </>
   );
 }
 
 
 export default FollowedTeachers;
+
+
