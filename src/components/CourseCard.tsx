@@ -62,9 +62,9 @@ function CourseCard() {
         refetchOnWindowFocus: false,
         refetchOnReconnect: true,
     });
-    
+
     const { data: teacherProduct } = useQuery({
-        queryKey: ["teacherproduct", user?.teacher[0].id],
+        queryKey: ["teacherproduct", user?.teacher[0]?.id],
         queryFn: async () => {
             if (user?.teacher[0].id) { return await fetchTeacherProduct(user?.teacher[0].id) }
             return null
@@ -170,7 +170,7 @@ function CourseCard() {
                     {/* your existing code ... */}
                     <IonCard className='courseCardBackground' key={item.id}>
                         <img alt="Product thumbnail" className='courseCardBackground-img' src={item.image} style={{ width: '350px', objectFit: 'cover' }} />
-                        <IonCardContent className='courseCardText'>{item.name} 老師:{item.teacher.user.username} <br/>價格:${item.price} 評分:{item.avg_rating ? item.avg_rating : "暫無"}
+                        <IonCardContent className='courseCardText'>{item.name} 老師:{item.teacher.user.username} <br />價格:${item.price} 評分:{item.avg_rating ? item.avg_rating : "暫無"}
                         </IonCardContent>
                         <IonFooter className='courseItemPrice'>
                             <IonButton onClick={() => onClickProductPage(item.id)}>
@@ -181,7 +181,7 @@ function CourseCard() {
                                     加入購物車
                                 </IonButton>
                             )}
-                            {isLoggedIn === true && teacherProductID.includes(item.id) &&(
+                            {isLoggedIn === true && teacherProductID.includes(item.id) && (
                                 <IonButton onClick={() => onClickEditPage(item.id)}>
                                     修改課程/筆記資料
                                 </IonButton>
