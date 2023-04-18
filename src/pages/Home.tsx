@@ -1,6 +1,6 @@
 import './Home.css';
-import React from 'react';
-import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, IonIcon, IonImg, IonItem, IonPage, IonText } from '@ionic/react';
+import React, { useEffect } from 'react';
+import { IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, IonIcon, IonImg, IonItem, IonPage, IonText, useIonViewWillEnter } from '@ionic/react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Keyboard, Navigation, Pagination, Scrollbar, Zoom } from 'swiper';
 import { fetchCourse, fetchTeacherAll } from '../api/fetchAll';
@@ -38,7 +38,7 @@ export interface Course {
 }
 
 const Home: React.FC = () => {
-  const { data: course } = useQuery({
+  const { data: course, refetch: courseFetch } = useQuery({
     queryKey: ["homepagecourse"],
     queryFn: async () => await fetchCourse(),
     refetchOnWindowFocus: false,
@@ -50,6 +50,17 @@ const Home: React.FC = () => {
     queryFn: fetchTeacherAll,
   });
   console.log(teacherAll)
+
+
+  useIonViewWillEnter(() => {
+    console.log("courseFetch")
+    courseFetch()
+
+  })
+  // useEffect(() => {
+  //   console.log("courseFetch")
+  //   courseFetch()
+  // }, [])
 
   const onClickTeacherProfile = (id: number) => {
     history.push(`/tutorprofile/${id}`);
@@ -146,8 +157,8 @@ const Home: React.FC = () => {
           {/* <SwiperSlide>
             <TeacherCard />
           </SwiperSlide> */}
-          {Array.isArray(course) && course.map((item: Course) => (
-            <SwiperSlide>
+          {Array.isArray(course) && course.map((item: Course, index: number) => (
+            <SwiperSlide key={index}>
 
               <IonCard className='courseCard' onClick={() => onClickProductPage(item.id)}>
                 <div><IonImg className='coursePhotoHome' src={item.image} /></div>
@@ -157,49 +168,6 @@ const Home: React.FC = () => {
             </SwiperSlide>
           ))}
 
-          {/* <SwiperSlide>
-            <IonCard className='courseCard'>
-              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
-              <IonCardHeader>
-                <IonCardTitle className='courseCardContent'>Card Title</IonCardTitle>
-              </IonCardHeader>
-            </IonCard>
-          </SwiperSlide>
-
-          <SwiperSlide>
-            <IonCard className='courseCard'>
-              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
-              <IonCardHeader>
-                <IonCardTitle className='courseCardContent'>Card Title</IonCardTitle>
-              </IonCardHeader>
-            </IonCard>
-          </SwiperSlide>
-
-          <SwiperSlide>
-            <IonCard className='courseCard'>
-              <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" />
-              <IonCardHeader>
-                <IonCardTitle className='courseCardContent'>Card Title</IonCardTitle>
-              </IonCardHeader>
-            </IonCard>
-          </SwiperSlide> */}
-
-          {/* <SwiperSlide>
-            <img
-              src="https://picsum.photos/id/1015/800/450"
-              alt="Slide 2"
-              className="swiper-image"
-            />
-            <IonText className="swiper-title">The Crown</IonText>
-          </SwiperSlide>
-          <SwiperSlide>
-            <img
-              src="https://picsum.photos/id/1040/800/450"
-              alt="Slide 3"
-              className="swiper-image"
-            />
-            <IonText className="swiper-title">The Witcher</IonText>
-          </SwiperSlide> */}
         </Swiper>
         <div className='course'>
           <IonCardTitle>熱門老師</IonCardTitle><div onClick={onClickTutorPage} className='course-btn'>查看更多導師<IonIcon className="" icon={chevronForward} /></div>
@@ -212,12 +180,12 @@ const Home: React.FC = () => {
           slidesPerView={2}
           spaceBetween={-10}
         >
-          {Array.isArray(teacherAll) && teacherAll.map((item: TeacherInterface) => (
-            <SwiperSlide>
-              <IonCard className='courseCard' onClick={() => onClickTeacherProfile(item.id)}>
-                <img alt="Product thumbnail" src={item.user.image = item.user.image ? item.user.image : "https://ionicframework.com/docs/img/demos/avatar.svg"} />
+          {Array.isArray(teacherAll) && teacherAll.map((item: TeacherInterface, index: number) => (
+            <SwiperSlide key={index} className='img'>
+              <IonCard className="courseCard" onClick={() => onClickTeacherProfile(item.id)}>
+                <img className="img" alt="Product thumbnail" src={item.user.image = item.user.image ? item.user.image : "https://ionicframework.com/docs/img/demos/avatar.svg"} />
                 <IonCardHeader>
-                  <IonCardTitle className='courseCardContent'>{item.user.username}</IonCardTitle>
+                  <IonCardTitle className="courseCardContent">{item.user.username}</IonCardTitle>
                 </IonCardHeader>
               </IonCard>
             </SwiperSlide>

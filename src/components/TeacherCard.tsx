@@ -45,12 +45,9 @@ function TeacherList() {
                         <IonCard className='teacherCardComp' onClick={() => onClickEditProfile(item.id)}>
                             <div className='tutorPhoto'><IonImg className='image' src={item.user.image = item.user.image ? item.user.image : "https://ionicframework.com/docs/img/demos/avatar.svg"} /></div>
                             <IonCardSubtitle className='font-inbox-top'>{item.user.username}</IonCardSubtitle>
-                            {/* <IonCardSubtitle className='font-inbox'>香港中文大學</IonCardSubtitle> */}
+
                             <IonButton className='font-inbox'>中文科 ： 1 年教學經驗</IonButton>
 
-                            {/* <IonCard className='imgTeacher' >
-                                <IonImg src={photo} />
-                            </IonCard> */}
                         </IonCard >
                     </div >
                 ))
