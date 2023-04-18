@@ -416,10 +416,9 @@ export const fetchFile = async (file: File): Promise<FetchUserAllModel> => {
 	// }
 };
 
-
 export const fetchTeacherBookmark = async (id: number): Promise<FetchUserAllModel> => {
 	console.log('fetchTeacherBookmark');
-	const res = await fetch(`http://localhost:3000/followedTeachers/all`, {
+	const res = await fetch(`${process.env.REACT_APP_API_SERVER}/followedTeachers/all`, {
 		headers: {
 			Authorization: `Bearer ${localStorage.getItem('token')}`
 		}
@@ -427,9 +426,7 @@ export const fetchTeacherBookmark = async (id: number): Promise<FetchUserAllMode
 	console.log(res);
 	if (res.ok) {
 		const data = await res.json();
-		console.log(
-			data
-		);
+		console.log(data);
 		return data;
 	} else {
 		throw new Error('fetchTeacherBookmark FAILED');
@@ -526,10 +523,10 @@ export const fetchAddPurchaseHistory = async (id: any): Promise<FetchUserAllMode
 export const fetchUserByTeacherId = async (ids: number[]): Promise<any[]> => {
 	console.log('fetchUserByTeacherId');
 	console.log(ids);
-	const userTeacherIds = []
+	const userTeacherIds = [];
 	for (let x = 0; x < ids.length; x++) {
 		try {
-			const res = await fetch(`http://localhost:3000/teachers/${ids[x]}`, {
+			const res = await fetch(`${process.env.REACT_APP_API_SERVER}/teachers/${ids[x]}`, {
 				headers: {
 					Authorization: `Bearer ${localStorage.getItem('token')}`
 				}
@@ -541,23 +538,15 @@ export const fetchUserByTeacherId = async (ids: number[]): Promise<any[]> => {
 					teacher_id: ids[x],
 					user_id: data.user_id,
 					username: data.user.username
-
-				})
+				});
 			}
-			console.log("res",res);
+			console.log('res', res);
 		} catch (error) {
-			console.log('fetchUserByTeacherId FAILED',error);
+			console.log('fetchUserByTeacherId FAILED', error);
 		}
 	}
 	return userTeacherIds;
 };
-
-
-
-
-
-
-
 
 export const fetchCreateTeacher = async (obj: {
 	user_id: number;
@@ -649,11 +638,10 @@ export const fetchUpdateProduct = async (obj: {
 	price: number;
 	info: string;
 	is_onsale: boolean;
-
 }): Promise<void> => {
 	console.log('fetchUpdateProduct', obj);
-	console.log("FETCHPRODUCTONSALE",Boolean(Number(obj.is_onsale)))
-	const res = await fetch(`http://localhost:3000/products/${obj.id}`, {
+	console.log('FETCHPRODUCTONSALE', Boolean(Number(obj.is_onsale)));
+	const res = await fetch(`${process.env.REACT_APP_API_SERVER}/products/${obj.id}`, {
 		method: 'PUT',
 		headers: {
 			'Content-Type': 'application/json'

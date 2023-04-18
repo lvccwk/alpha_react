@@ -30,7 +30,7 @@ const ChatHistory: React.FC<Props> = ({ sender_username, receiver_username, chat
 
     useEffect(() => {
         if (!socket) {
-            const newSocket = io(`http://localhost:3000/`)
+            const newSocket = io(`${process.env.REACT_APP_API_SERVER}`)
             setSocket(newSocket)
         } else {
             socket?.emit("joinRoom", sender_id, receiver_id)
