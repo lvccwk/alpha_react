@@ -13,19 +13,13 @@ import {
     IonItem,
     IonLabel,
     IonRow,
+    IonToggle,
     useIonViewWillEnter,
   } from "@ionic/react";
-  
   import { useEffect, useState } from "react";
   import { useHistory, useParams } from "react-router-dom";
   import { useMutation, useQuery } from "@tanstack/react-query";
   import { set, useForm } from "react-hook-form"
-  import { useAppSelector } from "../redux/store";
-  import {
-    FetchUserModel,
-    fetchUser,
-    fetchUpdateUser,
-  } from "../api/fetchUser";
   import './../../src/components/UiDesign/UserProfile.css'
   import { FetchUserAllModel, fetchProduct, fetchUpdateProduct } from "../api/fetchAll";
   
@@ -38,21 +32,22 @@ import {
         queryFn: async () => await fetchProduct(Number(productId)),
         refetchOnWindowFocus: false,
         refetchOnReconnect: true,
+        onSuccess:(product)=>{
+            console.log("PRODUCT=",product)
+            console.log("PRODUCTONSALE=",product.is_onsale)
+            setValue("id", product ? product.id: Number(productId))
+            setValue("name", product ? product.name : "")
+            setValue("price", product ? product.price : NaN)
+            setValue("info", product ? product.info : "")
+            setValue("is_onsale",  true)
+        }
     });
 
-    const { register, handleSubmit, setValue } = useForm<FetchUserAllModel>({
+    const { register, handleSubmit, setValue,getValues } = useForm<FetchUserAllModel>({
+        defaultValues: {
+        }
     })
-  
-    useEffect(() => {
-      console.log(product)
-      if (product) {
-        setValue("id", product ? product.id: Number(productId))
-        setValue("name", product ? product.name : "")
-        setValue("price", product ? product.price : NaN)
-        setValue("info", product ? product.info : "")
-        setValue("is_onsale", product ? product.is_onsale : true)
-      }
-    }, [product])
+    
   
     const fetchUpdateItem = useMutation(fetchUpdateProduct, {
       onSuccess(data, variables, context) {
@@ -73,8 +68,9 @@ import {
     const onClickProductPage = (id: number) => {
         history.push(`/productpage/` + id);
     }
-  
-  
+
+
+    
     return (
   
       <IonCard className="editProfilCard">
@@ -88,8 +84,14 @@ import {
             <IonInput aria-label="Custom input" class="custom" {...register("name")} /><br></br>
             <IonInput aria-label="Custom input" type="number" class="custom" {...register("price")} /><br></br>
             <IonInput aria-label="Custom input" class="custom" {...register("info")} /><br></br>
-            <IonInput aria-label="Custom input" class="custom" {...register("is_onsale")} /><br></br>
+
+            <IonItem>
+                <IonToggle checked={getValues("is_onsale")} onClick={() => setValue("is_onsale", !getValues("is_onsale"))} {...register("is_onsale")}>上架</IonToggle>
+            </IonItem>
+
+
             <IonButton type="submit" form={"edit-profile"} >更新</IonButton>
+            
           </form>
         </IonCardContent>
         <IonAlert

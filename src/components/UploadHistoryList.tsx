@@ -26,14 +26,10 @@ interface ProductInterface {
 function UploadHistoryList() {
     const params = useParams()
     const teacherId = Object.values(params)[0]
-    console.log(teacherId)
     const { data, isLoading, refetch } = useQuery({
         queryKey: ["teacherDetailProduct"],
         queryFn: () => fetchTeacherProduct(Number(teacherId)),
     });
-    console.log(data)
-
-  console.log(data)
 
   useIonViewWillEnter(() => {
     refetch()
