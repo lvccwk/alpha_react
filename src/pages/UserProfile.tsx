@@ -49,7 +49,7 @@ export default function UserProfile() {
 
 
   const teacher_id = (Number(data?.teacher[0]?.id))
-  
+
   const handleUploadHistory = () => {
     history.push(`/uploadhistory/${teacher_id}`)
   }
@@ -91,14 +91,18 @@ export default function UserProfile() {
 
             <div className='CardContent'>
               <IonCardHeader >
-                <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
-                <IonCardTitle>{data?.username}</IonCardTitle>
+
+                <IonCardTitle style={{ textAlign: 'center' }}>{data?.username}</IonCardTitle>
                 <br /> <br /><br />
               </IonCardHeader>
-
-              <IonCardContent className='userButtonContainer' >
+              <IonCardContent className='userButtonContainer' style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <IonButton className='userButtonleft' onClick={handleEditProfile}>更改個人資料</IonButton>
                 <IonButton className='userButtonright' onClick={handlePurchaseHistory}>購買資料</IonButton>
+              </IonCardContent>
+
+              <IonCardContent className='userButtonContainerA' style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <IonButton className='userButtonleft' onClick={handleRedirectUpload}>上載課程/筆記</IonButton>
+                <IonButton className='userButtonright' onClick={handleUploadHistory}>上載記錄</IonButton>
               </IonCardContent>
 
             </div>
@@ -107,21 +111,20 @@ export default function UserProfile() {
 
           <IonCard className='infocardDetail'>
 
-            <div className='infocardInside'>
-              <br /> <br />
-              用戶名稱: {data?.username}
-              <br />
-              用戶類別 : {data?.user_type}
-              <br />
-              電郵 : {data?.email}
-              <br />
-              <IonCardContent className='userButtonContainer' >
-                <IonButton className='userButtonleft' onClick={handleRedirectUpload}>上載課程/筆記</IonButton>
-                <IonButton className='userButtonright' onClick={handleUploadHistory}>上載記錄</IonButton>
-              </IonCardContent>
-              {/* <IonButton onClick={handleRedirectUpload}>UPLOAD COURSE / NOTES</IonButton> */}
-              <br /><br /><br />
+            <div className='infocardInside' style={{ textAlign: 'center' }}>
+              <br /><br />
+              <div className='infocardInside' style={{ textAlign: 'start' }}>
+                <br /><br />
+                {/* <IonCardSubtitle style={{ fontSize: '24px' }}>用戶名稱: {data?.username}</IonCardSubtitle>
+                <br /> */}
+                <IonCardSubtitle style={{ fontSize: '24px' }}>用戶類別 : {data?.user_type}</IonCardSubtitle>
+                <br />
+                <IonCardSubtitle style={{ fontSize: '24px' }}>電郵 : {data?.email}</IonCardSubtitle>
+                <br /><br /><br />
+
+              </div>
               <DeleteUserAlert />
+
             </div>
 
             <br /><br /><br /><br /><br /><br />
@@ -135,47 +138,55 @@ export default function UserProfile() {
     console.log('student')
     return (
       <IonPage className='userprofilepage'>
-      <Toolbar />
-      <IonContent className='userCard'>
-        <IonButton className='exitbtn' color="danger" onClick={handleLogout}><IonIcon icon={power} className='exit' ></IonIcon></IonButton>
-        <div className='userlogo'><Avatar /></div>
-        <IonCard className='profileCard' >
+        <Toolbar />
+        <IonContent className='userCard'>
+          <IonButton className='exitbtn' color="danger" onClick={handleLogout}><IonIcon icon={power} className='exit' ></IonIcon></IonButton>
+          <div className='userlogo'><Avatar /></div>
+          <IonCard className='profileCard' >
 
-          <div className='CardContent'>
-            <IonCardHeader >
-              <IonCardSubtitle>Card Subtitle</IonCardSubtitle>
-              <IonCardTitle>{data?.username}</IonCardTitle>
-              <br /> <br /><br />
-            </IonCardHeader>
+            <div className='CardContent'>
+              <IonCardHeader >
 
-            <IonCardContent className='userButtonContainer' >
-              <IonButton className='userButtonleft' onClick={handleEditProfile}>更改個人資料</IonButton>
-              <IonButton className='userButtonright' onClick={handlePurchaseHistory}>購買資料</IonButton>
-            </IonCardContent>
+                <IonCardTitle style={{ textAlign: 'center' }}>{data?.username}</IonCardTitle>
+                <br /> <br /><br />
+              </IonCardHeader>
+              <IonCardContent className='userButtonContainer' style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <IonButton className='userButtonleft' onClick={handleEditProfile}>更改個人資料</IonButton>
+                <IonButton className='userButtonright' onClick={handlePurchaseHistory}>購買資料</IonButton>
+              </IonCardContent>
 
-          </div>
-          <br /><br /><br /><br /><br /><br />
-        </IonCard>
+              {/* <IonCardContent className='userButtonContainerA' style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <IonButton className='userButtonleft' onClick={handleRedirectUpload}>上載課程/筆記</IonButton>
+              <IonButton className='userButtonright' onClick={handleUploadHistory}>上載記錄</IonButton>
+            </IonCardContent> */}
 
-        <IonCard className='infocardDetail'>
+            </div>
+            <br /><br /><br /><br /><br /><br />
+          </IonCard>
 
-          <div className='infocardInside'>
-            <br /> <br />
-            用戶名稱: {data?.username}
-            <br />
-            用戶類別 : {data?.user_type}
-            <br />
-            電郵 : {data?.email}
-            <br />
-            <br /><br /><br />
-            <DeleteUserAlert />
-          </div>
+          <IonCard className='infocardDetail'>
 
-          <br /><br /><br /><br /><br /><br />
-          <br /><br /><br /><br /><br /><br />
-        </IonCard>
-      </IonContent>
-    </IonPage>
+            <div className='infocardInside' style={{ textAlign: 'center' }}>
+              <br /><br />
+              <div className='infocardInside' style={{ textAlign: 'start' }}>
+                <br /><br />
+                {/* <IonCardSubtitle style={{ fontSize: '24px' }}>用戶名稱: {data?.username}</IonCardSubtitle>
+              <br /> */}
+                <IonCardSubtitle style={{ fontSize: '24px' }}>用戶類別 : {data?.user_type}</IonCardSubtitle>
+                <br />
+                <IonCardSubtitle style={{ fontSize: '24px' }}>電郵 : {data?.email}</IonCardSubtitle>
+                <br /><br /><br />
+
+              </div>
+              <DeleteUserAlert />
+
+            </div>
+
+            <br /><br /><br /><br /><br /><br />
+            <br /><br /><br /><br /><br /><br />
+          </IonCard>
+        </IonContent>
+      </IonPage>
     );
   }
 }
