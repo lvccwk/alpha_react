@@ -27,8 +27,8 @@ import {
     const params = useParams()
     const productId = Object.values(params)[0]
     const [showAlert, setShowAlert] = useState(false);
-    const { data: product, refetch } = useQuery({
-        queryKey: ["productDetail"],
+    const { refetch, remove } = useQuery({
+        queryKey: ["productDetail", params],
         queryFn: async () => await fetchProduct(Number(productId)),
         refetchOnWindowFocus: false,
         refetchOnReconnect: true,
@@ -39,20 +39,26 @@ import {
             setValue("name", product ? product.name : "")
             setValue("price", product ? product.price : NaN)
             setValue("info", product ? product.info : "")
-            setValue("is_onsale",  true)
+            setValue("is_onsale",  product.is_onsale)
         }
     });
 
+    useIonViewWillEnter(() => {
+        console.log("useIonViewWillEnter")
+        refetch()
+    })
     const { register, handleSubmit, setValue,getValues } = useForm<FetchUserAllModel>({
         defaultValues: {
         }
     })
     
   
+    console.log(getValues())
     const fetchUpdateItem = useMutation(fetchUpdateProduct, {
       onSuccess(data, variables, context) {
         refetch();
         setShowAlert(true);
+        remove();
       },
       onError: (error) => {
         console.error("Failed to update product: ", error);
@@ -86,7 +92,7 @@ import {
             <IonInput aria-label="Custom input" class="custom" {...register("info")} /><br></br>
 
             <IonItem>
-                <IonToggle checked={getValues("is_onsale")} onClick={() => setValue("is_onsale", !getValues("is_onsale"))} {...register("is_onsale")}>上架</IonToggle>
+                <IonToggle checked={getValues("is_onsale")} onClick={() => setValue("is_onsale", !getValues("is_onsale"))}>上架 {getValues("is_onsale")}</IonToggle>
             </IonItem>
 
 
