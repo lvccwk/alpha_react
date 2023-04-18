@@ -53,6 +53,7 @@ export interface FetchUserAllModel {
 	file_url: string;
 	ok: any;
 	filter: any | null;
+	is_onsale: boolean;
 }
 
 export const fetchUserAll = async (): Promise<FetchUserAllModel> => {
@@ -583,6 +584,36 @@ export const fetchTeacherProduct = async (id: number): Promise<FetchUserAllModel
 		return data;
 	} else {
 		throw new Error('fetchTeacherProduct FAILED');
+	}
+};
+
+export const fetchUpdateProduct = async (obj: {
+	id: number;
+	name: string;
+	price: number;
+	info: string;
+	is_onsale: boolean;
+}): Promise<void> => {
+	console.log('fetchUpdateProduct', obj);
+	const res = await fetch(`http://localhost:3000/products/${obj.id}`, {
+		method: 'PUT',
+		headers: {
+			'Content-Type': 'application/json'
+			// Authorization: `Bearer ${localStorage.getItem('token')}`
+		},
+		body: JSON.stringify({
+			name: obj.name,
+			price: obj.price,
+			info: obj.info,
+			is_onsale: obj.is_onsale
+		})
+	});
+
+	if (res.ok) {
+		console.log('update product success');
+		return;
+	} else {
+		throw new Error('fetchUpdateProduct FAILED');
 	}
 };
 

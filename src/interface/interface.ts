@@ -67,6 +67,7 @@ export interface ProductInterface {
 	user_id: number;
 	subject_id?: number;
 	teacher_id: number;
+	is_onsale: boolean;
 	created_at: Date;
 	updated_at: Date;
 	product_rating: ProductRatingInterface;

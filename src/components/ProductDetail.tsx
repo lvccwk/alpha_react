@@ -22,7 +22,6 @@ function ProductDetail() {
         refetchOnWindowFocus: false,
         refetchOnReconnect: true,
     });
-    console.log(user)
 
     const { data: product, refetch } = useQuery({
         queryKey: ["productDetail"],
@@ -122,20 +121,19 @@ function ProductDetail() {
         history.push(`/editproduct/` + id);
     }
 
-    // console.log(cartID)
-    console.log('phID', phID)
     const addToCartCondition1 = phID?.includes(Number(productId))
     const addToCartCondition2 = cartID.includes(Number(productId))
-    console.log('teacherProductID', teacherProductID)
     const editProductCondition = teacherProductID?.includes(Number(productId))
 
     return (
         <>
             <IonCard>
             <img alt="Product thumbnail" src={product?.image} />
-                <IonCardContent>老師:{product?.teacher.user.username}
+                <IonCardContent>{product?.name}
                     <br />
-                    {product?.name}
+                    老師:{product?.teacher.user.username}
+                    <br />
+                    價格:${product?.price}
                     <br />
                     評分:{product?.avg_rating?product?.avg_rating:"暫無"}
                     <br />
