@@ -1,12 +1,12 @@
-ion-content.chatroomContent {
+/* ion-content.chatroomContent {
     --background: url('./../../photo/bg5.png') no-repeat center/cover fixed !important;
     
-  }
+  } */
 
   .chatPeopleButton {
     /* display: flex; */
-    /* align-items: center;
-    padding: 12px 16px; */
+    align-items: center;
+    padding: 12px 16px;
     border-bottom: 1px solid #e6e6e6;
   }
   

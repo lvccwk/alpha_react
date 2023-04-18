@@ -1,4 +1,4 @@
-import { IonButton, IonIcon } from '@ionic/react';
+import { IonAvatar, IonButton, IonIcon } from '@ionic/react';
 import { useQuery } from "@tanstack/react-query";
 import { paperPlane } from 'ionicons/icons';
 import { useEffect, useRef, useState } from 'react';
@@ -61,7 +61,7 @@ function Chatbox() {
 
     useEffect(() => {
         if (!socket) {
-            const newSocket = io(`${process.env.REACT_APP_API_SERVER}`)
+            const newSocket = io(`http://localhost:3000`)
             setSocket(newSocket)
 
         } else {
@@ -123,13 +123,19 @@ function Chatbox() {
         <>
 
             <div className='msg-content'>
-                <AvatarChat /> {receiver?.username}
+                <div className="user-container">
+                    <IonAvatar className="userPhotos">
+                        <img alt="Silhouette of a person's head" src={receiver?.image} />
+                    </IonAvatar>
+                    <span className="username">{receiver?.username}</span>
+                </div>
                 <div className='telegram-chat-history-container'>
                     <ChatHistory chatMessage={messages} addChatMessage={addChatMessage} sender_username={sender?.username} receiver_username={receiver?.username} />
                     {/* <Messages messages={messages} senderId={sender_id} sender={sender?.username} receiver={receiver?.username} /> */}
                 </div>
                 <div className='my-div'> {""}</div>
                 <MessageInput send={(val: string) => send(val, sender_id)} />
+
             </div>
 
             <div ref={bottomRef} />

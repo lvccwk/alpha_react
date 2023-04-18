@@ -14,7 +14,7 @@ interface UserInterface {
     id: number;
     username: string;
     avatar: string;
-
+    image: string;
 }
 
 function ChatroomContact() {
@@ -87,7 +87,7 @@ function ChatroomContact() {
                         </IonAvatar> */}
 
                             <IonAvatar className='chatPeople' slot="start">
-                                <img alt="Silhouette of a person's head" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
+                                <img alt="Silhouette of a person's head" src={userAll.image} />
                             </IonAvatar>
                             <IonLabel className='peopleName'>
                                 {userAll.username}

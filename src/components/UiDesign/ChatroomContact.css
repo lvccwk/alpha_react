@@ -99,6 +99,7 @@ body {
 .msg-content {
   /* position: relative; */
   /* padding: 10px; */
+  position: relative;
 }
 
 .textMessage.sent {
@@ -109,4 +110,28 @@ body {
 
 .my-div {
 height: 50px;
+}
+
+.userPhotos  {
+  margin-right: 10px;
+  height: 70px;
+  width: 70px;
+  border: 3px solid rgb(241, 239, 239);
+
+ }
+
+ .user-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px;
+  background-color: #fff;
+  border-bottom: 1px solid #ccc;
+  z-index: 999;
+}
+
+.username {
+  font-size: 22px;
+  font-weight: bold;
 }
