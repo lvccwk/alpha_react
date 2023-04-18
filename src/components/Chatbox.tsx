@@ -35,6 +35,7 @@ function Chatbox() {
             console.log(`sender_id = `, sender_id);
             console.log(`receiver_id = `, receiver_id);
             bottomRef.current?.scrollIntoView({ behavior: 'auto' });
+
         } catch (error) {
             console.error(error);
         }
@@ -60,16 +61,17 @@ function Chatbox() {
 
     useEffect(() => {
         if (!socket) {
-            const newSocket = io(`${process.env.SOCKET_HOSTNAME}/`)
+            const newSocket = io(`http://localhost:3000`)
             setSocket(newSocket)
 
         } else {
             socket?.emit("joinRoom", sender_id, receiver_id)
+
         }
     }, [socket])
 
     useEffect(() => {
-        // bottomRef.current?.scrollIntoView({ behavior: 'auto' });
+
     }, [messages])
 
 
