@@ -153,7 +153,7 @@ function NoteCard() {
                     {/* your existing code ... */}
                     <IonCard className='courseCardBackground' key={item.id}>
                         <img alt="Product thumbnail" src={item.image} style={{ width: '350px', objectFit: 'cover' }} />
-                        <IonCardContent className='coursePhoto'>老師:{item.teacher.user.username}   {item.name} ${item.price} 評分:{item.avg_rating ? item.avg_rating : "暫無"}
+                        <IonCardContent className='coursePhoto'>{item.name} 老師:{item.teacher.user.username} <br/>價格:${item.price} 評分:{item.avg_rating ? item.avg_rating : "暫無"}
 
                         </IonCardContent>
                         <IonFooter className='courseItemPrice'>
