@@ -1,4 +1,4 @@
-import { IonContent, IonPage, IonGrid, useIonViewWillEnter, IonButton, IonCard, IonCardTitle, IonCardSubtitle, IonCardHeader, IonCardContent, IonIcon } from '@ionic/react';
+import { IonContent, IonPage, IonGrid, useIonViewWillEnter, IonButton, IonCard, IonCardTitle, IonCardSubtitle, IonCardHeader, IonCardContent, IonIcon, IonAvatar } from '@ionic/react';
 import { useState, useEffect, useLayoutEffect } from 'react';
 import { useHistory } from "react-router-dom";
 import { useMutation, useQuery } from "@tanstack/react-query";
@@ -141,23 +141,20 @@ export default function UserProfile() {
         <Toolbar />
         <IonContent className='userCard'>
           <IonButton className='exitbtn' color="danger" onClick={handleLogout}><IonIcon icon={power} className='exit' ></IonIcon></IonButton>
-          <div className='userlogo'><Avatar /></div>
+          <div className='userlogo'>
+            <IonAvatar className='userPhoto'>
+              <img alt="Silhouette of a person's head" src={data?.image} />
+            </IonAvatar></div>
           <IonCard className='profileCard' >
 
             <div className='CardContent'>
               <IonCardHeader >
-                <IonCardTitle style={{ textAlign: 'center' }}>{data?.username}</IonCardTitle>
+                <IonCardTitle style={{ textAlign: 'center', fontSize: '45px' }}>{data?.username}</IonCardTitle>
               </IonCardHeader>
               <IonCardContent className='userButtonContainer' style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <IonButton className='userButtonleft' onClick={handleEditProfile}>更改個人資料</IonButton>
                 <IonButton className='userButtonright' onClick={handlePurchaseHistory}>購買資料</IonButton>
               </IonCardContent>
-
-              {/* <IonCardContent className='userButtonContainerA' style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <IonButton className='userButtonleft' onClick={handleRedirectUpload}>上載課程/筆記</IonButton>
-              <IonButton className='userButtonright' onClick={handleUploadHistory}>上載記錄</IonButton>
-            </IonCardContent> */}
-
             </div>
             <br /><br /><br /><br /><br /><br />
           </IonCard>

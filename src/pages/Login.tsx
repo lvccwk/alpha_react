@@ -47,7 +47,7 @@ const LoginPage: React.FC = () => {
             const token = data.token
             console.log(data)
             setShowToast(true);
-            setToastMessage('Login successful!');
+            setToastMessage('成功登入');
             localStorage.setItem("token", token)
             dispatch(generalLogin({
                 token
@@ -57,7 +57,7 @@ const LoginPage: React.FC = () => {
         onError: (e) => {
             console.log(e)
             setShowToast(true);
-            setToastMessage('Login failed. Please try again.');
+            setToastMessage('登入失敗，請重試！');
         }
     })
 

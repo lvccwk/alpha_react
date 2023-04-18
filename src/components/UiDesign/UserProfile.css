@@ -60,12 +60,12 @@ ion-content.userCard {
     justify-content: center;
     align-items: center;
     max-width: 80%; /* set a maximum width for the logo */
-    height: auto; /* let the height adjust based on the width */
+    height: auto; 
 }
 
 .userlogo img {
-    max-width: 100%; /* make sure the image itself fits inside the container */
-    height: auto; /* let the height adjust based on the width */
+    object-fit: cover;
+    /* height: auto;  */
 }
 
 .infocardDetail {
@@ -150,3 +150,10 @@ ion-input.custom {
     border-radius: 20px;
 }
 
+.userPhoto  {
+
+    height: 150px;
+    width: 150px;
+    border: 3px solid rgb(241, 239, 239);
+    object-fit: cover;
+   }

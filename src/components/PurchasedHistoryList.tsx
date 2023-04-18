@@ -50,19 +50,20 @@ function PurchasedHistoryList() {
 
   if (purchaseHistory?.length === 0) {
     return (
-      <IonCard className='purchaseCart'>
+      <IonContent className='purchaseHistoryList'>
+        <IonCard className='purchaseCart'>
 
-        <IonCardHeader>
-          <div className='shoppingCart'>
-            <IonIcon className="shoppingCartWithNoLogin" icon={cart} />
-            <br></br>
-            <IonCardTitle>Purchase History</IonCardTitle>
-            尚未購買產品
-            <br></br>
-          </div>
+          <IonCardHeader>
+            <div className='shoppingCart'>
+              <IonIcon className="shoppingCartWithNoLogin" icon={cart} />
+              <br></br>
+              <IonCardTitle>尚未購買產品</IonCardTitle>
+              <br></br>
+            </div>
 
-        </IonCardHeader>
-      </IonCard>
+          </IonCardHeader>
+        </IonCard>
+      </IonContent>
     )
   } else {
     return (

@@ -86,9 +86,9 @@ export default function EditUserProfile() {
         <div className='userlogo'> </div>
       </IonCardHeader>
       <IonCardContent>
-        <form className='editProfileSetting' id="edit-profile" onSubmit={handleSubmit(onSubmit)}>
-          <IonInput aria-label="Custom input" class="custom" {...register("username")} /><br></br>
-          <IonInput aria-label="Custom input" class="custom" {...register("password")} /><br></br>
+        <form className='editProfileSetting' id="edit-profile" onSubmit={handleSubmit(onSubmit)}>用戶名稱
+          <IonInput aria-label="Custom input" class="custom" {...register("username")} /><br></br>密碼
+          <IonInput aria-label="Custom input" type="password" class="custom" {...register("password")} /><br></br>*電郵不能更改
           <IonInput aria-label="Custom input" class="custom" readonly {...register("email")} /><br></br>
           <IonButton type="submit" form={"edit-profile"} >更新</IonButton>
         </form>
@@ -102,7 +102,5 @@ export default function EditUserProfile() {
         onClick={onClickHomePage}
       />
     </IonCard>
-
-
   )
 }
