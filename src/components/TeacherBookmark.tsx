@@ -37,12 +37,12 @@ function TeacherBookmark() {
 
         try {
             if (!isBookmarked) {
-                console.log("create",obj.user_id, obj.teacher_id);
+                console.log("create", obj.user_id, obj.teacher_id);
                 await fetchCreateBookmark(obj);
                 setIsBookmarked(true);
                 setShowToast(true);
             } else {
-                console.log("delete",obj.user_id, obj.teacher_id);
+                console.log("delete", obj.user_id, obj.teacher_id);
                 // const { data, isLoading, error, refetch } = useQuery(['teacherDetailBookMark', teacherId], () =>
                 //     fetchTeacher(Number(teacherId))
                 // );
@@ -56,11 +56,11 @@ function TeacherBookmark() {
             setShowToast(true);
         }
 
-        
+
     };
 
     const toastMessage = isBookmarked ? 'Teacher bookmarked' : 'Bookmark removed';
-    
+
     return (
         <>
             <IonButton onClick={handleClick}>

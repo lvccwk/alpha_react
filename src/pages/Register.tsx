@@ -72,9 +72,9 @@
             useEffect(() => {
                 if (createUser.isSuccess) {
                   if (isTeacher) {
-                    console.log(createUser.data!.id, teacherinfo, school, experience);
+                    console.log(createUser.data.id, teacherinfo, school, experience);
                     createTeacher.mutate({
-                      user_id: createUser.data!.id,
+                      user_id: createUser.data.id,
                       info: teacherinfo,
                       school: school,
                       experience: experience

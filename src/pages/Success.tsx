@@ -1,11 +1,12 @@
-import { IonPage, IonContent, IonHeader, IonToolbar, IonTitle, IonButton, IonCardTitle } from '@ionic/react';
+import { IonPage, IonContent, IonHeader, IonToolbar, IonTitle, IonButton, IonCardTitle, IonCard, IonCardHeader, IonIcon } from '@ionic/react';
 import { useLocation, useHistory } from 'react-router-dom';
 import ToolBar from '../components/Toolbar';
 import { fetchUser } from '../api/fetchUser';
 import { useQuery } from '@tanstack/react-query';
 import { fetchAddPurchaseHistory } from '../api/fetchAll';
 import { useEffect, useState } from 'react';
-
+import './../..//src/components/UiDesign/Checkout.css';
+import { checkmarkCircleOutline } from 'ionicons/icons';
 interface LocationState {
     amount: number;
 }
@@ -45,20 +46,27 @@ const StripePurchaseSuccessPage: React.FC = () => {
     };
 
     return (
-        <IonPage>
-            <ToolBar />
+        <>
+            <IonPage>
+                <ToolBar />
 
-            <IonContent className="ion-padding">
-                <IonCardTitle>Payment Succuess</IonCardTitle>
-                <p>Your payment of ${amount} has been processed successfully.</p>
-                <IonButton expand="block" onClick={handleClick}>
-                    Back to Home
-                </IonButton>
-                <IonButton expand="block" onClick={handleClickPurchaseHistory}>
-                    Purchase History
-                </IonButton>
-            </IonContent>
-        </IonPage>
+                <IonContent>
+                    <div className="purchase-success-page-container">
+                        <IonIcon className="label-bottom" icon={checkmarkCircleOutline} />
+
+                        <IonCardTitle className="purchase-success-page-title">購買成功</IonCardTitle>
+                        <p className="purchase-success-page-text">您的貨品已成功處理。</p>
+                        <IonButton onClick={handleClick}>
+                            返回主頁
+                        </IonButton>
+                        <br></br>
+                        <IonButton onClick={handleClickPurchaseHistory}>
+                            購買記錄
+                        </IonButton>
+                    </div>
+                </IonContent>
+            </IonPage>
+        </>
     );
 };
 

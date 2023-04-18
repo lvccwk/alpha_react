@@ -44,9 +44,10 @@ ion-content.userCard {
 .CardContent{
     --background: #f3f7fd;
     flex-wrap: wrap;
-    display: flex;
+    /* display: flex; */
     justify-content: center;
     top: 15%;
+
 }
 
 .userlogo {
@@ -72,14 +73,14 @@ ion-content.userCard {
     position: absolute;
     display: flex;
     justify-content: center;
-    top:350px;
+    top: 400px;
     height: 50%;
     border-radius: 50px;
     z-index: -1;
-     --padding-left: -10px;
-     --padding-right: -10px;
-     width: 100%;
-     margin:0 auto;
+    --padding-left: -10px;
+    --padding-right: -10px;
+    width: 100%;
+    margin: 0 auto;
 }
 .exit{
     font-size: 30px;
@@ -101,6 +102,16 @@ ion-content.userCard {
     display: flex;
     flex-wrap: nowrap;
     flex-direction: row;
+
+}
+
+.userButtonContainerA {
+    top:-30px;
+    position: relative; 
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    
 }
 
 .userButtonleft{
