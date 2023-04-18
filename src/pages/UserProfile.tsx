@@ -146,9 +146,7 @@ export default function UserProfile() {
 
             <div className='CardContent'>
               <IonCardHeader >
-
                 <IonCardTitle style={{ textAlign: 'center' }}>{data?.username}</IonCardTitle>
-                <br /> <br /><br />
               </IonCardHeader>
               <IonCardContent className='userButtonContainer' style={{ display: 'flex', justifyContent: 'space-between' }}>
                 <IonButton className='userButtonleft' onClick={handleEditProfile}>更改個人資料</IonButton>

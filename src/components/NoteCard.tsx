@@ -62,7 +62,7 @@ function NoteCard() {
     });
 
     const { data: teacherProduct } = useQuery({
-        queryKey: ["teacherproduct", user?.teacher[0].id],
+        queryKey: ["teacherproduct", user?.teacher[0]?.id],
         queryFn: async () => {
             if (user?.teacher[0].id) { return await fetchTeacherProduct(user?.teacher[0].id) }
             return null
@@ -86,7 +86,7 @@ function NoteCard() {
         setCartID(cart?.cart_detail?.map((obj: { product_id: any; }) => {
             return obj.product_id;
         }))
-        
+
         if (user?.user_type === "teacher") {
             setTeacherProductID(teacherProduct?.map((obj: { id: any; }) => {
                 return obj.id;
@@ -153,14 +153,14 @@ function NoteCard() {
                     {/* your existing code ... */}
                     <IonCard className='courseCardBackground' key={item.id}>
                         <img alt="Product thumbnail" src={item.image} style={{ width: '350px', objectFit: 'cover' }} />
-                        <IonCardContent className='coursePhoto'>{item.name} 老師:{item.teacher.user.username} <br/>價格:${item.price} 評分:{item.avg_rating ? item.avg_rating : "暫無"}
+                        <IonCardContent className='coursePhoto'>{item.name} 老師:{item.teacher.user.username} <br />價格:${item.price} 評分:{item.avg_rating ? item.avg_rating : "暫無"}
 
                         </IonCardContent>
                         <IonFooter className='courseItemPrice'>
                             <IonButton onClick={() => onClickProductPage(item.id)}>
                                 詳細資料
                             </IonButton>
-                            {isLoggedIn === true && teacherProductID.includes(item.id) &&(
+                            {isLoggedIn === true && teacherProductID.includes(item.id) && (
                                 <IonButton onClick={() => onClickEditPage(item.id)}>
                                     修改課程/筆記資料
                                 </IonButton>

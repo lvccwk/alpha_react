@@ -50,7 +50,7 @@ function ProductDetail() {
     });
 
     const { data: teacherProduct } = useQuery({
-        queryKey: ["teacherproduct", user?.teacher[0].id],
+        queryKey: ["teacherproduct", user?.teacher[0]?.id],
         queryFn: async () => {
             if (user?.teacher[0].id) { return await fetchTeacherProduct(user?.teacher[0].id) }
             return null
@@ -128,38 +128,38 @@ function ProductDetail() {
     return (
         <>
             <IonCard>
-            <img alt="Product thumbnail" src={product?.image} />
+                <img alt="Product thumbnail" src={product?.image} />
                 <IonCardContent>{product?.name}
                     <br />
                     老師:{product?.teacher.user.username}
                     <br />
                     價格:${product?.price}
                     <br />
-                    評分:{product?.avg_rating?product?.avg_rating:"暫無"}
+                    評分:{product?.avg_rating ? product?.avg_rating : "暫無"}
                     <br />
                     詳細內容:{product?.info}
                     <br />
-                    {isLoggedIn === false && editProductCondition === false &&(
+                    {isLoggedIn === false && editProductCondition === false && (
                         <IonButton onClick={() => handleAddToCart(productId)}>
                             加入購物車
                         </IonButton>
                     )}
-                    {isLoggedIn === true && editProductCondition === true &&(
+                    {isLoggedIn === true && editProductCondition === true && (
                         <IonButton onClick={() => onClickEditPage(productId)}>
                             修改課程/筆記資料
                         </IonButton>
                     )}
-                    {isLoggedIn === true && addToCartCondition1 === true && editProductCondition === false &&(
+                    {isLoggedIn === true && addToCartCondition1 === true && editProductCondition === false && (
                         <IonButton disabled={true}>
                             已購買
                         </IonButton>
                     )}
-                    {isLoggedIn === true && addToCartCondition2 === true && editProductCondition === false &&(
+                    {isLoggedIn === true && addToCartCondition2 === true && editProductCondition === false && (
                         <IonButton disabled={true}>
                             已加入購物車
                         </IonButton>
                     )}
-                    {isLoggedIn === true && addToCartCondition1 === false && addToCartCondition2 === false && editProductCondition === false &&(
+                    {isLoggedIn === true && addToCartCondition1 === false && addToCartCondition2 === false && editProductCondition === false && (
                         <IonButton onClick={() => handleAddToCart(Number(productId))}>
                             加入購物車
                         </IonButton>
