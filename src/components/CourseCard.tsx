@@ -180,31 +180,31 @@ function CourseCard() {
                         {/* <IonCardSubtitle className='courseCardText'>{item.name} 老師:{item.teacher.user.username} <br />價格:${item.price} 評分:{item.avg_rating ? item.avg_rating : "暫無"}
                         </IonCardSubtitle> */}
                         <IonFooter className='courseItemPrice'>
-                            <IonButton onClick={() => onClickProductPage(item.id)}>
+                            <IonButton className='btn-size' size='small' onClick={() => onClickProductPage(item.id)}>
                                 詳細資料
                             </IonButton>
                             {isLoggedIn === false && (
-                                <IonButton onClick={() => handleAddToCart(item.id)}>
+                                <IonButton className='btn-size' size='small' onClick={() => handleAddToCart(item.id)}>
                                     加入購物車
                                 </IonButton>
                             )}
                             {isLoggedIn === true && teacherProductID.includes(item.id) && (
-                                <IonButton onClick={() => onClickEditPage(item.id)}>
+                                <IonButton className='btn-size' size='small' onClick={() => onClickEditPage(item.id)}>
                                     修改課程/筆記資料
                                 </IonButton>
                             )}
                             {isLoggedIn === true && teacherProductID.includes(item.id) === false && phID.includes(item.id) && (
-                                <IonButton disabled={true}>
+                                <IonButton className='btn-size' size='small' disabled={true}>
                                     已購買
                                 </IonButton>
                             )}
                             {isLoggedIn === true && teacherProductID.includes(item.id) === false && cartID.includes(item.id) && (
-                                <IonButton disabled={true}>
+                                <IonButton className='btn-size' size='small' disabled={true}>
                                     已加入購物車
                                 </IonButton>
                             )}
                             {isLoggedIn === true && teacherProductID.includes(item.id) === false && phID.includes(item.id) === false && cartID.includes(item.id) === false && (
-                                <IonButton onClick={() => handleAddToCart(item.id)}>
+                                <IonButton className='btn-size' size='small' onClick={() => handleAddToCart(item.id)}>
                                     加入購物車
                                 </IonButton>
                             )}
