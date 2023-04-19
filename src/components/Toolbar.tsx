@@ -47,7 +47,7 @@ function ToolBar() {
                 }
                 {
                     !isLoggedIn && (
-                        <IonButtons slot="secondary"  onClick={handleUser} >
+                        <IonButtons slot="end" onClick={handleUser} >
                             <IonButton fill="solid" color='secondary'>
 
 
