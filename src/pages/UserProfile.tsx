@@ -86,7 +86,10 @@ export default function UserProfile() {
         <Toolbar />
         <IonContent className='userCard'>
           <IonButton className='exitbtn' color="danger" onClick={handleLogout}><IonIcon icon={power} className='exit' ></IonIcon></IonButton>
-          <div className='userlogo'><Avatar /></div>
+          <div className='userlogo'>
+            <IonAvatar className='userPhoto'>
+              <img alt="Silhouette of a person's head" src={data?.image} />
+            </IonAvatar></div>
           <IonCard className='profileCard' >
 
             <div className='CardContent'>
