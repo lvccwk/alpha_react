@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { IonAvatar, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent } from '@ionic/react';
+import { IonAvatar, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, useIonAlert } from '@ionic/react';
 import { fetchCourse, fetchCourseByid, fetchTeacher } from '../api/fetchAll';
 import TeacherBookmark from './TeacherBookmark';
 import { useQuery } from '@tanstack/react-query';
@@ -39,8 +39,22 @@ function TeacherDetail() {
         history.push(`/timeslot/` + id);
     }
 
+    const [presentAlert] = useIonAlert();
+
+    const pleaseLogin = () => {
+        presentAlert({
+            header: '提示信息',
+            message: '請先登入再進行操作',
+            buttons: ['OK'],
+        })
+    }
+
     const onClickContactPage = (id: number) => {
-        history.push(`/chatroom/` + id);
+        if (isLoggedIn === false) {
+            pleaseLogin()
+        } else {
+            history.push(`/chatroom/` + id);
+        }
     }
 
     // const onClickEditProfile = (id: number) => {
@@ -159,7 +173,7 @@ function TeacherDetail() {
                     <br /><br /><br />  <br /><br />
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
                         <IonButton className='teacherButtonright' onClick={() => onClickContactPage(Number(teacherId))}>
-                            聯絡 {data?.user.username}
+                            {data?.user.username} 商品
                         </IonButton>
 
                     </div>
@@ -179,7 +193,7 @@ function TeacherDetail() {
     } else {
         return (
             <>
-                <IonContent className='teacherCard'>
+                <IonContent className='teacherCard' style={{ position: 'relative' }}>
                     <br />
 
                     <div className="teacher-avatar">
@@ -188,20 +202,22 @@ function TeacherDetail() {
                         </IonAvatar>
                     </div>
 
+                    <div style={{ position: 'absolute', top: '120px', right: '330px' }}>
+                        <TeacherBookmark />
+                    </div>
 
-                    <TeacherBookmark />
                     <IonCard className='teacherProfileCard' >
                         <br /><br />
                         <div className='teacherCardContent'>
                             <IonCardHeader className='usernameInfo'>
                                 {/* <IonCardSubtitle className='teacherFont'>Email : {data?.user.email}</IonCardSubtitle> */}
-                                <IonCardTitle style={{ textAlign: 'center', marginTop: '20px' }}>導師: {data?.user.username}</IonCardTitle>
+                                <IonCardTitle style={{ textAlign: 'center', marginTop: '20px' }}> {data?.user.username}</IonCardTitle>
                                 {/* <br /> <br /><br /> */}
                             </IonCardHeader>
 
                         </div>
                         <IonCardContent className='teacherButtonContainer' >
-                            <IonButton className='teacherButtonright'>聯絡 {data?.user.username} 請先登入</IonButton>
+                            <IonButton className='teacherButtonright' onClick={() => onClickContactPage(Number(teacherId))}>聯絡{data?.user.username}</IonButton>
                             <br /><br /><br /><br />
                         </IonCardContent>
                     </IonCard>
@@ -214,15 +230,16 @@ function TeacherDetail() {
                                 <br></br>{data?.info}
                                 {/* 大家好，我是一位補習老師，我的名字是______。我畢業於______大學，主修______。我有多年的教學經驗，曾為不同年齡和程度的學生進行補習。我喜歡教學，因為我相信每個學生都有自己的潛力，只需要找到適合他們的教學方法和學習節奏。我會根據學生的程度和需求，設計出合適的教學計劃和練習，讓學生能夠在學習中逐步提高，達到他們的學習目標。我也會鼓勵學生主動思考和發問，幫助他們建立自信，從而更好地掌握知識和技能。希望能夠成為學生學習路上的良師益友，共同進步。 */}
                                 <br /><br /><br />
+
                             </IonCardContent>
                             <br /><br /><br />
                         </div>
                     </IonCard>
                     <br /><br /><br />  <br /><br />
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
-                        <IonButton className='teacherButtonright' onClick={() => onClickContactPage(Number(teacherId))}>
-                            聯絡 {data?.user.username}
-                        </IonButton>
+                        <h3 >
+                            {data?.user.username} 商品
+                        </h3>
 
                     </div>
 

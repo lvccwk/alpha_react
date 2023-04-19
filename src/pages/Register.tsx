@@ -170,6 +170,7 @@
                                 <IonInput
                                     aria-label="Custom input"
                                     class="custom"
+                                    type='number'
                                     value={experience}
                                     placeholder="Teacher Input"
                                     onIonChange={(e: any) => setExperience(parseInt(e.target.value))}
@@ -180,8 +181,8 @@
                         {/* <IonInput value={user_type} placeholder="User_type?" onIonChange={(e: any) => setUsertype(e.target.value)}></IonInput> */}
                         <IonInput aria-label="Custom input" class="custom" value={username} placeholder="username" onInput={(e: any) => { console.log(e); setUsername(e.target.value) }}>用戶名稱：</IonInput><br></br>
                         <IonInput aria-label="Custom input" class="custom" value={email} placeholder="email" onInput={(e: any) => setUseremail(e.target.value)}>電郵</IonInput><br></br>
-                        <IonInput aria-label="Custom input" class="custom" value={password} placeholder="password" onInput={(e: any) => setPassword(e.target.value)}>密碼</IonInput><br></br>
-                        <IonInput aria-label="Custom input" class="custom" value={cpassword} placeholder="Confirm Password" onInput={(e: any) => {
+                        <IonInput aria-label="Custom input" class="custom" type='password' value={password} placeholder="password" onInput={(e: any) => setPassword(e.target.value)}>密碼</IonInput><br></br>
+                        <IonInput aria-label="Custom input" class="custom" type='password' value={cpassword} placeholder="Confirm Password" onInput={(e: any) => {
                             console.log(e.target.value)
                             return setCPassword(e.target.value)}
                         }>確認密碼</IonInput><br></br>

@@ -36,9 +36,9 @@ export const fetchUserCheck = async (id: number | null): Promise<FetchUserModel>
 
 export const fetchUser = async (): Promise<FetchUserModel> => {
 	const res = await fetch(`http://localhost:3000/users`, {
-		headers: {
-			Authorization: `Bearer ${localStorage.getItem('token')}`
-		}
+		// headers: {
+		// 	Authorization: `Bearer ${localStorage.getItem('token')}`
+		// }
 	});
 	console.log(res);
 	if (res.ok) {
