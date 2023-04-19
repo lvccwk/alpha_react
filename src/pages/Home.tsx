@@ -81,7 +81,7 @@ const Home: React.FC = () => {
       <ToolBar />
       <IonContent >
         <IonCardTitle></IonCardTitle>
-        <IonCard>
+        <IonCard className='cardTheTop'>
           <Swiper
             modules={[Autoplay, Keyboard, Pagination, Scrollbar, Zoom]}
             autoplay={true}
@@ -119,7 +119,7 @@ const Home: React.FC = () => {
             <SwiperSlide>
               <div className='img-1'>
                 <img
-                  src={photo4}
+                  src={photo2}
                   alt="Slide 3"
                 />
                 <div className='img-1-text'>
