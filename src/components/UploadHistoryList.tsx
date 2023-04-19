@@ -44,7 +44,7 @@ function UploadHistoryList() {
       history.push(`/productpage/` + id);
   }
 
-  console.log(data?.length)
+  console.log(data)
 
   if (isLoading) return <>loading</>
 
