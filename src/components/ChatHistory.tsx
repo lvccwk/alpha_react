@@ -38,8 +38,11 @@ const ChatHistory: React.FC<Props> = ({ sender_username, receiver_username, chat
     }, [socket])
 
     const messageListener = (message: string[]) => {
-        console.log(message)
-        addChatMessage(message[0], sender_id)
+        console.log({
+            message,
+            sender_id
+        })
+        addChatMessage(message[0], parseInt(message[1]))
         // bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
     }
 
@@ -51,11 +54,21 @@ const ChatHistory: React.FC<Props> = ({ sender_username, receiver_username, chat
     }, [messageListener])
 
 
+    useEffect(() => {
+        console.log(chatMessage)
+    }, [chatMessage])
+
+    const msgPosition = (msgUserId: number) => {
+        // console.log(receiver_id)
+        // console.log(msgUserId)
+
+        return msgUserId == sender_id ? "msg-right" : ""
+    }
     return (
         <div className="telegram-chat-history-container">
             {chatMessage &&
                 chatMessage.map((chatMessage, index) => (
-                    <div key={index}>
+                    <div key={index} className={msgPosition(chatMessage.from_id)}>
                         <div className="telegram-chat-history-username"> {chatMessage.from_id === sender_id
                             ? sender_username
                             : receiver_username

@@ -49,6 +49,7 @@ function Chatbox() {
         onSuccess(data) {
             console.log("success")
             const msg = data.map(v => ({
+                sender_id: sender?.id,
                 sender_username: sender?.username,
                 receiver_username: receiver?.username,
                 from_id: v.from_id,

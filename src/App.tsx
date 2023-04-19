@@ -107,8 +107,8 @@ const App: React.FC = () => {
             <Route path="/availabletime/:teacherId" render={() => <UploadAvailableTime />} exact={true} />
             <Route path="/timeslot/:teacherId" render={() => <TimeSlot />} exact={true} />
             <Route path="/privateMessage/:id" render={() => <PrivateMessage />} exact={true} />
-            <Route path="/success.html" render={() => < StripePurchaseSuccessPage />} exact={true} ></Route>
-            <Route path="/fail.html" render={() => < StripePurchaseFailPage />} exact={true} ></Route>
+            <Route path="/success" render={() => < StripePurchaseSuccessPage />} exact={true} ></Route>
+            <Route path="/fail" render={() => < StripePurchaseFailPage />} exact={true} ></Route>
           </IonRouterOutlet>
 
           <IonTabBar slot="bottom">

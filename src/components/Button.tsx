@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchCart, fetchIsBuying, stripeCheckOut } from '../api/fetchAll';
 import { useAppSelector } from '../redux/store';
 import './UiDesign/CartPage.css'
+import { useHistory } from 'react-router';
 
 function Button() {
     const id = useAppSelector(state => state.user.id)
@@ -15,12 +16,12 @@ function Button() {
     });
     console.log(`cart_id = `, user?.id)
     const cart_id = user?.id
-
+    const history = useHistory()
     async function checkout(cart_id: number) {
         try {
             let response = await stripeCheckOut(cart_id);
-            console.log('url', response)
             window.location.href = response.url
+
         } catch (e) {
             console.log(e)
             noCartItemAlert()
