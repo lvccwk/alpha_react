@@ -27,6 +27,7 @@ function ToolBar() {
     //   }
 
 
+    // if (isLoggedIn) {
     return (
         <IonHeader>
             <IonToolbar>
@@ -34,17 +35,38 @@ function ToolBar() {
                     <IonBackButton color="light"> <IonTitle>Back Button</IonTitle></IonBackButton>
                     {/* <IonButton onClick={handleBackPage} ></IonButton> */}
                 </IonButtons>
+                {
+                    isLoggedIn && (
+                        <IonButtons slot="end" color='secondary'>
+                            <IonButton onClick={handleUser} color='secondary'>
 
-                <IonButtons slot="end">
-                    <IonButton onClick={handleUser} >
-                        <IonIcon slot="icon-only" icon={personCircle} style={{ color: "#ffff", fontSize: "40px" }} />
-                    </IonButton>
-                </IonButtons>
+                                <IonIcon slot="icon-only" icon={personCircle} style={{ color: "#ffff", fontSize: "40px" }} />
+
+                            </IonButton>
+                        </IonButtons>)
+                }
+                {
+                    !isLoggedIn && (
+                        <IonButtons slot="secondary"  onClick={handleUser} >
+                            <IonButton fill="solid" color='secondary'>
+
+
+                                <div>登入</div>
+
+                            </IonButton>
+                        </IonButtons>
+                    )
+                }
+
+
+
                 <IonTitle>Alpha Learning</IonTitle>
 
             </IonToolbar>
         </IonHeader >
     );
+    // }
+
 }
 export default ToolBar;
 
