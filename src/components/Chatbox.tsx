@@ -93,7 +93,7 @@ function Chatbox() {
                             placeholder="Type your message..."
                             value={value}
                         />
-                        <IonButton className="sent" size="default" onClick={handleSubmit}>
+                        <IonButton className="sent" onClick={handleSubmit}>
                             <IonIcon icon={paperPlane} color="white" />
                         </IonButton>
                     </div>
