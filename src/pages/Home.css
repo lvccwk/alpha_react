@@ -7,8 +7,8 @@
   } */
 
   ion-content {
-    /* --background: url('./../photo/bg.png') no-repeat center/cover fixed; */
-    --background: #fffffffa;
+    --background: url('./../photo/bg.png') no-repeat center/cover fixed;
+    /* --background: #fffffffa; */
   }
 
   .swiper-image {
