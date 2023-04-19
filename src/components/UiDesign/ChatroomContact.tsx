@@ -87,7 +87,7 @@ function ChatroomContact() {
                         </IonAvatar> */}
 
                             <IonAvatar className='chatPeople' slot="start">
-                                <img alt="Silhouette of a person's head" src={userAll.image} />
+                                <img alt="Silhouette of a person's head" src = {userAll.image ? userAll.image : "https://ionicframework.com/docs/img/demos/avatar.svg"} />
                             </IonAvatar>
                             <IonLabel className='peopleName'>
                                 {userAll.username}

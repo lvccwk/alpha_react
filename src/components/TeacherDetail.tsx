@@ -68,7 +68,7 @@ function TeacherDetail() {
 
                     <div className="teacher-avatar">
                         <IonAvatar className='teacher-userPhoto'>
-                            <img alt="Silhouette of a person's head" src={data?.user.image} />
+                            <img alt="Silhouette of a person's head" src={data?.user.image ? data?.user.image : "https://ionicframework.com/docs/img/demos/avatar.svg"} />
                         </IonAvatar>
                     </div>
 

@@ -125,7 +125,7 @@ function Chatbox() {
             <div className='msg-content'>
                 <div className="user-container">
                     <IonAvatar className="userPhotos">
-                        <img alt="Silhouette of a person's head" src={receiver?.image} />
+                        <img alt="Silhouette of a person's head" src={receiver?.image ? receiver?.image : "https://ionicframework.com/docs/img/demos/avatar.svg"} />
                     </IonAvatar>
                     <span className="username">{receiver?.username}</span>
                 </div>
