@@ -183,7 +183,7 @@ const Home: React.FC = () => {
           {Array.isArray(teacherAll) && teacherAll.map((item: TeacherInterface, index: number) => (
             <SwiperSlide key={index} className='img'>
               <IonCard className="courseCard" onClick={() => onClickTeacherProfile(item.id)}>
-                <img className="img" alt="Product thumbnail" src={item.user.image = item.user.image ? item.user.image : "https://ionicframework.com/docs/img/demos/avatar.svg"} />
+                <div><IonImg className="imgSize" src={item.user.image = item.user.image ? item.user.image : "https://ionicframework.com/docs/img/demos/avatar.svg"} /> </div>
 
                 <IonCardSubtitle className="courseCardContent">{item.user.username}</IonCardSubtitle>
 
