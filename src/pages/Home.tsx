@@ -133,13 +133,13 @@ const Home: React.FC = () => {
 
         <IonCard>
           <IonCardHeader>
-            <IonCardTitle>線上補習問功課平台</IonCardTitle>
+            <IonCardTitle className='card1' >線上補習問功課平台</IonCardTitle>
             {/* <IonCardSubtitle>Card Subtitle</IonCardSubtitle> */}
           </IonCardHeader>
 
-          <IonCardContent>
+          <IonCardContent className='card1'>
             一站式學習平台，提供全科24小時功課問
-            答、影片課程、實時操題訓練。學習無界限。
+            答、影片課程、實時操題訓練。
           </IonCardContent>
         </IonCard>
 
@@ -184,20 +184,20 @@ const Home: React.FC = () => {
             <SwiperSlide key={index} className='img'>
               <IonCard className="courseCard" onClick={() => onClickTeacherProfile(item.id)}>
                 <img className="img" alt="Product thumbnail" src={item.user.image = item.user.image ? item.user.image : "https://ionicframework.com/docs/img/demos/avatar.svg"} />
-                <IonCardHeader>
-                  <IonCardTitle className="courseCardContent">{item.user.username}</IonCardTitle>
-                </IonCardHeader>
+
+                <IonCardSubtitle className="courseCardContent">{item.user.username}</IonCardSubtitle>
+
               </IonCard>
             </SwiperSlide>
           ))}
         </Swiper>
         <IonCard>
           <IonCardHeader>
-            <IonCardTitle>一機在手 隨問隨到！</IonCardTitle>
+            <IonCardTitle className='card1' >一機在手 隨問隨到</IonCardTitle>
             {/* <IonCardSubtitle>Card Subtitle</IonCardSubtitle> */}
           </IonCardHeader>
 
-          <IonCardContent>
+          <IonCardContent className='card1'>
             只要一機在手，問題不再是問題！
           </IonCardContent>
         </IonCard>
