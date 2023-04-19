@@ -1,8 +1,8 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { IonButton, IonCard, IonCardContent, IonCardSubtitle, IonContent, IonFooter, IonSearchbar, SearchbarChangeEventDetail, useIonAlert, useIonViewWillEnter } from '@ionic/react';
 import './TeacherCard.css';
-import { fetchAddCart, fetchCart, fetchCourse, fetchPurchaseHistory, fetchTeacherProduct } from '../api/fetchAll';
-import { useQuery } from '@tanstack/react-query';
+import { FetchUserAllModel, fetchAddCart, fetchCart, fetchCourse, fetchPurchaseHistory, fetchTeacherProduct } from '../api/fetchAll';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import photo from '../../src/photo/brandi-redd-6H9H-tYPUQQ-unsplash.jpg'
 import { useHistory } from 'react-router';
 import { useAppSelector } from "../redux/store";
@@ -31,7 +31,7 @@ function CourseCard() {
     const { data: course, refetch } = useQuery({
         queryKey: ["course"],
         queryFn: async () => await fetchCourse(),
-        // refetchInterval: 500,
+        // refetchInterval: 2000,
         refetchOnWindowFocus: false,
         refetchOnReconnect: true,
     });
@@ -63,18 +63,20 @@ function CourseCard() {
         refetchOnReconnect: true,
     });
 
-    const { data: teacherProduct } = useQuery({
+    const { data: teacherProduct ,refetch: teacherFetch   } = useQuery({
         queryKey: ["teacherproduct", user?.teacher[0]?.id],
         queryFn: async () => {
             if (user?.teacher[0].id) { return await fetchTeacherProduct(user?.teacher[0].id) }
             return null
         },
+        // refetchInterval: 2000,
         refetchOnWindowFocus: false,
         refetchOnReconnect: true,
     });
 
     useIonViewWillEnter(() => {
         refetch()
+        teacherFetch()
         userFetch()
     })
 
@@ -97,7 +99,7 @@ function CourseCard() {
             }))
         }
     }, [purchaseHistory, cart, teacherProduct, course])
-
+      
     const history = useHistory();
     const onClickProductPage = (id: number) => {
         history.push(`/productpage/` + id);
@@ -162,10 +164,11 @@ function CourseCard() {
     //     user,
     //     cart
     // })
+
     return (
         <>
             <IonSearchbar value={searchText} onIonChange={handleSearch}></IonSearchbar>
-            {Array.isArray(filteredCourses) && Array.isArray(phID) && Array.isArray(cartID) && filteredCourses.map((item: Course) => (
+            {Array.isArray(filteredCourses) && Array.isArray(phID) && Array.isArray(teacherProductID) && Array.isArray(cartID) && filteredCourses.map((item: Course) => (
                 <div style={{ display: 'flex', justifyContent: 'center' }} key={item.id}>
                     {/* your existing code ... */}
                     <IonCard className='courseCardBackground' key={item.id}>

@@ -30,7 +30,7 @@ function ProductDetail() {
         refetchOnReconnect: true,
     });
 
-    const { data: purchaseHistory } = useQuery({
+    const { data: purchaseHistory, refetch: purchaseHistoryFetch } = useQuery({
         queryKey: ["purchasehistory", user?.id],
         queryFn: async () => {
             if (user?.id) { return await fetchPurchaseHistory(user?.id) }
@@ -39,7 +39,7 @@ function ProductDetail() {
         refetchOnWindowFocus: false,
         refetchOnReconnect: true,
     });
-    const { data: cart } = useQuery({
+    const { data: cart, refetch: cartFetch } = useQuery({
         queryKey: ["cartItems", user?.id, product],
         queryFn: async () => {
             if (user?.id) { return await fetchCart(user?.id) }
@@ -62,6 +62,8 @@ function ProductDetail() {
     useIonViewWillEnter(() => {
         refetch()
         userFetch()
+        purchaseHistoryFetch()
+        cartFetch()
     })
 
     useEffect(() => {

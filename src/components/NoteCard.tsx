@@ -148,7 +148,7 @@ function NoteCard() {
     return (
         <>
             <IonSearchbar value={searchText} onIonChange={handleSearch}></IonSearchbar>
-            {Array.isArray(filteredCourses) && Array.isArray(phID) && Array.isArray(cartID) && filteredCourses.map((item: Note) => (
+            {Array.isArray(filteredCourses) && Array.isArray(phID) && Array.isArray(teacherProductID) && Array.isArray(cartID) && filteredCourses.map((item: Note) => (
                 <div style={{ display: 'flex', justifyContent: 'center' }} key={item.id}>
                     {/* your existing code ... */}
                     <IonCard className='courseCardBackground' key={item.id}>
