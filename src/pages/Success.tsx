@@ -33,7 +33,7 @@ const StripePurchaseSuccessPage: React.FC = () => {
 
     useEffect(() => {
         if (user && userDataLoaded) {
-            // fetchAddPurchaseHistory(user.id);
+            fetchAddPurchaseHistory(user.id);
         }
     }, [user, userDataLoaded]);
 

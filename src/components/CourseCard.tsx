@@ -63,7 +63,7 @@ function CourseCard() {
         refetchOnReconnect: true,
     });
 
-    const { data: teacherProduct ,refetch: teacherFetch   } = useQuery({
+    const { data: teacherProduct, refetch: teacherFetch } = useQuery({
         queryKey: ["teacherproduct", user?.teacher[0]?.id],
         queryFn: async () => {
             if (user?.teacher[0].id) { return await fetchTeacherProduct(user?.teacher[0].id) }
@@ -74,6 +74,8 @@ function CourseCard() {
         refetchOnReconnect: true,
     });
 
+
+    console.log(`teacherProduct`, teacherProduct)
     useIonViewWillEnter(() => {
         refetch()
         teacherFetch()
@@ -99,7 +101,7 @@ function CourseCard() {
             }))
         }
     }, [purchaseHistory, cart, teacherProduct, course])
-      
+
     const history = useHistory();
     const onClickProductPage = (id: number) => {
         history.push(`/productpage/` + id);

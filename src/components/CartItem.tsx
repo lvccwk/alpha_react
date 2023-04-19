@@ -91,7 +91,7 @@ function CartItem() {
       <>
         {Array.isArray(data?.cart_detail) && data?.cart_detail.map((item: CartItemInfo) => (
           <div>
-            <br /> 
+            <br />
             <IonItem key={item.id}>
               <div className='cartList' onClick={() => onClickProductPage(item.product_id)}>
                 <IonThumbnail className='image-size' slot="start">
