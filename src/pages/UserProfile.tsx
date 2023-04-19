@@ -88,7 +88,7 @@ export default function UserProfile() {
           <IonButton className='exitbtn' color="danger" onClick={handleLogout}><IonIcon icon={power} className='exit' ></IonIcon></IonButton>
           <div className='userlogo'>
             <IonAvatar className='userPhoto'>
-              <img alt="Silhouette of a person's head" src={data?.image} />
+              <img alt="Silhouette of a person's head" src={data?.image ? data?.image  : "https://ionicframework.com/docs/img/demos/avatar.svg"} />
             </IonAvatar></div>
           <IonCard className='profileCard' >
 
@@ -146,7 +146,7 @@ export default function UserProfile() {
           <IonButton className='exitbtn' color="danger" onClick={handleLogout}><IonIcon icon={power} className='exit' ></IonIcon></IonButton>
           <div className='userlogo'>
             <IonAvatar className='userPhoto'>
-              <img alt="Silhouette of a person's head" src={data?.image} />
+              <img alt="Silhouette of a person's head" src={data?.image ? data?.image  : "https://ionicframework.com/docs/img/demos/avatar.svg"} />
             </IonAvatar></div>
           <IonCard className='profileCard' >
 
