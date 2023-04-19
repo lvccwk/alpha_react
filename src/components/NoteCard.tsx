@@ -152,10 +152,11 @@ function NoteCard() {
                 <div style={{ display: 'flex', justifyContent: 'center' }} key={item.id}>
                     {/* your existing code ... */}
                     <IonCard className='courseCardBackground' key={item.id}>
-                        <img alt="Product thumbnail" src={item.image} style={{ width: '350px', objectFit: 'cover' }} />
-                        <IonCardContent className='coursePhoto'>{item.name} 老師:{item.teacher.user.username} <br />價格:${item.price} 評分:{item.avg_rating ? item.avg_rating : "暫無"}
-
-                        </IonCardContent>
+                        <img alt="Product thumbnail"  className='courseCardBackground-img' src={item.image} style={{ width: '350px', objectFit: 'cover' }} />
+                        <IonCardSubtitle className='courseCardText'>{item.name} 價格:${item.price}
+                        </IonCardSubtitle>
+                        {/* <IonCardSubtitle className='courseCardText'>{item.name} 老師:{item.teacher.user.username} <br />價格:${item.price} 評分:{item.avg_rating ? item.avg_rating : "暫無"}
+                        </IonCardSubtitle> */}
                         <IonFooter className='courseItemPrice'>
                             <IonButton onClick={() => onClickProductPage(item.id)}>
                                 詳細資料
