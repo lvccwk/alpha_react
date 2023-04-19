@@ -159,8 +159,11 @@ function FileUpload() {
             課程/筆記檔案
             <input type="file" onChange={handleFile} /><br /><br />
 
-            <IonButton type="submit">UPLOAD</IonButton><br></br>
-            <IonButton onClick={onClickBackProfilePage}>返回上一頁</IonButton>
+            <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+              <IonButton type="submit">上載</IonButton>
+              {/* <IonButton onClick={onClickBackProfilePage}>返回上一頁</IonButton> */}
+              <br /><br /><br /><br />
+            </div>
             <IonLoading
               isOpen={showLoading}
               message={'上傳中..'}
