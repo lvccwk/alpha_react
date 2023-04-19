@@ -105,11 +105,11 @@ function TeacherDetail() {
                             <br /><br /><br />
                         </div>
                     </IonCard>
-                    <br /><br /><br />  <br /><br />
+                    <br /><br /><br />  <br /><br /> <br /><br /> <br /><br />
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
-                        <IonButton className='teacherButtonright' onClick={() => onClickContactPage(Number(teacherId))}>
-                            聯絡 {data?.user.username}
-                        </IonButton>
+                        <h3 >
+                            {data?.user.username} 商品
+                        </h3>
 
                     </div>
 
@@ -170,11 +170,11 @@ function TeacherDetail() {
                             <br /><br /><br />
                         </div>
                     </IonCard>
-                    <br /><br /><br />  <br /><br />
+                    <br /><br /><br />  <br /><br /> <br /><br /> <br /><br />
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
-                        <IonButton className='teacherButtonright' onClick={() => onClickContactPage(Number(teacherId))}>
+                        <h3 >
                             {data?.user.username} 商品
-                        </IonButton>
+                        </h3>
 
                     </div>
 
@@ -235,7 +235,7 @@ function TeacherDetail() {
                             <br /><br /><br />
                         </div>
                     </IonCard>
-                    <br /><br /><br />  <br /><br />
+                    <br /><br /><br />  <br /><br /> <br /><br /> <br /><br />
                     <div style={{ display: 'flex', justifyContent: 'center' }}>
                         <h3 >
                             {data?.user.username} 商品

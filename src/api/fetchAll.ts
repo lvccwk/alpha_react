@@ -53,6 +53,7 @@ export interface FetchUserAllModel {
 	file_url: string;
 	ok: any;
 	filter: any | null;
+	school: any;
 	is_onsale: boolean;
 }
 

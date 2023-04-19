@@ -32,6 +32,7 @@ export interface SubjectInterface {
 }
 
 export interface TeacherInterface {
+	school: string;
 	id: number;
 	user_id: number;
 	info: string;
