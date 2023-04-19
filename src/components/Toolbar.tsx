@@ -37,24 +37,16 @@ function ToolBar() {
                 </IonButtons>
                 {
                     isLoggedIn && (
-                        <IonButtons slot="end" color='secondary'>
-                            <IonButton onClick={handleUser} color='secondary'>
+                        <IonIcon slot="end" onClick={handleUser} className='login-btn' icon={personCircle} style={{ color: "#ffff", fontSize: "px" }} > </IonIcon>
 
-                                <IonIcon slot="icon-only" icon={personCircle} style={{ color: "#ffff", fontSize: "40px" }} />
-
-                            </IonButton>
-                        </IonButtons>)
+                    )
                 }
                 {
                     !isLoggedIn && (
-                        <IonButtons slot="end" onClick={handleUser} >
-                            <IonButton fill="solid" color='secondary'>
 
-
-                                <div>登入</div>
-
-                            </IonButton>
-                        </IonButtons>
+                        <IonButton slot="end" onClick={handleUser} className='login-btn' fill="solid" color='secondary'>
+                            <div>登入</div>
+                        </IonButton>
                     )
                 }
 
