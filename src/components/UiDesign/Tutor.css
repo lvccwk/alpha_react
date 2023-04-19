@@ -15,27 +15,30 @@ ion-content.segment{
   width: calc(50%);
   box-sizing: border-box;
   display: inline-block;
+
   }
 
 .teacherCardComp {
-    border-radius: 20px;
-    margin-bottom: 10px;
-    --border-style: none;
-
-   display: flex;
-   flex-wrap: wrap;
-   text-align: right;
-   align-items: center;
-   justify-content: center;
+  border-radius: 20px;
+  margin-bottom: 10px;
+  --border-style: none;
+  height: 200px;
+ display: flex;
+ flex-wrap: wrap;
+ text-align: right;
+ align-items: center;
+ justify-content: center;
   }
 
 .tutorPhoto{
   width:200px;
   height:120px;
-  top: 30px;
+  top: 10px;
   object-fit: cover;
 }
-
+.test{
+  display: flex;
+}
 .imgTeacher{
     border-radius: 20px;
     top:-20px;
@@ -45,19 +48,19 @@ ion-content.segment{
     width:100%;
 }
 
-.font-inbox {
-  display: inline-block;
-  margin-right: 10px; /* add a 10px margin between each div */
-  margin-bottom: 10px; /* add a 10px margin below each div to move it to the next line */
-  font-size:10px;
-}
 
 .font-inbox-top {
   display: inline-block;
   margin-right: 10px; /* add a 10px margin between each div */
   margin-bottom: 10px; /* add a 10px margin below each div to move it to the next line */
   font-size: 20px;
-  
+  top:10px
+}
+.font-inbox {
+  display: inline-block;
+  margin-right: 10px; /* add a 10px margin between each div */
+  margin-bottom: 10px; /* add a 10px margin below each div to move it to the next line */
+  font-size:10px;
 }
 
 
