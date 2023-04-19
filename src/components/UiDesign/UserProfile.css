@@ -152,8 +152,8 @@ ion-input.custom {
 
 .userPhoto  {
 
-    height: 150px;
-    width: 150px;
+    height: 110px;
+    width: 110px;
     border: 3px solid rgb(241, 239, 239);
     object-fit: cover;
    }

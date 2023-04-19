@@ -1,7 +1,7 @@
-/* ion-content.chatroomContent {
+ion-content.chatroomContent {
     --background: url('./../../photo/bg5.png') no-repeat center/cover fixed !important;
     
-  } */
+  }
 
   .chatPeopleButton {
     /* display: flex; */
@@ -19,7 +19,7 @@
   }
   
   .peopleName {
-    font-size: 16px;
+  font-size: 1use6px;
     font-weight: 500;
    
   }

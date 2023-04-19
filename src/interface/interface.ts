@@ -42,6 +42,7 @@ export interface TeacherInterface {
 	followed_teachers: FollowedTeacherInterface;
 	product: ProductInterface;
 	user: UserInterface;
+	experience: string;
 }
 
 export interface FollowedTeacherInterface {
