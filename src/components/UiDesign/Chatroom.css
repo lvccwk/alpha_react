@@ -34,3 +34,7 @@ ion-content.chatroomContent {
     font-size: 12px;
     color: #999999;
   }
+
+  .noti{
+    --color: red;
+  }
