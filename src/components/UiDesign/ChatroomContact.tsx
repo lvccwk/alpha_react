@@ -21,7 +21,7 @@ function ChatroomContact() {
     const isLoggedIn = useAppSelector(state => state.user.isLoggedIn)
     const params = useParams()
     const user_id = (Number(Object.values(params)[0]))
-
+    const sender_id = useAppSelector((state) => state.user.id)
     const { data: userAll, isLoading, error, refetch } = useQuery({
         queryKey: ["chatRoomGetPeoples"],
         queryFn: () => fetchUserAll(),
@@ -74,25 +74,22 @@ function ChatroomContact() {
                 />
                 <IonList>
                     {Array.isArray(filteredUserAll) && filteredUserAll.map((userAll: UserInterface) => (
-                        <IonItem
-                            button
-                            className='chatPeopleButton'
-                            key={userAll.id}
-                            onClick={() => onClickChatBox(userAll.id)}
-                        >
-                            {/* <IonAvatar className='chatPeople' slot="start">
-                            <img alt={`Avatar for ${userAll.username}`} src={userAll.avatar} />
-                            <img alt={`Avatar for ${userAll.username}`} src={userAll.avatar} />
-                            
-                        </IonAvatar> */}
-
-                            <IonAvatar className='chatPeople' slot="start">
-                                <img alt="Silhouette of a person's head" src = {userAll.image ? userAll.image : "https://ionicframework.com/docs/img/demos/avatar.svg"} />
-                            </IonAvatar>
-                            <IonLabel className='peopleName'>
-                                {userAll.username}
-                            </IonLabel>
-                        </IonItem>
+                        // Conditionally render the IonItem based on the user ID
+                        userAll.id === sender_id ? null : (
+                            <IonItem
+                                button
+                                className='chatPeopleButton'
+                                key={userAll.id}
+                                onClick={() => onClickChatBox(userAll.id)}
+                            >
+                                <IonAvatar className='chatPeople' slot="start">
+                                    <img alt="Silhouette of a person's head" src={userAll.image ? userAll.image : "https://ionicframework.com/docs/img/demos/avatar.svg"} />
+                                </IonAvatar>
+                                <IonLabel className='peopleName'>
+                                    {userAll.username}
+                                </IonLabel>
+                            </IonItem>
+                        )
                     ))}
                 </IonList>
             </>

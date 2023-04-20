@@ -1,6 +1,6 @@
 ion-content.chatroomContent {
-    --background: url('./../../photo/bg5.png') no-repeat center/cover fixed !important;
-    
+    /* --background: url('./../../photo/bg5.png') no-repeat center/cover fixed !important; */
+    --background: white;
   }
 
   .chatPeopleButton {

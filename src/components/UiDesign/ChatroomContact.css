@@ -164,3 +164,8 @@ height: 50px;
 .inputBar {
   display: flex;
 }
+
+ion-content {
+  /* --background: url('./../../photo/bg5.png') no-repeat center/cover fixed !important; */
+  --background: white;
+}
