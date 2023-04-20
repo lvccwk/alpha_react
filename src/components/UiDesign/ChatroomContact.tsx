@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { IonAvatar, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonIcon, IonItem, IonLabel, IonList, IonSearchbar, IonThumbnail } from '@ionic/react';
 import './ChatroomContact.css'
 import { useHistory, useParams } from 'react-router-dom';
@@ -7,8 +7,9 @@ import { fetchTeacherAll, fetchUserAll, } from '../../api/fetchAll';
 import { FollowedTeacherInterface, ProductInterface, TeacherSubjectInterface } from '../../interface/interface';
 import { fetchUser } from '../../api/fetchUser';
 import { useAppSelector } from '../../redux/store';
-import { person } from 'ionicons/icons';
+import { person, radioButtonOff, radioButtonOn } from 'ionicons/icons';
 import './../../../src/components/UiDesign/Chatroom.css'
+// import useSocket from '../../hook/useSocket';
 
 interface UserInterface {
     id: number;
@@ -22,6 +23,20 @@ function ChatroomContact() {
     const params = useParams()
     const user_id = (Number(Object.values(params)[0]))
     const sender_id = useAppSelector((state) => state.user.id)
+
+    // const socket = useSocket()
+
+    // useEffect(() => {
+    //     // socket?.on('message', (msg) => {
+    //     //     console.log({
+    //     //         msg
+    //     //     })
+    //     // })
+    //     // return () => {
+    //     //     // socket?.off('message', messageListener)
+    //     // }
+    // }, [socket])
+
     const { data: userAll, isLoading, error, refetch } = useQuery({
         queryKey: ["chatRoomGetPeoples"],
         queryFn: () => fetchUserAll(),
@@ -88,6 +103,7 @@ function ChatroomContact() {
                                 <IonLabel className='peopleName'>
                                     {userAll.username}
                                 </IonLabel>
+                                <IonIcon className="noti" size='large' icon={radioButtonOn} color='danger' />
                             </IonItem>
                         )
                     ))}

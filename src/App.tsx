@@ -64,13 +64,27 @@ import StripePurchaseFailPage from './pages/Fail';
 import StripePurchaseSuccessPage from './pages/Success';
 import ChatMessage from './pages/ChatMessage';
 import UploadAvailableTime from './pages/UploadAvailableTime';
+import useSocket from './hook/useSocket';
+import { useEffect } from 'react';
 
 
 
 setupIonicReact();
 
 const App: React.FC = () => {
+  const socket = useSocket()
 
+  useEffect(() => {
+    // if (socket) {
+    //   console.log(socket)
+    socket?.on('message', (msg) => {
+      console.log({
+        app: msg
+      })
+    })
+
+    // }
+  }, [socket])
   return (
     <IonApp>
       <IonReactRouter>

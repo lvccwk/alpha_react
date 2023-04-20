@@ -4,6 +4,7 @@ import { useAppSelector } from "../redux/store";
 // import { ChatMessage } from "./types";
 import io, { Socket } from 'socket.io-client';
 import './../../src/components/UiDesign/ChatroomContact.css';
+import useSocket from "../hook/useSocket";
 
 export interface MessageType {
     sender_username: string
@@ -25,16 +26,17 @@ const ChatHistory: React.FC<Props> = ({ sender_username, receiver_username, chat
     const receiver_id = Number(Object.values(params)[0])
     const sender_id = useAppSelector((state) => state.user.id)
 
-    const [socket, setSocket] = useState<Socket>()
-
+    // const [socket, setSocket] = useState<Socket>()
+    const socket = useSocket()
 
     useEffect(() => {
-        if (!socket) {
-            const newSocket = io(`http://localhost:3000`)
-            setSocket(newSocket)
-        } else {
-            socket?.emit("joinRoom", sender_id, receiver_id)
-        }
+        socket?.emit("joinRoom", sender_id, receiver_id)
+        // if (!socket) {
+        //     const newSocket = io(`http://localhost:3000`)
+        //     setSocket(newSocket)
+        // } else {
+        //     socket?.emit("joinRoom", sender_id, receiver_id)
+        // }
     }, [socket])
 
     const messageListener = (message: string[]) => {
@@ -54,9 +56,9 @@ const ChatHistory: React.FC<Props> = ({ sender_username, receiver_username, chat
     }, [messageListener])
 
 
-    useEffect(() => {
-        console.log(chatMessage)
-    }, [chatMessage])
+    // useEffect(() => {
+    //     console.log(chatMessage)
+    // }, [chatMessage])
 
     const msgPosition = (msgUserId: number) => {
         // console.log(receiver_id)
