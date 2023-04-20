@@ -21,7 +21,6 @@ import photo3 from './../photo/3.jpg'
 import photo4 from './../photo/4.jpg'
 import photo5 from './../photo/5.jpg'
 import photo6 from './../photo/6.jpg'
-import './Home.css'
 import TeacherCard from '../components/TeacherCard';
 import { chevronForward, person } from 'ionicons/icons';
 import { useHistory } from 'react-router-dom';
@@ -79,7 +78,7 @@ const Home: React.FC = () => {
   return (
     <IonPage>
       <ToolBar />
-      <IonContent >
+      <IonContent className='test123' >
         <IonCardTitle></IonCardTitle>
         <IonCard className='cardTheTop'>
           <Swiper

@@ -6,8 +6,8 @@
 
   } */
 
-  ion-content {
-    --background: url('./../photo/bg.png') no-repeat center/cover fixed;
+  ion-content.test123 {
+    --background: url('./../../src/photo/bg.png') no-repeat center/cover fixed !important;
     /* --background: #fffffffa; */
   }
 
@@ -16,8 +16,6 @@
   object-fit: cover;
 
 }
-
-
 
   .swiper-image {
     width: 100%;
