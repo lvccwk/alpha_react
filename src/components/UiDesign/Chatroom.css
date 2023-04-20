@@ -1,4 +1,9 @@
 
+ion-content.chatroomContent {
+  --background: url('./../../../src/photo/bg4.png') no-repeat center/cover fixed !important;
+  /* --background: #fffffffa; */
+}
+
 
   .chatPeopleButton {
     /* display: flex; */
