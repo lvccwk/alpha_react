@@ -1,5 +1,5 @@
 export async function facebookLogin(code: string) {
-	const res = await fetch(`http://localhost:3000/users/login/facebook`, {
+	const res = await fetch(`${process.env.REACT_APP_API_SERVER}/users/login/facebook`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json; charset=utf-8'

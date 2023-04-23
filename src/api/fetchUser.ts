@@ -17,7 +17,7 @@ export interface FetchUserModel {
 }
 
 export const fetchUserCheck = async (id: number | null): Promise<FetchUserModel> => {
-	const res = await fetch(`http://localhost:3000/users/${id}`, {
+	const res = await fetch(`${process.env.REACT_APP_API_SERVER}/users/${id}`, {
 		headers: {
 			Authorization: `Bearer ${localStorage.getItem('token')}`
 		}
@@ -35,7 +35,7 @@ export const fetchUserCheck = async (id: number | null): Promise<FetchUserModel>
 };
 
 export const fetchUser = async (): Promise<FetchUserModel> => {
-	const res = await fetch(`http://localhost:3000/users`, {
+	const res = await fetch(`${process.env.REACT_APP_API_SERVER}/users`, {
 		headers: {
 			Authorization: `Bearer ${localStorage.getItem('token')}`
 		}
@@ -53,7 +53,7 @@ export const fetchUser = async (): Promise<FetchUserModel> => {
 };
 
 export const fetchAllUser = async (): Promise<FetchUserModel> => {
-	const res = await fetch(`http://localhost:3000/users/all`, {
+	const res = await fetch(`${process.env.REACT_APP_API_SERVER}/users/all`, {
 		headers: {
 			Authorization: `Bearer ${localStorage.getItem('token')}`
 		}
@@ -76,7 +76,7 @@ export const loginUser = async (obj: {
 }): Promise<FetchUserModel> => {
 	console.log('LoginUser');
 
-	const res = await fetch(`http://localhost:3000/users/login`, {
+	const res = await fetch(`${process.env.REACT_APP_API_SERVER}/users/login`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
@@ -103,7 +103,7 @@ export const fetchAddUser = async (obj: {
 }): Promise<FetchUserModel> => {
 	console.log('fetchAddUser');
 
-	const res = await fetch(`http://localhost:3000/users/reg`, {
+	const res = await fetch(`${process.env.REACT_APP_API_SERVER}/users/reg`, {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
@@ -131,7 +131,7 @@ export const fetchUpdateUser = async (obj: {
 	//image: string,
 }): Promise<void> => {
 	console.log('fetchUpdateUsers', obj);
-	const res = await fetch(`http://localhost:3000/users`, {
+	const res = await fetch(`${process.env.REACT_APP_API_SERVER}/users`, {
 		method: 'PUT',
 		headers: {
 			'Content-Type': 'application/json',
@@ -154,7 +154,7 @@ export const fetchUpdateUser = async (obj: {
 export const fetchDeleteUser = async (): Promise<void> => {
 	console.log('fetchDeleteUser');
 
-	const res = await fetch(`http://localhost:3000/users`, {
+	const res = await fetch(`${process.env.REACT_APP_API_SERVER}/users`, {
 		method: 'DELETE',
 		headers: {
 			'Content-Type': 'application/json',

@@ -62,7 +62,7 @@ function Chatbox() {
 
     useEffect(() => {
         if (!socket) {
-            const newSocket = io(`http://localhost:3000`)
+            const newSocket = io(`${process.env.REACT_APP_API_SERVER}`)
             setSocket(newSocket)
 
         } else {
