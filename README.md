@@ -1,8 +1,11 @@
 # alpha_react
 
-# install package & start localhost
+# install package
 
 yarn install
+
+# start localhost:8100
+
 ionic serve
 
 # test credit card
