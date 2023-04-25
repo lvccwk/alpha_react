@@ -51,18 +51,16 @@ ion-content.segment{
 
 .font-inbox-top {
   display: inline-block;
-  margin-right: 10px; /* add a 10px margin between each div */
+
   margin-bottom: 10px; /* add a 10px margin below each div to move it to the next line */
   font-size: 20px;
   top:10px
 }
 .font-inbox {
   display: inline-block;
-  margin-right: 10px; /* add a 10px margin between each div */
   margin-bottom: 10px; /* add a 10px margin below each div to move it to the next line */
   font-size:10px;
 }
-
 
 .bookMarkedTeacher {
   display: flex;
