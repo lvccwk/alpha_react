@@ -16,24 +16,15 @@ function ToolBar() {
         console.log("isLoggedIn : ", isLoggedIn)
         if (isLoggedIn) {
             history.push('/userprofile');
-            console.log('yesLOGIN');
         } else {
             history.push('/login');
-            console.log('noLOGIN');
         }
     }
-    // const handleBackPage = () => {
-    //     history.push('')
-    //   }
-
-
-    // if (isLoggedIn) {
     return (
         <IonHeader>
             <IonToolbar>
                 <IonButtons slot="start">
                     <IonBackButton color="light"> <IonTitle>Back Button</IonTitle></IonBackButton>
-                    {/* <IonButton onClick={handleBackPage} ></IonButton> */}
                 </IonButtons>
                 {
                     isLoggedIn && (
@@ -57,7 +48,6 @@ function ToolBar() {
             </IonToolbar>
         </IonHeader >
     );
-    // }
 
 }
 export default ToolBar;

@@ -1,6 +1,3 @@
-// import { configureStore } from '@reduxjs/toolkit';
-// import { Provider } from 'react-redux';
-// import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
 import { Redirect, Route } from 'react-router-dom';
 import {
   IonApp,
@@ -35,7 +32,7 @@ import './../src/components/UiDesign/UserProfile.css'
 
 /* Theme variables */
 import './theme/variables.css';
-// import Cart from './pages/Cart';
+
 import Login from './pages/Login';
 import { FacebookCallback } from './components/FacebookCallback';
 import ProductList from './pages/ProductList';
@@ -75,12 +72,7 @@ const App: React.FC = () => {
   const socket = useSocket()
 
   useEffect(() => {
-    // if (socket) {
-    //   console.log(socket)
     socket?.on('message', (msg) => {
-      console.log({
-        app: msg
-      })
     })
 
     // }

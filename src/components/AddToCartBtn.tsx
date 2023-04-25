@@ -9,7 +9,6 @@ function AddToCartBtn() {
             onClick={() =>
                 presentAlert({
                     header: '提示信息',
-                    // subHeader: '加入購物車',
                     message: '加入購物車',
                     buttons: ['OK'],
                 })

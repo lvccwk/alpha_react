@@ -2,7 +2,6 @@ import { IonContent, IonPage, IonSearchbar } from '@ionic/react';
 import React from 'react';
 import Segment from '../components/Segment';
 import ToolBar from '../components/Toolbar';
-// import Cart from './Cart';
 
 
 const ProductList: React.FC = () => {

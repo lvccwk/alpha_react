@@ -33,7 +33,6 @@ function PurchasedHistoryList() {
     refetchOnReconnect: true,
   });
 
-  console.log(purchaseHistory)
 
   useIonViewWillEnter(() => {
     refetch()
@@ -44,7 +43,6 @@ function PurchasedHistoryList() {
     history.push(`/PurchasedItem/` + id);
   }
 
-  console.log(purchaseHistory?.length)
 
   if (isLoading) return <>loading</>
 

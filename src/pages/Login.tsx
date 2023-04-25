@@ -70,34 +70,15 @@ const LoginPage: React.FC = () => {
             email,
             password
         })
-        // try {
-        //     console.log('1')
-        //     const res = await loginUser({
-        //         email: email,
-        //         password: password
-        //     });
-        //     console.log('2')
-        //     console.log(res)
-        //     if (res) {
-        //         setShowToast(true);
-        //         setToastMessage('Login successful!');
-        //         history.push('/home');
-        //     }
-        // } catch (error) {
-        //     console.error(error);
-        //     setShowToast(true);
-        //     setToastMessage('Login failed. Please try again.');
-        // }
+
     }
 
-    // const [loggedIn, setLoggedIn] = useState(false);
+
 
     const handleGoogleLogin = async () => {
         try {
             await loginUserWithGoogle();
-            // setLoggedIn(true);
         } catch (error) {
-            // setLoggedIn(false);
             console.log(error);
         }
     }
@@ -107,16 +88,8 @@ const LoginPage: React.FC = () => {
             <Toolbar />
             <IonContent style={{ backgroundImage: `url(${photo})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', height: '100vh' }}>
                 <br />
-                {/* <h1>Google Login Page</h1>
-                {loggedIn ? (
-                    <p>You are logged in with Google.</p>
-                ) : (
-                    <button onClick={handleGoogleLogin}>Sign in with Google</button>
-                )} */}
-                {/* <UiCard /> */}
                 <IonContent className="ion-padding" >
-                    {/* <IonCard className="login"><IonIcon icon={logoIonic} className="iconlogin" color="primary" ></IonIcon>
-                    </IonCard> */}
+
                     <div className='loginCard'>
                         <IonInput
                             aria-label="Custom input"

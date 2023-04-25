@@ -20,8 +20,6 @@ export default function UserProfile() {
   const id = useAppSelector(state => state.user.id)
   const loggedIn = useAppSelector(state => state.user.isLoggedIn)
 
-  console.log("id", id)
-  console.log("login:", loggedIn)
 
   const handleEditProfile = () => {
     history.push('/userprofilesettings');
@@ -30,7 +28,6 @@ export default function UserProfile() {
   const handleLogout = () => {
     remove()
     dispatch(userLogout());
-    console.log("yesLOGOUT");
     history.push("/home")
   }
 
@@ -40,8 +37,7 @@ export default function UserProfile() {
 
   const { data, isLoading, error, refetch, remove } = useQuery({
     queryKey: ["user"],
-    queryFn: () => fetchUser(), //redux login state,
-    // enabled: false,
+    queryFn: () => fetchUser(),
     refetchOnWindowFocus: false,
     refetchOnReconnect: false,
     retry: false,
@@ -63,24 +59,10 @@ export default function UserProfile() {
   }
 
   useIonViewWillEnter(() => {
-    console.log("ionViewWillEnter")
     refetch()
   })
 
-  // if (error) {
-  //   return (
-  //     <IonPage>
-  //       <Toolbar />
-  //       <IonContent className='ion-padding'>
-  //         <div className='userprofile'>
-  //           錯誤: {JSON.stringify(error)}
-  //         </div>
-  //       </IonContent>
-  //     </IonPage>
-  //   )
-  // }
   if (data?.user_type !== 'student') {
-    console.log('teacher')
     return (
       <IonPage className='userprofilepage'>
         <Toolbar />
@@ -137,8 +119,7 @@ export default function UserProfile() {
       </IonPage>
     );
   } else {
-    //if (error) return <div>Error: {error.message}</div>;
-    console.log('student')
+
     return (
       <IonPage className='userprofilepage'>
         <Toolbar />

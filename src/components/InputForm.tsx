@@ -9,7 +9,6 @@ function InputForm() {
     const ok: AlertButton = {
         text: 'OK',
         handler: () => {
-            console.log("OKO")
             presentAlert2({
                 header: 'Successful',
                 buttons: ["OK"],

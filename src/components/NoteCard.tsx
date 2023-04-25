@@ -30,7 +30,6 @@ function NoteCard() {
     const { data: note, refetch } = useQuery({
         queryKey: ["note"],
         queryFn: async () => await fetchNote(),
-        // refetchInterval: 500,
         refetchOnWindowFocus: false,
         refetchOnReconnect: true,
     });

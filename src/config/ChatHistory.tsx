@@ -30,12 +30,10 @@ const ChatHistoryFirebase: React.FC = () => {
     useEffect(() => {
         const dbRef = ref(getDatabase());
         const chatRef_to_from = child(dbRef, `messages/${to_from}`);
-        // const chatRef_from_to = child(dbRef, `messages/${from_to}`);
         onValue(chatRef_to_from, (snapshot) => {
             if (snapshot.exists()) {
                 const data = snapshot.val();
                 const chatMessages = Object.values(data);
-                console.log(`chatMessages`, chatMessages);
                 setMessages(chatMessages.map((message: any) => message.message as ChatMessage));
             } else {
                 setMessages([]);

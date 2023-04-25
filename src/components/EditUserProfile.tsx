@@ -48,7 +48,6 @@ export default function EditUserProfile() {
   })
 
   useEffect(() => {
-    console.log(user)
     if (user) {
       setValue("username", user ? user.username : "")
       setValue("password", user ? user.password : "")
@@ -67,7 +66,6 @@ export default function EditUserProfile() {
   });
 
   const onSubmit = (state: FetchUserModel) => {
-    console.log(state)
     fetchUpdateItem.mutate(state);
   }
 
@@ -80,7 +78,6 @@ export default function EditUserProfile() {
   return (
 
     <IonCard className="editProfilCard">
-      {/* <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" /> */}
       <IonCardHeader>
         <IonCardTitle> 編輯個人資料 </IonCardTitle>
         <div className='userlogo'> </div>

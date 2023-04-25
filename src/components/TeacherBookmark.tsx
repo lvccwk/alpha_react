@@ -25,10 +25,6 @@ function TeacherBookmark() {
         return <div>Loading...</div>;
     }
 
-    // if (error) {
-    //   return <div>Error: {error.message}</div>;
-    // }
-
     const handleClick = async () => {
         const obj = {
             user_id: Number(studentId),
@@ -37,22 +33,16 @@ function TeacherBookmark() {
 
         try {
             if (!isBookmarked) {
-                console.log("create", obj.user_id, obj.teacher_id);
                 await fetchCreateBookmark(obj);
                 setIsBookmarked(true);
                 setShowToast(true);
             } else {
-                console.log("delete", obj.user_id, obj.teacher_id);
-                // const { data, isLoading, error, refetch } = useQuery(['teacherDetailBookMark', teacherId], () =>
-                //     fetchTeacher(Number(teacherId))
-                // );
-                // obj
+
                 await fetchDeleteBookmark(obj);
                 setIsBookmarked(false);
                 setShowToast(true);
             }
         } catch (error) {
-            //console.log('Error:', error);
             setShowToast(true);
         }
 

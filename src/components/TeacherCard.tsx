@@ -25,7 +25,7 @@ function TeacherList() {
     const handleSearch = (e: CustomEvent) => {
         setSearchText(e.detail.value!);
     };
-    console.log('teacherAll', teacherAll)
+
 
     const filteredData = teacherAll?.filter((item: any) =>
         item.user.username.toString().includes(searchText.toString()) ||
@@ -33,7 +33,7 @@ function TeacherList() {
 
     );
 
-    console.log(teacherAll)
+
 
     return (
         <>

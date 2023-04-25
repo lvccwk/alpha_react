@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 import { useAppSelector } from "../redux/store";
-// import { ChatMessage } from "./types";
 import io, { Socket } from 'socket.io-client';
 import './../../src/components/UiDesign/ChatroomContact.css';
 import useSocket from "../hook/useSocket";
@@ -25,27 +24,17 @@ const ChatHistory: React.FC<Props> = ({ sender_username, receiver_username, chat
     const params = useParams()
     const receiver_id = Number(Object.values(params)[0])
     const sender_id = useAppSelector((state) => state.user.id)
-
-    // const [socket, setSocket] = useState<Socket>()
     const socket = useSocket()
 
     useEffect(() => {
         socket?.emit("joinRoom", sender_id, receiver_id)
-        // if (!socket) {
-        //     const newSocket = io(`${process.env.REACT_APP_API_SERVER}`)
-        //     setSocket(newSocket)
-        // } else {
-        //     socket?.emit("joinRoom", sender_id, receiver_id)
-        // }
+
     }, [socket])
 
     const messageListener = (message: string[]) => {
-        console.log({
-            message,
-            sender_id
-        })
+
         addChatMessage(message[0], parseInt(message[1]))
-        // bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+
     }
 
     useEffect(() => {
@@ -55,15 +44,7 @@ const ChatHistory: React.FC<Props> = ({ sender_username, receiver_username, chat
         }
     }, [messageListener])
 
-
-    // useEffect(() => {
-    //     console.log(chatMessage)
-    // }, [chatMessage])
-
     const msgPosition = (msgUserId: number) => {
-        // console.log(receiver_id)
-        // console.log(msgUserId)
-
         return msgUserId == sender_id ? "msg-right" : ""
     }
     return (

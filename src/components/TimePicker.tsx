@@ -12,16 +12,15 @@ function TimePicker() {
         queryFn: () => fetchTeacher(Number(teacherId)),
     });
 
-    const currentDatetime = new Date().toISOString(); // get the current datetime as ISO string
-    const [selectedDatetime, setSelectedDatetime] = useState(null); // state to store the selected datetime value
+    const currentDatetime = new Date().toISOString();
+    const [selectedDatetime, setSelectedDatetime] = useState(null);
 
     const handleDatetimeChange = (event: any) => {
-        const datetimeValue = event.detail.value; // get the selected datetime value
-        setSelectedDatetime(datetimeValue); // update the state with the selected datetime value
+        const datetimeValue = event.detail.value;
+        setSelectedDatetime(datetimeValue);
     };
 
     const handleSubmit = () => {
-        // Call your function here to submit the selected datetime value to the backend
         console.log('Selected DateTime:', selectedDatetime);
     };
 

@@ -14,7 +14,6 @@ function Button() {
 
         queryFn: async () => await fetchCart(id),
     });
-    console.log(`cart_id = `, user?.id)
     const cart_id = user?.id
     const history = useHistory()
     async function checkout(cart_id: number) {

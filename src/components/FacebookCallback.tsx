@@ -17,7 +17,6 @@ export function FacebookCallback() {
             if (data) {
                 dispatch(fbLogin({ token: data.token }))
             } else {
-                // Error handling with React-Toastify
             }
         })()
     }, [])

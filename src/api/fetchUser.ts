@@ -25,9 +25,6 @@ export const fetchUserCheck = async (id: number | null): Promise<FetchUserModel>
 
 	if (res.ok) {
 		const data = await res.json();
-		console.log({
-			fetchUser: data
-		});
 		return data;
 	} else {
 		throw new Error('fetchUser FAILED');
@@ -40,12 +37,8 @@ export const fetchUser = async (): Promise<FetchUserModel> => {
 			Authorization: `Bearer ${localStorage.getItem('token')}`
 		}
 	});
-	console.log(res);
 	if (res.ok) {
 		const data = await res.json();
-		console.log({
-			fetchUser: data
-		});
 		return data;
 	} else {
 		throw new Error('fetchUser FAILED');
@@ -58,12 +51,8 @@ export const fetchAllUser = async (): Promise<FetchUserModel> => {
 			Authorization: `Bearer ${localStorage.getItem('token')}`
 		}
 	});
-	console.log(res);
 	if (res.ok) {
 		const data = await res.json();
-		console.log({
-			fetchUser: data
-		});
 		return data;
 	} else {
 		throw new Error('fetchUser FAILED');
@@ -74,8 +63,6 @@ export const loginUser = async (obj: {
 	email: string;
 	password: string;
 }): Promise<FetchUserModel> => {
-	console.log('LoginUser');
-
 	const res = await fetch(`${process.env.REACT_APP_API_SERVER}/users/login`, {
 		method: 'POST',
 		headers: {
@@ -101,8 +88,6 @@ export const fetchAddUser = async (obj: {
 	email: string;
 	password: string;
 }): Promise<FetchUserModel> => {
-	console.log('fetchAddUser');
-
 	const res = await fetch(`${process.env.REACT_APP_API_SERVER}/users/reg`, {
 		method: 'POST',
 		headers: {
@@ -125,12 +110,9 @@ export const fetchAddUser = async (obj: {
 };
 
 export const fetchUpdateUser = async (obj: {
-	//user_type: string,
 	username: string;
 	password: string;
-	//image: string,
 }): Promise<void> => {
-	console.log('fetchUpdateUsers', obj);
 	const res = await fetch(`${process.env.REACT_APP_API_SERVER}/users`, {
 		method: 'PUT',
 		headers: {
@@ -140,7 +122,6 @@ export const fetchUpdateUser = async (obj: {
 		body: JSON.stringify({
 			username: obj.username,
 			password: obj.password
-			//image: obj.image,
 		})
 	});
 
@@ -152,8 +133,6 @@ export const fetchUpdateUser = async (obj: {
 };
 
 export const fetchDeleteUser = async (): Promise<void> => {
-	console.log('fetchDeleteUser');
-
 	const res = await fetch(`${process.env.REACT_APP_API_SERVER}/users`, {
 		method: 'DELETE',
 		headers: {
@@ -168,27 +147,3 @@ export const fetchDeleteUser = async (): Promise<void> => {
 		throw new Error('fetchDeleteUser FAILED');
 	}
 };
-
-/*
-USER TABLE:
-model Users {
-  id                  Int                   @id @default(autoincrement())
-  user_type           String                @db.VarChar(255)
-  username            String?               @db.VarChar(255)
-  email               String                @unique @db.VarChar(255)
-  password            String                @db.VarChar(255)
-  image               String                @db.Text
-  created_at          DateTime              @default(now()) @db.Timestamp
-  updated_at          DateTime              @updatedAt @db.Timestamp
-  subject             Subjects[]
-  product             Products[]
-  purchase_history    PurchaseHistorys[]
-  cart                Carts[]
-  teacher             Teachers[]
-  timetable           Timetables[]
-  product_rating      ProductRatings[]
-  chartoom            Chatrooms[]
-  chatoom_participant ChatoomParticipants[]
-  private_message     PrivateMessages[]
-}
-*/

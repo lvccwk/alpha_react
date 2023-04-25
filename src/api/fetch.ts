@@ -7,10 +7,8 @@ export async function facebookLogin(code: string) {
 		body: JSON.stringify({ code })
 	});
 	const result = await res.json();
-	console.log(result);
 	if (res.status === 200) {
 		localStorage.setItem('token', result.token);
-		//localStorage.setItem("id", result.id);
 		return result;
 	} else {
 		return false;

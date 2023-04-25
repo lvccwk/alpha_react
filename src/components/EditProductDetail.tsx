@@ -34,8 +34,6 @@ export default function EditProductDetail() {
     refetchOnWindowFocus: false,
     refetchOnReconnect: true,
     onSuccess: (product) => {
-      console.log("PRODUCT=", product)
-      console.log("PRODUCTONSALE=", product.is_onsale)
       setValue("id", product ? product.id : Number(productId))
       setValue("name", product ? product.name : "")
       setValue("price", product ? product.price : NaN)
@@ -49,15 +47,12 @@ export default function EditProductDetail() {
     queryFn: async () => {
       return await fetchProduct(Number(productId))
     },
-    // refetchInterval: 2000,
     refetchOnWindowFocus: false,
     refetchOnReconnect: true,
   });
 
-  console.log('teacherProduct', teacherProduct)
 
   useIonViewWillEnter(() => {
-    console.log("useIonViewWillEnter")
     refetch()
   })
 
@@ -68,9 +63,6 @@ export default function EditProductDetail() {
     }
   })
 
-
-
-  console.log(`getValues`, getValues)
   const fetchUpdateItem = useMutation(fetchUpdateProduct, {
     onSuccess(data, variables, context) {
       refetch();
@@ -83,7 +75,6 @@ export default function EditProductDetail() {
   });
 
   const onSubmit = (state: FetchUserAllModel) => {
-    console.log(state)
     fetchUpdateItem.mutate(state);
   }
 
@@ -97,7 +88,7 @@ export default function EditProductDetail() {
   return (
 
     <IonCard className="editProfilCard">
-      {/* <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" /> */}
+
       <IonCardHeader>
         <IonCardTitle> 編輯課程/筆記資料 </IonCardTitle>
         <div className='userlogo'> </div>
@@ -131,5 +122,3 @@ export default function EditProductDetail() {
   )
 }
 
-
-// name price info is_onsale

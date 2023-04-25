@@ -9,8 +9,6 @@ import { fetchDeleteUser } from "../api/fetchUser";
 
 function DeleteUserAlert() {
   const [presentAlert] = useIonAlert();
-  // const [handlerMessage, setHandlerMessage] = useState('');
-  // const [roleMessage, setRoleMessage] = useState('');
   const history = useHistory();
   const dispatch = useDispatch();
   const id = useAppSelector(state => state.user.id)
@@ -20,8 +18,7 @@ function DeleteUserAlert() {
       onClick={() =>
         presentAlert({
           header: '確定要刪除您的帳戶嗎?',
-          // subHeader: '',
-          // message: '',
+
           buttons: [
             {
               text: '取消',
@@ -29,7 +26,7 @@ function DeleteUserAlert() {
             },
             {
               text: '確定',
-              handler: () => { //logic
+              handler: () => {
                 if (loggedIn) {
                   fetchDeleteUser()
                   dispatch(userLogout());

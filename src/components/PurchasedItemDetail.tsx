@@ -25,7 +25,6 @@ function PurchasedItemDetail() {
 
 
     const openCapacitorSite = async () => {
-        console.log('download note')
         await Browser.open({ url: `${product?.file_url}` });
     };
 
@@ -40,7 +39,7 @@ function PurchasedItemDetail() {
                     <br />
                     ${product?.price}
                     <br />
-                    評分:{product?.avg_rating?product?.avg_rating:"暫無"}
+                    評分:{product?.avg_rating ? product?.avg_rating : "暫無"}
                     <br />
                     <IonButton onClick={() => openCapacitorSite()}>下載筆記</IonButton>
                     <br />

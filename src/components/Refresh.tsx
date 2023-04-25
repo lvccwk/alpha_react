@@ -5,7 +5,6 @@ function Refresh() {
 
     function handleRefresh(event: CustomEvent<RefresherEventDetail>) {
         setTimeout(() => {
-            // Any calls to load data go here
             event.detail.complete();
         }, 2000);
     }

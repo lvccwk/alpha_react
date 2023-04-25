@@ -1,5 +1,4 @@
 import { IonContent, IonPage } from "@ionic/react";
-// import { Button } from "react-bootstrap";
 
 export default function LoginPage() {
     const onFacebookLogin = (e: any) => {

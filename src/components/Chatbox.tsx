@@ -26,14 +26,10 @@ function Chatbox() {
 
     const send = async (value: string, sender_id: number) => {
         try {
-            // emit the message through the socket
             socket?.emit("privateMessage", value, sender_id, receiver_id);
 
-            // send the message to the backend
             await addChatRecord({ from_id: receiver_id, to_id: sender_id, content: value });
 
-            console.log(`sender_id = `, sender_id);
-            console.log(`receiver_id = `, receiver_id);
             bottomRef.current?.scrollIntoView({ behavior: 'auto' });
 
         } catch (error) {
@@ -42,12 +38,12 @@ function Chatbox() {
     };
 
     const { data: receiver } = useQuery(["chatroomUserReceiver", receiver_id], (Number) => fetchUserCheck(receiver_id))
-    console.log('receiver_id:', receiver_id)
+
     const { data: sender } = useQuery(["chatroomUserSender", sender_id], (Number) => fetchUserCheck(sender_id));
-    console.log('sender_id:', sender_id)
+
     const { data: chatMessage } = useQuery(["chatMessageHisotrys", sender_id], (Number) => fetchChatHistory(receiver_id), {
         onSuccess(data) {
-            console.log("success")
+
             const msg = data.map(v => ({
                 sender_id: sender?.id,
                 sender_username: sender?.username,
@@ -103,9 +99,7 @@ function Chatbox() {
 
         );
     }
-    console.log({
-        messages
-    })
+
 
     function addChatMessage(msg: string, sender_id: number) {
         const msgObj: MessageType = {
@@ -132,7 +126,6 @@ function Chatbox() {
                 </div>
                 <div className='telegram-chat-history-container'>
                     <ChatHistory chatMessage={messages} addChatMessage={addChatMessage} sender_username={sender?.username} receiver_username={receiver?.username} />
-                    {/* <Messages messages={messages} senderId={sender_id} sender={sender?.username} receiver={receiver?.username} /> */}
                 </div>
                 <div className='my-div'> {""}</div>
                 <MessageInput send={(val: string) => send(val, sender_id)} />

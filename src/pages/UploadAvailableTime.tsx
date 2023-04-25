@@ -16,16 +16,15 @@ const UploadAvailableTime: React.FC = () => {
     const [toastMessage, setToastMessage] = useState('');
     const teacherId = (Number(Object.values(params)[0]))
 
-    const currentDatetime = new Date().toISOString(); // get the current datetime as ISO string
-    const [selectedDatetime, setSelectedDatetime] = useState(null); // state to store the selected datetime value
+    const currentDatetime = new Date().toISOString();
+    const [selectedDatetime, setSelectedDatetime] = useState(null);
 
     const handleDatetimeChange = (event: any) => {
-        const datetimeValue = event.detail.value; // get the selected datetime value
-        setSelectedDatetime(datetimeValue); // update the state with the selected datetime value
+        const datetimeValue = event.detail.value;
+        setSelectedDatetime(datetimeValue);
     };
 
     const handleSubmit = () => {
-        // Call your function here to submit the selected datetime value to the backend
         console.log('Selected DateTime:', selectedDatetime);
     };
 
@@ -33,11 +32,6 @@ const UploadAvailableTime: React.FC = () => {
 
     const UploadAvailableTime = async (e: any) => {
         e.preventDefault();
-        // console.log("NAME", name);
-        // console.log("PRICE", price);
-        // console.log("PRODUCT", product);
-
-        // console.log(e.target.files[0])
 
         if (!timeSlot || timeDuring) {
             console.error('Please fill in all fields');
@@ -54,12 +48,7 @@ const UploadAvailableTime: React.FC = () => {
                 }
 
                 const formData = new FormData();
-                // formData.append('tim_slot', timeSlot);
-                // formData.append('time_during', timeDuring);
                 formData.append('teacher_id', String(teacherId));
-                // const res = await fetchCreateProduct(formData)
-
-                console.log('Product uploaded successfully');
             } catch (error) {
                 console.log(error);
             }

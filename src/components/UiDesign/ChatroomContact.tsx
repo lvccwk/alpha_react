@@ -9,7 +9,7 @@ import { fetchUser } from '../../api/fetchUser';
 import { useAppSelector } from '../../redux/store';
 import { person, radioButtonOff, radioButtonOn } from 'ionicons/icons';
 import './../../../src/components/UiDesign/Chatroom.css'
-// import useSocket from '../../hook/useSocket';
+
 
 interface UserInterface {
     id: number;
@@ -24,18 +24,6 @@ function ChatroomContact() {
     const user_id = (Number(Object.values(params)[0]))
     const sender_id = useAppSelector((state) => state.user.id)
 
-    // const socket = useSocket()
-
-    // useEffect(() => {
-    //     // socket?.on('message', (msg) => {
-    //     //     console.log({
-    //     //         msg
-    //     //     })
-    //     // })
-    //     // return () => {
-    //     //     // socket?.off('message', messageListener)
-    //     // }
-    // }, [socket])
 
     const { data: userAll, isLoading, error, refetch } = useQuery({
         queryKey: ["chatRoomGetPeoples"],
@@ -89,7 +77,6 @@ function ChatroomContact() {
                 />
                 <IonList>
                     {Array.isArray(filteredUserAll) && filteredUserAll.map((userAll: UserInterface) => (
-                        // Conditionally render the IonItem based on the user ID
                         userAll.id === sender_id ? null : (
                             <IonItem
                                 button

@@ -19,12 +19,10 @@ const ChatInstantFirebase: React.FC = () => {
         const dbRef = ref(getDatabase());
         const chatRef = child(dbRef, `users/${user_id}`);
 
-        // Attach a listener to the chatRef
         onValue(chatRef, (snapshot) => {
             const data = snapshot.val();
             const messages: ChatMessage[] = [];
 
-            // Convert the data to an array of chat messages
             Object.keys(data).forEach((key) => {
                 const { username, message, time } = data[key];
                 messages.push({ userId: key, name: username, message, time });
@@ -32,14 +30,9 @@ const ChatInstantFirebase: React.FC = () => {
 
             setChatMessages(messages);
         }, {
-            // Set the initial state of chatMessages to an empty array
-            // initialData: [],
+
         });
 
-        // Detach the listener when the component unmounts
-        // return () => {
-        //     chatRef.off("value");
-        // };
     }, [user_id]);
 
     return (

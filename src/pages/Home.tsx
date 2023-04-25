@@ -56,11 +56,6 @@ const Home: React.FC = () => {
     courseFetch()
 
   })
-  // useEffect(() => {
-  //   console.log("courseFetch")
-  //   courseFetch()
-  // }, [])
-
   const onClickTeacherProfile = (id: number) => {
     history.push(`/tutorprofile/${id}`);
   };
@@ -84,7 +79,6 @@ const Home: React.FC = () => {
           <Swiper
             modules={[Autoplay, Keyboard, Pagination, Scrollbar, Zoom]}
             autoplay={true}
-            // autoplay={{ delay: 2000 }}
             keyboard={true}
             pagination={{ clickable: true }}
             scrollbar={{ draggable: true }}

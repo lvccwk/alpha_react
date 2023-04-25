@@ -31,7 +31,6 @@ function CourseCard() {
     const { data: course, refetch } = useQuery({
         queryKey: ["course"],
         queryFn: async () => await fetchCourse(),
-        // refetchInterval: 2000,
         refetchOnWindowFocus: false,
         refetchOnReconnect: true,
     });
@@ -43,7 +42,6 @@ function CourseCard() {
         refetchOnReconnect: true,
     });
 
-    // console.log(`user`, user)
     const { data: purchaseHistory } = useQuery({
         queryKey: ["purchasehistorys", user?.id],
         queryFn: async () => {
@@ -69,13 +67,10 @@ function CourseCard() {
             if (user?.teacher[0].id) { return await fetchTeacherProduct(user?.teacher[0].id) }
             return null
         },
-        // refetchInterval: 2000,
         refetchOnWindowFocus: false,
         refetchOnReconnect: true,
     });
 
-
-    console.log(`teacherProduct`, teacherProduct)
     useIonViewWillEnter(() => {
         refetch()
         teacherFetch()
@@ -128,9 +123,6 @@ function CourseCard() {
         if (isLoggedIn === false) {
             pleaseLogin()
         } else {
-            // console.log({
-            //     user
-            // })
 
             let obj = {
                 cart_id: user?.cart[0].id,
@@ -159,26 +151,18 @@ function CourseCard() {
         return teacherName.includes(lowerCaseSearchText) || courseName.includes(lowerCaseSearchText);
     });
 
-    // console.log({
-    //     course,
-    //     phID,
-    //     cartID,
-    //     user,
-    //     cart
-    // })
 
     return (
         <>
             <IonSearchbar value={searchText} onIonChange={handleSearch}></IonSearchbar>
             {Array.isArray(filteredCourses) && Array.isArray(phID) && Array.isArray(teacherProductID) && Array.isArray(cartID) && filteredCourses.map((item: Course) => (
                 <div style={{ display: 'flex', justifyContent: 'center' }} key={item.id}>
-                    {/* your existing code ... */}
+
                     <IonCard className='courseCardBackground' key={item.id}>
                         <img alt="Product thumbnail" className='courseCardBackground-img' src={item.image} style={{ width: '350px', objectFit: 'cover' }} />
                         <IonCardSubtitle className='courseCardText'>{item.name} 價格:${item.price}
                         </IonCardSubtitle>
-                        {/* <IonCardSubtitle className='courseCardText'>{item.name} 老師:{item.teacher.user.username} <br />價格:${item.price} 評分:{item.avg_rating ? item.avg_rating : "暫無"}
-                        </IonCardSubtitle> */}
+
                         <IonFooter className='courseItemPrice'>
                             <IonButton className='btn-size' size='small' onClick={() => onClickProductPage(item.id)}>
                                 詳細資料

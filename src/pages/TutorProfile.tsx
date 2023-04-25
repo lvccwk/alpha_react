@@ -12,7 +12,6 @@ import ProductDetail from '../components/ProductDetail';
 import './../../src/components/UiDesign/TeacherPage.css'
 
 const TutorProfile: React.FC = () => {
-    console.log("TutorProfile")
     const history = useHistory()
 
     return (

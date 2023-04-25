@@ -9,10 +9,8 @@ export default function useSocket() {
         if (!socket) {
             const newSocket = io(`${process.env.REACT_APP_API_SERVER}`)
             setSocket(newSocket)
-            console.log(newSocket)
-
         } else {
-            // socket?.emit("joinRoom", sender_id, receiver_id)
+
         }
     }, [socket])
 

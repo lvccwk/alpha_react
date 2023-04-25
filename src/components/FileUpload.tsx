@@ -84,12 +84,10 @@ function FileUpload() {
         setShowLoading(true);
         const res = await fetchCreateProduct(formData)
         if (res.ok) {
-          // setToastMessage('你的資料已成功上傳');
           setShowLoading(false);
         }
         setShowAlert(true);
         setShowLoading(false);
-        console.log('Product uploaded successfully');
       } catch (error) {
         console.log(error);
         setShowLoading(false);

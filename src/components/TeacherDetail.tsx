@@ -24,15 +24,6 @@ function TeacherDetail() {
         queryKey: ["teacherDetail"],
         queryFn: () => fetchTeacher(Number(teacherId)),
     });
-    console.log(data)
-    // const { data: course } = useQuery({
-    //     queryKey: ["courses"],
-    //     queryFn: async () => await fetchCourseByid(Number(teacherId)),
-    //     // refetchInterval: 500,
-    //     refetchOnWindowFocus: false,
-    //     refetchOnReconnect: true,
-    // });
-
 
     const history = useHistory();
     const onClickAppoinmentPage = (id: number) => {
@@ -56,10 +47,6 @@ function TeacherDetail() {
             history.push(`/chatroom/` + id);
         }
     }
-
-    // const onClickEditProfile = (id: number) => {
-    //     history.push(`/product/${course?.product.id}`);
-    // };
     if (!isLoggedIn) {
         return (
             <>
@@ -73,16 +60,14 @@ function TeacherDetail() {
                     </div>
 
                     <div style={{ position: 'absolute', top: '120px', right: '330px' }}>
-                        {/* <TeacherBookmark /> */}
                     </div>
 
                     <IonCard className='teacherProfileCard' >
                         <br /><br />
                         <div className='teacherCardContent'>
                             <IonCardHeader className='usernameInfo'>
-                                {/* <IonCardSubtitle className='teacherFont'>Email : {data?.user.email}</IonCardSubtitle> */}
+
                                 <IonCardTitle style={{ textAlign: 'center', marginTop: '20px' }}> {data?.user.username}</IonCardTitle>
-                                {/* <br /> <br /><br /> */}
                             </IonCardHeader>
 
                         </div>
@@ -98,7 +83,7 @@ function TeacherDetail() {
                             <IonCardContent className='teacherFonts'>
                                 <h1>導師介紹:  </h1>
                                 <br></br>{data?.info}
-                                {/* 大家好，我是一位補習老師，我的名字是______。我畢業於______大學，主修______。我有多年的教學經驗，曾為不同年齡和程度的學生進行補習。我喜歡教學，因為我相信每個學生都有自己的潛力，只需要找到適合他們的教學方法和學習節奏。我會根據學生的程度和需求，設計出合適的教學計劃和練習，讓學生能夠在學習中逐步提高，達到他們的學習目標。我也會鼓勵學生主動思考和發問，幫助他們建立自信，從而更好地掌握知識和技能。希望能夠成為學生學習路上的良師益友，共同進步。 */}
+
                                 <br /><br /><br />
 
                             </IonCardContent>
@@ -145,9 +130,9 @@ function TeacherDetail() {
                         <br /><br />
                         <div className='teacherCardContent'>
                             <IonCardHeader className='usernameInfo'>
-                                {/* <IonCardSubtitle className='teacherFont'>Email : {data?.user.email}</IonCardSubtitle> */}
+
                                 <IonCardTitle style={{ textAlign: 'center', marginTop: '20px' }}> {data?.user.username}</IonCardTitle>
-                                {/* <br /> <br /><br /> */}
+
                             </IonCardHeader>
 
                         </div>
@@ -163,7 +148,7 @@ function TeacherDetail() {
                             <IonCardContent className='teacherFonts'>
                                 <h1>導師介紹:  </h1>
                                 <br></br>{data?.info}
-                                {/* 大家好，我是一位補習老師，我的名字是______。我畢業於______大學，主修______。我有多年的教學經驗，曾為不同年齡和程度的學生進行補習。我喜歡教學，因為我相信每個學生都有自己的潛力，只需要找到適合他們的教學方法和學習節奏。我會根據學生的程度和需求，設計出合適的教學計劃和練習，讓學生能夠在學習中逐步提高，達到他們的學習目標。我也會鼓勵學生主動思考和發問，幫助他們建立自信，從而更好地掌握知識和技能。希望能夠成為學生學習路上的良師益友，共同進步。 */}
+
                                 <br /><br /><br />
 
                             </IonCardContent>
@@ -210,9 +195,8 @@ function TeacherDetail() {
                         <br /><br />
                         <div className='teacherCardContent'>
                             <IonCardHeader className='usernameInfo'>
-                                {/* <IonCardSubtitle className='teacherFont'>Email : {data?.user.email}</IonCardSubtitle> */}
                                 <IonCardTitle style={{ textAlign: 'center', marginTop: '20px' }}> {data?.user.username}</IonCardTitle>
-                                {/* <br /> <br /><br /> */}
+
                             </IonCardHeader>
 
                         </div>
