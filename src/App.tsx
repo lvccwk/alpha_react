@@ -63,6 +63,7 @@ import ChatMessage from './pages/ChatMessage';
 import UploadAvailableTime from './pages/UploadAvailableTime';
 import useSocket from './hook/useSocket';
 import { useEffect } from 'react';
+import { routes } from './routes';
 
 
 
@@ -82,7 +83,7 @@ const App: React.FC = () => {
       <IonReactRouter>
         <IonTabs>
           <IonRouterOutlet>
-            <Redirect exact path="/" to="/home" />
+            <Redirect exact path="/" to={routes.home} />
             {/*
           Use the render method to reduce the number of renders your component will have due to a route change.
           Use the component prop when your component depends on the RouterComponentProps passed in automatically.
@@ -90,11 +91,11 @@ const App: React.FC = () => {
             <Route path="/resource" render={() => <Resource />} exact={true} />
 
             <Route path="/tutor" render={() => <Tutor />} exact={true} />
-            <Route path="/home" render={() => <Home />} exact={true} />
+            <Route path={routes.home} render={() => <Home />} exact={true} />
             <Route path="/shoppingcart" render={() => <ShoppingCart />} exact={true} />
             {/* <Route path="/chatroom/:id" render={() => <InputMessage />} exact={true} /> */}
             <Route path="/chatroom/:id" render={() => <ChatMessage />} exact={true} />
-            <Route path="/chatroom" render={() => <Chatroom />} exact={true} />
+            <Route path="/chatroom" render={() => <Chatroom />} exact />
             <Route path="/login" render={() => <Login />} exact={true} />
             <Route exact path="/facebook-callback"><FacebookCallback></FacebookCallback></Route>
             <Route path="/userprofile" render={() => <UserProfile />} exact={true} />

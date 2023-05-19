@@ -12,6 +12,7 @@ import { generalLogin } from "../redux/userSlice";
 import './../../src/components/UiDesign/Login.css'
 import { logoFacebook, logoIonic } from "ionicons/icons";
 import photo from '../../src/photo/brandi-redd-6H9H-tYPUQQ-unsplash.jpg'
+import { routes } from "../routes";
 
 const LoginPage: React.FC = () => {
 
@@ -52,7 +53,7 @@ const LoginPage: React.FC = () => {
             dispatch(generalLogin({
                 token
             }))
-            history.push('/home');
+            history.push(routes.home);
         },
         onError: (e) => {
             console.log(e)

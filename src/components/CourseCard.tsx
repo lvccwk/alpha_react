@@ -178,7 +178,7 @@ function CourseCard() {
                                 </IonButton>
                             )}
                             {isLoggedIn === true && teacherProductID.includes(item.id) === false && phID.includes(item.id) && (
-                                <IonButton className='btn-size' size='small' disabled={true}>
+                                <IonButton className='btn-size' size='small' disabled>
                                     已購買
                                 </IonButton>
                             )}
